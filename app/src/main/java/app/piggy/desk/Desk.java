@@ -139,8 +139,7 @@ final class Desk implements Account.Listener, NetGuard.Listener {
         }
         String detail = a.step == Account.Step.INSTALLING || a.step == Account.Step.ERROR ? a.detail : "";
         // a failed install: what the tablet's exit last ran into (DNS, a refused connection …) says more than "502"
-        if (a.step == Account.Step.ERROR && !EgressProxy.lastError.isEmpty()) detail += "
-出口最后的错误：" + EgressProxy.lastError;
+        if (a.step == Account.Step.ERROR && !EgressProxy.lastError.isEmpty()) detail += "\n出口最后的错误：" + EgressProxy.lastError;
         return new Engine.Obj("linux", Linux.installed(app), "claude", claude, "version", a.version, "detail", detail).o;
     }
 
