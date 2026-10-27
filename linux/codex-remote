@@ -1,12 +1,12 @@
 #!/bin/sh
-# Run by the Buddy app inside its built-in Linux (Settings > Remote Control > Codex session): Codex's app-server with
+# Run by the Piggy app inside its built-in Linux (Settings > Remote Control > Codex session): Codex's app-server with
 # remote control, so Codex here can be used from the ChatGPT app (Codex) on this phone or on a computer. Codex keeps
-# its own settings (each chat's permission is picked in ChatGPT); Buddy only adds the phone tools.
+# its own settings (each chat's permission is picked in ChatGPT); Piggy only adds the phone tools.
 #   codex-remote <token>
 # Once the server answers, it prints BUDDY_READY, then takes the app's commands on stdin, one per line:
 #   pair    prints "BUDDY_PAIR <json>" (a short-lived pairing code) or "BUDDY_PAIR_ERROR <message>"
 # Pairing runs here because it has to: the server's socket path is too long for Android, so proot moves the socket
-# somewhere only this proot knows (`codex remote-control pair` in Buddy's terminal can't reach it).
+# somewhere only this proot knows (`codex remote-control pair` in Piggy's terminal can't reach it).
 export BUDDY_TOKEN=${1:-}
 export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # status changes ("remote control handle status changed ... next_status=Connected") for the app's status line

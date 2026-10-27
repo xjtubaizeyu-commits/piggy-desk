@@ -139,7 +139,7 @@ public final class Schedules extends BroadcastReceiver {
         return out;
     }
 
-    private static final String ACTION_FIRE = "app.buddy.assistant.SCHEDULE", CHANNEL = "schedules", TAG = "schedule";
+    private static final String ACTION_FIRE = "app.piggy.assistant.SCHEDULE", CHANNEL = "schedules", TAG = "schedule";
     /** How long a task waits for Buddy to be free, or a run for the user to unlock, before giving up. */
     private static final long WAIT_MS = 3600_000L, LOOK_MS = 30_000L, UNLOCK_WAIT_MS = 45_000L;
     private static final Handler main = new Handler(Looper.getMainLooper());
@@ -285,7 +285,7 @@ public final class Schedules extends BroadcastReceiver {
         Plan p = s.schedule;
         boolean locked = Triggers.locked(app);
         StringBuilder prompt = new StringBuilder("[BUDDY_SCHEDULED] The user set this chat to send the message below ")
-                .append(p.english()).append(", and Buddy sent it now on its own: they may not be watching. Do it as ")
+                .append(p.english()).append(", and Piggy sent it now on its own: they may not be watching. Do it as ")
                 .append("if they had just typed it; approval cards still wait for them.\n");
         if (locked) {
             prompt.append("The phone is locked right now. The background browser and Linux tools work as usual; a ")
@@ -390,7 +390,7 @@ public final class Schedules extends BroadcastReceiver {
             return null;
         }
         if (SystemClock.elapsedRealtime() < until) {
-            return "LOCKED: this is a scheduled task and the phone is locked, so the screen can't be used. Buddy asked "
+            return "LOCKED: this is a scheduled task and the phone is locked, so the screen can't be used. Piggy asked "
                     + "the user to unlock it. Nothing was done. Call " + tool + " again to keep waiting for them, or "
                     + "finish what you can without the screen.";
         }

@@ -153,8 +153,8 @@ final class SshServer {
                 + " mkdir -p /etc/buddy /root/.ssh; chmod 700 /root/.ssh; touch /root/.ssh/authorized_keys;"
                 + " chmod 600 /root/.ssh/authorized_keys; echo PREP_OK", 300);
         if (!out.contains("PREP_OK")) throw new Exception(out.trim());
-        Linux.write(new File(Linux.root(app), CONFIG.substring(1)), "# Buddy's SSH server (Settings > Remote Control)."
-                + " Buddy rewrites this file each time it starts the server.\n"
+        Linux.write(new File(Linux.root(app), CONFIG.substring(1)), "# Piggy's SSH server (Settings > Remote Control)."
+                + " Piggy rewrites this file each time it starts the server.\n"
                 + "ListenAddress 127.0.0.1\nPort " + PORT + "\n"
                 + "PermitRootLogin prohibit-password\nPasswordAuthentication no\nKbdInteractiveAuthentication no\n"
                 + "AuthorizedKeysFile .ssh/authorized_keys\nAllowTcpForwarding yes\nPrintMotd no\nPidFile none\n"
@@ -198,7 +198,7 @@ final class SshServer {
                     }
                 }
             } catch (Exception e) {
-                android.util.Log.w("Buddy", "ssh key not saved", e);
+                android.util.Log.w("Piggy", "ssh key not saved", e);
                 return null;
             }
         }

@@ -8,11 +8,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-/** The "Buddy is hidden" notification shown after the bubble is dragged away, and its actions. */
+/** The "Piggy is hidden" notification shown after the bubble is dragged away, and its actions. */
 public final class HiddenNotice extends BroadcastReceiver {
     private static final String CHANNEL = "bubble_hidden";
     private static final int ID = 1;
-    static final String ACTION_SHOW = "app.buddy.assistant.SHOW_BUBBLE";
+    static final String ACTION_SHOW = "app.piggy.assistant.SHOW_BUBBLE";
 
     static void show(Context c) {
         NotificationManager nm = c.getSystemService(NotificationManager.class);

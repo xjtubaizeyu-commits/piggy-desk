@@ -5,7 +5,7 @@ description: Create, build, install and update a small Android app (APK) directl
 
 # Building Android apps on this phone
 
-Everything runs in Buddy's built-in Linux (Alpine) on the phone. There is no Gradle and no Android Studio. Use plain Java and the Android framework only (no AndroidX, no Kotlin, no external libraries).
+Everything runs in Piggy's built-in Linux (Alpine) on the phone. There is no Gradle and no Android Studio. Use plain Java and the Android framework only (no AndroidX, no Kotlin, no external libraries).
 
 The scripts live next to this file. `SKILL_DIR` below means this skill's folder:
 `$HOME/.buddy/work/.claude/skills/android-app`.
@@ -44,9 +44,9 @@ Android's installer and Play Protect dialogs ignore taps from accessibility apps
 the installer but **the user has to tap Install/Update and confirm (often with a fingerprint)**.
 
 1. Call the phone tool `install_apk` with the APK's full path, e.g. `/root/.buddy/work/<appname>/build/app.apk`.
-   Buddy opens Android's installer for it.
-2. If it says Buddy isn't allowed to install apps yet, Android's settings page is open: ask the user to turn on
-   **Allow from this source** for Buddy, wait for them to say so, then call `install_apk` again. Don't change that
+   Piggy opens Android's installer for it.
+2. If it says Piggy isn't allowed to install apps yet, Android's settings page is open: ask the user to turn on
+   **Allow from this source** for Piggy, wait for them to say so, then call `install_apk` again. Don't change that
    setting yourself.
 3. Call `wait_for_install` with the package name (and `min_version_code` for an update). It tells the user
    "Tap Install/Update, then confirm", vibrates, and returns as soon as the app is installed. Do not tap

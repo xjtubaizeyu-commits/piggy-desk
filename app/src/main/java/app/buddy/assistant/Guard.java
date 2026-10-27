@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 /**
- * The hard limit behind "Buddy asks before anything risky", for the apps the user puts on it (Settings →
+ * The hard limit behind "Piggy asks before anything risky", for the apps the user puts on it (Settings →
  * App permissions; trusted apps leave asking to the agent). Enforced here, in Buddy: before a tap lands on a
  * send / pay / delete / … button (by its text, icon description or id), or text is typed with "submit", the
  * user must have approved it: either through the agent's own confirm call just
@@ -100,7 +100,7 @@ final class Guard {
             "com.google.android.dialer", "com.android.dialer", "com.samsung.android.dialer", "com.oneplus.dialer",
             "com.android.vending"));
     private static final Pattern HARD_NAME = Pattern.compile(
-            "(?i)(bank|banking|pay|wallet|finance|credit|crypto|trading|broker)");
+            "(?i)(bank|banking|pay|wallet|finance|credit|crypto|trading|broker|银行|支付|钱包|证券|理财|信用卡|基金|股票)");
 
     // ------------------------------------------------------------------ the user's button lists
 
@@ -274,6 +274,10 @@ final class Guard {
     /** {mode, why}: the user's choice, or the suggestion and its reason. */
     static String[] modeWhy(android.content.Context c, String pkg, CharSequence label) {
         if (pkg == null) return new String[]{"trust", ""};
+        if (Prefs.ultra(c)) { // every app on Trust, except money apps while the floor is on
+            if (Prefs.moneyFloor(c) && moneyApp(c, pkg)) return new String[]{"hard", c.getString(R.string.guard_why_floor)};
+            return new String[]{"trust", c.getString(R.string.guard_why_ultra)};
+        }
         String set = Prefs.appSafety(c, pkg);
         if (set != null) return new String[]{set, c.getString(R.string.guard_why_choice)};
         if (HARD_BY_DEFAULT.contains(pkg)) return new String[]{"hard", c.getString(R.string.guard_why_category)};
@@ -402,7 +406,7 @@ final class Guard {
      */
     static boolean allowable(android.content.Context c, String pkg) {
         return pkg != null && !NEVER_ALLOWED.matcher(pkg).find() && !moneyApp(c, pkg)
-                && !BuildInfo.class.getPackage().getName().equals(pkg);
+                && !BuildInfo.APP_ID.equals(pkg);
     }
 
     /**
@@ -470,7 +474,7 @@ final class Guard {
     /** Is this Buddy's own UI (its screens, the bubble, its approval card)? */
     static boolean isBuddy(AccessibilityNodeInfo n) {
         return n != null && n.getPackageName() != null
-                && BuildInfo.class.getPackage().getName().contentEquals(n.getPackageName());
+                && BuildInfo.APP_ID.contentEquals(n.getPackageName());
     }
 
     /**

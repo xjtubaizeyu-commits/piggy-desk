@@ -665,6 +665,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
     void showActivity(final String text, final String browserTab) {
         main.post(() -> {
             if (bubble != null) bubble.setActivity(text, browserTab);
+            if (text != null && control != null) control.step(text); // in the status bar too, for runs nobody watches in the bubble
         });
     }
 
@@ -709,6 +710,16 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
     static final String AUTO_APPROVED = "APPROVED after the countdown: the user didn't stop it, though they may not be "
             + "watching. Go ahead with this, and only this.";
 
+    /** How a card answers under Ultra: there is no card. */
+    static final String ULTRA_APPROVED = "APPROVED (Ultra mode: Piggy doesn't ask the user). Go ahead.";
+
+    /** Ultra skips every card, except in a payment, bank or crypto app while the money floor is on. */
+    boolean ultraApproves() {
+        if (!Prefs.ultra(this)) return false;
+        String pkg = foregroundPkg();
+        return !(Prefs.moneyFloor(this) && pkg != null && Guard.moneyApp(this, pkg));
+    }
+
     /** Blocks the calling (tool) thread until the user answers in the bubble. */
     String askConfirm(final String summary) throws InterruptedException {
         return askConfirm(summary, false);
@@ -720,7 +731,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
      */
     static final String NOT_NOW = "NOT ANSWERED: the user isn't answering right now, and a notification rule's run doesn't "
             + "wait for them. Don't do it; say in your last reply what you wanted to do. For a message, use "
-            + "reply_notification instead: Buddy keeps the reply for them.";
+            + "reply_notification instead: Piggy keeps the reply for them.";
 
     /** askRuleReply: the user didn't answer in time, so the reply goes to their Waiting list (the rest: why). */
     static final String LATER = "LATER:";
@@ -734,6 +745,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
      * after its countdown, and not at all while the phone is locked: then the answer is NOT_NOW.
      */
     String askConfirm(final String summary, boolean canAuto) throws InterruptedException {
+        if (ultraApproves()) return ULTRA_APPROVED;
         final String chat = McpServer.CALLER_CHAT.get();
         boolean rule = Triggers.ruleRun(chat);
         int cd = canAuto ? Triggers.countdown(chat) : 0;
@@ -759,6 +771,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
      * time, or STALE when stale turns true first (they wrote again, or the user answered them).
      */
     String askRuleReply(String summary, String chat, java.util.function.BooleanSupplier stale) throws InterruptedException {
+        if (ultraApproves()) return stale.getAsBoolean() ? STALE : ULTRA_APPROVED;
         int cd = Triggers.countdown(chat);
         String shown = summary, why = "";
         if (cd > 0) {
@@ -867,7 +880,7 @@ public class BuddyService extends AccessibilityService implements McpServer.Hand
             main.post(() -> bubble.cancelConfirm());
             String step = stepDone == null ? null : stepDone.get();
             if (step != null) {
-                return step + " Buddy saw it and closed the question for them. Call read_screen before going on.";
+                return step + " Piggy saw it and closed the question for them. Call read_screen before going on.";
             }
             return "NO ANSWER: the user did not answer within " + (rule ? "a minute" : "5 minutes")
                     + ". Don't guess; stop and ask in your reply.";

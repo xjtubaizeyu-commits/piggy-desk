@@ -1613,7 +1613,7 @@ public class ChatActivity extends Screen implements ChatHub.Listener, Browser.Li
 
     private void copyOnLongPress(View v, String text) {
         v.setOnLongClickListener(x -> {
-            getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText("Buddy", text));
+            getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText("Piggy", text));
             Toast.makeText(this, R.string.chat_copied, Toast.LENGTH_SHORT).show();
             return true;
         });

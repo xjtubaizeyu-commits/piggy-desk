@@ -40,7 +40,7 @@ final class BrowserTools {
 
     static void list(JSONArray t) throws JSONException {
         t.put(tool("browser_open",
-                "Open a web page in Buddy's background browser (a separate browser the user can watch in this chat; "
+                "Open a web page in Piggy's background browser (a separate browser the user can watch in this chat; "
                         + "it doesn't use the phone's screen). Returns the page as text, like browser_read.",
                 new JSONObject().put("url", str("The address, e.g. https://example.com"))
                         .put("new_tab", bool("Open it in a new tab, keeping the current one")), "url"));
@@ -65,7 +65,7 @@ final class BrowserTools {
                 new JSONObject()));
         t.put(tool("browser_back",
                 "Go back to the previous page in the current tab of the background browser, like a browser's back "
-                        + "button. If the page warns that leaving loses unsaved changes, Buddy stays the first time and "
+                        + "button. If the page warns that leaving loses unsaved changes, Piggy stays the first time and "
                         + "says so. Returns where the tab is now, or that there's no previous page; then call "
                         + "browser_read.", new JSONObject()));
         t.put(tool("browser_tabs",
@@ -110,7 +110,7 @@ final class BrowserTools {
         }
         if (!Browser.available(svc)) {
             return text("The background browser is off. Use the phone instead, or ask the user to turn on Background "
-                    + "browser in Buddy's Settings.");
+                    + "browser in Piggy's Settings.");
         }
         // the user took over (the live view, or the phone): wait like the phone tools do
         String held = svc.awaitResume(name, false);
@@ -209,7 +209,7 @@ final class BrowserTools {
             String site = host(key);
             if (s.optBoolean("bot")) {
                 return "BOT CHECK: " + site + " shows a captcha or a robot check. Don't try to solve it. Ask the user (ask) to "
-                        + "solve it, with browser_highlight on the captcha's item (Buddy opens the browser for them with it "
+                        + "solve it, with browser_highlight on the captcha's item (Piggy opens the browser for them with it "
                         + "marked) and options like [\"Done\", \"Use the phone instead\"], or switch to the phone (open_url).";
             }
             if (s.optBoolean("blocked")) {
@@ -219,7 +219,7 @@ final class BrowserTools {
                 return "SIGN-IN: this page asks to sign in. Never type passwords or codes. Ask the user (ask) to sign in "
                         + "themselves, e.g. \"Please sign in to " + site + ", then tap Done\" with options [\"Done\", \"Use "
                         + "the phone instead\"] and browser_highlight on the fields and the sign-in button (call browser_read "
-                        + "for their numbers): Buddy opens the browser for them with those marked. Signing in "
+                        + "for their numbers): Piggy opens the browser for them with those marked. Signing in "
                         + "with Google often fails in this browser: email and password works better. Or do this on the "
                         + "phone (open_url), where the user may be signed in already.";
             }
@@ -273,7 +273,7 @@ final class BrowserTools {
                 dialog = pendingDialog(key, approved);
                 again = dialog == null && lostClick(key, before)
                         ? " The tap didn't reach it, twice (the page moved under it); take a browser_screenshot to see why."
-                        : " (The first tap didn't reach it, as the page moved under it, so Buddy tapped once more.)";
+                        : " (The first tap didn't reach it, as the page moved under it, so Piggy tapped once more.)";
             } else {
                 again = " The tap may not have reached it (the page changed under it): check with browser_read before trying again.";
             }
@@ -327,7 +327,7 @@ final class BrowserTools {
             return "BLOCKED: [" + ref + "] is a " + f.optString("sensitive") + " field. Agents never type passwords, one-time "
                     + "codes or payment details. Ask the user (ask) to fill it in themselves, e.g. \"Please type "
                     + "it, then tap Done\" with options [\"Done\", \"I can't\"] and browser_highlight [{\"ref\": " + ref
-                    + "}] (Buddy opens the browser for them with it marked), or do this step on the phone.";
+                    + "}] (Piggy opens the browser for them with it marked), or do this step on the phone.";
         }
         if (!text.isEmpty()) Browser.insertText(key, text);
         else if (!append) Browser.key(key, "Backspace"); // empties the selected text
@@ -465,7 +465,7 @@ final class BrowserTools {
         String answer = svc.askConfirm(summary, false);
         if (answer.startsWith("APPROVED")) return null;
         if (answer.startsWith("CHANGES")) return "Not done: the user wants changes first. " + answer;
-        return "BLOCKED by Buddy's safety rule: the user did not approve “" + what + "”. Don't retry it; ask the user what they want.";
+        return "BLOCKED by Piggy's safety rule: the user did not approve “" + what + "”. Don't retry it; ask the user what they want.";
     }
 
     /**
@@ -479,7 +479,7 @@ final class BrowserTools {
         String type = d.optString("type"), msg = ChatHub.clip(d.optString("message", ""), 300);
         if ("alert".equals(type)) {
             Browser.answerDialog(key, true);
-            return "The page showed a message (Buddy closed it): “" + msg + "”";
+            return "The page showed a message (Piggy closed it): “" + msg + "”";
         }
         if ("beforeunload".equals(type)) {
             // leaving loses what's typed on the page (an unsent post, a form): stay, unless the agent was told and goes again
@@ -489,16 +489,16 @@ final class BrowserTools {
             if (leave) {
                 Thread.sleep(800);
                 Browser.settle(key, 20_000);
-                return "The page warned that leaving loses unsaved changes; this was the second try, so Buddy left.";
+                return "The page warned that leaving loses unsaved changes; this was the second try, so Piggy left.";
             }
             leaveWarned.put(key, SystemClock.elapsedRealtime());
             return "NOT LEFT: the page warns that leaving now loses unsaved changes (an unsent draft or a filled-in form), "
-                    + "so Buddy stayed on it. Finish or send it first, or use another tab (browser_open with new_tab). To "
+                    + "so Piggy stayed on it. Finish or send it first, or use another tab (browser_open with new_tab). To "
                     + "leave anyway and lose it, do the same again.";
         }
         if ("prompt".equals(type)) {
             Browser.answerDialog(key, false);
-            return "The page asked for text in a dialog (“" + msg + "”); Buddy cancelled it. Ask the user if it's needed.";
+            return "The page asked for text in a dialog (“" + msg + "”); Piggy cancelled it. Ask the user if it's needed.";
         }
         boolean ok = approved || !RISKY_DIALOG.matcher(msg).find();
         if (!ok) {
@@ -506,6 +506,6 @@ final class BrowserTools {
             ok = answer.startsWith("APPROVED");
         }
         Browser.answerDialog(key, ok);
-        return "The page asked “" + msg + "”: Buddy answered " + (ok ? "OK" : "Cancel (the user didn't approve)") + ".";
+        return "The page asked “" + msg + "”: Piggy answered " + (ok ? "OK" : "Cancel (the user didn't approve)") + ".";
     }
 }

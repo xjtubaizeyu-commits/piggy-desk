@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Every text Buddy shows, in Indonesian (Bahasa Indonesia). English source: res/values/strings.xml. -->
+<!-- Every text Piggy shows, in Indonesian (Bahasa Indonesia). English source: res/values/strings.xml. -->
 <resources>
-    <string name="service_label">Asisten Buddy</string>
-    <string name="service_description">Menampilkan balon chat Buddy dan memungkinkan agen yang Anda pilih (Claude Code, Codex, OpenCode, Antigravity, atau Grok), yang berjalan di dalam Buddy di ponsel ini, membaca layar serta mengetuk, mengetik, dan menggulir untuk Anda. Tidak ada data yang keluar dari ponsel kecuali yang dikirim agen itu sendiri ke layanan AI-nya (Anthropic, OpenAI, Google, xAI, atau penyedia model OpenCode Anda).</string>
+    <string name="service_label">Asisten Piggy</string>
+    <string name="service_description">Menampilkan balon chat Piggy dan memungkinkan agen yang Anda pilih (Claude Code, Codex, OpenCode, Antigravity, atau Grok), yang berjalan di dalam Piggy di ponsel ini, membaca layar serta mengetuk, mengetik, dan menggulir untuk Anda. Tidak ada data yang keluar dari ponsel kecuali yang dikirim agen itu sendiri ke layanan AI-nya (Anthropic, OpenAI, Google, xAI, atau penyedia model OpenCode Anda).</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -10,7 +10,7 @@
     <!-- Button at the top right of every step. Keep short. -->
     <string name="onboarding_skip_setup">Lewati penyiapan</string>
     <string name="onboarding_skip_title">Lewati panduan penyiapan?</string>
-    <!-- "Settings" = Buddy's own Settings tab. -->
+    <!-- "Settings" = Piggy's own Settings tab. -->
     <string name="onboarding_skip_text">Anda dapat menyelesaikan penyiapan kapan saja di Setelan. Chat tidak akan berjalan sebelum penyiapan selesai.</string>
     <!-- Verb. Confirm button of the "Skip the setup guide?" sheet. -->
     <string name="onboarding_skip_action">Lewati</string>
@@ -22,7 +22,7 @@
     <string name="onboarding_stuck">Ada kendala?</string>
 
     <!-- Guide, welcome screen. -->
-    <string name="onboarding_welcome_title">Kenali Buddy</string>
+    <string name="onboarding_welcome_title">Kenali Piggy</string>
     <string name="onboarding_welcome_text">Balon chat yang bisa mengoperasikan ponsel untuk Anda.</string>
     <string name="onboarding_welcome_ask_title">Minta dengan bahasa sehari-hari</string>
     <!-- Two example requests a user could type. Translate them naturally and use your language's quotation marks. -->
@@ -37,7 +37,7 @@
 
     <!-- Guide, step: choose the agent. Agent names next to each option stay in English. -->
     <string name="onboarding_brain_title">Pilih agen Anda</string>
-    <!-- "Settings" = Buddy's own Settings tab. -->
+    <!-- "Settings" = Piggy's own Settings tab. -->
     <string name="onboarding_brain_text">Agen inilah yang menjawab chat Anda. Anda dapat menambahkan agen lain nanti di Setelan.</string>
     <string name="onboarding_brain_claude">Menggunakan langganan Claude Anda (Pro atau Max).</string>
     <string name="onboarding_brain_codex">Menggunakan paket ChatGPT Anda.</string>
@@ -49,18 +49,18 @@
     <!-- Small lowercase tag next to "Claude Code". Keep very short. -->
     <string name="onboarding_recommended">disarankan</string>
 
-    <!-- Guide, step: turn on Buddy's accessibility service. -->
-    <string name="onboarding_access_title">Izinkan Buddy melihat dan mengetuk</string>
+    <!-- Guide, step: turn on Piggy's accessibility service. -->
+    <string name="onboarding_access_title">Izinkan Piggy melihat dan mengetuk</string>
     <string name="onboarding_access_done">Aksesibilitas aktif.</string>
-    <string name="onboarding_access_text">Layanan aksesibilitas Buddy menampilkan balon dan memungkinkan agen membaca layar, mengetuk, dan mengetik, hanya saat Anda memintanya melakukan sesuatu.</string>
+    <string name="onboarding_access_text">Layanan aksesibilitas Piggy menampilkan balon dan memungkinkan agen membaca layar, mengetuk, dan mengetik, hanya saat Anda memintanya melakukan sesuatu.</string>
     <!-- %1$s = the agent's name (Claude Code or Codex); %2$s = the company it sends to (Anthropic or OpenAI). -->
     <string name="onboarding_access_privacy">Tidak ada data yang keluar dari ponsel kecuali yang dikirim %1$s ke %2$s untuk menjawab Anda. Mengirim, memposting, membeli, dan menghapus selalu meminta persetujuan Anda terlebih dahulu.</string>
     <!-- Same as onboarding_access_privacy, when both Claude Code and Codex are set up. -->
     <string name="onboarding_access_privacy_both">Tidak ada data yang keluar dari ponsel kecuali yang dikirim Claude Code dan Codex ke Anthropic dan OpenAI untuk menjawab Anda. Mengirim, memposting, membeli, dan menghapus selalu meminta persetujuan Anda terlebih dahulu.</string>
     <!-- Same as onboarding_access_privacy, for OpenCode. %1$s = OpenCode. The model's provider = whichever AI company runs the chosen model. -->
     <string name="onboarding_access_privacy_opencode">Tidak ada data yang keluar dari ponsel kecuali yang dikirim %1$s ke penyedia model untuk menjawab Anda. Mengirim, memposting, membeli, dan menghapus selalu meminta persetujuan Anda terlebih dahulu.</string>
-    <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Buddy assistant" = Buddy's service name (service_label). -->
-    <string name="onboarding_access_list_hint">Di daftar: Aplikasi yang didownload → Asisten Buddy → aktifkan.</string>
+    <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Piggy assistant" = Piggy's service name (service_label). -->
+    <string name="onboarding_access_list_hint">Di daftar: Aplikasi yang didownload → Asisten Piggy → aktifkan.</string>
     <string name="onboarding_access_open">Buka setelan aksesibilitas</string>
     <!-- Android 13+ greys out the switch for apps installed from a file. Title of a help box and a help question. -->
     <string name="onboarding_access_greyed_title">Tombol berwarna abu-abu?</string>
@@ -68,10 +68,10 @@
     <string name="onboarding_access_greyed_text">Android memblokir ini untuk aplikasi yang diinstal dari file. Ketuk Info aplikasi (di bawah), lalu ⋮ di kanan atas → Izinkan setelan terbatas, dan coba lagi.</string>
     <!-- Numbered steps, one per line. Same names as in onboarding_access_greyed_text. -->
     <string name="onboarding_access_restricted_steps">1. Ketuk Info aplikasi di bawah.\n2. Ketuk ⋮ di kanan atas → Izinkan setelan terbatas.\n3. Kembali ke sini dan buka setelan aksesibilitas lagi.</string>
-    <!-- Button: opens Android's App info page for Buddy. Use Android's name for that page. -->
+    <!-- Button: opens Android's App info page for Piggy. Use Android's name for that page. -->
     <string name="onboarding_app_info">Info aplikasi</string>
 
-    <!-- Guide, step: install the agent inside Buddy and sign in. -->
+    <!-- Guide, step: install the agent inside Piggy and sign in. -->
     <string name="onboarding_agents_title">Instal dan login</string>
     <!-- Title once every chosen agent is installed and signed in. -->
     <string name="onboarding_agents_done_title">Siap</string>
@@ -80,7 +80,7 @@
     <!-- Same as onboarding_agents_done, when both Claude Code and Codex are set up. -->
     <string name="onboarding_agents_done_both">Claude Code dan Codex sudah terinstal dan login.</string>
     <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode) or onboarding_agent_names_both. -->
-    <string name="onboarding_agents_text">Buddy menginstal %1$s di dalam aplikasi, lalu Anda cukup login sekali. Tidak perlu Termux.</string>
+    <string name="onboarding_agents_text">Piggy menginstal %1$s di dalam aplikasi, lalu Anda cukup login sekali. Tidak perlu Termux.</string>
     <!-- Both agents together, inserted as %1$s into onboarding_agents_text. -->
     <string name="onboarding_agent_names_both">Claude Code dan Codex</string>
     <!-- Agent card status lines: small lowercase mono text, one line. -->
@@ -94,17 +94,17 @@
     <string name="onboarding_agent_installed">terinstal · belum login</string>
     <string name="onboarding_agent_not_installed">belum terinstal</string>
     <!-- Agent card help text. "Authorize" = the button on Claude's sign-in web page (the page may be in English). -->
-    <string name="onboarding_agent_sign_in_claude">Login dengan akun Claude Anda. Browser akan terbuka; ketuk Authorize, lalu Buddy akan kembali dengan sendirinya.</string>
+    <string name="onboarding_agent_sign_in_claude">Login dengan akun Claude Anda. Browser akan terbuka; ketuk Authorize, lalu Piggy akan kembali dengan sendirinya.</string>
     <string name="onboarding_agent_checking_opencode">Memeriksa OpenCode…</string>
     <string name="onboarding_agent_sign_in_codex">Login dengan akun ChatGPT Anda di browser, lalu kembali ke sini.</string>
-    <string name="onboarding_agent_sign_in_agy">Login dengan akun Google Anda. Browser akan terbuka; login di sana dan Buddy akan mengambil kodenya dengan sendirinya.</string>
-    <string name="onboarding_agent_sign_in_grok">Login dengan akun Grok Anda. Browser akan terbuka; konfirmasi kodenya di sana dan Buddy akan kembali dengan sendirinya.</string>
-    <!-- "Buddy's Linux" = the small Linux system built into Buddy. -->
-    <string name="onboarding_agent_download_claude">Mendownload sekitar 235 MB, cukup sekali (Linux Buddy dan Claude Code dari Anthropic).</string>
-    <string name="onboarding_agent_download_opencode">Mendownload sekitar 230 MB, cukup sekali (Linux Buddy, Node.js, dan OpenCode). Tidak perlu akun.</string>
-    <string name="onboarding_agent_download_codex">Mendownload sekitar 150 MB, cukup sekali (Linux Buddy, Node.js, dan Codex dari OpenAI).</string>
-    <string name="onboarding_agent_download_agy">Mendownload sekitar 200 MB, cukup sekali (Linux Buddy dan Antigravity CLI dari Google).</string>
-    <string name="onboarding_agent_download_grok">Mendownload sekitar 170 MB, cukup sekali (Linux Buddy dan Grok Build dari xAI).</string>
+    <string name="onboarding_agent_sign_in_agy">Login dengan akun Google Anda. Browser akan terbuka; login di sana dan Piggy akan mengambil kodenya dengan sendirinya.</string>
+    <string name="onboarding_agent_sign_in_grok">Login dengan akun Grok Anda. Browser akan terbuka; konfirmasi kodenya di sana dan Piggy akan kembali dengan sendirinya.</string>
+    <!-- "Piggy's Linux" = the small Linux system built into Piggy. -->
+    <string name="onboarding_agent_download_claude">Mendownload sekitar 235 MB, cukup sekali (Linux Piggy dan Claude Code dari Anthropic).</string>
+    <string name="onboarding_agent_download_opencode">Mendownload sekitar 230 MB, cukup sekali (Linux Piggy, Node.js, dan OpenCode). Tidak perlu akun.</string>
+    <string name="onboarding_agent_download_codex">Mendownload sekitar 150 MB, cukup sekali (Linux Piggy, Node.js, dan Codex dari OpenAI).</string>
+    <string name="onboarding_agent_download_agy">Mendownload sekitar 200 MB, cukup sekali (Linux Piggy dan Antigravity CLI dari Google).</string>
+    <string name="onboarding_agent_download_grok">Mendownload sekitar 170 MB, cukup sekali (Linux Piggy dan Grok Build dari xAI).</string>
     <!-- Buttons on the agent card. -->
     <string name="onboarding_sign_in_claude">Login dengan Claude</string>
     <string name="onboarding_sign_in_chatgpt">Login dengan ChatGPT</string>
@@ -114,35 +114,35 @@
     <string name="onboarding_install_agent">Instal %1$s</string>
     <string name="onboarding_agents_wifi">Gunakan Wi-Fi jika bisa. Anda dapat meninggalkan layar ini selama proses instal.</string>
     <!-- Help questions and answers under "Stuck?". "Copy Code" = a button on Claude's web page. -->
-    <string name="onboarding_stuck_sign_in_q">Buddy tidak kembali setelah login?</string>
-    <string name="onboarding_stuck_sign_in_a">Claude: di halaman Claude, ketuk Copy Code, lalu kembali ke Buddy; Buddy akan mengambil kode dari papan klip.</string>
+    <string name="onboarding_stuck_sign_in_q">Piggy tidak kembali setelah login?</string>
+    <string name="onboarding_stuck_sign_in_a">Claude: di halaman Claude, ketuk Copy Code, lalu kembali ke Piggy; Piggy akan mengambil kode dari papan klip.</string>
     <string name="onboarding_stuck_install_q">Instalasi gagal?</string>
     <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
     <string name="onboarding_stuck_install_a">Periksa koneksi Anda dan ketuk Instal lagi; proses akan berlanjut dari titik terakhir.</string>
 
-    <!-- Guide, step: let Buddy run in the background (Android's battery optimization). -->
+    <!-- Guide, step: let Piggy run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Tetap berjalan</string>
-    <string name="onboarding_background_done">Buddy dapat berjalan di latar belakang.</string>
-    <string name="onboarding_background_text">Agar ponsel Anda tidak menghentikan Buddy untuk menghemat baterai saat agen sedang bekerja.</string>
-    <!-- Button: opens Android's dialog to let Buddy run in the background. -->
+    <string name="onboarding_background_done">Piggy dapat berjalan di latar belakang.</string>
+    <string name="onboarding_background_text">Agar ponsel Anda tidak menghentikan Piggy untuk menghemat baterai saat agen sedang bekerja.</string>
+    <!-- Button: opens Android's dialog to let Piggy run in the background. -->
     <string name="onboarding_allow">Izinkan</string>
     <string name="onboarding_skip_for_now">Lewati dulu</string>
 
     <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Seberapa sering agen harus bertanya?</string>
     <!-- Ends with a colon: the two options follow. -->
-    <string name="onboarding_safety_text">Aplikasi pesan, media sosial, belanja, pembayaran, dan perbankan selalu memerlukan persetujuan Anda sebelum Buddy mengirim, memposting, membeli, atau menghapus. Untuk aplikasi lainnya:</string>
+    <string name="onboarding_safety_text">Aplikasi pesan, media sosial, belanja, pembayaran, dan perbankan selalu memerlukan persetujuan Anda sebelum Piggy mengirim, memposting, membeli, atau menghapus. Untuk aplikasi lainnya:</string>
     <string name="onboarding_safety_ask_title">Tanya saya dulu</string>
     <string name="onboarding_safety_ask_text">Agen bertanya sebelum melakukan hal berisiko, seperti mengubah setelan. Lebih aman, tetapi lebih banyak pop-up.</string>
     <string name="onboarding_safety_auto_title">Bekerja sendiri</string>
     <string name="onboarding_safety_auto_text">Tanpa pop-up: agen langsung melakukan apa yang Anda minta, seperti menyalakan kamera atau lampu.</string>
-    <!-- "Settings → App permissions" = Buddy's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
-    <string name="onboarding_safety_note">Anda dapat mengubahnya per aplikasi kapan saja: Setelan → Izin aplikasi. Setel aplikasi ke Percaya agar agen bisa bekerja di sana tanpa pop-up, atau ke Ketat agar Buddy sendiri yang bertanya kepada Anda.</string>
+    <!-- "Settings → App permissions" = Piggy's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
+    <string name="onboarding_safety_note">Anda dapat mengubahnya per aplikasi kapan saja: Setelan → Izin aplikasi. Setel aplikasi ke Percaya agar agen bisa bekerja di sana tanpa pop-up, atau ke Ketat agar Piggy sendiri yang bertanya kepada Anda.</string>
 
     <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Semua siap</string>
     <!-- "Settings" = Android's Settings app. -->
-    <string name="onboarding_try_text">Coba tugas pertama. Buddy akan membuka Setelan dan membacanya untuk Anda.</string>
+    <string name="onboarding_try_text">Coba tugas pertama. Piggy akan membuka Setelan dan membacanya untuk Anda.</string>
     <!-- Example request: shown on this screen and put in the chat's input box, ready to send to the agent. "Settings" = Android's Settings app. -->
     <string name="onboarding_try_prompt">Buka Setelan dan beri tahu versi Android saya</string>
     <!-- onboarding_try_prompt in quotation marks (%1$s). Use your language's quotation marks. -->
@@ -155,14 +155,14 @@
     <!-- Home screen: the chat list. -->
     <!-- Floating button that starts a chat, and the title of the sheet that picks its agent. Keep short. -->
     <string name="main_new_chat">Chat baru</string>
-    <!-- Small lowercase mono status under the app name when Buddy is ready. %1$s = Buddy's local server address (127.0.0.1:8765). -->
+    <!-- Small lowercase mono status under the app name when Piggy is ready. %1$s = Piggy's local server address (127.0.0.1:8765). -->
     <string name="main_status_ready">siap · %1$s</string>
     <!-- Small lowercase mono status while setup isn't finished: %1$d steps done out of %2$d. -->
     <string name="main_status_setup">penyiapan %1$d/%2$d</string>
     <string name="main_setup_title">Selesaikan penyiapan untuk menjalankan chat</string>
     <!-- %1$s = the name of the next setup step, e.g. Turn on the accessibility service. -->
     <string name="main_setup_next">Berikutnya: %1$s</string>
-    <string name="main_setup_next_accessibility">Berikutnya: buka layanan aksesibilitas Buddy</string>
+    <string name="main_setup_next_accessibility">Berikutnya: buka layanan aksesibilitas Piggy</string>
     <!-- Section header, shown in capitals: chats whose task is running now. The count follows it. -->
     <string name="main_section_working">Berjalan</string>
     <!-- Section header, shown in capitals. -->
@@ -195,30 +195,30 @@
     </plurals>
 
     <!-- Notification shown after the bubble is dragged away to hide it. -->
-    <!-- Notification category name in Android's notification settings for Buddy. -->
+    <!-- Notification category name in Android's notification settings for Piggy. -->
     <string name="notice_channel_name">Balon tersembunyi</string>
-    <string name="notice_hidden_title">Buddy disembunyikan</string>
+    <string name="notice_hidden_title">Piggy disembunyikan</string>
     <string name="notice_hidden_text">Ketuk untuk menampilkan balon lagi.</string>
-    <!-- Notification button: opens Buddy's chat list. Keep short. -->
+    <!-- Notification button: opens Piggy's chat list. Keep short. -->
     <string name="notice_open_chats">Buka chat</string>
 
-    <!-- Buddy's own updates (GitHub version): notification, update sheet and messages. -->
-    <!-- Notification category name in Android's notification settings for Buddy. -->
-    <string name="update_channel_name">Update Buddy</string>
+    <!-- Piggy's own updates (GitHub version): notification, update sheet and messages. -->
+    <!-- Notification category name in Android's notification settings for Piggy. -->
+    <string name="update_channel_name">Update Piggy</string>
     <!-- Notification and sheet title. %1$s = the new version number, e.g. 2.1.14. -->
-    <string name="update_available_title">Buddy %1$s tersedia</string>
+    <string name="update_available_title">Piggy %1$s tersedia</string>
     <!-- %1$s = the installed version number. -->
     <string name="update_notification_text">Versi Anda %1$s. Ketuk untuk melihat yang baru dan mengupdate; chat Anda tetap tersimpan.</string>
     <!-- Verb: download and install the new version. Notification button and sheet button (half width). Keep short. -->
     <string name="update_action">Update</string>
     <!-- Notification button: stop update notifications. Keep short. -->
     <string name="update_mute">Jangan beri tahu</string>
-    <!-- "Settings" = Buddy's own Settings tab (its Update notices switch). -->
+    <!-- "Settings" = Piggy's own Settings tab (its Update notices switch). -->
     <string name="update_muted">Tidak ada lagi notifikasi update. Aktifkan kembali di Setelan.</string>
     <string name="update_checking">Memeriksa update…</string>
     <string name="update_check_failed">Tidak dapat menghubungi GitHub. Coba lagi nanti.</string>
     <!-- %1$s = the installed version number. -->
-    <string name="update_up_to_date">Buddy %1$s sudah versi terbaru.</string>
+    <string name="update_up_to_date">Piggy %1$s sudah versi terbaru.</string>
     <!-- Under the sheet title. %1$s = the installed version number. -->
     <string name="update_sheet_text">Versi Anda %1$s. Chat, setelan, dan login Anda tetap tersimpan setelah update.</string>
     <!-- Sheet button (half width): close without updating. -->
@@ -226,21 +226,21 @@
     <!-- On the Update button while the new version downloads. -->
     <string name="update_downloading">Mendownload…</string>
     <!-- "Update" = the button (update_action). -->
-    <string name="update_needs_permission">Izinkan Buddy menginstal aplikasi, lalu ketuk Update lagi.</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). buddy.apk is a file name. -->
-    <string name="update_error_no_apk">Rilis ini belum memiliki buddy.apk.</string>
+    <string name="update_needs_permission">Izinkan Piggy menginstal aplikasi, lalu ketuk Update lagi.</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
+    <string name="update_error_no_apk">Rilis ini belum memiliki piggy.apk.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">Download gagal (%1$s).</string>
-    <string name="update_error_not_newer">File yang didownload bukan versi Buddy yang lebih baru, jadi tidak dibuka.</string>
+    <string name="update_error_not_newer">File yang didownload bukan versi Piggy yang lebih baru, jadi tidak dibuka.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s Anda juga bisa mendapatkannya di %2$s (buddy.apk), atau dengan Obtainium untuk update otomatis (lihat %3$s).</string>
+    <string name="update_failed_manual">%1$s Anda juga bisa mendapatkannya di %2$s (piggy.apk), atau dengan Obtainium untuk update otomatis (lihat %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->
     <string name="prefs_theme_system">Sistem</string>
     <string name="prefs_theme_light">Terang</string>
     <string name="prefs_theme_dark">Gelap</string>
-    <!-- Surface (background) tone, segmented control: keep short. Warm = Buddy's original warm greys; Black = true black, in dark mode only. -->
+    <!-- Surface (background) tone, segmented control: keep short. Warm = Piggy's original warm greys; Black = true black, in dark mode only. -->
     <string name="prefs_surface_warm">Hangat</string>
     <string name="prefs_surface_neutral">Netral</string>
     <string name="prefs_surface_black">Hitam</string>
@@ -255,7 +255,7 @@
     <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
 
     <!-- Floating bubble, read by TalkBack. -->
-    <string name="bubble_face_description">Buddy. Ketuk untuk membuka, tekan lama untuk melihat tindakan</string>
+    <string name="bubble_face_description">Piggy. Ketuk untuk membuka, tekan lama untuk melihat tindakan</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">tampilkan tindakan</string>
 
@@ -293,7 +293,7 @@
     <string name="menu_pause">Jeda</string>
     <!-- Dictate an extra instruction for the agent while it works. -->
     <string name="menu_add_instruction">Beri arahan</string>
-    <!-- Stops Buddy reading a reply aloud. -->
+    <!-- Stops Piggy reading a reply aloud. -->
     <string name="menu_stop_voice">Bisukan</string>
     <!-- Verb: starts voice input to the agent. A hold-menu label (keep under ~12 characters) and the chat panel's
          mic button (read by TalkBack). -->
@@ -307,7 +307,7 @@
     <string name="menu_peek_stop">Akhiri</string>
     <!-- Verb. -->
     <string name="menu_peek_add">Arahan</string>
-    <!-- Noun: Buddy's spoken voice (the action silences it). -->
+    <!-- Noun: Piggy's spoken voice (the action silences it). -->
     <string name="menu_peek_voice">Suara</string>
     <!-- Badge under the preview: long-press the bubble; "me" is the bubble. -->
     <string name="menu_peek_hint">Tekan lama saya</string>
@@ -316,10 +316,10 @@
     <string name="bubble_tip_stop_voice">Tips: tekan lama balon untuk menghentikan suara</string>
     <string name="bubble_tip_hold_menu">Tips: tekan lama balon untuk menjeda, menghentikan, atau memberi arahan</string>
     <string name="bubble_stopping">Menghentikan…</string>
-    <string name="bubble_nothing_running">Tidak ada yang berjalan di chat Buddy.</string>
+    <string name="bubble_nothing_running">Tidak ada yang berjalan di chat Piggy.</string>
     <string name="bubble_nothing_running_chat">Tidak ada yang berjalan di chat ini.</string>
-    <string name="bubble_allow_mic_tap_mic">Izinkan mikrofon di Buddy, lalu ketuk mikrofon lagi.</string>
-    <string name="bubble_allow_mic_tap_bubble">Izinkan mikrofon di Buddy, lalu ketuk balon lagi.</string>
+    <string name="bubble_allow_mic_tap_mic">Izinkan mikrofon di Piggy, lalu ketuk mikrofon lagi.</string>
+    <string name="bubble_allow_mic_tap_bubble">Izinkan mikrofon di Piggy, lalu ketuk balon lagi.</string>
     <!-- After dictating an instruction while the agent works. %1$s: the agent's name (Claude Code, Codex or OpenCode). -->
     <string name="bubble_note_added">Baik, %1$s akan mempertimbangkannya</string>
     <!-- A message was copied to the clipboard. -->
@@ -355,7 +355,7 @@
     <string name="bubble_paste">Tempel</string>
     <!-- Verb: sends the message (read by TalkBack). -->
     <string name="bubble_send">Kirim</string>
-    <!-- A chat with no messages yet. %1$s: the agent's name (Claude Code, Codex or OpenCode); "me" is Buddy. -->
+    <!-- A chat with no messages yet. %1$s: the agent's name (Claude Code, Codex or OpenCode); "me" is Piggy. -->
     <string name="bubble_empty_chat">Chat %1$s baru. Minta saya melakukan sesuatu di ponsel Anda.</string>
     <!-- Header of a collapsible group of the agent's steps in the chat. -->
     <plurals name="bubble_tool_calls">
@@ -393,7 +393,7 @@
     <string name="card_label_approval">PERLU PERSETUJUAN</string>
     <!-- Small all-caps label at the top of a question card. -->
     <string name="card_label_question">PERTANYAAN</string>
-    <!-- The card's label when the request comes from an agent session outside Buddy's chats (e.g. a terminal).
+    <!-- The card's label when the request comes from an agent session outside Piggy's chats (e.g. a terminal).
          %1$s: card_label_approval or card_label_question. All caps. -->
     <string name="card_label_other_session">%1$s · DARI SESI LAIN</string>
     <!-- Buttons side by side at the bottom of the card: keep them short. -->
@@ -420,14 +420,14 @@
 
     <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
     <!-- Name of this notification category in Android's notification settings. -->
-    <string name="control_channel_name">Buddy sedang menggunakan ponsel Anda</string>
+    <string name="control_channel_name">Piggy sedang menggunakan ponsel Anda</string>
     <string name="control_channel_description">Muncul di status bar saat agen mengoperasikan ponsel.</string>
-    <string name="control_title">Buddy sedang menggunakan ponsel Anda</string>
+    <string name="control_title">Piggy sedang menggunakan ponsel Anda</string>
     <!-- "Stop" is the notification's button (control_stop): use the same word. -->
     <string name="control_text">Jangan sentuh layar sampai selesai, atau ketuk Hentikan untuk mengambil alih.</string>
     <!-- Notification button, verb: stops the agent and gives the phone back to the user. -->
     <string name="control_stop">Hentikan</string>
-    <string name="pause_call_ended_title">Panggilan berakhir · Buddy dijeda</string>
+    <string name="pause_call_ended_title">Panggilan berakhir · Piggy dijeda</string>
     <string name="pause_call_ended_text">Ketuk untuk melanjutkan tugas</string>
 
     <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, BuddyService, Voice) ===== -->
@@ -442,12 +442,12 @@
     <string name="chat_read_aloud_off">Balasan tidak akan dibacakan</string>
 
     <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
-    <!-- A chat's own switch that lets its agent work in Buddy's Linux: run commands, install packages, edit files,
+    <!-- A chat's own switch that lets its agent work in Piggy's Linux: run commands, install packages, edit files,
          build and install apps. The name on the small chip under the chat's title, and of the switch in the New chat
          sheets. Keep short. -->
     <string name="chat_linux_tools">Alat Linux</string>
-    <!-- Under the Linux tools switch in the New chat sheets. "Buddy's Linux" = the Linux system inside the app. -->
-    <string name="chat_linux_tools_info">Perintah, file, dan build aplikasi di Linux Buddy</string>
+    <!-- Under the Linux tools switch in the New chat sheets. "Piggy's Linux" = the Linux system inside the app. -->
+    <string name="chat_linux_tools_info">Perintah, file, dan build aplikasi di Linux Piggy</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Aktifkan alat Linux?</string>
     <!-- ~/.buddy/work is a folder: keep it as is. -->
@@ -474,7 +474,7 @@
     <string name="schedule_title">Jadwal</string>
     <string name="schedule_set">Atur jadwal</string>
     <string name="schedule_set_info">Kirim pesan ke chat ini secara otomatis pada waktu tertentu, mis. setiap hari pukul 14:00.</string>
-    <string name="schedule_info">Pada waktu yang diatur, Buddy mengirim pesan ini ke chat seolah Anda yang mengetiknya, dengan agen dan opsi chat ini. Kartu persetujuan tetap menunggu Anda. Jika perlu layar saat ponsel terkunci, Buddy meminta Anda membukanya.</string>
+    <string name="schedule_info">Pada waktu yang diatur, Piggy mengirim pesan ini ke chat seolah Anda yang mengetiknya, dengan agen dan opsi chat ini. Kartu persetujuan tetap menunggu Anda. Jika perlu layar saat ponsel terkunci, Piggy meminta Anda membukanya.</string>
     <string name="schedule_time">Waktu</string>
     <string name="schedule_days">Hari</string>
     <string name="schedule_daily">Setiap hari</string>
@@ -484,7 +484,7 @@
     <string name="schedule_message_hint">Apa yang dikirim, mis. Buka aplikasinya dan lakukan check-in hari ini</string>
     <string name="schedule_wake">Bangunkan ponsel untuk tugas ini</string>
     <string name="schedule_wake_info">Saat perlu layar, layar menyala (dan layar kunci tanpa PIN, pola, atau sidik jari terbuka). Selama berjalan, siapa pun di dekat Anda bisa melihat layar.</string>
-    <string name="schedule_inexact">Alarm tepat waktu nonaktif untuk Buddy, jadi bisa mulai beberapa menit terlambat.</string>
+    <string name="schedule_inexact">Alarm tepat waktu nonaktif untuk Piggy, jadi bisa mulai beberapa menit terlambat.</string>
     <string name="schedule_allow_exact">Izinkan alarm tepat waktu</string>
     <string name="schedule_save">Simpan</string>
     <string name="schedule_remove">Hapus</string>
@@ -500,7 +500,7 @@
     <string name="schedule_skipped_title">Tugas terjadwal dilewati: %1$s</string>
     <string name="schedule_stopped_title">Tugas terjadwal dihentikan: %1$s</string>
     <string name="schedule_skip_running">Chat ini masih mengerjakan tugas sebelumnya.</string>
-    <string name="schedule_skip_busy">Buddy sibuk selama satu jam (tugas lain, jeda, atau tanpa internet).</string>
+    <string name="schedule_skip_busy">Piggy sibuk selama satu jam (tugas lain, jeda, atau tanpa internet).</string>
     <string name="schedule_skip_screen">Ponsel tetap terkunci selama satu jam.</string>
     <string name="schedule_marker">Terjadwal</string>
 
@@ -544,7 +544,7 @@
     <!-- Language sheet (long-press the mic) -->
     <!-- Title, followed by a list of languages to speak in. -->
     <string name="chat_speak_in">Bicara dalam</string>
-    <!-- "Settings → Voice" = the Voice section of Buddy's Settings tab; use the same names as there. -->
+    <!-- "Settings → Voice" = the Voice section of Piggy's Settings tab; use the same names as there. -->
     <string name="chat_speak_in_help">Pilih bahasa Anda di Setelan → Suara.</string>
     <string name="live_option">Suara langsung</string>
     <string name="live_option_sub">Bicara dengan Codex secara lisan. Ia menjawab dengan suara ChatGPT dan bekerja di ponsel dalam chat ini.</string>
@@ -555,7 +555,7 @@
     <string name="live_ended">Suara langsung berakhir.</string>
     <string name="live_ended_why">Suara langsung berakhir: %1$s</string>
     <string name="live_ended_screen_off">layar mati</string>
-    <string name="live_ended_paused">Buddy dijeda</string>
+    <string name="live_ended_paused">Piggy dijeda</string>
     <string name="live_ended_idle">tidak ada yang diucapkan selama 5 menit</string>
     <string name="live_notification_title">Suara langsung dengan Codex</string>
     <string name="live_mic_busy">Suara langsung sedang memakai mikrofon. Akhiri dulu.</string>
@@ -614,8 +614,8 @@
         <item quantity="other">%1$d panggilan alat</item>
     </plurals>
 
-    <!-- Notes Buddy posts into a chat, and the chat's status line -->
-    <!-- After "Continue in Buddy" on an earlier session. %1$s = agent name. -->
+    <!-- Notes Piggy posts into a chat, and the chat's status line -->
+    <!-- After "Continue in Piggy" on an earlier session. %1$s = agent name. -->
     <string name="hub_continuing">Melanjutkan sesi %1$s sebelumnya. Jika masih terbuka di terminal, tutup dulu di sana.</string>
     <string name="hub_still_working_attachments">Chat ini masih berjalan. Kirim lampiran setelah selesai.</string>
     <!-- Status right after a message is sent, until the agent's first step. -->
@@ -698,8 +698,8 @@
     <string name="hub_tool_asking">Bertanya: %1$s</string>
     <string name="hub_tool_point_out">Menunjukkan: %1$s</string>
     <string name="hub_tool_point_out_any">Menunjukkan sesuatu di layar</string>
-    <string name="hub_tool_update_download">Mendownload update Buddy</string>
-    <string name="hub_tool_update_check">Memeriksa update Buddy</string>
+    <string name="hub_tool_update_download">Mendownload update Piggy</string>
+    <string name="hub_tool_update_check">Memeriksa update Piggy</string>
     <!-- %1$s = what is searched for. -->
     <string name="hub_tool_web_search">Menelusuri web: %1$s</string>
     <!-- Reading a web page. %1$s = web address. -->
@@ -715,10 +715,10 @@
     <!-- Any other tool. %1$s = the tool's name, not translated. -->
     <string name="hub_tool_other">Menggunakan %1$s</string>
 
-    <!-- Transcript of an earlier agent session that isn't a Buddy chat (read-only) -->
+    <!-- Transcript of an earlier agent session that isn't a Piggy chat (read-only) -->
     <string name="transcript_loading">Memuat…</string>
-    <!-- Button: continue this earlier session as a Buddy chat. -->
-    <string name="transcript_continue">Lanjutkan di Buddy</string>
+    <!-- Button: continue this earlier session as a Piggy chat. -->
+    <string name="transcript_continue">Lanjutkan di Piggy</string>
     <string name="transcript_empty">Tidak ada pesan yang dapat dibaca di sesi ini.</string>
     <!-- Above the messages. %1$d = how many of the session's last messages are shown. -->
     <plurals name="transcript_last_messages">
@@ -730,11 +730,11 @@
     <string name="ui_no_app_for_link">Tidak ada aplikasi yang dapat membuka link ini</string>
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
-    <string name="ui_a11y_title">Cara Buddy menggunakan aksesibilitas</string>
-    <string name="ui_a11y_what">Buddy menggunakan layanan aksesibilitas Android untuk melakukan apa yang Anda minta di aplikasi lain: Buddy membaca isi layar serta mengetuk, mengetik, dan menggulir untuk Anda. Buddy juga menampilkan balon mengambang.</string>
+    <string name="ui_a11y_title">Cara Piggy menggunakan aksesibilitas</string>
+    <string name="ui_a11y_what">Piggy menggunakan layanan aksesibilitas Android untuk melakukan apa yang Anda minta di aplikasi lain: Piggy membaca isi layar serta mengetuk, mengetik, dan menggulir untuk Anda. Piggy juga menampilkan balon mengambang.</string>
     <string name="ui_a11y_data">Selama tugas berjalan, konten layar, yang dapat berisi informasi pribadi seperti pesan, nama, atau alamat, dikirim ke layanan AI dari agen yang Anda pilih (Anthropic untuk Claude Code, OpenAI untuk Codex, Google untuk Antigravity, xAI untuk Grok, atau penyedia model OpenCode Anda), hanya untuk menjalankan permintaan Anda.</string>
-    <string name="ui_a11y_no_servers">Buddy tidak memiliki server sendiri. Buddy tidak mengumpulkan, menjual, atau membagikan data ini, dan tidak menggunakannya untuk iklan.</string>
-    <string name="ui_a11y_asks">Sebelum melakukan apa pun yang mengirim, memposting, membeli, atau menghapus, Buddy meminta persetujuan Anda. Anda dapat menonaktifkan layanan ini kapan saja di setelan aksesibilitas Android.</string>
+    <string name="ui_a11y_no_servers">Piggy tidak memiliki server sendiri. Piggy tidak mengumpulkan, menjual, atau membagikan data ini, dan tidak menggunakannya untuk iklan.</string>
+    <string name="ui_a11y_asks">Sebelum melakukan apa pun yang mengirim, memposting, membeli, atau menghapus, Piggy meminta persetujuan Anda. Anda dapat menonaktifkan layanan ini kapan saja di setelan aksesibilitas Android.</string>
     <string name="ui_privacy_policy">Kebijakan privasi</string>
     <!-- Button: close the disclosure without opening the settings. -->
     <string name="ui_no_thanks">Tidak, terima kasih</string>
@@ -742,16 +742,16 @@
     <string name="ui_agree_continue">Setuju dan lanjutkan</string>
 
     <!-- Bottom navigation of the main screens. Keep very short (about 10 characters). -->
-    <!-- Tab: the list of Buddy chats. -->
+    <!-- Tab: the list of Piggy chats. -->
     <string name="ui_nav_chats">Chat</string>
     <!-- Tab: every agent session on the phone (running and recent). -->
     <string name="ui_nav_sessions">Sesi</string>
-    <!-- Tab: Buddy's settings. -->
+    <!-- Tab: Piggy's settings. -->
     <string name="ui_nav_settings">Setelan</string>
 
     <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
     <!-- Toast when a pause runs out after 5 minutes. -->
-    <string name="service_pause_expired">Dijeda selama 5 menit, jadi Buddy menghentikan tugas.</string>
+    <string name="service_pause_expired">Dijeda selama 5 menit, jadi Piggy menghentikan tugas.</string>
     <!-- Toast after the user stops the task to use the phone. -->
     <string name="service_stopped_toast">Dihentikan. Sekarang ponsel kembali ke tangan Anda.</string>
     <!-- Note in the chat when the user pauses the agent. -->
@@ -764,7 +764,7 @@
 
     <!-- Voice input and output -->
     <!-- 🎙 = the mic button. -->
-    <string name="voice_mic_needed">Buddy memerlukan mikrofon. Buka aplikasi Buddy dan ketuk 🎙 sekali untuk mengizinkannya.</string>
+    <string name="voice_mic_needed">Piggy memerlukan mikrofon. Buka aplikasi Piggy dan ketuk 🎙 sekali untuk mengizinkannya.</string>
     <string name="voice_no_recognizer">Tidak ada layanan pengenalan ucapan di ponsel ini.</string>
     <!-- Status in the recording bar while speech recognition starts. Keep short. -->
     <string name="voice_starting">Memulai…</string>
@@ -787,23 +787,23 @@
          (Claude, ChatGPT, Codex, OpenCode, Anthropic, OpenAI, Pro, Max, Plus, Business) stay as they are. -->
     <!-- Content description of the back arrow in the top bar (read by TalkBack). -->
     <string name="signin_back">Kembali</string>
-    <!-- Subtitle while Buddy checks whether the agent is installed and signed in. -->
+    <!-- Subtitle while Piggy checks whether the agent is installed and signed in. -->
     <string name="signin_checking">Memeriksa…</string>
 
     <!-- Sign-in screen: the agent isn't installed yet. -->
     <!-- Screen title and the button that starts the install. %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="signin_install">Instal %1$s</string>
-    <string name="signin_install_sub_claude">Menjalankan Claude Code di dalam Buddy dengan langganan Claude Anda.</string>
-    <string name="signin_install_sub_opencode">Menjalankan OpenCode di dalam Buddy. Model gratisnya langsung bisa dipakai, tanpa perlu akun; hubungkan penyedia Anda sendiri (Anthropic, OpenAI, GitHub Copilot…) kapan saja.</string>
-    <string name="signin_install_sub_codex">Menjalankan Codex di dalam Buddy dengan paket ChatGPT Anda.</string>
-    <string name="signin_install_sub_agy">Menjalankan Antigravity CLI dari Google di dalam Buddy dengan akun Google Anda: paket gratis, Google AI Pro, atau Ultra.</string>
-    <string name="signin_install_sub_grok">Menjalankan Grok Build dari xAI di dalam Buddy dengan akun Grok Anda (bisa login dengan Google atau X).</string>
-    <!-- "Buddy's Linux" = the small Linux system Buddy installs inside the app. -->
-    <string name="signin_install_size_claude">Mendownload sekitar 235 MB, cukup sekali: Linux Buddy dan Claude Code dari Anthropic. Gunakan Wi-Fi jika bisa.</string>
-    <string name="signin_install_size_opencode">Mendownload sekitar 230 MB, cukup sekali: Linux Buddy, Node.js, dan OpenCode. Gunakan Wi-Fi jika bisa.</string>
-    <string name="signin_install_size_codex">Mendownload sekitar 150 MB, cukup sekali: Linux Buddy, Node.js, dan Codex dari OpenAI. Gunakan Wi-Fi jika bisa.</string>
-    <string name="signin_install_size_agy">Mendownload sekitar 200 MB, cukup sekali: Linux Buddy dan Antigravity CLI dari Google. Gunakan Wi-Fi jika bisa.</string>
-    <string name="signin_install_size_grok">Mendownload sekitar 170 MB, cukup sekali: Linux Buddy dan Grok Build dari xAI. Gunakan Wi-Fi jika bisa.</string>
+    <string name="signin_install_sub_claude">Menjalankan Claude Code di dalam Piggy dengan langganan Claude Anda.</string>
+    <string name="signin_install_sub_opencode">Menjalankan OpenCode di dalam Piggy. Model gratisnya langsung bisa dipakai, tanpa perlu akun; hubungkan penyedia Anda sendiri (Anthropic, OpenAI, GitHub Copilot…) kapan saja.</string>
+    <string name="signin_install_sub_codex">Menjalankan Codex di dalam Piggy dengan paket ChatGPT Anda.</string>
+    <string name="signin_install_sub_agy">Menjalankan Antigravity CLI dari Google di dalam Piggy dengan akun Google Anda: paket gratis, Google AI Pro, atau Ultra.</string>
+    <string name="signin_install_sub_grok">Menjalankan Grok Build dari xAI di dalam Piggy dengan akun Grok Anda (bisa login dengan Google atau X).</string>
+    <!-- "Piggy's Linux" = the small Linux system Piggy installs inside the app. -->
+    <string name="signin_install_size_claude">Mendownload sekitar 235 MB, cukup sekali: Linux Piggy dan Claude Code dari Anthropic. Gunakan Wi-Fi jika bisa.</string>
+    <string name="signin_install_size_opencode">Mendownload sekitar 230 MB, cukup sekali: Linux Piggy, Node.js, dan OpenCode. Gunakan Wi-Fi jika bisa.</string>
+    <string name="signin_install_size_codex">Mendownload sekitar 150 MB, cukup sekali: Linux Piggy, Node.js, dan Codex dari OpenAI. Gunakan Wi-Fi jika bisa.</string>
+    <string name="signin_install_size_agy">Mendownload sekitar 200 MB, cukup sekali: Linux Piggy dan Antigravity CLI dari Google. Gunakan Wi-Fi jika bisa.</string>
+    <string name="signin_install_size_grok">Mendownload sekitar 170 MB, cukup sekali: Linux Piggy dan Grok Build dari xAI. Gunakan Wi-Fi jika bisa.</string>
 
     <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Menginstal</string>
@@ -815,10 +815,10 @@
     <string name="signin_title_chatgpt">Login ke ChatGPT</string>
     <string name="signin_title_google">Login ke Google</string>
     <string name="signin_title_grok">Login ke Grok</string>
-    <string name="signin_sub_claude">Gunakan akun Claude Anda (Pro atau Max). Browser akan terbuka; setujui di sana dan Buddy akan kembali dengan sendirinya.</string>
-    <string name="signin_sub_chatgpt">Gunakan akun ChatGPT Anda (Plus, Pro, atau Business). Browser akan terbuka; setujui di sana dan Buddy akan kembali dengan sendirinya.</string>
-    <string name="signin_sub_agy">Gunakan akun Google Anda. Browser akan terbuka; login di sana dan Buddy akan mengambil kodenya dengan sendirinya. Antigravity menunggu sekitar satu menit.</string>
-    <string name="signin_sub_grok">Gunakan akun Grok Anda; login dengan Google atau X juga bisa. Browser akan terbuka dengan sebuah kode; konfirmasi di sana dan Buddy akan kembali dengan sendirinya.</string>
+    <string name="signin_sub_claude">Gunakan akun Claude Anda (Pro atau Max). Browser akan terbuka; setujui di sana dan Piggy akan kembali dengan sendirinya.</string>
+    <string name="signin_sub_chatgpt">Gunakan akun ChatGPT Anda (Plus, Pro, atau Business). Browser akan terbuka; setujui di sana dan Piggy akan kembali dengan sendirinya.</string>
+    <string name="signin_sub_agy">Gunakan akun Google Anda. Browser akan terbuka; login di sana dan Piggy akan mengambil kodenya dengan sendirinya. Antigravity menunggu sekitar satu menit.</string>
+    <string name="signin_sub_grok">Gunakan akun Grok Anda; login dengan Google atau X juga bisa. Browser akan terbuka dengan sebuah kode; konfirmasi di sana dan Piggy akan kembali dengan sendirinya.</string>
     <!-- Main button. -->
     <string name="signin_with_claude">Login dengan Claude</string>
     <string name="signin_with_chatgpt">Login dengan ChatGPT</string>
@@ -836,10 +836,10 @@
     <string name="signin_starting">Memulai login…</string>
     <string name="signin_approve_title">Setujui di browser Anda</string>
     <!-- "Authorize" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
-    <string name="signin_approve_claude">Ketuk Authorize di halaman Claude. Buddy akan mengambil kodenya dan kembali dengan sendirinya.</string>
-    <string name="signin_approve_codex">Login dan izinkan Codex. Lalu kembali ke Buddy; prosesnya selesai dengan sendirinya.</string>
-    <string name="signin_approve_agy">Login dan izinkan Antigravity. Buddy akan mengambil kode yang muncul di halaman dan kembali dengan sendirinya. Jika prosesnya lebih dari satu menit, mulai ulang login.</string>
-    <string name="signin_approve_grok">Pastikan halaman menampilkan %1$s, lalu konfirmasi dan login. Buddy akan kembali dengan sendirinya.</string>
+    <string name="signin_approve_claude">Ketuk Authorize di halaman Claude. Piggy akan mengambil kodenya dan kembali dengan sendirinya.</string>
+    <string name="signin_approve_codex">Login dan izinkan Codex. Lalu kembali ke Piggy; prosesnya selesai dengan sendirinya.</string>
+    <string name="signin_approve_agy">Login dan izinkan Antigravity. Piggy akan mengambil kode yang muncul di halaman dan kembali dengan sendirinya. Jika prosesnya lebih dari satu menit, mulai ulang login.</string>
+    <string name="signin_approve_grok">Pastikan halaman menampilkan %1$s, lalu konfirmasi dan login. Piggy akan kembali dengan sendirinya.</string>
     <!-- Button. -->
     <string name="signin_open_again">Buka lagi halaman login</string>
     <!-- Screen title after the code was handed over. -->
@@ -853,9 +853,9 @@
     <string name="signin_remote_claude">Buka link ini di perangkat mana pun dan setujui. Lalu salin kode yang muncul di halaman tersebut dan tempel di bawah.</string>
     <!-- Screen title (ChatGPT): a one-time code is shown below it. -->
     <string name="signin_enter_code">Masukkan kode ini</string>
-    <string name="signin_remote_codex">Di perangkat mana pun, buka link di bawah, login ke ChatGPT, dan masukkan kodenya. Buddy akan menyelesaikannya dengan sendirinya.</string>
+    <string name="signin_remote_codex">Di perangkat mana pun, buka link di bawah, login ke ChatGPT, dan masukkan kodenya. Piggy akan menyelesaikannya dengan sendirinya.</string>
     <string name="signin_remote_agy">Buka link ini di perangkat mana pun dan login. Lalu salin kode yang muncul di halaman tersebut dan tempel di bawah, dalam waktu sekitar satu menit.</string>
-    <string name="signin_remote_grok">Di perangkat mana pun, buka link di bawah, login ke Grok, dan konfirmasi kodenya. Buddy akan menyelesaikannya dengan sendirinya.</string>
+    <string name="signin_remote_grok">Di perangkat mana pun, buka link di bawah, login ke Grok, dan konfirmasi kodenya. Piggy akan menyelesaikannya dengan sendirinya.</string>
     <!-- Buttons and the toasts after them. -->
     <string name="signin_copy_code">Salin kode</string>
     <string name="signin_code_copied">Kode disalin</string>
@@ -875,8 +875,8 @@
     <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Tempel kode secara manual</string>
     <!-- "Copy Code" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
-    <string name="signin_paste_help">Jika Buddy tidak kembali dengan sendirinya: ketuk Copy Code di halaman Claude, lalu tempel di sini.</string>
-    <string name="signin_paste_help_agy">Jika Buddy tidak kembali dengan sendirinya: ketuk “Copy to Clipboard” di halaman Antigravity, lalu tempel kodenya di sini.</string>
+    <string name="signin_paste_help">Jika Piggy tidak kembali dengan sendirinya: ketuk Copy Code di halaman Claude, lalu tempel di sini.</string>
+    <string name="signin_paste_help_agy">Jika Piggy tidak kembali dengan sendirinya: ketuk “Copy to Clipboard” di halaman Antigravity, lalu tempel kodenya di sini.</string>
     <!-- Hint inside the empty text box for the code. Lowercase in English. -->
     <string name="signin_code_hint">kode</string>
     <!-- Short button next to the text box: use the pasted code. Verb. -->
@@ -894,14 +894,14 @@
     <string name="signin_sign_out">Logout</string>
     <!-- Confirmation sheet. %1$s = agent name. -->
     <string name="signin_sign_out_title">Logout dari %1$s?</string>
-    <string name="signin_sign_out_text">%1$s di Buddy tidak akan berfungsi sampai Anda login lagi.</string>
+    <string name="signin_sign_out_text">%1$s di Piggy tidak akan berfungsi sampai Anda login lagi.</string>
     <string name="signin_opencode_ready">OpenCode siap</string>
     <!-- "model chip" = the button at the top of a chat that shows the agent and model. -->
     <string name="signin_opencode_free">Menggunakan model gratis OpenCode. Pilih model per chat lewat tombol model di bagian atas chat, atau hubungkan penyedia Anda sendiri.</string>
     <!-- %1$s = connected providers, comma-separated (e.g. "anthropic, openai"). -->
     <string name="signin_opencode_connected">Terhubung: %1$s. Model gratis OpenCode juga tetap tersedia.</string>
     <!-- %1$s = the command "opencode auth login", %2$s = the command "opencode auth logout" (both stay as they are). -->
-    <string name="signin_opencode_connect_note">Menghubungkan penyedia akan membuka terminal Buddy dengan %1$s: pilih penyedia dan ikuti langkah-langkahnya. Untuk menghapusnya nanti, jalankan %2$s di sana.</string>
+    <string name="signin_opencode_connect_note">Menghubungkan penyedia akan membuka terminal Piggy dengan %1$s: pilih penyedia dan ikuti langkah-langkahnya. Untuk menghapusnya nanti, jalankan %2$s di sana.</string>
     <!-- Button. -->
     <string name="signin_connect_provider">Hubungkan penyedia</string>
     <!-- Installed version. %1$s = agent name, %2$s = version number (e.g. "Claude Code 2.1.40."). -->
@@ -926,7 +926,7 @@
     <string name="account_tagline_grok">Menggunakan akun Grok Anda</string>
     <string name="agent_tag_free">gratis · terbatas</string>
     <!-- Install progress. -->
-    <string name="account_setting_up_linux">Menyiapkan Linux Buddy…</string>
+    <string name="account_setting_up_linux">Menyiapkan Linux Piggy…</string>
     <string name="account_installing_tools">Menginstal alat…</string>
     <string name="account_downloading_claude">Mendownload Claude Code (sekitar 230 MB)…</string>
     <!-- %1$s = what is downloaded: an agent name (Codex, OpenCode) or "OpenCode 2". -->
@@ -997,45 +997,45 @@
     <string name="remote_start_failed">Tidak dapat memulai: %1$s</string>
     <string name="remote_keeps_stopping">Sesi terus berhenti. Matikan lalu nyalakan lagi, atau periksa login Claude Code.</string>
     <string name="codex_pair_getting">Mengambil kode…</string>
-    <string name="codex_pair_text">Masukkan kode ini di ChatGPT: di Codex pada ponsel, atau di Setelan → Koneksi → Kontrol perangkat lain pada komputer. Kode ini berlaku sekali, sampai %1$s. Buddy muncul di sana sebagai “localhost”.</string>
+    <string name="codex_pair_text">Masukkan kode ini di ChatGPT: di Codex pada ponsel, atau di Setelan → Koneksi → Kontrol perangkat lain pada komputer. Kode ini berlaku sekali, sampai %1$s. Piggy muncul di sana sebagai “localhost”.</string>
     <string name="codex_pair_failed">Tidak dapat mengambil kode penyambungan: %1$s</string>
     <string name="codex_keeps_stopping">Sesi Codex terus berhenti: %1$s</string>
     <string name="ssh_keeps_stopping">Server SSH terus berhenti: %1$s</string>
-    <string name="ssh_key_added">Selesai. Untuk membuka Linux Buddy dari Termux, ketik ssh buddy.</string>
-    <string name="ssh_code_expired">Perintah ini sudah dipakai atau sudah lebih dari 10 menit. Salin lagi di Setelan Buddy.</string>
+    <string name="ssh_key_added">Selesai. Untuk membuka Linux Piggy dari Termux, ketik ssh buddy.</string>
+    <string name="ssh_code_expired">Perintah ini sudah dipakai atau sudah lebih dari 10 menit. Salin lagi di Setelan Piggy.</string>
 
     <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Setelan</string>
-    <string name="setup_settings_subtitle">Buddy menjalankan Claude Code, Codex, OpenCode, Antigravity, atau Grok di dalam aplikasi, dengan langganan Anda sendiri (atau model gratis OpenCode dan paket gratis Antigravity).</string>
+    <string name="setup_settings_subtitle">Piggy menjalankan Claude Code, Codex, OpenCode, Antigravity, atau Grok di dalam aplikasi, dengan langganan Anda sendiri (atau model gratis OpenCode dan paket gratis Antigravity).</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <!-- Title of the setup checklist card (noun). -->
     <string name="setup_card_title">Penyiapan</string>
     <string name="setup_open_guide">Buka panduan langkah demi langkah</string>
-    <string name="setup_all_set">Semua siap. Buddy siap digunakan.</string>
+    <string name="setup_all_set">Semua siap. Piggy siap digunakan.</string>
     <!-- %1$s = name of the next unfinished setup step, e.g. "Install Claude Code". -->
     <string name="setup_next_step">Berikutnya: %1$s</string>
-    <string name="setup_step_a11y_title">Aktifkan layanan aksesibilitas Buddy</string>
-    <string name="setup_step_a11y_body">Layanan ini menampilkan balon dan memungkinkan Buddy membaca layar, mengetuk, dan mengetik untuk Anda.</string>
+    <string name="setup_step_a11y_title">Aktifkan layanan aksesibilitas Piggy</string>
+    <string name="setup_step_a11y_body">Layanan ini menampilkan balon dan memungkinkan Piggy membaca layar, mengetuk, dan mengetik untuk Anda.</string>
     <!-- Second paragraph of the accessibility step on Android 13+. "Restricted setting", "App info" and "Allow restricted settings" are Android's own labels: use the wording Android uses in your language. ⋮ is the three-dot menu icon. -->
     <string name="setup_step_a11y_restricted">Tombol berwarna abu-abu (“Setelan terbatas”)? Android memblokir ini untuk aplikasi yang diinstal dari file. Ketuk Info aplikasi, lalu ⋮ di kanan atas → Izinkan setelan terbatas, dan coba lagi.</string>
     <!-- Button: opens Android's accessibility settings. -->
     <string name="setup_open_settings">Buka setelan</string>
-    <!-- Button: opens Android's App info page for Buddy (Android's own label). -->
+    <!-- Button: opens Android's App info page for Piggy (Android's own label). -->
     <string name="setup_app_info">Info aplikasi</string>
     <!-- %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="setup_step_install_title">Instal %1$s</string>
     <!-- %1$s = agent name. -->
-    <string name="setup_step_install_done">%1$s sudah terinstal di Buddy.</string>
+    <string name="setup_step_install_done">%1$s sudah terinstal di Piggy.</string>
     <!-- %1$s = Claude Code. -->
-    <string name="setup_step_install_claude">Buddy mendownload Linux kecil miliknya sendiri dan %1$s dari Anthropic (sekitar 235 MB).</string>
+    <string name="setup_step_install_claude">Piggy mendownload Linux kecil miliknya sendiri dan %1$s dari Anthropic (sekitar 235 MB).</string>
     <!-- %1$s = OpenCode. -->
-    <string name="setup_step_install_opencode">Buddy mendownload Linux kecil miliknya sendiri dan %1$s (sekitar 230 MB dengan Node.js).</string>
+    <string name="setup_step_install_opencode">Piggy mendownload Linux kecil miliknya sendiri dan %1$s (sekitar 230 MB dengan Node.js).</string>
     <!-- %1$s = Codex. -->
-    <string name="setup_step_install_codex">Buddy mendownload Linux kecil miliknya sendiri dan %1$s dari OpenAI (sekitar 150 MB).</string>
-    <string name="setup_step_install_grok">Buddy mendownload Linux kecil miliknya sendiri dan %1$s dari xAI (sekitar 170 MB).</string>
+    <string name="setup_step_install_codex">Piggy mendownload Linux kecil miliknya sendiri dan %1$s dari OpenAI (sekitar 150 MB).</string>
+    <string name="setup_step_install_grok">Piggy mendownload Linux kecil miliknya sendiri dan %1$s dari xAI (sekitar 170 MB).</string>
     <!-- Button (verb). -->
     <string name="setup_install">Instal</string>
     <!-- Name of the sign-in setup step. -->
@@ -1045,20 +1045,20 @@
     <string name="setup_step_signin_done">Sudah login.</string>
     <!-- %1$s = the account's email address. -->
     <string name="setup_step_signin_done_email">Login sebagai %1$s.</string>
-    <string name="setup_step_signin_claude">Dengan akun Claude Anda (Pro atau Max). Browser akan terbuka; setujui di sana dan Buddy akan kembali dengan sendirinya.</string>
-    <string name="setup_step_signin_codex">Dengan akun ChatGPT Anda. Browser akan terbuka; setujui di sana dan Buddy akan kembali dengan sendirinya.</string>
-    <string name="setup_step_signin_grok">Dengan akun Grok Anda. Browser akan terbuka; konfirmasi kodenya di sana dan Buddy akan kembali dengan sendirinya.</string>
+    <string name="setup_step_signin_claude">Dengan akun Claude Anda (Pro atau Max). Browser akan terbuka; setujui di sana dan Piggy akan kembali dengan sendirinya.</string>
+    <string name="setup_step_signin_codex">Dengan akun ChatGPT Anda. Browser akan terbuka; setujui di sana dan Piggy akan kembali dengan sendirinya.</string>
+    <string name="setup_step_signin_grok">Dengan akun Grok Anda. Browser akan terbuka; konfirmasi kodenya di sana dan Piggy akan kembali dengan sendirinya.</string>
     <!-- Button (verb). -->
     <string name="setup_sign_in">Login</string>
-    <string name="setup_step_background_title">Izinkan Buddy berjalan di latar belakang</string>
+    <string name="setup_step_background_title">Izinkan Piggy berjalan di latar belakang</string>
     <string name="setup_step_background_done">Diizinkan.</string>
-    <string name="setup_step_background_body">Agar ponsel Anda tidak menghentikan Buddy untuk menghemat baterai saat agen sedang bekerja.</string>
-    <!-- Button (verb): lets Buddy ignore battery optimization. -->
+    <string name="setup_step_background_body">Agar ponsel Anda tidak menghentikan Piggy untuk menghemat baterai saat agen sedang bekerja.</string>
+    <!-- Button (verb): lets Piggy ignore battery optimization. -->
     <string name="setup_allow">Izinkan</string>
-    <!-- Name of the last setup step: try Buddy out. -->
+    <!-- Name of the last setup step: try Piggy out. -->
     <string name="setup_step_try_title">Coba</string>
-    <string name="setup_step_try_done">Buddy sudah menjawab Anda. Ketuk balon kapan saja untuk meminta hal lain.</string>
-    <!-- "open Messenger" is an example of what to say to Buddy: translate it. -->
+    <string name="setup_step_try_done">Piggy sudah menjawab Anda. Ketuk balon kapan saja untuk meminta hal lain.</string>
+    <!-- "open Messenger" is an example of what to say to Piggy: translate it. -->
     <string name="setup_step_try_body">Ketuk balon di tepi layar dan minta sesuatu seperti “buka WhatsApp”, atau mulai chat di sini.</string>
     <string name="setup_step_try_wait">Selesaikan langkah di atas terlebih dahulu.</string>
     <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
@@ -1075,11 +1075,11 @@
     <!-- Label of the background tone picker. -->
     <string name="setup_surface">Latar</string>
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
-    <string name="setup_surface_note">Hangat adalah nuansa asli Buddy. Hitam (hitam pekat) hanya berlaku dalam mode gelap.</string>
-    <string name="setup_face">Tampilan Buddy</string>
+    <string name="setup_surface_note">Hangat adalah nuansa asli Piggy. Hitam (hitam pekat) hanya berlaku dalam mode gelap.</string>
+    <string name="setup_face">Tampilan Piggy</string>
     <string name="setup_face_buddy">Asli</string>
     <string name="setup_face_picture">Gambar Anda</string>
-    <string name="setup_face_note">PNG atau WebP dengan latar transparan paling cocok. Gambar muncul di balon dan di samping balasan Buddy.</string>
+    <string name="setup_face_note">PNG atau WebP dengan latar transparan paling cocok. Gambar muncul di balon dan di samping balasan Piggy.</string>
     <string name="setup_face_change">Pilih gambar lain</string>
     <string name="setup_face_unreadable">Gambar itu tidak bisa dibaca. Coba PNG atau WebP.</string>
     <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
@@ -1093,9 +1093,9 @@
     <string name="setup_agent">Agen</string>
     <!-- Which AI agent answers new chats. -->
     <string name="setup_default_brain">Agen default</string>
-    <!-- "New chat" is the name of a button in Buddy. -->
+    <!-- "New chat" is the name of a button in Piggy. -->
     <string name="setup_default_brain_info">Agen yang menjawab chat baru dari balon atau tombol Chat baru. Claude Code memakai paket Claude Anda, Codex memakai paket ChatGPT Anda, Antigravity memakai akun Google Anda, Grok memakai akun Grok Anda, OpenCode memakai model gratisnya atau penyedia Anda sendiri. Hanya agen yang sudah disiapkan yang bisa dipilih.</string>
-    <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Buddy. -->
+    <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Piggy. -->
     <string name="setup_default_brain_set">Chat baru akan menggunakan %1$s. Anda dapat memilih per chat dengan tombol Chat baru.</string>
     <!-- Toast. %1$s = agent name. -->
     <string name="setup_set_up_first">Siapkan %1$s terlebih dahulu.</string>
@@ -1112,7 +1112,7 @@
 
     <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Alat ponsel di sesi Anda sendiri</string>
-    <string name="setup_phone_tools_info">Alat ponsel Buddy adalah server MCP biasa di ponsel ini. Jalankan perintah ini sekali di terminal ponsel (misalnya Termux), dan agen tersebut akan mendapatkan alat ponsel di setiap sesi, bahkan tanpa balon.</string>
+    <string name="setup_phone_tools_info">Alat ponsel Piggy adalah server MCP biasa di ponsel ini. Jalankan perintah ini sekali di terminal ponsel (misalnya Termux), dan agen tersebut akan mendapatkan alat ponsel di setiap sesi, bahkan tanpa balon.</string>
     <!-- Button. -->
     <string name="setup_copy_command">Salin perintah</string>
     <string name="setup_command_copied">Disalin. Tempel di terminal Anda.</string>
@@ -1122,14 +1122,14 @@
     <string name="setup_voice_input">Input suara</string>
     <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Ponsel</string>
-    <string name="setup_voice_input_claude">Dikte Claude Code dengan paket Claude Anda: sangat akurat. Mendukung bahasa Inggris, Prancis, Jerman, Spanyol, Italia, Portugis, Belanda, Turki, Rusia, Jepang, dan lainnya, tetapi tidak untuk bahasa Arab: untuk bahasa Arab, Buddy menggunakan pengenalan ucapan ponsel. Kata-kata muncul saat Anda berhenti sejenak.</string>
+    <string name="setup_voice_input_claude">Dikte Claude Code dengan paket Claude Anda: sangat akurat. Mendukung bahasa Inggris, Prancis, Jerman, Spanyol, Italia, Portugis, Belanda, Turki, Rusia, Jepang, dan lainnya, tetapi tidak untuk bahasa Arab: untuk bahasa Arab, Piggy menggunakan pengenalan ucapan ponsel. Kata-kata muncul saat Anda berhenti sejenak.</string>
     <string name="setup_voice_input_chatgpt">Suara ChatGPT melalui Codex, dengan paket ChatGPT Anda. Memahami bahasa apa pun, bahkan yang dicampur dalam satu kalimat. Hanya ucapan Anda yang digunakan: balasan suara ChatGPT dibisukan dan ChatGPT tidak dapat menjalankan apa pun.</string>
     <string name="setup_voice_input_phone">Pengenalan ucapan ponsel Anda (Google di sebagian besar ponsel). Teks muncul langsung saat Anda berbicara; mendeteksi bahasa mana yang sedang Anda gunakan.</string>
     <string name="setup_voice_output">Output suara</string>
     <string name="setup_voice_output_chatgpt">Balasan dibacakan dengan suara alami ChatGPT (paket ChatGPT Anda, melalui Codex). Ini dihitung dalam penggunaan suara ChatGPT Anda; jika tidak tersedia, suara ponsel yang akan membacakan.</string>
     <string name="setup_voice_output_phone">Suara text-to-speech ponsel Anda, dalam bahasa balasan.</string>
     <!-- Spoken aloud to preview the chosen ChatGPT voice. Mixing two languages is on purpose (it shows the voice switches languages): keep a greeting in another language. -->
-    <string name="setup_voice_sample">Bonjour ! Halo, saya Buddy. Beginilah suara saya.</string>
+    <string name="setup_voice_sample">Bonjour ! Halo, saya Piggy. Beginilah suara saya.</string>
     <string name="setup_languages">Bahasa</string>
     <string name="setup_languages_hint">Ketuk untuk memilih bahasa yang Anda gunakan. Tekan lama salah satunya untuk menjadikannya default. Di chat, tekan lama mikrofon untuk mengganti bahasa.</string>
     <!-- Sheet title. %1$s = agent name (Claude Code or Codex). -->
@@ -1146,7 +1146,7 @@
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Sesi Claude Code</string>
     <!-- "Code" is the name of a section of the Claude app. -->
-    <string name="setup_remote_session_info">Sesi Claude Code yang berjalan di dalam Buddy, dengan alat ponsel. Lanjutkan dari aplikasi Claude (Code) di ponsel ini atau di mana saja.</string>
+    <string name="setup_remote_session_info">Sesi Claude Code yang berjalan di dalam Piggy, dengan alat ponsel. Lanjutkan dari aplikasi Claude (Code) di ponsel ini atau di mana saja.</string>
     <string name="setup_remote_sign_in_first">Login ke Claude Code terlebih dahulu.</string>
     <!-- Status, lowercase. %1$s = the session's name as shown in the Claude app. -->
     <string name="setup_remote_active">aktif · “%1$s” di aplikasi Claude</string>
@@ -1157,23 +1157,23 @@
     <string name="setup_remote_open">Buka di aplikasi Claude</string>
     <string name="setup_remote_open_failed">Tidak dapat membukanya.</string>
     <string name="setup_codex_session">Sesi Codex</string>
-    <string name="setup_codex_session_info">Codex dengan alat ponsel, berjalan di dalam Buddy. Gunakan dari aplikasi ChatGPT (Codex) di ponsel ini atau di komputer. Sandbox Codex tidak bisa berjalan di sini, jadi dengan izin default Codex bertanya sebelum setiap perintah.</string>
+    <string name="setup_codex_session_info">Codex dengan alat ponsel, berjalan di dalam Piggy. Gunakan dari aplikasi ChatGPT (Codex) di ponsel ini atau di komputer. Sandbox Codex tidak bisa berjalan di sini, jadi dengan izin default Codex bertanya sebelum setiap perintah.</string>
     <string name="setup_codex_active">berjalan · “localhost” di ChatGPT</string>
     <string name="setup_codex_pair">Sambungkan perangkat</string>
     <string name="setup_ssh">SSH dari Termux</string>
-    <string name="setup_ssh_info">Gunakan Linux Buddy dari Termux, lewat SSH. Hanya aplikasi di ponsel ini yang bisa terhubung, dan hanya dengan kunci.</string>
+    <string name="setup_ssh_info">Gunakan Linux Piggy dari Termux, lewat SSH. Hanya aplikasi di ponsel ini yang bisa terhubung, dan hanya dengan kunci.</string>
     <string name="setup_ssh_active">berjalan · port %1$d</string>
-    <string name="setup_ssh_how">Salin perintah ini dan jalankan sekali di Termux, dalam 10 menit. Setelah itu, ketik ssh buddy di Termux untuk membuka Linux Buddy.</string>
+    <string name="setup_ssh_how">Salin perintah ini dan jalankan sekali di Termux, dalam 10 menit. Setelah itu, ketik ssh buddy di Termux untuk membuka Linux Piggy.</string>
 
-    <!-- Settings screen: chats left over from when Buddy ran its agents in Termux. -->
+    <!-- Settings screen: chats left over from when Piggy ran its agents in Termux. -->
     <string name="setup_old_chats_title">Hapus chat Termux lama</string>
     <plurals name="setup_old_chats_body">
-        <item quantity="other">%1$d chat dari sebelum Buddy memiliki Linux sendiri. Agen tidak dapat melanjutkannya.</item>
+        <item quantity="other">%1$d chat dari sebelum Piggy memiliki Linux sendiri. Agen tidak dapat melanjutkannya.</item>
     </plurals>
     <plurals name="setup_old_chats_remove">
         <item quantity="other">Hapus %1$d chat lama?</item>
     </plurals>
-    <string name="setup_old_chats_remove_body">Menghapusnya dari daftar chat Buddy. Tindakan ini tidak dapat diurungkan.</string>
+    <string name="setup_old_chats_remove_body">Menghapusnya dari daftar chat Piggy. Tindakan ini tidak dapat diurungkan.</string>
     <!-- Button (verb). -->
     <string name="setup_remove">Hapus</string>
     <string name="setup_removed">Dihapus.</string>
@@ -1194,7 +1194,7 @@
     <!-- Explains the "Chat panel" choice. -->
     <string name="setup_tap_panel_info">Membuka chat mengambang di atas aplikasi yang sedang Anda gunakan. Tekan lama balon untuk opsi lainnya.</string>
     <!-- Explains the "Full app" choice. -->
-    <string name="setup_tap_app_info">Membuka chat dalam layar penuh di Buddy. Tekan lama balon untuk opsi lainnya.</string>
+    <string name="setup_tap_app_info">Membuka chat dalam layar penuh di Piggy. Tekan lama balon untuk opsi lainnya.</string>
     <!-- Setting: the size of the floating chat panel. Title above two short choices. -->
     <string name="setup_panel_size">Ukuran panel chat</string>
     <!-- Choice: the panel fills the screen. Keep it short. -->
@@ -1206,22 +1206,22 @@
     <string name="setup_tap_to_talk_info">Satu ketukan membuka mikrofon: ucapkan keinginan Anda dan pesan terkirim saat Anda berhenti sejenak. Tekan lama balon untuk membuka chat dan lainnya.</string>
     <string name="setup_read_aloud">Bacakan balasan</string>
     <!-- "Voice" = the Settings section of that name (setup_voice). -->
-    <string name="setup_read_aloud_info">Buddy membacakan balasan agen dengan suara yang Anda pilih di bagian Suara.</string>
+    <string name="setup_read_aloud_info">Piggy membacakan balasan agen dengan suara yang Anda pilih di bagian Suara.</string>
     <string name="setup_update_notices">Notifikasi update</string>
-    <string name="setup_update_notices_info">Buddy memeriksa GitHub sekali sehari dan memberi tahu Anda saat ada versi baru.</string>
+    <string name="setup_update_notices_info">Piggy memeriksa GitHub sekali sehari dan memberi tahu Anda saat ada versi baru.</string>
     <string name="setup_check_updates">Periksa update</string>
-    <!-- %1$s = Buddy's version number. "update yourself" is what you can say to an agent: translate it. -->
-    <string name="setup_check_updates_info">Anda memakai Buddy %1$s. Atau minta agen mana pun: “update dirimu”.</string>
+    <!-- %1$s = Piggy's version number. "update yourself" is what you can say to an agent: translate it. -->
+    <string name="setup_check_updates_info">Anda memakai Piggy %1$s. Atau minta agen mana pun: “update dirimu”.</string>
     <!-- Name of the App permissions screen. -->
     <string name="setup_app_permissions">Izin aplikasi</string>
     <!-- "Trust" and "Hard" are names of approval modes on the App permissions screen: use the same words. Send, Pay, Delete are example buttons in other apps. -->
-    <string name="setup_app_permissions_info">Pilih per aplikasi: Percaya membiarkan agen bekerja di sana tanpa pop-up; Ketat berarti Buddy sendiri yang bertanya kepada Anda sebelum Kirim, Bayar, Hapus…</string>
+    <string name="setup_app_permissions_info">Pilih per aplikasi: Percaya membiarkan agen bekerja di sana tanpa pop-up; Ketat berarti Piggy sendiri yang bertanya kepada Anda sebelum Kirim, Bayar, Hapus…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Alat Linux di chat baru</string>
     <string name="setup_dev_mode_info">Dengan alat Linux, agen dapat menjalankan perintah, menginstal paket, dan mengedit file di ~/.buddy/work, sehingga bisa membuat dan menginstal aplikasi. Chat baru dimulai dengan setelan ini; setiap chat bisa mengubahnya di bawah judulnya.</string>
-    <string name="setup_agents_tap">Izinkan agen mengetuk layar Buddy</string>
-    <!-- "App permissions" is the name of a screen in Buddy. -->
-    <string name="setup_agents_tap_info">Untuk menguji Buddy dengan agen (misalnya Claude Code di Termux dengan alat ponsel). Balon, kartu persetujuan, Izin aplikasi, dan tombol-tombol ini tetap tidak bisa diketuk agen.</string>
+    <string name="setup_agents_tap">Izinkan agen mengetuk layar Piggy</string>
+    <!-- "App permissions" is the name of a screen in Piggy. -->
+    <string name="setup_agents_tap_info">Untuk menguji Piggy dengan agen (misalnya Claude Code di Termux dengan alat ponsel). Balon, kartu persetujuan, Izin aplikasi, dan tombol-tombol ini tetap tidak bisa diketuk agen.</string>
     <!-- Warning shown while Linux tools in new chats (setup_dev_mode) is on. -->
     <string name="setup_dev_mode_warning">Sebaiknya biarkan nonaktif dan aktifkan alat Linux hanya di chat yang membutuhkannya. Saat aktif, pesan atau halaman web berbahaya di layar bisa mencoba menipu agen agar menjalankan perintah. Kartu persetujuan tetap menjaga pengiriman, posting, pembelian, dan penghapusan.</string>
 
@@ -1230,7 +1230,7 @@
     <string name="setup_licences">Lisensi open source</string>
     <string name="setup_privacy_policy">Kebijakan privasi</string>
 
-    <!-- Errors while installing Buddy's built-in Linux (Alpine). Shown after "Install failed:". -->
+    <!-- Errors while installing Piggy's built-in Linux (Alpine). Shown after "Install failed:". -->
     <!-- %1$s = SHA-256 checksum of the download. -->
     <string name="linux_download_corrupt">Download Alpine rusak (sha256 %1$s)</string>
     <string name="linux_move_failed">Tidak dapat memindahkan Alpine ke tempatnya</string>
@@ -1242,8 +1242,8 @@
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Arsip terpotong</string>
 
-    <!-- Terminal screen (a shell in Buddy's Linux, in tabs). -->
-    <!-- Name of Buddy's built-in terminal: title of the Terminal screen and its menu, and of the Terminal card on the Sessions screen. -->
+    <!-- Terminal screen (a shell in Piggy's Linux, in tabs). -->
+    <!-- Name of Piggy's built-in terminal: title of the Terminal screen and its menu, and of the Terminal card on the Sessions screen. -->
     <string name="terminal_title">Terminal</string>
     <!-- Read by TalkBack: back button. -->
     <string name="terminal_back">Kembali</string>
@@ -1251,7 +1251,7 @@
     <string name="terminal_hide_keyboard">Sembunyikan keyboard</string>
     <!-- Read by TalkBack: button that opens the terminal menu. -->
     <string name="terminal_menu">Menu</string>
-    <!-- Status line under the title, lowercase. "buddy linux" is the name of Buddy's Linux: keep it. Only shown for 2 or more. -->
+    <!-- Status line under the title, lowercase. "buddy linux" is the name of Piggy's Linux: keep it. Only shown for 2 or more. -->
     <plurals name="terminal_sessions_count">
         <item quantity="other">%1$d sesi · buddy linux</item>
     </plurals>
@@ -1264,7 +1264,7 @@
     <string name="terminal_close">Tutup</string>
     <!-- Button (verb): starts a new shell. -->
     <string name="terminal_restart">Mulai ulang</string>
-    <string name="terminal_needs_linux">Instal Claude Code, Codex, OpenCode, Antigravity, atau Grok di Setelan terlebih dahulu: langkah itu akan menyiapkan Linux Buddy.</string>
+    <string name="terminal_needs_linux">Instal Claude Code, Codex, OpenCode, Antigravity, atau Grok di Setelan terlebih dahulu: langkah itu akan menyiapkan Linux Piggy.</string>
     <!-- %1$s = error message. -->
     <string name="terminal_start_failed">Tidak dapat memulai terminal: %1$s</string>
     <!-- Sheet title. %1$s = the tab's name, e.g. "shell 1". -->
@@ -1294,17 +1294,17 @@
     <string name="monitor_title">Sesi</string>
     <string name="monitor_subtitle">Semua sesi Claude Code, Codex, OpenCode, Antigravity, dan Grok di ponsel ini.</string>
     <string name="monitor_terminal_running">Shell sedang berjalan · ketuk untuk kembali</string>
-    <string name="monitor_terminal_idle">Shell di Linux Buddy</string>
+    <string name="monitor_terminal_idle">Shell di Linux Piggy</string>
     <string name="monitor_running_now">Sedang berjalan</string>
     <!-- Next to "Running now": the list refreshes every 3 seconds. Lowercase, monospace, keep short. -->
     <string name="monitor_refresh">tiap 3 dtk</string>
     <string name="monitor_checking">Memeriksa…</string>
     <string name="monitor_recent">Terbaru</string>
     <string name="monitor_loading">Memuat…</string>
-    <string name="monitor_service_off">Layanan aksesibilitas Buddy nonaktif, jadi sesi tidak dapat diperiksa. Aktifkan di Setelan.</string>
+    <string name="monitor_service_off">Layanan aksesibilitas Piggy nonaktif, jadi sesi tidak dapat diperiksa. Aktifkan di Setelan.</string>
     <string name="monitor_nothing_running">Tidak ada yang berjalan.</string>
-    <!-- Title of a running session whose Buddy chat was deleted. -->
-    <string name="monitor_deleted_chat">Chat Buddy yang dihapus</string>
+    <!-- Title of a running session whose Piggy chat was deleted. -->
+    <string name="monitor_deleted_chat">Chat Piggy yang dihapus</string>
     <string name="monitor_background_session">Sesi latar belakang</string>
     <string name="monitor_terminal_session">Sesi terminal</string>
     <!-- Small lowercase tag on a running session: where it runs. Keep very short. -->
@@ -1320,8 +1320,8 @@
     <string name="monitor_stop">Hentikan</string>
     <!-- Sheet title. %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="monitor_stop_title">Hentikan sesi %1$s ini?</string>
-    <string name="monitor_stop_background_body">Sesi ini berjalan di latar belakang, misalnya chat yang sedang Anda lanjutkan dari aplikasi Claude. Bisa jadi sesi inilah yang sedang mengendalikan Buddy. Menghentikannya akan mengakhiri pekerjaan percakapan tersebut saat ini.</string>
-    <string name="monitor_stop_terminal_body">Ini mungkin sesi yang sedang Anda gunakan di terminal. Bisa jadi sesi inilah yang sedang mengendalikan Buddy. Menghentikannya akan mengakhiri pekerjaan percakapan tersebut saat ini.</string>
+    <string name="monitor_stop_background_body">Sesi ini berjalan di latar belakang, misalnya chat yang sedang Anda lanjutkan dari aplikasi Claude. Bisa jadi sesi inilah yang sedang mengendalikan Piggy. Menghentikannya akan mengakhiri pekerjaan percakapan tersebut saat ini.</string>
+    <string name="monitor_stop_terminal_body">Ini mungkin sesi yang sedang Anda gunakan di terminal. Bisa jadi sesi inilah yang sedang mengendalikan Piggy. Menghentikannya akan mengakhiri pekerjaan percakapan tersebut saat ini.</string>
     <string name="monitor_stopping">Menghentikan…</string>
     <string name="monitor_service_title">Layanan latar belakang Claude Code</string>
     <!-- Monospace details line. %1$d = process id, %2$s = how long it has been running (e.g. 1:02:03). -->
@@ -1345,7 +1345,7 @@
     <!-- Approval mode name (see perms_mode_trust), keep it short. Smart = the button rules, then a reviewer AI checks every other tap. -->
     <string name="perms_mode_smart">Pintar</string>
     <!-- Explains the three modes, one per line. Trust, Hard and Smart are the mode names above; Send, Pay, Delete are example button labels. -->
-    <string name="perms_modes_intro">Percaya: agen bekerja sendiri di sini, tanpa pop-up persetujuan.\nKetat: aturan tombol Anda yang menentukan. Kirim, Bayar, Hapus… memerlukan persetujuan Anda di kartu.\nPintar: aturan dulu, lalu AI peninjau terpisah memeriksa setiap ketukan lainnya berdasarkan permintaan Anda.\nAgen tidak pernah bisa mengetuk balon, kartu, atau setelan milik Buddy.</string>
+    <string name="perms_modes_intro">Percaya: agen bekerja sendiri di sini, tanpa pop-up persetujuan.\nKetat: aturan tombol Anda yang menentukan. Kirim, Bayar, Hapus… memerlukan persetujuan Anda di kartu.\nPintar: aturan dulu, lalu AI peninjau terpisah memeriksa setiap ketukan lainnya berdasarkan permintaan Anda.\nAgen tidak pernah bisa mengetuk balon, kartu, atau setelan milik Piggy.</string>
     <!-- Section title: which AI reviews the taps in apps set to Smart. -->
     <string name="perms_smart_reviewer">Peninjau Pintar</string>
     <!-- Reviewer choice in a segmented control, next to “Claude Code” and “Codex”: the same agent as the chat. Keep it short. -->
@@ -1368,16 +1368,16 @@
     <string name="perms_apps">Aplikasi</string>
     <!-- Row that sets the mode of every app at once. -->
     <string name="perms_all_apps">Semua aplikasi</string>
-    <!-- Link under “All apps”: puts every app back on the mode Buddy suggests for it. -->
+    <!-- Link under “All apps”: puts every app back on the mode Piggy suggests for it. -->
     <string name="perms_reset_suggested">Kembalikan ke saran</string>
 
     <!-- Button rules screen: buttons that always or never need the user's OK. Hard and Smart are approval mode names (perms_mode_*). -->
     <string name="perms_rules_intro">Untuk aplikasi dengan mode Ketat atau Pintar. Aturan yang dipilih dari saran berlaku untuk aplikasi tersebut; teks yang diketik berlaku untuk semua aplikasi. Ketuk aturan untuk menghapusnya.</string>
-    <!-- Switch title: Buddy's own list of risky button words. -->
+    <!-- Switch title: Piggy's own list of risky button words. -->
     <string name="perms_builtin_title">Kata berisiko bawaan</string>
     <!-- Switch description. The words are examples from the built-in list, which only covers the languages named here:
          if your language isn't one of them, keep the example words in English. -->
-    <string name="perms_builtin_sub">Kirim, Bayar, Beli, Pesan sekarang, Hapus, Blokir, Telepon… selalu ditanyakan, dalam setiap bahasa Buddy.</string>
+    <string name="perms_builtin_sub">Kirim, Bayar, Beli, Pesan sekarang, Hapus, Blokir, Telepon… selalu ditanyakan, dalam setiap bahasa Piggy.</string>
     <!-- List title: buttons that always need the user's OK. -->
     <string name="perms_always_ask">Selalu tanya</string>
     <!-- List title, and an option in a small segmented control (keep it short): buttons the agent may tap without asking. -->
@@ -1398,13 +1398,13 @@
     <string name="guard_rule_all_apps">%1$s · semua aplikasi</string>
     <!-- Why an app has its mode, in small text under the app's name. Here: the user picked it. -->
     <string name="guard_why_choice">Pilihan Anda</string>
-    <!-- Buddy suggests Hard for this app because of the kind of app it is. -->
+    <!-- Piggy suggests Hard for this app because of the kind of app it is. -->
     <string name="guard_why_category">Disarankan: pesan, sosial, panggilan, atau keuangan</string>
-    <!-- Buddy suggests Hard because the app's name contains a word like bank or pay. %1$s = that word, as found (usually English). -->
+    <!-- Piggy suggests Hard because the app's name contains a word like bank or pay. %1$s = that word, as found (usually English). -->
     <string name="guard_why_name">Disarankan: nama mengandung “%1$s”</string>
-    <!-- Buddy suggests Hard because Android lists the app as a social app. -->
+    <!-- Piggy suggests Hard because Android lists the app as a social app. -->
     <string name="guard_why_social">Disarankan: aplikasi sosial</string>
-    <!-- The mode is Buddy's suggestion. -->
+    <!-- The mode is Piggy's suggestion. -->
     <string name="guard_why_suggested">Disarankan</string>
     <!-- The mode comes from the first setup, where the user chose that the agent asks first. -->
     <string name="guard_why_setup">Pilihan penyiapan Anda: tanya dulu</string>
@@ -1422,12 +1422,12 @@
     <string name="tools_card_enter">Tekan Enter untuk mengirim</string>
     <!-- Same, %1$s = the app's name. -->
     <string name="tools_card_enter_in">Tekan Enter untuk mengirim di %1$s</string>
-    <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Buddy asks. -->
+    <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Piggy asks. -->
     <string name="tools_card_detail">%1$s:\n%2$s</string>
     <!-- Quotation marks around text on the card (a draft message, a reason). Use your language's quotation marks. -->
     <string name="tools_card_quote">“%1$s”</string>
     <!-- In an app set to Smart, when neither Claude Code nor Codex is signed in to review the tap. -->
-    <string name="tools_card_no_reviewer">Tidak ada peninjau yang login, jadi Buddy bertanya kepada Anda.</string>
+    <string name="tools_card_no_reviewer">Tidak ada peninjau yang login, jadi Piggy bertanya kepada Anda.</string>
     <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
     <string name="tools_card_reviewer_block">%1$s tidak menyarankannya: %2$s</string>
     <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
@@ -1442,8 +1442,8 @@
     <string name="tools_status_tap_update">Ketuk Update, lalu konfirmasi</string>
     <!-- An app the agent opened the installer for is now installed (adjective). -->
     <string name="tools_status_installed">Terinstal</string>
-    <!-- Downloading Buddy's update. %1$s = version number, e.g. 2.1.13 -->
-    <string name="tools_status_downloading">Mendownload Buddy %1$s…</string>
+    <!-- Downloading Piggy's update. %1$s = version number, e.g. 2.1.13 -->
+    <string name="tools_status_downloading">Mendownload Piggy %1$s…</string>
 
     <!-- Smart reviewer: its reason when it fails, shown on the approval card after “Claude says ask you:”, so it starts lowercase.
          %1$s = the technical reason (reviewer_no_answer, reviewer_timed_out, or an error in English). -->
@@ -1453,8 +1453,8 @@
     <!-- In the parentheses of reviewer_failed: the reviewer took too long. -->
     <string name="reviewer_timed_out">waktu habis</string>
 
-    <!-- Error when a chat can't start because Buddy's built-in Linux isn't set up yet. -->
-    <string name="helper_linux_missing">Linux Buddy belum terinstal. Buka Setelan untuk menyiapkannya.</string>
+    <!-- Error when a chat can't start because Piggy's built-in Linux isn't set up yet. -->
+    <string name="helper_linux_missing">Linux Piggy belum terinstal. Buka Setelan untuk menyiapkannya.</string>
 
     <!-- Voice input (dictation). “Claude voice” and “ChatGPT voice” are the names of two voice input options: Claude Code's
          speech-to-text and ChatGPT's voice (through Codex). Status lines show in the voice bar, errors as toasts. -->
@@ -1511,11 +1511,11 @@
     <string name="setup_rules_info">Biarkan agen bertindak saat notifikasi masuk: membalas pesan, memasukkan jadwal pengiriman paket ke kalender Anda…</string>
     <string name="tools_card_reply">Balas %1$s di %2$s:\n“%3$s”</string>
     <string name="tools_card_open_url">Buka %1$s</string>
-    <string name="rules_service_label">Aturan notifikasi Buddy</string>
+    <string name="rules_service_label">Aturan notifikasi Piggy</string>
     <string name="rules_title">Aturan notifikasi</string>
-    <string name="rules_intro">Saat notifikasi yang Anda pilih masuk, Buddy memberikan arahan Anda ke agen, seperti pesan yang Anda ketik sendiri. Notifikasi yang tidak cocok dengan aturan mana pun akan diabaikan.</string>
+    <string name="rules_intro">Saat notifikasi yang Anda pilih masuk, Piggy memberikan arahan Anda ke agen, seperti pesan yang Anda ketik sendiri. Notifikasi yang tidak cocok dengan aturan mana pun akan diabaikan.</string>
     <string name="rules_access_off_title">Akses notifikasi nonaktif</string>
-    <string name="rules_access_off_text">Buddy memerlukannya untuk melihat notifikasi yang dipantau aturan Anda.</string>
+    <string name="rules_access_off_text">Piggy memerlukannya untuk melihat notifikasi yang dipantau aturan Anda.</string>
     <string name="rules_access_turn_on">Aktifkan</string>
     <string name="rules_run">Jalankan aturan</string>
     <string name="rules_run_info">Nonaktifkan untuk menjeda semua aturan.</string>
@@ -1560,12 +1560,12 @@
     <string name="waiting_open_chat">Buka chat</string>
     <string name="waiting_state_wrote_again">%1$s menulis lagi sejak itu: balasan ini mungkin sudah tidak sesuai.</string>
     <string name="waiting_state_answered">Anda sudah menjawab di %1$s.</string>
-    <string name="waiting_state_gone">Notifikasinya sudah hilang: Buddy menyalin balasan dan membuka %1$s agar Anda bisa menempelkannya.</string>
+    <string name="waiting_state_gone">Notifikasinya sudah hilang: Piggy menyalin balasan dan membuka %1$s agar Anda bisa menempelkannya.</string>
     <string name="waiting_sent">Terkirim ke %1$s</string>
     <string name="waiting_copied">Disalin. Tempelkan di %1$s.</string>
     <string name="waiting_note_sent">✓ Dikirim dari “Menunggu Anda”: %1$s</string>
     <string name="rules_log_error">Tidak dijalankan: %1$s</string>
-    <string name="rules_log_no_service">layanan aksesibilitas Buddy nonaktif</string>
+    <string name="rules_log_no_service">layanan aksesibilitas Piggy nonaktif</string>
     <string name="rules_log_not_signed_in">%1$s belum login</string>
     <string name="rules_new">Aturan baru</string>
     <string name="rules_edit">Edit aturan</string>
@@ -1576,7 +1576,7 @@
     <string name="rules_from_hint">Siapa saja, atau nama yang dipisahkan koma</string>
     <string name="rules_words">Berisi (opsional)</string>
     <string name="rules_words_hint">Apa saja, atau kata yang dipisahkan koma</string>
-    <string name="rules_instruction">Apa yang harus dilakukan Buddy?</string>
+    <string name="rules_instruction">Apa yang harus dilakukan Piggy?</string>
     <string name="rules_instruction_hint">Misalnya: Balas dengan gaya saya. Kami buka pukul 8 pagi sampai 6 sore, tutup setiap Minggu.</string>
     <string name="rules_example_reply">Balas untuk saya</string>
     <string name="rules_example_reply_text">Balas dengan gaya saya, singkat dan ramah.</string>
@@ -1597,11 +1597,11 @@
     <string name="rules_delete">Hapus</string>
     <string name="rules_delete_title">Hapus aturan ini?</string>
     <string name="rules_need_app">Pilih aplikasi terlebih dahulu.</string>
-    <string name="rules_need_instruction">Tulis apa yang harus dilakukan Buddy.</string>
+    <string name="rules_need_instruction">Tulis apa yang harus dilakukan Piggy.</string>
     <string name="rules_access_title">Izinkan akses notifikasi?</string>
-    <string name="rules_access_what">Buddy memeriksa setiap notifikasi dengan aturan Anda. Notifikasi yang tidak cocok dengan aturan mana pun langsung diabaikan: tidak disimpan, tidak dikirim ke mana pun.</string>
+    <string name="rules_access_what">Piggy memeriksa setiap notifikasi dengan aturan Anda. Notifikasi yang tidak cocok dengan aturan mana pun langsung diabaikan: tidak disimpan, tidak dikirim ke mana pun.</string>
     <string name="rules_access_data">Jika notifikasi cocok, aplikasi, pengirim, dan teksnya dikirim ke agen aturan tersebut (Claude Code, Codex, atau OpenCode) bersama arahan Anda.</string>
-    <string name="rules_access_reply">Buddy dapat menjawab lewat tombol Balas pada notifikasi. Buddy akan bertanya kepada Anda dulu, kecuali Anda menyetel hitung mundur untuk aturan tersebut.</string>
+    <string name="rules_access_reply">Piggy dapat menjawab lewat tombol Balas pada notifikasi. Piggy akan bertanya kepada Anda dulu, kecuali Anda menyetel hitung mundur untuk aturan tersebut.</string>
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
     <string name="rules_status_checking">Memeriksa kesesuaian dengan aturan Anda…</string>
     <string name="rules_channel_results">Aturan notifikasi: hasil</string>
@@ -1614,7 +1614,7 @@
     <!-- Background browser -->
     <string name="browser_section">Browser latar belakang</string>
     <string name="browser_switch">Browser latar belakang</string>
-    <string name="browser_switch_info">Browser di dalam Buddy yang digunakan agen untuk halaman web, tanpa mengambil alih ponsel Anda. Anda dapat melihat dan menggunakannya di chat. Saat pertama kali, Buddy mengunduh Chromium (sekitar 300 MB).</string>
+    <string name="browser_switch_info">Browser di dalam Piggy yang digunakan agen untuk halaman web, tanpa mengambil alih ponsel Anda. Anda dapat melihat dan menggunakannya di chat. Saat pertama kali, Piggy mengunduh Chromium (sekitar 300 MB).</string>
     <string name="browser_state_installing">menginstal Chromium…</string>
     <string name="browser_state_starting">memulai…</string>
     <string name="browser_state_running">berjalan</string>

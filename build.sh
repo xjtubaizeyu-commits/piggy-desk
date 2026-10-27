@@ -1,12 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # Builds a signed release APK on-device with aapt2 + javac + d8 + apksigner.
-# Output: build/buddy-release.apk
+# Output: build/piggy-release.apk
 set -euo pipefail
 cd "$(dirname "$0")"
 
 SDK_JAR=${SDK_JAR:-$HOME/android-sdk/android-36/android.jar}
-KEYSTORE=${KEYSTORE:-$HOME/.buddy-keys/release.jks}
-PACKAGE=app.buddy.assistant
+KEYSTORE=${KEYSTORE:-$HOME/.piggy-keys/release.jks}
+PACKAGE=app.buddy.assistant # Java package (R class); the installed app is APP_ID
+APP_ID=app.piggy.assistant
 INFO=app/src/main/java/app/buddy/assistant/BuildInfo.java
 VERSION_NAME=$(sed -n 's/.*VERSION = "\(.*\)";/\1/p' "$INFO")
 VERSION_CODE=$(sed -n 's/.*VERSION_CODE = \([0-9]*\);/\1/p' "$INFO")
@@ -28,6 +29,7 @@ sed "s|<manifest |<manifest package=\"$PACKAGE\" |" "$SRC/AndroidManifest.xml" >
 aapt2 link -I "$SDK_JAR" --manifest "$OUT/AndroidManifest.xml" \
   --min-sdk-version 30 --target-sdk-version 36 \
   --version-code "$VERSION_CODE" --version-name "$VERSION_NAME" \
+  --rename-manifest-package "$APP_ID" \
   -A "$SRC/assets" --java "$OUT/gen" -o "$OUT/base.apk" "$OUT/res.zip"
 
 echo "3/6 Compiling Java"
@@ -65,8 +67,8 @@ if [ ! -f "$KEYSTORE" ]; then
 fi
 apksigner sign --ks "$KEYSTORE" --ks-key-alias buddy \
   --ks-pass "file:$(dirname "$KEYSTORE")/password" \
-  --out "$OUT/buddy-release.apk" "$OUT/aligned.apk"
-apksigner verify "$OUT/buddy-release.apk"
+  --out "$OUT/piggy-release.apk" "$OUT/aligned.apk"
+apksigner verify "$OUT/piggy-release.apk"
 
-ls -l "$OUT/buddy-release.apk"
-echo "Built $OUT/buddy-release.apk (version $VERSION_NAME, code $VERSION_CODE)"
+ls -l "$OUT/piggy-release.apk"
+echo "Built $OUT/piggy-release.apk (version $VERSION_NAME, code $VERSION_CODE)"

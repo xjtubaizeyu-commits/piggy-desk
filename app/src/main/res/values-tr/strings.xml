@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Turkish translation of Buddy's UI. Source: res/values/strings.xml. -->
+<!-- Turkish translation of Piggy's UI. Source: res/values/strings.xml. -->
 <resources>
-    <string name="service_label">Buddy asistanı</string>
-    <string name="service_description">Buddy sohbet baloncuğunu gösterir; bu telefonda Buddy içinde çalışan, seçtiğiniz ajanın (Claude Code, Codex, OpenCode, Antigravity veya Grok) ekranı okumasını ve sizin yerinize dokunmasını, yazmasını ve kaydırmasını sağlar. Ajanın kendisinin yapay zeka hizmetine (Anthropic, OpenAI, Google, xAI veya OpenCode modelinizin sağlayıcısı) gönderdikleri dışında hiçbir şey telefondan çıkmaz.</string>
+    <string name="service_label">Piggy asistanı</string>
+    <string name="service_description">Piggy sohbet baloncuğunu gösterir; bu telefonda Piggy içinde çalışan, seçtiğiniz ajanın (Claude Code, Codex, OpenCode, Antigravity veya Grok) ekranı okumasını ve sizin yerinize dokunmasını, yazmasını ve kaydırmasını sağlar. Ajanın kendisinin yapay zeka hizmetine (Anthropic, OpenAI, Google, xAI veya OpenCode modelinizin sağlayıcısı) gönderdikleri dışında hiçbir şey telefondan çıkmaz.</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -16,7 +16,7 @@
     <string name="onboarding_stuck">Takıldınız mı?</string>
 
     <!-- Guide, welcome screen. -->
-    <string name="onboarding_welcome_title">Buddy ile tanışın</string>
+    <string name="onboarding_welcome_title">Piggy ile tanışın</string>
     <string name="onboarding_welcome_text">Telefonunuzu sizin yerinize kullanabilen bir sohbet baloncuğu.</string>
     <string name="onboarding_welcome_ask_title">Gündelik bir dille isteyin</string>
     <string name="onboarding_welcome_ask_text">“Ayşe\'ye geç kalacağımı yaz”, “sepetime süt ekle”.</string>
@@ -38,26 +38,26 @@
     <string name="onboarding_brain_both">İkisini de yükleyin, her sohbette seçin. Varsayılan Claude Code olarak kalır.</string>
     <string name="onboarding_recommended">önerilen</string>
 
-    <!-- Guide, step: turn on Buddy's accessibility service. -->
-    <string name="onboarding_access_title">Buddy\'nin görmesine ve dokunmasına izin verin</string>
+    <!-- Guide, step: turn on Piggy's accessibility service. -->
+    <string name="onboarding_access_title">Piggy\'nin görmesine ve dokunmasına izin verin</string>
     <string name="onboarding_access_done">Erişilebilirlik hizmeti açık.</string>
-    <string name="onboarding_access_text">Buddy\'nin erişilebilirlik hizmeti baloncuğu gösterir ve ajanın ekranı okumasına, dokunmasına ve yazmasına yalnızca siz bir şey istediğinizde izin verir.</string>
+    <string name="onboarding_access_text">Piggy\'nin erişilebilirlik hizmeti baloncuğu gösterir ve ajanın ekranı okumasına, dokunmasına ve yazmasına yalnızca siz bir şey istediğinizde izin verir.</string>
     <string name="onboarding_access_privacy">Size yanıt vermek için %1$s tarafından %2$s şirketine gönderilenler dışında hiçbir şey telefondan çıkmaz. Gönderme, paylaşma, satın alma ve silme işlemleri için her zaman önce onayınız istenir.</string>
     <string name="onboarding_access_privacy_both">Size yanıt vermek için Claude Code ve Codex tarafından Anthropic ve OpenAI\'a gönderilenler dışında hiçbir şey telefondan çıkmaz. Gönderme, paylaşma, satın alma ve silme işlemleri için her zaman önce onayınız istenir.</string>
     <string name="onboarding_access_privacy_opencode">Size yanıt vermek için %1$s tarafından modelin sağlayıcısına gönderilenler dışında hiçbir şey telefondan çıkmaz. Gönderme, paylaşma, satın alma ve silme işlemleri için her zaman önce onayınız istenir.</string>
-    <string name="onboarding_access_list_hint">Listede: İndirilen uygulamalar → Buddy asistanı → açın.</string>
+    <string name="onboarding_access_list_hint">Listede: İndirilen uygulamalar → Piggy asistanı → açın.</string>
     <string name="onboarding_access_open">Erişilebilirlik ayarlarını aç</string>
     <string name="onboarding_access_greyed_title">Anahtar gri mi görünüyor?</string>
     <string name="onboarding_access_greyed_text">Android, dosyadan yüklenen uygulamalarda bunu engeller. Aşağıdaki Uygulama bilgileri düğmesine, ardından sağ üstteki ⋮ → Kısıtlanmış ayarlara izin ver seçeneğine dokunun ve tekrar deneyin.</string>
     <string name="onboarding_access_restricted_steps">1. Aşağıdaki Uygulama bilgileri düğmesine dokunun.\n2. Sağ üstteki ⋮ → Kısıtlanmış ayarlara izin ver seçeneğine dokunun.\n3. Geri dönüp erişilebilirlik ayarlarını yeniden açın.</string>
     <string name="onboarding_app_info">Uygulama bilgileri</string>
 
-    <!-- Guide, step: install the agent inside Buddy and sign in. -->
+    <!-- Guide, step: install the agent inside Piggy and sign in. -->
     <string name="onboarding_agents_title">Yükleyin ve giriş yapın</string>
     <string name="onboarding_agents_done_title">Hazır</string>
     <string name="onboarding_agents_done">%1$s yüklendi ve giriş yapıldı.</string>
     <string name="onboarding_agents_done_both">Claude Code ve Codex yüklendi ve giriş yapıldı.</string>
-    <string name="onboarding_agents_text">%1$s, Buddy tarafından uygulamanın içine yüklenir; ardından bir kez giriş yaparsınız. Termux gerekmez.</string>
+    <string name="onboarding_agents_text">%1$s, Piggy tarafından uygulamanın içine yüklenir; ardından bir kez giriş yaparsınız. Termux gerekmez.</string>
     <string name="onboarding_agent_names_both">Claude Code ve Codex</string>
     <!-- Agent card status lines: small lowercase mono text, one line. -->
     <string name="onboarding_agent_ready">hazır · %1$s</string>
@@ -68,16 +68,16 @@
     <string name="onboarding_agent_installed">yüklü · giriş yapılmadı</string>
     <string name="onboarding_agent_not_installed">yüklü değil</string>
     <!-- Agent card help text. -->
-    <string name="onboarding_agent_sign_in_claude">Claude hesabınızla giriş yapın. Tarayıcınız açılır; Yetkilendir düğmesine dokunun, Buddy kendiliğinden geri döner.</string>
+    <string name="onboarding_agent_sign_in_claude">Claude hesabınızla giriş yapın. Tarayıcınız açılır; Yetkilendir düğmesine dokunun, Piggy kendiliğinden geri döner.</string>
     <string name="onboarding_agent_checking_opencode">OpenCode kontrol ediliyor…</string>
     <string name="onboarding_agent_sign_in_codex">Tarayıcıda ChatGPT hesabınızla giriş yapın, sonra geri dönün.</string>
-    <string name="onboarding_agent_sign_in_agy">Google hesabınızla giriş yapın. Tarayıcınız açılır; orada giriş yapın, Buddy kodu kendiliğinden alır.</string>
-    <string name="onboarding_agent_sign_in_grok">Grok hesabınızla giriş yapın. Tarayıcınız açılır; orada kodu onaylayın, Buddy kendiliğinden geri döner.</string>
-    <string name="onboarding_agent_download_claude">Bir kerelik yaklaşık 235 MB indirir (Buddy\'nin Linux\'u ve Anthropic\'ten Claude Code).</string>
-    <string name="onboarding_agent_download_opencode">Bir kerelik yaklaşık 230 MB indirir (Buddy\'nin Linux\'u, Node.js ve OpenCode). Hesap gerekmez.</string>
-    <string name="onboarding_agent_download_codex">Bir kerelik yaklaşık 150 MB indirir (Buddy\'nin Linux\'u, Node.js ve OpenAI\'dan Codex).</string>
-    <string name="onboarding_agent_download_agy">Bir kerelik yaklaşık 200 MB indirir (Buddy\'nin Linux\'u ve Google\'dan Antigravity CLI).</string>
-    <string name="onboarding_agent_download_grok">Bir kerelik yaklaşık 170 MB indirir (Buddy\'nin Linux\'u ve xAI\'dan Grok Build).</string>
+    <string name="onboarding_agent_sign_in_agy">Google hesabınızla giriş yapın. Tarayıcınız açılır; orada giriş yapın, Piggy kodu kendiliğinden alır.</string>
+    <string name="onboarding_agent_sign_in_grok">Grok hesabınızla giriş yapın. Tarayıcınız açılır; orada kodu onaylayın, Piggy kendiliğinden geri döner.</string>
+    <string name="onboarding_agent_download_claude">Bir kerelik yaklaşık 235 MB indirir (Piggy\'nin Linux\'u ve Anthropic\'ten Claude Code).</string>
+    <string name="onboarding_agent_download_opencode">Bir kerelik yaklaşık 230 MB indirir (Piggy\'nin Linux\'u, Node.js ve OpenCode). Hesap gerekmez.</string>
+    <string name="onboarding_agent_download_codex">Bir kerelik yaklaşık 150 MB indirir (Piggy\'nin Linux\'u, Node.js ve OpenAI\'dan Codex).</string>
+    <string name="onboarding_agent_download_agy">Bir kerelik yaklaşık 200 MB indirir (Piggy\'nin Linux\'u ve Google\'dan Antigravity CLI).</string>
+    <string name="onboarding_agent_download_grok">Bir kerelik yaklaşık 170 MB indirir (Piggy\'nin Linux\'u ve xAI\'dan Grok Build).</string>
     <!-- Buttons on the agent card. -->
     <string name="onboarding_sign_in_claude">Claude ile giriş yap</string>
     <string name="onboarding_sign_in_chatgpt">ChatGPT ile giriş yap</string>
@@ -87,29 +87,29 @@
     <string name="onboarding_agents_wifi">Mümkünse Wi-Fi kullanın. Yükleme sürerken bu ekrandan çıkabilirsiniz.</string>
     <!-- Help questions and answers under "Stuck?". -->
     <string name="onboarding_stuck_sign_in_q">Giriş yaptıktan sonra geri dönmedi mi?</string>
-    <string name="onboarding_stuck_sign_in_a">Claude: Claude sayfasında Kodu kopyala düğmesine dokunun, sonra Buddy\'ye dönün; kodu panodan kendisi alır.</string>
+    <string name="onboarding_stuck_sign_in_a">Claude: Claude sayfasında Kodu kopyala düğmesine dokunun, sonra Piggy\'ye dönün; kodu panodan kendisi alır.</string>
     <string name="onboarding_stuck_install_q">Yükleme başarısız mı oldu?</string>
     <string name="onboarding_stuck_install_a">Bağlantınızı kontrol edip yükleme düğmesine tekrar dokunun; kaldığı yerden devam eder.</string>
 
-    <!-- Guide, step: let Buddy run in the background (Android's battery optimization). -->
+    <!-- Guide, step: let Piggy run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Arka planda çalışsın</string>
-    <string name="onboarding_background_done">Buddy arka planda çalışabilir.</string>
-    <string name="onboarding_background_text">Böylece ajan çalışırken telefonunuz pil tasarrufu için Buddy\'yi durdurmaz.</string>
+    <string name="onboarding_background_done">Piggy arka planda çalışabilir.</string>
+    <string name="onboarding_background_text">Böylece ajan çalışırken telefonunuz pil tasarrufu için Piggy\'yi durdurmaz.</string>
     <string name="onboarding_allow">İzin ver</string>
     <string name="onboarding_skip_for_now">Şimdilik atla</string>
 
     <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Ne kadar sık sorsun?</string>
-    <string name="onboarding_safety_text">Mesajlaşma, sosyal medya, alışveriş, ödeme ve bankacılık uygulamalarında Buddy bir şey göndermeden, paylaşmadan, satın almadan veya silmeden önce her zaman onayınızı ister. Diğer uygulamalarınız için:</string>
+    <string name="onboarding_safety_text">Mesajlaşma, sosyal medya, alışveriş, ödeme ve bankacılık uygulamalarında Piggy bir şey göndermeden, paylaşmadan, satın almadan veya silmeden önce her zaman onayınızı ister. Diğer uygulamalarınız için:</string>
     <string name="onboarding_safety_ask_title">Önce bana sor</string>
     <string name="onboarding_safety_ask_text">Ajan, bir ayarı değiştirmek gibi riskli her şeyden önce sorar. Daha güvenli ama daha çok açılır pencere çıkar.</string>
     <string name="onboarding_safety_auto_title">Kendi başına çalış</string>
     <string name="onboarding_safety_auto_text">Açılır pencere yok: ajan, bir kamerayı veya ışığı açmak gibi istediğiniz şeyi doğrudan yapar.</string>
-    <string name="onboarding_safety_note">Bunu istediğiniz zaman uygulama bazında değiştirebilirsiniz: Ayarlar → Uygulama izinleri. Ajanın bir uygulamada açılır pencere olmadan çalışması için Güven modunu, Buddy\'nin size kendisinin sorması için Katı modu seçin.</string>
+    <string name="onboarding_safety_note">Bunu istediğiniz zaman uygulama bazında değiştirebilirsiniz: Ayarlar → Uygulama izinleri. Ajanın bir uygulamada açılır pencere olmadan çalışması için Güven modunu, Piggy\'nin size kendisinin sorması için Katı modu seçin.</string>
 
     <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Her şey hazır</string>
-    <string name="onboarding_try_text">İlk görevi deneyin. Buddy, Ayarlar\'ı açıp sizin için okuyacak.</string>
+    <string name="onboarding_try_text">İlk görevi deneyin. Piggy, Ayarlar\'ı açıp sizin için okuyacak.</string>
     <string name="onboarding_try_prompt">Ayarlar\'ı aç ve Android sürümümü söyle</string>
     <string name="onboarding_try_prompt_quoted">“%1$s”</string>
     <string name="onboarding_try_tip">İpucu: baloncuk diğer uygulamaların üzerinde durur. Gizlemek için ✕ işaretine sürükleyin.</string>
@@ -122,7 +122,7 @@
     <string name="main_status_setup">kurulum %1$d/%2$d</string>
     <string name="main_setup_title">Sohbetleri çalıştırmak için kurulumu tamamlayın</string>
     <string name="main_setup_next">Sıradaki: %1$s</string>
-    <string name="main_setup_next_accessibility">Sıradaki: Buddy\'nin erişilebilirlik hizmetini açın</string>
+    <string name="main_setup_next_accessibility">Sıradaki: Piggy\'nin erişilebilirlik hizmetini açın</string>
     <string name="main_section_working">Çalışıyor</string>
     <string name="main_section_recent">Son sohbetler</string>
     <string name="main_empty_title">Henüz sohbet yok</string>
@@ -151,28 +151,28 @@
 
     <!-- Notification shown after the bubble is dragged away to hide it. -->
     <string name="notice_channel_name">Gizli baloncuk</string>
-    <string name="notice_hidden_title">Buddy gizlendi</string>
+    <string name="notice_hidden_title">Piggy gizlendi</string>
     <string name="notice_hidden_text">Baloncuğu yeniden göstermek için dokunun.</string>
     <string name="notice_open_chats">Sohbetleri aç</string>
 
-    <!-- Buddy's own updates (GitHub version): notification, update sheet and messages. -->
-    <string name="update_channel_name">Buddy güncellemeleri</string>
-    <string name="update_available_title">Buddy %1$s kullanıma sunuldu</string>
+    <!-- Piggy's own updates (GitHub version): notification, update sheet and messages. -->
+    <string name="update_channel_name">Piggy güncellemeleri</string>
+    <string name="update_available_title">Piggy %1$s kullanıma sunuldu</string>
     <string name="update_notification_text">Sizdeki sürüm: %1$s. Yenilikleri görüp güncellemek için dokunun; sohbetleriniz korunur.</string>
     <string name="update_action">Güncelle</string>
     <string name="update_mute">Bildirme</string>
     <string name="update_muted">Artık güncelleme bildirimi gelmeyecek. Ayarlar\'dan yeniden açabilirsiniz.</string>
     <string name="update_checking">Güncellemeler kontrol ediliyor…</string>
     <string name="update_check_failed">GitHub\'a ulaşılamadı. Daha sonra tekrar deneyin.</string>
-    <string name="update_up_to_date">Buddy %1$s güncel.</string>
+    <string name="update_up_to_date">Piggy %1$s güncel.</string>
     <string name="update_sheet_text">Sizdeki sürüm: %1$s. Güncelleme sohbetlerinizi, ayarlarınızı ve hesap girişlerinizi korur.</string>
     <string name="update_later">Sonra</string>
     <string name="update_downloading">İndiriliyor…</string>
-    <string name="update_needs_permission">Buddy\'nin uygulama yüklemesine izin verin, ardından Güncelle düğmesine tekrar dokunun.</string>
-    <string name="update_error_no_apk">Bu sürümde henüz buddy.apk yok.</string>
+    <string name="update_needs_permission">Piggy\'nin uygulama yüklemesine izin verin, ardından Güncelle düğmesine tekrar dokunun.</string>
+    <string name="update_error_no_apk">Bu sürümde henüz piggy.apk yok.</string>
     <string name="update_error_download">İndirme başarısız oldu (%1$s).</string>
-    <string name="update_error_not_newer">İndirilen dosya daha yeni bir Buddy sürümü değil, bu yüzden açılmadı.</string>
-    <string name="update_failed_manual">%1$s Uygulamayı %2$s adresinden (buddy.apk) de indirebilir veya otomatik güncellemeler için Obtainium\'u kullanabilirsiniz (bkz. %3$s).</string>
+    <string name="update_error_not_newer">İndirilen dosya daha yeni bir Piggy sürümü değil, bu yüzden açılmadı.</string>
+    <string name="update_failed_manual">%1$s Uygulamayı %2$s adresinden (piggy.apk) de indirebilir veya otomatik güncellemeler için Obtainium\'u kullanabilirsiniz (bkz. %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">Sistem</string>
@@ -192,7 +192,7 @@
     <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
 
     <!-- Floating bubble, read by TalkBack. -->
-    <string name="bubble_face_description">Buddy. Açmak için dokunun, işlemler için uzun basın</string>
+    <string name="bubble_face_description">Piggy. Açmak için dokunun, işlemler için uzun basın</string>
     <string name="bubble_show_actions">işlemleri göstermek</string>
 
     <!-- Status pill beside the bubble: at most two lines. -->
@@ -236,10 +236,10 @@
     <string name="bubble_tip_stop_voice">İpucu: sesi durdurmak için baloncuğa uzun basın</string>
     <string name="bubble_tip_hold_menu">İpucu: duraklatmak, durdurmak veya talimat eklemek için baloncuğa uzun basın</string>
     <string name="bubble_stopping">Durduruluyor…</string>
-    <string name="bubble_nothing_running">Buddy sohbetlerinde çalışan bir şey yok.</string>
+    <string name="bubble_nothing_running">Piggy sohbetlerinde çalışan bir şey yok.</string>
     <string name="bubble_nothing_running_chat">Bu sohbette çalışan bir şey yok.</string>
-    <string name="bubble_allow_mic_tap_mic">Buddy\'de mikrofona izin verin, ardından mikrofona tekrar dokunun.</string>
-    <string name="bubble_allow_mic_tap_bubble">Buddy\'de mikrofona izin verin, ardından baloncuğa tekrar dokunun.</string>
+    <string name="bubble_allow_mic_tap_mic">Piggy\'de mikrofona izin verin, ardından mikrofona tekrar dokunun.</string>
+    <string name="bubble_allow_mic_tap_bubble">Piggy\'de mikrofona izin verin, ardından baloncuğa tekrar dokunun.</string>
     <string name="bubble_note_added">Anlaşıldı: %1$s bunu dikkate alacak</string>
     <string name="bubble_copied">Kopyalandı</string>
 
@@ -307,12 +307,12 @@
     <string name="card_note_skipped">Soru atlandı</string>
 
     <!-- Notification while an agent operates the phone. -->
-    <string name="control_channel_name">Buddy telefonunuzu kullanıyor</string>
+    <string name="control_channel_name">Piggy telefonunuzu kullanıyor</string>
     <string name="control_channel_description">Bir ajan telefonu kullanırken durum çubuğunda görünür.</string>
-    <string name="control_title">Buddy telefonunuzu kullanıyor</string>
+    <string name="control_title">Piggy telefonunuzu kullanıyor</string>
     <string name="control_text">İşlem bitene kadar ekrana dokunmayın ya da kontrolü almak için Durdur düğmesine dokunun.</string>
     <string name="control_stop">Durdur</string>
-    <string name="pause_call_ended_title">Arama bitti · Buddy duraklatıldı</string>
+    <string name="pause_call_ended_title">Arama bitti · Piggy duraklatıldı</string>
     <string name="pause_call_ended_text">Göreve devam etmek için dokunun</string>
 
     <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, BuddyService, Voice) ===== -->
@@ -325,7 +325,7 @@
 
     <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
     <string name="chat_linux_tools">Linux araçları</string>
-    <string name="chat_linux_tools_info">Buddy\'nin Linux\'unda komutlar, dosyalar ve uygulama derleme</string>
+    <string name="chat_linux_tools_info">Piggy\'nin Linux\'unda komutlar, dosyalar ve uygulama derleme</string>
     <string name="chat_linux_tools_title">Linux araçları açılsın mı?</string>
     <string name="chat_linux_tools_what">Ajan bu durumda komut çalıştırabilir, paket yükleyebilir ve ~/.buddy/work içindeki dosyaları düzenleyebilir; böylece uygulama geliştirip yükleyebilir.</string>
     <string name="chat_linux_tools_when">Yalnızca bu sohbette, bir sonraki mesajınızdan itibaren.</string>
@@ -347,7 +347,7 @@
     <string name="schedule_title">Zamanlama</string>
     <string name="schedule_set">Zamanlama ayarla</string>
     <string name="schedule_set_info">Bu sohbete belirli saatlerde kendiliğinden mesaj gönderin, örn. her gün 14:00\'te.</string>
-    <string name="schedule_info">Belirlenen saatte Buddy bu mesajı, siz yazmışsınız gibi bu sohbetin aracısı ve seçenekleriyle sohbete gönderir. Onay kartları yine sizi bekler. Telefon kilitliyken ekrana ihtiyaç duyarsa kilidi açmanızı ister.</string>
+    <string name="schedule_info">Belirlenen saatte Piggy bu mesajı, siz yazmışsınız gibi bu sohbetin aracısı ve seçenekleriyle sohbete gönderir. Onay kartları yine sizi bekler. Telefon kilitliyken ekrana ihtiyaç duyarsa kilidi açmanızı ister.</string>
     <string name="schedule_time">Saat</string>
     <string name="schedule_days">Günler</string>
     <string name="schedule_daily">Her gün</string>
@@ -357,7 +357,7 @@
     <string name="schedule_message_hint">Ne gönderilecek, örn. Uygulamayı aç ve bugünkü girişi yap</string>
     <string name="schedule_wake">Bu görev için telefonu uyandır</string>
     <string name="schedule_wake_info">Ekrana ihtiyaç duyduğunda ekran açılır (PIN, desen veya parmak izi olmayan kilit ekranı da açılır). Çalışırken yakındaki herkes ekranı görebilir.</string>
-    <string name="schedule_inexact">Buddy için tam zamanlı alarmlar kapalı, bu yüzden birkaç dakika geç başlayabilir.</string>
+    <string name="schedule_inexact">Piggy için tam zamanlı alarmlar kapalı, bu yüzden birkaç dakika geç başlayabilir.</string>
     <string name="schedule_allow_exact">Tam zamanlı alarmlara izin ver</string>
     <string name="schedule_save">Kaydet</string>
     <string name="schedule_remove">Kaldır</string>
@@ -373,7 +373,7 @@
     <string name="schedule_skipped_title">Zamanlanmış görev atlandı: %1$s</string>
     <string name="schedule_stopped_title">Zamanlanmış görev durduruldu: %1$s</string>
     <string name="schedule_skip_running">Bu sohbet hâlâ önceki görevi üzerinde çalışıyordu.</string>
-    <string name="schedule_skip_busy">Buddy bir saat boyunca meşguldü (başka bir görev, bir duraklama veya internet yok).</string>
+    <string name="schedule_skip_busy">Piggy bir saat boyunca meşguldü (başka bir görev, bir duraklama veya internet yok).</string>
     <string name="schedule_skip_screen">Telefon bir saat boyunca kilitli kaldı.</string>
     <string name="schedule_marker">Zamanlandı</string>
 
@@ -411,7 +411,7 @@
     <string name="live_ended">Canlı ses sona erdi.</string>
     <string name="live_ended_why">Canlı ses sona erdi: %1$s</string>
     <string name="live_ended_screen_off">ekran kapandı</string>
-    <string name="live_ended_paused">Buddy duraklatıldı</string>
+    <string name="live_ended_paused">Piggy duraklatıldı</string>
     <string name="live_ended_idle">5 dakika boyunca hiçbir şey söylenmedi</string>
     <string name="live_notification_title">Codex ile canlı ses</string>
     <string name="live_mic_busy">Canlı ses mikrofonu kullanıyor. Önce onu bitirin.</string>
@@ -459,7 +459,7 @@
         <item quantity="other">%1$d araç çağrısı</item>
     </plurals>
 
-    <!-- Notes Buddy posts into a chat, and the chat's status line -->
+    <!-- Notes Piggy posts into a chat, and the chat's status line -->
     <string name="hub_continuing">Daha önceki bir %1$s oturumuna devam ediliyor. Hâlâ bir terminalde açıksa önce orada kapatın.</string>
     <string name="hub_still_working_attachments">Bu sohbet hâlâ çalışıyor. Ekleri iş bitince gönderin.</string>
     <string name="hub_thinking">Düşünüyor…</string>
@@ -512,8 +512,8 @@
     <string name="hub_tool_asking">Soruluyor: %1$s</string>
     <string name="hub_tool_point_out">Gösteriyor: %1$s</string>
     <string name="hub_tool_point_out_any">Ekranda bir şey gösteriyor</string>
-    <string name="hub_tool_update_download">Buddy güncellemesi indiriliyor</string>
-    <string name="hub_tool_update_check">Buddy güncellemesi kontrol ediliyor</string>
+    <string name="hub_tool_update_download">Piggy güncellemesi indiriliyor</string>
+    <string name="hub_tool_update_check">Piggy güncellemesi kontrol ediliyor</string>
     <string name="hub_tool_web_search">Web\'de aranıyor: %1$s</string>
     <string name="hub_tool_web_fetch">Okunuyor: %1$s</string>
     <string name="hub_tool_command">Çalıştırılıyor: %1$s</string>
@@ -523,9 +523,9 @@
     <string name="hub_tool_read_file">Okunuyor: %1$s</string>
     <string name="hub_tool_other">Kullanılıyor: %1$s</string>
 
-    <!-- Transcript of an earlier agent session that isn't a Buddy chat (read-only) -->
+    <!-- Transcript of an earlier agent session that isn't a Piggy chat (read-only) -->
     <string name="transcript_loading">Yükleniyor…</string>
-    <string name="transcript_continue">Buddy\'de devam et</string>
+    <string name="transcript_continue">Piggy\'de devam et</string>
     <string name="transcript_empty">Bu oturumda okunabilir mesaj yok.</string>
     <plurals name="transcript_last_messages">
         <item quantity="one">son %1$d mesaj · salt okunur</item>
@@ -536,11 +536,11 @@
     <string name="ui_no_app_for_link">Bu bağlantıyı açabilecek bir uygulama yok</string>
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
-    <string name="ui_a11y_title">Buddy erişilebilirliği nasıl kullanır?</string>
-    <string name="ui_a11y_what">Buddy, diğer uygulamalarda istediklerinizi yapmak için Android\'in erişilebilirlik hizmetini kullanır: ekranda ne olduğunu okur, sizin yerinize dokunur, yazar ve kaydırır. Ayrıca kayan baloncuğu da gösterir.</string>
+    <string name="ui_a11y_title">Piggy erişilebilirliği nasıl kullanır?</string>
+    <string name="ui_a11y_what">Piggy, diğer uygulamalarda istediklerinizi yapmak için Android\'in erişilebilirlik hizmetini kullanır: ekranda ne olduğunu okur, sizin yerinize dokunur, yazar ve kaydırır. Ayrıca kayan baloncuğu da gösterir.</string>
     <string name="ui_a11y_data">Bir görev çalışırken mesajlar, adlar veya adresler gibi kişisel bilgiler içerebilen ekran içeriği, yalnızca isteğinizi yerine getirmek için seçtiğiniz ajanın yapay zeka hizmetine (Claude Code için Anthropic, Codex için OpenAI, Antigravity için Google, Grok için xAI veya OpenCode modelinizin sağlayıcısı) gönderilir.</string>
-    <string name="ui_a11y_no_servers">Buddy\'nin kendine ait sunucusu yoktur. Bu verileri toplamaz, satmaz, paylaşmaz ve reklamlar için kullanmaz.</string>
-    <string name="ui_a11y_asks">Buddy, bir şey gönderen, paylaşan, satın alan veya silen her işlemden önce onayınızı ister. Hizmeti istediğiniz zaman Android\'in erişilebilirlik ayarlarından kapatabilirsiniz.</string>
+    <string name="ui_a11y_no_servers">Piggy\'nin kendine ait sunucusu yoktur. Bu verileri toplamaz, satmaz, paylaşmaz ve reklamlar için kullanmaz.</string>
+    <string name="ui_a11y_asks">Piggy, bir şey gönderen, paylaşan, satın alan veya silen her işlemden önce onayınızı ister. Hizmeti istediğiniz zaman Android\'in erişilebilirlik ayarlarından kapatabilirsiniz.</string>
     <string name="ui_privacy_policy">Gizlilik politikası</string>
     <string name="ui_no_thanks">Hayır, teşekkürler</string>
     <string name="ui_agree_continue">Kabul et ve devam et</string>
@@ -551,7 +551,7 @@
     <string name="ui_nav_settings">Ayarlar</string>
 
     <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
-    <string name="service_pause_expired">5 dakika duraklatıldığı için Buddy görevi durdurdu.</string>
+    <string name="service_pause_expired">5 dakika duraklatıldığı için Piggy görevi durdurdu.</string>
     <string name="service_stopped_toast">Durduruldu. Telefonunuz yeniden sizde.</string>
     <string name="service_paused_note">Duraklatıldı: devam ettirene kadar telefon sizde</string>
     <string name="service_paused_toast">Duraklatıldı. Telefonunuzu kullanın, ardından devam etmek için baloncuğun yanındaki “Duraklatıldı” yazısına dokunun.</string>
@@ -560,7 +560,7 @@
     <string name="service_autopaused_call">Bir arama nedeniyle duraklatıldı. Devam etmek için baloncuğun yanındaki “Duraklatıldı” yazısına dokunun.</string>
 
     <!-- Voice input and output -->
-    <string name="voice_mic_needed">Buddy\'nin mikrofona ihtiyacı var. Buddy uygulamasını açın ve izin vermek için bir kez 🎙 simgesine dokunun.</string>
+    <string name="voice_mic_needed">Piggy\'nin mikrofona ihtiyacı var. Piggy uygulamasını açın ve izin vermek için bir kez 🎙 simgesine dokunun.</string>
     <string name="voice_no_recognizer">Bu telefonda konuşma tanıma hizmeti yok.</string>
     <string name="voice_starting">Başlatılıyor…</string>
     <string name="voice_finishing">Bitiriliyor…</string>
@@ -578,16 +578,16 @@
 
     <!-- Sign-in screen: the agent isn't installed yet. -->
     <string name="signin_install">%1$s ajanını yükle</string>
-    <string name="signin_install_sub_claude">Claude Code\'u Buddy içinde Claude aboneliğinizle çalıştırır.</string>
-    <string name="signin_install_sub_opencode">OpenCode\'u Buddy içinde çalıştırır. Ücretsiz modelleri hesap gerekmeden hemen çalışır; kendi sağlayıcılarınızı (Anthropic, OpenAI, GitHub Copilot…) istediğiniz zaman bağlayabilirsiniz.</string>
-    <string name="signin_install_sub_codex">Codex\'i Buddy içinde ChatGPT planınızla çalıştırır.</string>
-    <string name="signin_install_sub_agy">Google\'ın Antigravity CLI aracını Buddy içinde Google hesabınızla çalıştırır: ücretsiz plan, Google AI Pro veya Ultra.</string>
-    <string name="signin_install_sub_grok">xAI\'ın Grok Build aracını Buddy içinde Grok hesabınızla çalıştırır (Google veya X ile giriş de olur).</string>
-    <string name="signin_install_size_claude">Bir kerelik yaklaşık 235 MB indirir: Buddy\'nin Linux\'u ve Anthropic\'ten Claude Code. Mümkünse Wi-Fi kullanın.</string>
-    <string name="signin_install_size_opencode">Bir kerelik yaklaşık 230 MB indirir: Buddy\'nin Linux\'u, Node.js ve OpenCode. Mümkünse Wi-Fi kullanın.</string>
-    <string name="signin_install_size_codex">Bir kerelik yaklaşık 150 MB indirir: Buddy\'nin Linux\'u, Node.js ve OpenAI\'dan Codex. Mümkünse Wi-Fi kullanın.</string>
-    <string name="signin_install_size_agy">Bir kerelik yaklaşık 200 MB indirir: Buddy\'nin Linux\'u ve Google\'dan Antigravity CLI. Mümkünse Wi-Fi kullanın.</string>
-    <string name="signin_install_size_grok">Bir kerelik yaklaşık 170 MB indirir: Buddy\'nin Linux\'u ve xAI\'dan Grok Build. Mümkünse Wi-Fi kullanın.</string>
+    <string name="signin_install_sub_claude">Claude Code\'u Piggy içinde Claude aboneliğinizle çalıştırır.</string>
+    <string name="signin_install_sub_opencode">OpenCode\'u Piggy içinde çalıştırır. Ücretsiz modelleri hesap gerekmeden hemen çalışır; kendi sağlayıcılarınızı (Anthropic, OpenAI, GitHub Copilot…) istediğiniz zaman bağlayabilirsiniz.</string>
+    <string name="signin_install_sub_codex">Codex\'i Piggy içinde ChatGPT planınızla çalıştırır.</string>
+    <string name="signin_install_sub_agy">Google\'ın Antigravity CLI aracını Piggy içinde Google hesabınızla çalıştırır: ücretsiz plan, Google AI Pro veya Ultra.</string>
+    <string name="signin_install_sub_grok">xAI\'ın Grok Build aracını Piggy içinde Grok hesabınızla çalıştırır (Google veya X ile giriş de olur).</string>
+    <string name="signin_install_size_claude">Bir kerelik yaklaşık 235 MB indirir: Piggy\'nin Linux\'u ve Anthropic\'ten Claude Code. Mümkünse Wi-Fi kullanın.</string>
+    <string name="signin_install_size_opencode">Bir kerelik yaklaşık 230 MB indirir: Piggy\'nin Linux\'u, Node.js ve OpenCode. Mümkünse Wi-Fi kullanın.</string>
+    <string name="signin_install_size_codex">Bir kerelik yaklaşık 150 MB indirir: Piggy\'nin Linux\'u, Node.js ve OpenAI\'dan Codex. Mümkünse Wi-Fi kullanın.</string>
+    <string name="signin_install_size_agy">Bir kerelik yaklaşık 200 MB indirir: Piggy\'nin Linux\'u ve Google\'dan Antigravity CLI. Mümkünse Wi-Fi kullanın.</string>
+    <string name="signin_install_size_grok">Bir kerelik yaklaşık 170 MB indirir: Piggy\'nin Linux\'u ve xAI\'dan Grok Build. Mümkünse Wi-Fi kullanın.</string>
 
     <!-- Sign-in screen: install or update in progress (screen titles). -->
     <string name="signin_installing">Yükleniyor</string>
@@ -599,10 +599,10 @@
     <string name="signin_title_chatgpt">ChatGPT\'ye giriş yapın</string>
     <string name="signin_title_google">Google\'a giriş yapın</string>
     <string name="signin_title_grok">Grok\'a giriş yapın</string>
-    <string name="signin_sub_claude">Claude hesabınızı kullanın (Pro veya Max). Tarayıcınız açılır; orada onaylayın, Buddy kendiliğinden geri döner.</string>
-    <string name="signin_sub_chatgpt">ChatGPT hesabınızı kullanın (Plus, Pro veya Business). Tarayıcınız açılır; orada onaylayın, Buddy kendiliğinden geri döner.</string>
-    <string name="signin_sub_agy">Google hesabınızı kullanın. Tarayıcınız açılır; orada giriş yapın, Buddy kodu kendiliğinden alır. Antigravity yaklaşık bir dakika bekler.</string>
-    <string name="signin_sub_grok">Grok hesabınızı kullanın; Google veya X ile giriş de olur. Tarayıcınız bir kodla açılır; orada onaylayın, Buddy kendiliğinden geri döner.</string>
+    <string name="signin_sub_claude">Claude hesabınızı kullanın (Pro veya Max). Tarayıcınız açılır; orada onaylayın, Piggy kendiliğinden geri döner.</string>
+    <string name="signin_sub_chatgpt">ChatGPT hesabınızı kullanın (Plus, Pro veya Business). Tarayıcınız açılır; orada onaylayın, Piggy kendiliğinden geri döner.</string>
+    <string name="signin_sub_agy">Google hesabınızı kullanın. Tarayıcınız açılır; orada giriş yapın, Piggy kodu kendiliğinden alır. Antigravity yaklaşık bir dakika bekler.</string>
+    <string name="signin_sub_grok">Grok hesabınızı kullanın; Google veya X ile giriş de olur. Tarayıcınız bir kodla açılır; orada onaylayın, Piggy kendiliğinden geri döner.</string>
     <string name="signin_with_claude">Claude ile giriş yap</string>
     <string name="signin_with_chatgpt">ChatGPT ile giriş yap</string>
     <string name="signin_with_google">Google ile giriş yap</string>
@@ -614,10 +614,10 @@
     <string name="signin_sign_in">Giriş yap</string>
     <string name="signin_starting">Giriş başlatılıyor…</string>
     <string name="signin_approve_title">Tarayıcınızda onaylayın</string>
-    <string name="signin_approve_claude">Claude sayfasında Yetkilendir düğmesine dokunun. Buddy kodu alır ve kendiliğinden geri döner.</string>
-    <string name="signin_approve_codex">Giriş yapın ve Codex\'e izin verin. Ardından Buddy\'ye dönün; işlemi kendisi tamamlar.</string>
-    <string name="signin_approve_agy">Giriş yapın ve Antigravity\'ye izin verin. Buddy sayfada görünen kodu alır ve kendiliğinden geri döner. Bir dakikadan uzun sürerse girişi yeniden başlatın.</string>
-    <string name="signin_approve_grok">Sayfada %1$s kodunun göründüğünü kontrol edin, ardından onaylayıp giriş yapın. Buddy kendiliğinden geri döner.</string>
+    <string name="signin_approve_claude">Claude sayfasında Yetkilendir düğmesine dokunun. Piggy kodu alır ve kendiliğinden geri döner.</string>
+    <string name="signin_approve_codex">Giriş yapın ve Codex\'e izin verin. Ardından Piggy\'ye dönün; işlemi kendisi tamamlar.</string>
+    <string name="signin_approve_agy">Giriş yapın ve Antigravity\'ye izin verin. Piggy sayfada görünen kodu alır ve kendiliğinden geri döner. Bir dakikadan uzun sürerse girişi yeniden başlatın.</string>
+    <string name="signin_approve_grok">Sayfada %1$s kodunun göründüğünü kontrol edin, ardından onaylayıp giriş yapın. Piggy kendiliğinden geri döner.</string>
     <string name="signin_open_again">Giriş sayfasını yeniden aç</string>
     <string name="signin_signing_in">Giriş yapılıyor</string>
     <string name="signin_finishing">Giriş tamamlanıyor…</string>
@@ -626,9 +626,9 @@
     <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Bu bağlantıyı herhangi bir cihazda açıp onaylayın. Ardından sayfada görünen kodu kopyalayıp aşağıya yapıştırın.</string>
     <string name="signin_enter_code">Bu kodu girin</string>
-    <string name="signin_remote_codex">Herhangi bir cihazda aşağıdaki bağlantıyı açın, ChatGPT\'ye giriş yapın ve kodu girin. Buddy işlemi kendisi tamamlar.</string>
+    <string name="signin_remote_codex">Herhangi bir cihazda aşağıdaki bağlantıyı açın, ChatGPT\'ye giriş yapın ve kodu girin. Piggy işlemi kendisi tamamlar.</string>
     <string name="signin_remote_agy">Bu bağlantıyı herhangi bir cihazda açıp giriş yapın. Ardından sayfada görünen kodu kopyalayıp yaklaşık bir dakika içinde aşağıya yapıştırın.</string>
-    <string name="signin_remote_grok">Herhangi bir cihazda aşağıdaki bağlantıyı açın, Grok\'a giriş yapın ve kodu onaylayın. Buddy işlemi kendisi tamamlar.</string>
+    <string name="signin_remote_grok">Herhangi bir cihazda aşağıdaki bağlantıyı açın, Grok\'a giriş yapın ve kodu onaylayın. Piggy işlemi kendisi tamamlar.</string>
     <string name="signin_copy_code">Kodu kopyala</string>
     <string name="signin_code_copied">Kod kopyalandı</string>
     <string name="signin_code_expiry">Kod 15 dakika geçerlidir.</string>
@@ -642,8 +642,8 @@
 
     <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Bunun yerine kodu yapıştırın</string>
-    <string name="signin_paste_help">Buddy kendiliğinden geri dönmezse: Claude sayfasında Kodu kopyala düğmesine dokunun, ardından kodu buraya yapıştırın.</string>
-    <string name="signin_paste_help_agy">Buddy kendiliğinden geri dönmezse: Antigravity sayfasında “Copy to Clipboard” düğmesine dokunun, ardından kodu buraya yapıştırın.</string>
+    <string name="signin_paste_help">Piggy kendiliğinden geri dönmezse: Claude sayfasında Kodu kopyala düğmesine dokunun, ardından kodu buraya yapıştırın.</string>
+    <string name="signin_paste_help_agy">Piggy kendiliğinden geri dönmezse: Antigravity sayfasında “Copy to Clipboard” düğmesine dokunun, ardından kodu buraya yapıştırın.</string>
     <string name="signin_code_hint">kod</string>
     <string name="signin_use_code">Kullan</string>
     <string name="signin_start_again">Önce girişi yeniden başlatın.</string>
@@ -654,11 +654,11 @@
     <string name="signin_done">Bitti</string>
     <string name="signin_sign_out">Çıkış yap</string>
     <string name="signin_sign_out_title">%1$s hesabından çıkış yapılsın mı?</string>
-    <string name="signin_sign_out_text">Yeniden giriş yapana kadar Buddy\'deki %1$s çalışmaz.</string>
+    <string name="signin_sign_out_text">Yeniden giriş yapana kadar Piggy\'deki %1$s çalışmaz.</string>
     <string name="signin_opencode_ready">OpenCode hazır</string>
     <string name="signin_opencode_free">OpenCode\'un ücretsiz modelleri kullanılıyor. Model çipiyle her sohbet için birini seçin veya kendi sağlayıcınızı bağlayın.</string>
     <string name="signin_opencode_connected">Bağlı: %1$s. OpenCode\'un ücretsiz modelleri de kullanılabilir olmaya devam eder.</string>
-    <string name="signin_opencode_connect_note">Sağlayıcı bağlamak, Buddy\'nin terminalini %1$s komutuyla açar: bir sağlayıcı seçip adımları izleyin. Daha sonra kaldırmak için orada %2$s komutunu çalıştırın.</string>
+    <string name="signin_opencode_connect_note">Sağlayıcı bağlamak, Piggy\'nin terminalini %1$s komutuyla açar: bir sağlayıcı seçip adımları izleyin. Daha sonra kaldırmak için orada %2$s komutunu çalıştırın.</string>
     <string name="signin_connect_provider">Sağlayıcı bağla</string>
     <string name="signin_version">%1$s %2$s.</string>
     <string name="signin_version_old_opencode">OpenCode %1$s. OpenCode 2 çıktı: yeni sürümleri almaya devam etmek için güncelleyin. Bağlı sağlayıcılarınız korunur.</string>
@@ -676,7 +676,7 @@
     <string name="account_tagline_agy">Google hesabınızı kullanır</string>
     <string name="account_tagline_grok">Grok hesabınızı kullanır</string>
     <string name="agent_tag_free">ücretsiz · sınırlı</string>
-    <string name="account_setting_up_linux">Buddy\'nin Linux\'u hazırlanıyor…</string>
+    <string name="account_setting_up_linux">Piggy\'nin Linux\'u hazırlanıyor…</string>
     <string name="account_installing_tools">Araçlar yükleniyor…</string>
     <string name="account_downloading_claude">Claude Code indiriliyor (yaklaşık 230 MB)…</string>
     <string name="account_downloading">%1$s indiriliyor…</string>
@@ -726,51 +726,51 @@
     <string name="remote_start_failed">Başlatılamadı: %1$s</string>
     <string name="remote_keeps_stopping">Oturum sürekli duruyor. Kapatıp yeniden açın veya Claude Code girişini kontrol edin.</string>
     <string name="codex_pair_getting">Kod alınıyor…</string>
-    <string name="codex_pair_text">Bu kodu ChatGPT\'ye girin: telefonda Codex\'te, bilgisayarda Ayarlar → Bağlantılar → Diğer cihazları kontrol et bölümünde. %1$s saatine kadar bir kez çalışır. Buddy orada “localhost” olarak görünür.</string>
+    <string name="codex_pair_text">Bu kodu ChatGPT\'ye girin: telefonda Codex\'te, bilgisayarda Ayarlar → Bağlantılar → Diğer cihazları kontrol et bölümünde. %1$s saatine kadar bir kez çalışır. Piggy orada “localhost” olarak görünür.</string>
     <string name="codex_pair_failed">Eşleme kodu alınamadı: %1$s</string>
     <string name="codex_keeps_stopping">Codex oturumu sürekli duruyor: %1$s</string>
     <string name="ssh_keeps_stopping">SSH sunucusu sürekli duruyor: %1$s</string>
-    <string name="ssh_key_added">Tamam. Buddy\'nin Linux\'unu Termux\'tan açmak için ssh buddy yazın.</string>
-    <string name="ssh_code_expired">Bu komut zaten kullanıldı veya 10 dakikadan eski. Buddy\'nin Ayarlar bölümünden yeniden kopyalayın.</string>
+    <string name="ssh_key_added">Tamam. Piggy\'nin Linux\'unu Termux\'tan açmak için ssh buddy yazın.</string>
+    <string name="ssh_code_expired">Bu komut zaten kullanıldı veya 10 dakikadan eski. Piggy\'nin Ayarlar bölümünden yeniden kopyalayın.</string>
 
     <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Ayarlar</string>
-    <string name="setup_settings_subtitle">Buddy; Claude Code, Codex, OpenCode, Antigravity veya Grok\'u uygulamanın içinde, kendi aboneliğinizle (ya da OpenCode\'un ücretsiz modelleriyle ve Antigravity\'nin ücretsiz planıyla) çalıştırır.</string>
+    <string name="setup_settings_subtitle">Piggy; Claude Code, Codex, OpenCode, Antigravity veya Grok\'u uygulamanın içinde, kendi aboneliğinizle (ya da OpenCode\'un ücretsiz modelleriyle ve Antigravity\'nin ücretsiz planıyla) çalıştırır.</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <string name="setup_card_title">Kurulum</string>
     <string name="setup_open_guide">Adım adım rehberi aç</string>
-    <string name="setup_all_set">Her şey tamam. Buddy kullanıma hazır.</string>
+    <string name="setup_all_set">Her şey tamam. Piggy kullanıma hazır.</string>
     <string name="setup_next_step">Sıradaki: %1$s</string>
-    <string name="setup_step_a11y_title">Buddy erişilebilirlik hizmetini açın</string>
-    <string name="setup_step_a11y_body">Bu, baloncuğu gösterir ve Buddy\'nin sizin için ekranı okumasına, dokunmasına ve yazmasına izin verir.</string>
+    <string name="setup_step_a11y_title">Piggy erişilebilirlik hizmetini açın</string>
+    <string name="setup_step_a11y_body">Bu, baloncuğu gösterir ve Piggy\'nin sizin için ekranı okumasına, dokunmasına ve yazmasına izin verir.</string>
     <string name="setup_step_a11y_restricted">Anahtar gri mi görünüyor (“Kısıtlanmış ayar”)? Android, dosyadan yüklenen uygulamalarda bunu engeller. Uygulama bilgileri düğmesine, ardından sağ üstteki ⋮ → Kısıtlanmış ayarlara izin ver seçeneğine dokunun ve tekrar deneyin.</string>
     <string name="setup_open_settings">Ayarları aç</string>
     <string name="setup_app_info">Uygulama bilgileri</string>
     <string name="setup_step_install_title">%1$s ajanını yükleyin</string>
-    <string name="setup_step_install_done">%1$s, Buddy\'ye yüklendi.</string>
-    <string name="setup_step_install_claude">Buddy kendi küçük Linux\'unu ve Anthropic\'ten %1$s ajanını indirir (yaklaşık 235 MB).</string>
-    <string name="setup_step_install_opencode">Buddy kendi küçük Linux\'unu ve %1$s ajanını indirir (Node.js ile yaklaşık 230 MB).</string>
-    <string name="setup_step_install_codex">Buddy kendi küçük Linux\'unu ve OpenAI\'dan %1$s ajanını indirir (yaklaşık 150 MB).</string>
-    <string name="setup_step_install_grok">Buddy kendi küçük Linux\'unu ve xAI\'dan %1$s ajanını indirir (yaklaşık 170 MB).</string>
+    <string name="setup_step_install_done">%1$s, Piggy\'ye yüklendi.</string>
+    <string name="setup_step_install_claude">Piggy kendi küçük Linux\'unu ve Anthropic\'ten %1$s ajanını indirir (yaklaşık 235 MB).</string>
+    <string name="setup_step_install_opencode">Piggy kendi küçük Linux\'unu ve %1$s ajanını indirir (Node.js ile yaklaşık 230 MB).</string>
+    <string name="setup_step_install_codex">Piggy kendi küçük Linux\'unu ve OpenAI\'dan %1$s ajanını indirir (yaklaşık 150 MB).</string>
+    <string name="setup_step_install_grok">Piggy kendi küçük Linux\'unu ve xAI\'dan %1$s ajanını indirir (yaklaşık 170 MB).</string>
     <string name="setup_install">Yükle</string>
     <string name="setup_step_signin_title">Giriş yapın</string>
     <string name="setup_step_signin_opencode_done">Giriş gerekmez: OpenCode\'un ücretsiz modelleri hemen çalışır. Kendi sağlayıcılarınızı istediğiniz zaman bağlayabilirsiniz.</string>
     <string name="setup_step_signin_opencode">OpenCode\'un ücretsiz modelleri için giriş gerekmez.</string>
     <string name="setup_step_signin_done">Giriş yapıldı.</string>
     <string name="setup_step_signin_done_email">%1$s olarak giriş yapıldı.</string>
-    <string name="setup_step_signin_claude">Claude hesabınızla (Pro veya Max). Tarayıcınız açılır; orada onaylayın, Buddy kendiliğinden geri döner.</string>
-    <string name="setup_step_signin_codex">ChatGPT hesabınızla. Tarayıcınız açılır; orada onaylayın, Buddy kendiliğinden geri döner.</string>
-    <string name="setup_step_signin_grok">Grok hesabınızla. Tarayıcınız açılır; orada kodu onaylayın, Buddy kendiliğinden geri döner.</string>
+    <string name="setup_step_signin_claude">Claude hesabınızla (Pro veya Max). Tarayıcınız açılır; orada onaylayın, Piggy kendiliğinden geri döner.</string>
+    <string name="setup_step_signin_codex">ChatGPT hesabınızla. Tarayıcınız açılır; orada onaylayın, Piggy kendiliğinden geri döner.</string>
+    <string name="setup_step_signin_grok">Grok hesabınızla. Tarayıcınız açılır; orada kodu onaylayın, Piggy kendiliğinden geri döner.</string>
     <string name="setup_sign_in">Giriş yap</string>
-    <string name="setup_step_background_title">Buddy\'nin arka planda çalışmasına izin verin</string>
+    <string name="setup_step_background_title">Piggy\'nin arka planda çalışmasına izin verin</string>
     <string name="setup_step_background_done">İzin verildi.</string>
-    <string name="setup_step_background_body">Böylece ajan çalışırken telefonunuz pil tasarrufu için Buddy\'yi durdurmaz.</string>
+    <string name="setup_step_background_body">Böylece ajan çalışırken telefonunuz pil tasarrufu için Piggy\'yi durdurmaz.</string>
     <string name="setup_allow">İzin ver</string>
     <string name="setup_step_try_title">Deneyin</string>
-    <string name="setup_step_try_done">Buddy size yanıt verdi. Daha fazlası için istediğiniz zaman baloncuğa dokunun.</string>
+    <string name="setup_step_try_done">Piggy size yanıt verdi. Daha fazlası için istediğiniz zaman baloncuğa dokunun.</string>
     <string name="setup_step_try_body">Ekranınızın kenarındaki baloncuğa dokunun ve “Messenger\'ı aç” gibi bir şey isteyin ya da burada bir sohbet başlatın.</string>
     <string name="setup_step_try_wait">Önce yukarıdaki adımları tamamlayın.</string>
     <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
@@ -783,11 +783,11 @@
     <string name="setup_theme_mode">Mod</string>
     <string name="setup_accent">Vurgu rengi</string>
     <string name="setup_surface">Yüzey</string>
-    <string name="setup_surface_note">Sıcak, Buddy\'nin orijinal tonudur. Siyah (tam siyah) yalnızca koyu modda uygulanır.</string>
-    <string name="setup_face">Buddy\'nin görünümü</string>
+    <string name="setup_surface_note">Sıcak, Piggy\'nin orijinal tonudur. Siyah (tam siyah) yalnızca koyu modda uygulanır.</string>
+    <string name="setup_face">Piggy\'nin görünümü</string>
     <string name="setup_face_buddy">Orijinal</string>
     <string name="setup_face_picture">Kendi resmin</string>
-    <string name="setup_face_note">En iyi sonucu şeffaf arka planlı bir PNG veya WebP verir. Baloncukta ve Buddy\'nin yanıtlarının yanında görünür.</string>
+    <string name="setup_face_note">En iyi sonucu şeffaf arka planlı bir PNG veya WebP verir. Baloncukta ve Piggy\'nin yanıtlarının yanında görünür.</string>
     <string name="setup_face_change">Başka bir resim seç</string>
     <string name="setup_face_unreadable">Bu resim okunamadı. Bir PNG veya WebP dene.</string>
     <string name="setup_custom_colour">Özel renk</string>
@@ -812,7 +812,7 @@
 
     <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Kendi oturumlarınızda telefon araçları</string>
-    <string name="setup_phone_tools_info">Buddy\'nin telefon araçları, bu telefonda çalışan sıradan bir MCP sunucusudur. Bunu telefondaki bir terminalde (örneğin Termux\'ta) bir kez çalıştırın; o ajan, baloncuk olmadan bile her oturumda telefon araçlarına sahip olur.</string>
+    <string name="setup_phone_tools_info">Piggy\'nin telefon araçları, bu telefonda çalışan sıradan bir MCP sunucusudur. Bunu telefondaki bir terminalde (örneğin Termux\'ta) bir kez çalıştırın; o ajan, baloncuk olmadan bile her oturumda telefon araçlarına sahip olur.</string>
     <string name="setup_copy_command">Komutu kopyala</string>
     <string name="setup_command_copied">Kopyalandı. Terminalinize yapıştırın.</string>
 
@@ -820,13 +820,13 @@
     <string name="setup_voice">Ses</string>
     <string name="setup_voice_input">Sesle giriş</string>
     <string name="setup_voice_phone">Telefon</string>
-    <string name="setup_voice_input_claude">Claude planınızla Claude Code\'un dikte özelliği: çok doğru. İngilizce, Fransızca, Almanca, İspanyolca, İtalyanca, Portekizce, Felemenkçe, Türkçe, Rusça, Japonca ve daha fazlasını destekler, ancak Arapçayı desteklemez: Arapça için Buddy telefonun tanıyıcısını kullanır. Siz duraklayınca kelimeler görünür.</string>
+    <string name="setup_voice_input_claude">Claude planınızla Claude Code\'un dikte özelliği: çok doğru. İngilizce, Fransızca, Almanca, İspanyolca, İtalyanca, Portekizce, Felemenkçe, Türkçe, Rusça, Japonca ve daha fazlasını destekler, ancak Arapçayı desteklemez: Arapça için Piggy telefonun tanıyıcısını kullanır. Siz duraklayınca kelimeler görünür.</string>
     <string name="setup_voice_input_chatgpt">ChatGPT planınızla, Codex üzerinden ChatGPT\'nin sesi. Her dili, hatta tek cümlede karışık dilleri bile anlar. Yalnızca sözleriniz kullanılır: ChatGPT\'nin sesli yanıtları kapalıdır ve hiçbir şey çalıştıramaz.</string>
     <string name="setup_voice_input_phone">Telefonunuzun konuşma tanıması (çoğu telefonda Google). Siz konuşurken metin canlı görünür; dillerinizden hangisini konuştuğunuzu algılar.</string>
     <string name="setup_voice_output">Sesli yanıt</string>
     <string name="setup_voice_output_chatgpt">Yanıtlar ChatGPT\'nin doğal sesiyle okunur (ChatGPT planınızla, Codex üzerinden). ChatGPT ses kullanımınızdan düşülür; kullanılamıyorsa telefonun sesi okur.</string>
     <string name="setup_voice_output_phone">Telefonunuzun metin okuma sesleri, yanıtın dilinde.</string>
-    <string name="setup_voice_sample">Bonjour ! Merhaba, ben Buddy. Sesim böyle.</string>
+    <string name="setup_voice_sample">Bonjour ! Merhaba, ben Piggy. Sesim böyle.</string>
     <string name="setup_languages">Diller</string>
     <string name="setup_languages_hint">Konuştuğunuz dilleri seçmek için dokunun. Varsayılan yapmak için bir dile uzun basın. Sohbette dil değiştirmek için mikrofona uzun basın.</string>
     <string name="setup_sign_in_first">Önce %1$s hesabına giriş yapın</string>
@@ -837,7 +837,7 @@
     <!-- Settings screen: Remote Control (a Claude Code session you continue from the Claude app). -->
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Claude Code oturumu</string>
-    <string name="setup_remote_session_info">Buddy içinde telefon araçlarıyla çalışan bir Claude Code oturumu. Bu telefondaki veya herhangi bir yerdeki Claude uygulamasından (Code) devam edin.</string>
+    <string name="setup_remote_session_info">Piggy içinde telefon araçlarıyla çalışan bir Claude Code oturumu. Bu telefondaki veya herhangi bir yerdeki Claude uygulamasından (Code) devam edin.</string>
     <string name="setup_remote_sign_in_first">Önce Claude Code\'a giriş yapın.</string>
     <string name="setup_remote_active">etkin · Claude uygulamasında “%1$s”</string>
     <string name="setup_remote_starting">başlatılıyor…</string>
@@ -845,25 +845,25 @@
     <string name="setup_remote_open">Claude uygulamasında aç</string>
     <string name="setup_remote_open_failed">Açılamadı.</string>
     <string name="setup_codex_session">Codex oturumu</string>
-    <string name="setup_codex_session_info">Buddy içinde telefon araçlarıyla çalışan Codex. Bu telefondaki veya bir bilgisayardaki ChatGPT uygulamasından (Codex) kullanın. Codex\'in korumalı alanı burada çalışamaz, bu yüzden varsayılan izinlerle her komuttan önce sorar.</string>
+    <string name="setup_codex_session_info">Piggy içinde telefon araçlarıyla çalışan Codex. Bu telefondaki veya bir bilgisayardaki ChatGPT uygulamasından (Codex) kullanın. Codex\'in korumalı alanı burada çalışamaz, bu yüzden varsayılan izinlerle her komuttan önce sorar.</string>
     <string name="setup_codex_active">çalışıyor · ChatGPT\'de “localhost”</string>
     <string name="setup_codex_pair">Cihaz eşle</string>
     <string name="setup_ssh">Termux\'tan SSH</string>
-    <string name="setup_ssh_info">Buddy\'nin Linux\'unu Termux\'tan SSH ile kullanın. Yalnızca bu telefondaki uygulamalar, yalnızca bir anahtarla bağlanabilir.</string>
+    <string name="setup_ssh_info">Piggy\'nin Linux\'unu Termux\'tan SSH ile kullanın. Yalnızca bu telefondaki uygulamalar, yalnızca bir anahtarla bağlanabilir.</string>
     <string name="setup_ssh_active">çalışıyor · port %1$d</string>
-    <string name="setup_ssh_how">Bu komutu kopyalayıp 10 dakika içinde Termux\'ta bir kez çalıştırın. Sonrasında Buddy\'nin Linux\'unu açmak için Termux\'ta ssh buddy yazın.</string>
+    <string name="setup_ssh_how">Bu komutu kopyalayıp 10 dakika içinde Termux\'ta bir kez çalıştırın. Sonrasında Piggy\'nin Linux\'unu açmak için Termux\'ta ssh buddy yazın.</string>
 
-    <!-- Settings screen: chats left over from when Buddy ran its agents in Termux. -->
+    <!-- Settings screen: chats left over from when Piggy ran its agents in Termux. -->
     <string name="setup_old_chats_title">Eski Termux sohbetlerini kaldır</string>
     <plurals name="setup_old_chats_body">
-        <item quantity="one">Buddy\'nin kendi Linux\'u olmadan önceki %1$d sohbet. Ajanlar buna devam edemez.</item>
-        <item quantity="other">Buddy\'nin kendi Linux\'u olmadan önceki %1$d sohbet. Ajanlar bunlara devam edemez.</item>
+        <item quantity="one">Piggy\'nin kendi Linux\'u olmadan önceki %1$d sohbet. Ajanlar buna devam edemez.</item>
+        <item quantity="other">Piggy\'nin kendi Linux\'u olmadan önceki %1$d sohbet. Ajanlar bunlara devam edemez.</item>
     </plurals>
     <plurals name="setup_old_chats_remove">
         <item quantity="one">%1$d eski sohbet kaldırılsın mı?</item>
         <item quantity="other">%1$d eski sohbet kaldırılsın mı?</item>
     </plurals>
-    <string name="setup_old_chats_remove_body">Bunları Buddy\'nin sohbet listesinden kaldırır. Bu işlem geri alınamaz.</string>
+    <string name="setup_old_chats_remove_body">Bunları Piggy\'nin sohbet listesinden kaldırır. Bu işlem geri alınamaz.</string>
     <string name="setup_remove">Kaldır</string>
     <string name="setup_removed">Kaldırıldı.</string>
 
@@ -876,31 +876,31 @@
     <string name="setup_tap_talk">Konuş</string>
     <string name="setup_tap_app">Uygulama</string>
     <string name="setup_tap_panel_info">Kayan sohbeti, bulunduğunuz uygulamanın üzerinde açar. Daha fazlası için baloncuğa uzun basın.</string>
-    <string name="setup_tap_app_info">Sohbeti Buddy\'de tam ekran açar. Daha fazlası için baloncuğa uzun basın.</string>
+    <string name="setup_tap_app_info">Sohbeti Piggy\'de tam ekran açar. Daha fazlası için baloncuğa uzun basın.</string>
     <string name="setup_panel_size">Sohbet paneli boyutu</string>
     <string name="setup_panel_full">Tam ekran</string>
     <string name="setup_panel_compact">Kompakt</string>
     <string name="setup_panel_size_info">Tam ekran, kenardan kenara uzanır. Kompakt daha küçüktür ve ekran kenarlarından uzak durur; böylece kenar hareketleri çalışmaya devam eder.</string>
     <string name="setup_tap_to_talk_info">Tek dokunuş mikrofonu açar: ne istediğinizi söyleyin, duraklayınca gönderilir. Sohbet ve daha fazlası için baloncuğa uzun basın.</string>
     <string name="setup_read_aloud">Yanıtları sesli oku</string>
-    <string name="setup_read_aloud_info">Buddy, ajanların yanıtlarını Ses bölümünde seçtiğiniz sesle okur.</string>
+    <string name="setup_read_aloud_info">Piggy, ajanların yanıtlarını Ses bölümünde seçtiğiniz sesle okur.</string>
     <string name="setup_update_notices">Güncelleme bildirimleri</string>
-    <string name="setup_update_notices_info">Buddy günde bir kez GitHub\'ı kontrol eder ve yeni bir sürüm çıktığında sizi bilgilendirir.</string>
+    <string name="setup_update_notices_info">Piggy günde bir kez GitHub\'ı kontrol eder ve yeni bir sürüm çıktığında sizi bilgilendirir.</string>
     <string name="setup_check_updates">Güncellemeleri kontrol et</string>
-    <string name="setup_check_updates_info">Sizdeki sürüm: Buddy %1$s. Ya da herhangi bir ajana şunu söyleyin: “kendini güncelle”.</string>
+    <string name="setup_check_updates_info">Sizdeki sürüm: Piggy %1$s. Ya da herhangi bir ajana şunu söyleyin: “kendini güncelle”.</string>
     <string name="setup_app_permissions">Uygulama izinleri</string>
-    <string name="setup_app_permissions_info">Uygulama bazında seçin: Güven modunda ajan orada açılır pencere olmadan çalışır; Katı modda ise Gönder, Öde, Sil… öncesinde Buddy size kendisi sorar.</string>
+    <string name="setup_app_permissions_info">Uygulama bazında seçin: Güven modunda ajan orada açılır pencere olmadan çalışır; Katı modda ise Gönder, Öde, Sil… öncesinde Piggy size kendisi sorar.</string>
     <string name="setup_dev_mode">Yeni sohbetlerde Linux araçları</string>
     <string name="setup_dev_mode_info">Linux araçlarıyla ajan komut çalıştırabilir, paket yükleyebilir ve ~/.buddy/work içindeki dosyaları düzenleyebilir; böylece uygulama geliştirip yükleyebilir. Yeni sohbetler bu ayarla başlar; her sohbet bunu kendi başlığının altından değiştirebilir.</string>
-    <string name="setup_agents_tap">Ajanların Buddy ekranlarına dokunmasına izin ver</string>
-    <string name="setup_agents_tap_info">Buddy\'yi bir ajanla test etmek için (örneğin telefon araçlarıyla Termux\'ta Claude Code). Baloncuk, onay kartları, Uygulama izinleri ve bu anahtarlar erişime kapalı kalır.</string>
+    <string name="setup_agents_tap">Ajanların Piggy ekranlarına dokunmasına izin ver</string>
+    <string name="setup_agents_tap_info">Piggy\'yi bir ajanla test etmek için (örneğin telefon araçlarıyla Termux\'ta Claude Code). Baloncuk, onay kartları, Uygulama izinleri ve bu anahtarlar erişime kapalı kalır.</string>
     <string name="setup_dev_mode_warning">Kapalı tutmanız daha iyi olur: Linux araçlarını yalnızca ihtiyaç duyan sohbetlerde açın. Açıkken ekrandaki kötü amaçlı bir mesaj veya web sayfası, ajanı komut çalıştırmaya kandırmaya çalışabilir. Onay kartları gönderme, paylaşma, satın alma ve silme işlemlerini korumaya devam eder.</string>
 
     <!-- Settings screen: footer links. -->
     <string name="setup_licences">Açık kaynak lisansları</string>
     <string name="setup_privacy_policy">Gizlilik politikası</string>
 
-    <!-- Errors while installing Buddy's built-in Linux (Alpine). Shown after "Install failed:". -->
+    <!-- Errors while installing Piggy's built-in Linux (Alpine). Shown after "Install failed:". -->
     <string name="linux_download_corrupt">Alpine indirmesi bozuk (sha256 %1$s)</string>
     <string name="linux_move_failed">Alpine yerine taşınamadı</string>
     <string name="linux_download_failed_http">İndirme başarısız: HTTP %1$d</string>
@@ -908,7 +908,7 @@
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Arşiv eksik</string>
 
-    <!-- Terminal screen (a shell in Buddy's Linux, in tabs). -->
+    <!-- Terminal screen (a shell in Piggy's Linux, in tabs). -->
     <string name="terminal_title">Terminal</string>
     <string name="terminal_back">Geri</string>
     <string name="terminal_hide_keyboard">Klavyeyi gizle</string>
@@ -922,7 +922,7 @@
     <string name="terminal_session_ended_code">Oturum sona erdi · çıkış %1$d</string>
     <string name="terminal_close">Kapat</string>
     <string name="terminal_restart">Yeniden başlat</string>
-    <string name="terminal_needs_linux">Önce Ayarlar\'dan Claude Code, Codex, OpenCode, Antigravity veya Grok\'u yükleyin: bu, Buddy\'nin Linux\'unu kurar.</string>
+    <string name="terminal_needs_linux">Önce Ayarlar\'dan Claude Code, Codex, OpenCode, Antigravity veya Grok\'u yükleyin: bu, Piggy\'nin Linux\'unu kurar.</string>
     <string name="terminal_start_failed">Terminal başlatılamadı: %1$s</string>
     <string name="terminal_close_title">%1$s kapatılsın mı?</string>
     <string name="terminal_close_running">Hâlâ çalışıyor. Kapatmak onu ve başlattığı her şeyi durdurur.</string>
@@ -946,15 +946,15 @@
     <string name="monitor_title">Oturumlar</string>
     <string name="monitor_subtitle">Bu telefondaki tüm Claude Code, Codex, OpenCode, Antigravity ve Grok oturumları.</string>
     <string name="monitor_terminal_running">Bir kabuk çalışıyor · dönmek için dokunun</string>
-    <string name="monitor_terminal_idle">Buddy\'nin Linux\'unda bir kabuk</string>
+    <string name="monitor_terminal_idle">Piggy\'nin Linux\'unda bir kabuk</string>
     <string name="monitor_running_now">Şu an çalışanlar</string>
     <string name="monitor_refresh">yenileme 3 sn</string>
     <string name="monitor_checking">Kontrol ediliyor…</string>
     <string name="monitor_recent">Son oturumlar</string>
     <string name="monitor_loading">Yükleniyor…</string>
-    <string name="monitor_service_off">Buddy\'nin erişilebilirlik hizmeti kapalı olduğundan oturumlar kontrol edilemiyor. Hizmeti Ayarlar\'dan açın.</string>
+    <string name="monitor_service_off">Piggy\'nin erişilebilirlik hizmeti kapalı olduğundan oturumlar kontrol edilemiyor. Hizmeti Ayarlar\'dan açın.</string>
     <string name="monitor_nothing_running">Çalışan bir şey yok.</string>
-    <string name="monitor_deleted_chat">Silinmiş Buddy sohbeti</string>
+    <string name="monitor_deleted_chat">Silinmiş Piggy sohbeti</string>
     <string name="monitor_background_session">Arka plan oturumu</string>
     <string name="monitor_terminal_session">Terminal oturumu</string>
     <string name="monitor_tag_background">arka plan</string>
@@ -964,8 +964,8 @@
     <string name="monitor_open_chat">Sohbeti aç</string>
     <string name="monitor_stop">Durdur</string>
     <string name="monitor_stop_title">Bu %1$s oturumu durdurulsun mu?</string>
-    <string name="monitor_stop_background_body">Arka planda çalışıyor; örneğin Claude uygulamasından devam ettiğiniz bir sohbet olabilir. Buddy\'yi kontrol eden oturum bile olabilir. Durdurmak, o konuşmanın mevcut işini sonlandırır.</string>
-    <string name="monitor_stop_terminal_body">Şu anda bir terminalde kullandığınız bir oturum olabilir. Buddy\'yi kontrol eden oturum bile olabilir. Durdurmak, o konuşmanın mevcut işini sonlandırır.</string>
+    <string name="monitor_stop_background_body">Arka planda çalışıyor; örneğin Claude uygulamasından devam ettiğiniz bir sohbet olabilir. Piggy\'yi kontrol eden oturum bile olabilir. Durdurmak, o konuşmanın mevcut işini sonlandırır.</string>
+    <string name="monitor_stop_terminal_body">Şu anda bir terminalde kullandığınız bir oturum olabilir. Piggy\'yi kontrol eden oturum bile olabilir. Durdurmak, o konuşmanın mevcut işini sonlandırır.</string>
     <string name="monitor_stopping">Durduruluyor…</string>
     <string name="monitor_service_title">Claude Code arka plan hizmeti</string>
     <string name="monitor_service_meta">pid %1$d · çalışma süresi %2$s · arka plan oturumlarını barındırır</string>
@@ -980,7 +980,7 @@
     <string name="perms_mode_trust">Güven</string>
     <string name="perms_mode_hard">Katı</string>
     <string name="perms_mode_smart">Akıllı</string>
-    <string name="perms_modes_intro">Güven: ajan burada onay pencereleri olmadan kendi başına çalışır.\nKatı: düğme kurallarınız karar verir. Gönder, Öde, Sil… bir kartta onayınızı gerektirir.\nAkıllı: önce kurallar, ardından ayrı bir denetçi yapay zeka diğer her dokunmayı isteğinize göre kontrol eder.\nAjan, Buddy\'nin kendi baloncuğuna, kartlarına veya ayarlarına asla dokunamaz.</string>
+    <string name="perms_modes_intro">Güven: ajan burada onay pencereleri olmadan kendi başına çalışır.\nKatı: düğme kurallarınız karar verir. Gönder, Öde, Sil… bir kartta onayınızı gerektirir.\nAkıllı: önce kurallar, ardından ayrı bir denetçi yapay zeka diğer her dokunmayı isteğinize göre kontrol eder.\nAjan, Piggy\'nin kendi baloncuğuna, kartlarına veya ayarlarına asla dokunamaz.</string>
     <string name="perms_smart_reviewer">Akıllı denetçi</string>
     <string name="perms_reviewer_same">Sohbetle aynı</string>
     <string name="perms_reviewer_sign_in">Önce %1$s hesabına giriş yapın (Ayarlar).</string>
@@ -997,7 +997,7 @@
     <!-- Button rules screen: buttons that always or never need the user's OK. -->
     <string name="perms_rules_intro">Katı veya Akıllı moddaki uygulamalar için. Önerilerden seçilen bir kural o uygulamaya, yazılan metin ise tüm uygulamalara uygulanır. Kaldırmak için bir kurala dokunun.</string>
     <string name="perms_builtin_title">Yerleşik riskli kelimeler</string>
-    <string name="perms_builtin_sub">Gönder, Yayınla, Öde, Satın al, Sipariş ver, Sil, Çıkış yap… gibi düğmeler, Buddy\'nin her dilinde her zaman onay ister.</string>
+    <string name="perms_builtin_sub">Gönder, Yayınla, Öde, Satın al, Sipariş ver, Sil, Çıkış yap… gibi düğmeler, Piggy\'nin her dilinde her zaman onay ister.</string>
     <string name="perms_always_ask">Her zaman sor</string>
     <string name="perms_never_ask">Asla sorma</string>
     <string name="perms_ask">Sor</string>
@@ -1024,7 +1024,7 @@
     <string name="tools_card_enter_in">%1$s uygulamasında göndermek için Enter tuşuna bas</string>
     <string name="tools_card_detail">%1$s:\n%2$s</string>
     <string name="tools_card_quote">“%1$s”</string>
-    <string name="tools_card_no_reviewer">Giriş yapmış bir denetçi yok, bu yüzden Buddy size soruyor.</string>
+    <string name="tools_card_no_reviewer">Giriş yapmış bir denetçi yok, bu yüzden Piggy size soruyor.</string>
     <string name="tools_card_reviewer_block">%1$s bunu önermiyor: %2$s</string>
     <string name="tools_card_reviewer_ask">%1$s size sorulmasını öneriyor: %2$s</string>
 
@@ -1033,15 +1033,15 @@
     <string name="tools_status_tap_install">Yükle düğmesine dokunun, ardından onaylayın</string>
     <string name="tools_status_tap_update">Güncelle düğmesine dokunun, ardından onaylayın</string>
     <string name="tools_status_installed">Yüklendi</string>
-    <string name="tools_status_downloading">Buddy %1$s indiriliyor…</string>
+    <string name="tools_status_downloading">Piggy %1$s indiriliyor…</string>
 
     <!-- Smart reviewer: its reason when it fails (starts lowercase). -->
     <string name="reviewer_failed">denetçi yanıt veremedi (%1$s)</string>
     <string name="reviewer_no_answer">yanıt yok</string>
     <string name="reviewer_timed_out">zaman aşımı</string>
 
-    <!-- Error when a chat can't start because Buddy's built-in Linux isn't set up yet. -->
-    <string name="helper_linux_missing">Buddy\'nin Linux\'u henüz yüklü değil. Kurmak için Ayarlar\'ı açın.</string>
+    <!-- Error when a chat can't start because Piggy's built-in Linux isn't set up yet. -->
+    <string name="helper_linux_missing">Piggy\'nin Linux\'u henüz yüklü değil. Kurmak için Ayarlar\'ı açın.</string>
 
     <!-- Voice input (dictation): "Claude sesi" and "ChatGPT sesi" are the two voice input options. -->
     <string name="dictation_claude_sign_in">Claude sesini kullanmak için Ayarlar\'dan Claude Code\'a giriş yapın.</string>
@@ -1078,11 +1078,11 @@
     <string name="setup_rules_info">Bir bildirim geldiğinde bir ajan devreye girsin: bir mesajı yanıtlasın, bir teslimatı takviminize eklesin…</string>
     <string name="tools_card_reply">%2$s uygulamasında yanıtla (alıcı: %1$s):\n“%3$s”</string>
     <string name="tools_card_open_url">%1$s bağlantısını aç</string>
-    <string name="rules_service_label">Buddy bildirim kuralları</string>
+    <string name="rules_service_label">Piggy bildirim kuralları</string>
     <string name="rules_title">Bildirim kuralları</string>
-    <string name="rules_intro">Seçtiğiniz bir bildirim geldiğinde Buddy, talimatınızı kendi yazdığınız bir mesajmış gibi bir ajana iletir. Hiçbir kuralla eşleşmeyen bildirimler yok sayılır.</string>
+    <string name="rules_intro">Seçtiğiniz bir bildirim geldiğinde Piggy, talimatınızı kendi yazdığınız bir mesajmış gibi bir ajana iletir. Hiçbir kuralla eşleşmeyen bildirimler yok sayılır.</string>
     <string name="rules_access_off_title">Bildirim erişimi kapalı</string>
-    <string name="rules_access_off_text">Buddy\'nin, kurallarınızın izlediği bildirimleri görebilmesi için buna ihtiyacı var.</string>
+    <string name="rules_access_off_text">Piggy\'nin, kurallarınızın izlediği bildirimleri görebilmesi için buna ihtiyacı var.</string>
     <string name="rules_access_turn_on">Aç</string>
     <string name="rules_run">Kuralları çalıştır</string>
     <string name="rules_run_info">Tüm kuralları duraklatmak için kapatın.</string>
@@ -1127,12 +1127,12 @@
     <string name="waiting_open_chat">Sohbeti aç</string>
     <string name="waiting_state_wrote_again">%1$s o zamandan beri yeniden yazdı: bu yanıt güncel olmayabilir.</string>
     <string name="waiting_state_answered">%1$s uygulamasında zaten yanıt verdiniz.</string>
-    <string name="waiting_state_gone">Bildirim artık yok: Buddy yanıtı kopyalar ve yapıştırmanız için %1$s uygulamasını açar.</string>
+    <string name="waiting_state_gone">Bildirim artık yok: Piggy yanıtı kopyalar ve yapıştırmanız için %1$s uygulamasını açar.</string>
     <string name="waiting_sent">Gönderildi: %1$s</string>
     <string name="waiting_copied">Kopyalandı. %1$s uygulamasına yapıştırın.</string>
     <string name="waiting_note_sent">✓ “Sizi bekliyor” listesinden gönderildi: %1$s</string>
     <string name="rules_log_error">Çalıştırılamadı: %1$s</string>
-    <string name="rules_log_no_service">Buddy\'nin erişilebilirlik hizmeti kapalı</string>
+    <string name="rules_log_no_service">Piggy\'nin erişilebilirlik hizmeti kapalı</string>
     <string name="rules_log_not_signed_in">%1$s hesabına giriş yapılmadı</string>
     <string name="rules_new">Yeni kural</string>
     <string name="rules_edit">Kuralı düzenle</string>
@@ -1143,7 +1143,7 @@
     <string name="rules_from_hint">Herkes ya da virgülle ayrılmış adlar</string>
     <string name="rules_words">İçerdiği kelimeler (isteğe bağlı)</string>
     <string name="rules_words_hint">Herhangi bir şey ya da virgülle ayrılmış kelimeler</string>
-    <string name="rules_instruction">Buddy ne yapsın?</string>
+    <string name="rules_instruction">Piggy ne yapsın?</string>
     <string name="rules_instruction_hint">Örneğin: Benim tarzımda yanıt ver. Saat 8–18 arası açığız, pazar günleri kapalıyız.</string>
     <string name="rules_example_reply">Benim yerime yanıtla</string>
     <string name="rules_example_reply_text">Benim tarzımda kısa ve samimi bir yanıt ver.</string>
@@ -1164,11 +1164,11 @@
     <string name="rules_delete">Sil</string>
     <string name="rules_delete_title">Bu kural silinsin mi?</string>
     <string name="rules_need_app">Önce bir uygulama seçin.</string>
-    <string name="rules_need_instruction">Buddy\'nin ne yapması gerektiğini yazın.</string>
+    <string name="rules_need_instruction">Piggy\'nin ne yapması gerektiğini yazın.</string>
     <string name="rules_access_title">Bildirim erişimine izin verilsin mi?</string>
-    <string name="rules_access_what">Buddy her bildirimi kurallarınızla karşılaştırır. Hiçbir kuralla eşleşmeyen bildirimler hemen yok sayılır: saklanmaz, hiçbir yere gönderilmez.</string>
+    <string name="rules_access_what">Piggy her bildirimi kurallarınızla karşılaştırır. Hiçbir kuralla eşleşmeyen bildirimler hemen yok sayılır: saklanmaz, hiçbir yere gönderilmez.</string>
     <string name="rules_access_data">Bir bildirim eşleştiğinde uygulaması, göndereni ve metni, talimatınızla birlikte kuralın ajanına (Claude Code, Codex veya OpenCode) gönderilir.</string>
-    <string name="rules_access_reply">Buddy, bir bildirimin Yanıtla düğmesiyle yanıt verebilir. Kurala geri sayım eklemediğiniz sürece önce size sorar.</string>
+    <string name="rules_access_reply">Piggy, bir bildirimin Yanıtla düğmesiyle yanıt verebilir. Kurala geri sayım eklemediğiniz sürece önce size sorar.</string>
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
     <string name="rules_status_checking">Kuralınıza göre kontrol ediliyor…</string>
     <string name="rules_channel_results">Bildirim kuralları: sonuçlar</string>
@@ -1180,7 +1180,7 @@
     <!-- Background browser -->
     <string name="browser_section">Arka plan tarayıcısı</string>
     <string name="browser_switch">Arka plan tarayıcısı</string>
-    <string name="browser_switch_info">Buddy içinde, ajanların telefonunuzu ele geçirmeden web sayfaları için kullandığı bir tarayıcı. Sohbette izleyebilir ve kullanabilirsiniz. İlk seferde Buddy, Chromium\'u indirir (yaklaşık 300 MB).</string>
+    <string name="browser_switch_info">Piggy içinde, ajanların telefonunuzu ele geçirmeden web sayfaları için kullandığı bir tarayıcı. Sohbette izleyebilir ve kullanabilirsiniz. İlk seferde Piggy, Chromium\'u indirir (yaklaşık 300 MB).</string>
     <string name="browser_state_installing">Chromium yükleniyor…</string>
     <string name="browser_state_starting">başlatılıyor…</string>
     <string name="browser_state_running">çalışıyor</string>

@@ -26,6 +26,8 @@ final class Rules {
         /** Who it's from (names, comma-separated) and words it contains; empty matches any. */
         String from = "", words = "";
         String instruction = "";
+        /** What the agent learned running the rule (it keeps these itself, see rule_save); the user can edit them too. */
+        String notes = "";
         /** The agent that runs it (claude, codex, opencode or grok), and its model ("" for the agent's default). */
         String backend = "claude", model = "";
         /** Before acting: "ask" (approval cards wait for the user) or "countdown" (they approve themselves). */
@@ -37,7 +39,7 @@ final class Rules {
 
         JSONObject json() throws org.json.JSONException {
             return new JSONObject().put("id", id).put("pkg", pkg).put("app", app).put("from", from).put("words", words)
-                    .put("instruction", instruction).put("backend", backend).put("model", model).put("approval", approval)
+                    .put("instruction", instruction).put("notes", notes).put("backend", backend).put("model", model).put("approval", approval)
                     .put("seconds", seconds).put("limit", limit).put("on", on);
         }
 
@@ -49,6 +51,7 @@ final class Rules {
             r.from = o.optString("from");
             r.words = o.optString("words");
             r.instruction = o.optString("instruction");
+            r.notes = o.optString("notes");
             r.backend = o.optString("backend", "claude");
             r.model = o.optString("model", "");
             r.approval = o.optString("approval", "ask");

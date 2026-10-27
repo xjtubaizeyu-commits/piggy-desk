@@ -69,12 +69,31 @@ final class Helper {
                 }
                 p.waitFor();
             } catch (Exception e) {
-                android.util.Log.w("Buddy", "helper failed", e);
+                android.util.Log.w("Piggy", "helper failed", e);
             }
         });
     }
 
-    /** The user's App permissions choices, which buddy-run appends to the agent's instructions. */
+    /** Ultra: what the agent is told instead of the approval rules. */
+    private static final String ULTRA = "ULTRA MODE is on: the user switched off every approval. Never call confirm and "
+            + "don't ask for permission: send, post, reply, buy, delete and change settings as the task needs, in every "
+            + "app and in notification rules. Piggy shows no approval cards.\n";
+    private static final String MONEY_FLOOR = "The one exception: payment, bank and crypto apps still stop on risky "
+            + "buttons (Pay, Transfer, …) until the user approves; call confirm with the exact action before those.\n";
+    /** Without Ultra: Buddy's approval rules. */
+    private static final String APPROVALS = "Approvals: call confirm with the exact text or action BEFORE sending any "
+            + "message, posting, commenting, emailing, adding to a cart, buying, paying, deleting, changing settings, or "
+            + "anything else outward-facing or hard to undo, and only continue if it returns APPROVED. If it returns "
+            + "CHANGES REQUESTED, make exactly those changes and confirm again. In apps on Hard or Smart, Piggy also "
+            + "enforces this itself: a tap on a Send/Pay/Delete/… button without an approved confirm just before shows "
+            + "the user an approval card, and one approval covers one action. In apps the user trusts (listed below, "
+            + "when there are any), work on your own without confirm. Confirm a plan, not just its last step, when you'll "
+            + "undo something the user has (cancel a booking, unsubscribe) to then do something outward-facing.\n";
+
+    /**
+     * What buddy-run appends to the agent's instructions on every run: the approval rules (or Ultra), the user's App
+     * permissions choices, and Piggy's memory.
+     */
     static void writePermissions(Context c) {
         // the background browser's instructions go along only while it's on (buddy-run looks for this file)
         File on = new File(Linux.root(c), "root/.buddy/browser-on");
@@ -83,6 +102,20 @@ final class Helper {
             else on.delete();
         } catch (IOException ignored) {
         }
+        String text = Prefs.ultra(c) ? ULTRA + (Prefs.moneyFloor(c) ? MONEY_FLOOR : "") : APPROVALS + permissions(c);
+        text += "\n" + Memory.prompt(c);
+        File f = new File(Linux.root(c), "root/.buddy/permissions.md");
+        try {
+            try (OutputStream o = new FileOutputStream(f)) {
+                o.write(text.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            }
+        } catch (IOException e) {
+            android.util.Log.w("Piggy", "permissions not written", e);
+        }
+    }
+
+    /** Without Ultra: the apps the user trusts and the buttons they never want to be asked about. */
+    private static String permissions(Context c) {
         StringBuilder trusted = new StringBuilder();
         for (java.util.Map.Entry<String, String> e : Prefs.appSafetyAll(c).entrySet()) {
             if ("trust".equals(e.getValue())) trusted.append("- ").append(appName(c, e.getKey())).append(" (").append(e.getKey()).append(")\n");
@@ -100,18 +133,7 @@ final class Helper {
             text += (text.isEmpty() ? "" : "\n") + "Buttons the user marked \"Never ask\" (tap them without confirming "
                     + "when the task calls for it):\n" + never;
         }
-        File f = new File(Linux.root(c), "root/.buddy/permissions.md");
-        try {
-            if (text.isEmpty()) {
-                f.delete();
-            } else {
-                try (OutputStream o = new FileOutputStream(f)) {
-                    o.write(text.getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                }
-            }
-        } catch (IOException e) {
-            android.util.Log.w("Buddy", "permissions not written", e);
-        }
+        return text;
     }
 
     private static String appName(Context c, String pkg) {

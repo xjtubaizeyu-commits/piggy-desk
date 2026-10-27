@@ -27,6 +27,7 @@ final class Face {
     /** Longest side of the saved picture, in px: sharp at the bubble's 60dp on any screen. */
     private static final int SIDE = 256;
     private static Bitmap picture; // decoded once, dropped when a new picture is saved
+    private static Bitmap piggy, bubbleOf; // the built-in pig; the bitmap the bubble drawable was made from
     private static Drawable bubble;
     private static boolean loaded;
 
@@ -58,14 +59,20 @@ final class Face {
      * own), {@code picture} for a picture, which is trimmed to its edges and often detailed.
      */
     static int size(Context c, int buddy, int picture) {
-        return picture(c) != null ? picture : buddy;
+        return picture; // the pig is a trimmed picture too
     }
 
-    /** Shows Buddy's face in an avatar or tile: the picked picture, else the drawing {@code res}. */
+    /** The face shown: the picked picture, else Piggy's own pig (res/drawable-nodpi/piggy.png). */
+    static synchronized Bitmap shown(Context c) {
+        Bitmap b = picture(c);
+        if (b != null) return b;
+        if (piggy == null) piggy = BitmapFactory.decodeResource(c.getResources(), R.drawable.piggy);
+        return piggy;
+    }
+
+    /** Shows Piggy's face in an avatar or tile: the picked picture, else the pig ({@code res} is no longer drawn). */
     static void set(ImageView v, int res) {
-        Bitmap b = picture(v.getContext());
-        if (b != null) v.setImageBitmap(b);
-        else v.setImageResource(res);
+        v.setImageBitmap(shown(v.getContext()));
     }
 
     /**
@@ -73,9 +80,11 @@ final class Face {
      * face (as the drawn face gets one from its outline), so the shadow doesn't make the picture smaller.
      */
     static synchronized Drawable bubble(Context c) {
-        Bitmap b = picture(c);
-        if (b == null) return null;
-        if (bubble == null) bubble = new Shadowed(b);
+        Bitmap b = shown(c);
+        if (bubble == null || bubbleOf != b) {
+            bubble = new Shadowed(b);
+            bubbleOf = b;
+        }
         return bubble;
     }
 

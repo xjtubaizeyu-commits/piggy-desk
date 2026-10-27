@@ -346,7 +346,7 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         copy.setCompoundDrawablePadding(dp(this, 8));
         copy.setOnClickListener(v -> {
             ClipboardManager cm = getSystemService(ClipboardManager.class);
-            cm.setPrimaryClip(ClipData.newPlainText("Buddy MCP", cmd));
+            cm.setPrimaryClip(ClipData.newPlainText("Piggy MCP", cmd));
             Toast.makeText(this, R.string.setup_command_copied, Toast.LENGTH_SHORT).show();
         });
         LinearLayout.LayoutParams cpp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(this, 44));
@@ -555,7 +555,7 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
                 sshCopy.setCompoundDrawablePadding(dp(this, 8));
                 sshCopy.setOnClickListener(v -> {
                     ClipboardManager cm = getSystemService(ClipboardManager.class);
-                    cm.setPrimaryClip(ClipData.newPlainText("Buddy SSH", sshCommand(SshServer.newCode())));
+                    cm.setPrimaryClip(ClipData.newPlainText("Piggy SSH", sshCommand(SshServer.newCode())));
                     Toast.makeText(this, R.string.setup_command_copied, Toast.LENGTH_SHORT).show();
                 });
                 LinearLayout.LayoutParams sp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(this, 44));
@@ -664,6 +664,18 @@ public class SetupActivity extends Screen implements Account.Listener, RemoteSes
         rules.setOnClickListener(v -> startActivity(new android.content.Intent(this, RulesActivity.class)));
         ex.addView(rules, full());
         ex.addView(divider(), lineParams());
+        // Ultra: no approval cards anywhere; agents can't switch it (protect)
+        ex.addView(protect(switchRow(this, getString(R.string.setup_ultra), getString(R.string.setup_ultra_info),
+                Prefs.ultra(this), on -> {
+            Prefs.setUltra(this, on);
+            render();
+        })), full());
+        ex.addView(divider(), lineParams());
+        if (Prefs.ultra(this)) {
+            ex.addView(protect(switchRow(this, getString(R.string.setup_money_floor), getString(R.string.setup_money_floor_info),
+                    Prefs.moneyFloor(this), on -> Prefs.setMoneyFloor(this, on))), full());
+            ex.addView(divider(), lineParams());
+        }
         LinearLayout perms = listRow(this);
         perms.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout pt = column(this);

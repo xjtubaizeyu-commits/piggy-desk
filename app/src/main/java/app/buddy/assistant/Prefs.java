@@ -91,6 +91,24 @@ final class Prefs {
         sp(c).edit().putString("update_notified", v).apply();
     }
 
+    /** Ultra: Piggy never asks; every app works as on Trust, notification rules included (see Guard.modeWhy). */
+    static boolean ultra(Context c) {
+        return sp(c).getBoolean("ultra", true);
+    }
+
+    static void setUltra(Context c, boolean on) {
+        sp(c).edit().putBoolean("ultra", on).apply();
+    }
+
+    /** Under Ultra, payment, bank and crypto apps (Guard.moneyApp) still ask. */
+    static boolean moneyFloor(Context c) {
+        return sp(c).getBoolean("money_floor", true);
+    }
+
+    static void setMoneyFloor(Context c, boolean on) {
+        sp(c).edit().putBoolean("money_floor", on).apply();
+    }
+
     /** First-setup choice: apps the user hasn't set (and that aren't on Hard by default) start on Trust, else Hard. */
     static boolean autonomousDefault(Context c) {
         return sp(c).getBoolean("autonomous_default", false);
@@ -342,7 +360,7 @@ final class Prefs {
 
     /** Its name in the Claude app. */
     static String remoteName(Context c) {
-        return sp(c).getString("remote_name", "Buddy");
+        return sp(c).getString("remote_name", "Piggy");
     }
 
     /** Keep a Codex session with remote control running inside Buddy's Linux, for the ChatGPT app (CodexRemote). */

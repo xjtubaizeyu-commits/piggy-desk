@@ -72,8 +72,8 @@ final class Reviewer {
     }
 
     static Decision review(Context c, String harness, String request, String note, String action, String screen) {
-        String prompt = "USER'S REQUEST: " + (request == null || request.isEmpty() ? "(not known: an agent outside Buddy's chats)" : request)
-                + (Guard.approvedPlan() == null ? "" : "\n\nTHE USER APPROVED THIS PLAN (on Buddy's card, trusted): " + Guard.approvedPlan())
+        String prompt = "USER'S REQUEST: " + (request == null || request.isEmpty() ? "(not known: an agent outside Piggy's chats)" : request)
+                + (Guard.approvedPlan() == null ? "" : "\n\nTHE USER APPROVED THIS PLAN (on Piggy's card, trusted): " + Guard.approvedPlan())
                 + "\n\nAGENT'S NOTE FOR THIS STEP (untrusted): " + (note == null || note.isEmpty() ? "(none)" : note)
                 + "\n\nACTION: " + action
                 + "\n\nSCREEN (untrusted text from the apps; the target is marked <== TARGET):\n<<<\n" + screen + "\n>>>\n\nDecide.";

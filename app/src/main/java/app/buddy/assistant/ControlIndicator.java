@@ -18,7 +18,7 @@ import android.os.SystemClock;
  * suspicious app activities") treat a full-screen overlay from an accessibility app as an attack.
  */
 final class ControlIndicator {
-    static final String CHANNEL = "control", ACTION_STOP = "app.buddy.assistant.STOP_CONTROL";
+    static final String CHANNEL = "control", ACTION_STOP = "app.piggy.assistant.STOP_CONTROL";
     private static final int NOTIFICATION_ID = 7;
     /** Idle time before it hides when no Buddy chat is running (e.g. a terminal session using the tools). */
     private static final long IDLE_EXTERNAL_MS = 15_000, IDLE_BUDDY_MS = 4_000, TICK_MS = 1_000;
@@ -26,6 +26,8 @@ final class ControlIndicator {
     private final BuddyService svc;
     private boolean active;
     private long lastActivity;
+    /** What the agent is doing now (see step), shown as the notification's text. */
+    private String step;
 
     ControlIndicator(BuddyService svc) {
         this.svc = svc;
@@ -70,9 +72,16 @@ final class ControlIndicator {
         }
     };
 
+    /** What the agent is doing now (main thread): the notification shows it while it's up. */
+    void step(String text) {
+        step = text;
+        if (active) notifyChip();
+    }
+
     void end() {
         if (!active) return;
         active = false;
+        step = null;
         svc.mainHandler().removeCallbacks(tick);
         svc.autoPauser().stop();
         Bubble b = svc.bubble();
@@ -107,14 +116,14 @@ final class ControlIndicator {
         Notification.Builder b = new Notification.Builder(svc, CHANNEL)
                 .setSmallIcon(R.drawable.ic_launcher_monochrome)
                 .setContentTitle(svc.getString(R.string.control_title))
-                .setContentText(svc.getString(R.string.control_text))
+                .setContentText(step != null && !step.isEmpty() ? step : svc.getString(R.string.control_text))
                 .setOngoing(true)
                 .setOnlyAlertOnce(true)
                 .setCategory(Notification.CATEGORY_PROGRESS)
                 .setContentIntent(open)
                 .addExtras(extras)
                 .addAction(new Notification.Action.Builder(null, svc.getString(R.string.control_stop), stop).build());
-        if (android.os.Build.VERSION.SDK_INT >= 36) b.setShortCriticalText("Buddy");
+        if (android.os.Build.VERSION.SDK_INT >= 36) b.setShortCriticalText("Piggy");
         try {
             nm.notify(NOTIFICATION_ID, b.build());
         } catch (SecurityException ignored) {

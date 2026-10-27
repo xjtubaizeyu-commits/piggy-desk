@@ -622,6 +622,15 @@ final class ChatHub {
                     : BuddyApp.str(R.string.hub_tool_tap_point, in.optInt("x"), in.optInt("y"));
             case "long_press": return BuddyApp.str(R.string.hub_tool_long_press);
             case "type_text": return BuddyApp.str(R.string.hub_tool_type, clip(in.optString("text"), 40));
+            case "send_text": return BuddyApp.str(R.string.hub_tool_send_text, clip(in.optString("text"), 40));
+            case "open_notification": return BuddyApp.str(R.string.hub_tool_open_notification);
+            case "memory_list": return BuddyApp.str(R.string.hub_tool_memory_list);
+            case "memory_save": return BuddyApp.str(R.string.hub_tool_memory_save, clip(in.optString("text"), 40));
+            case "memory_delete": return BuddyApp.str(R.string.hub_tool_memory_delete);
+            case "app_tip": return BuddyApp.str(R.string.hub_tool_app_tip, clip(in.optString("tip"), 40));
+            case "rules_list": return BuddyApp.str(R.string.hub_tool_rules_list);
+            case "rule_save": return BuddyApp.str(R.string.hub_tool_rule_save);
+            case "rule_delete": return BuddyApp.str(R.string.hub_tool_rule_delete);
             case "scroll": {
                 String d = in.optString("direction"); // the tool's enum values get whole translated lines
                 switch (d) {

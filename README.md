@@ -1,3 +1,17 @@
+# Piggy 手机助手
+
+Piggy 是基于 [Buddy](https://github.com/ghorbelhamdi/buddy-android)（Apache-2.0，作者 ghorbelhamdi）改造的安卓 AI 助手：悬浮气泡里的 Claude Code / Codex / OpenCode 帮你读屏幕、点、打字。下面是 Piggy 相对 Buddy 的改动，原 README 保留在后面。
+
+- **Ultra 模式**（设置里，默认开）：所有 app、所有通知规则都不弹审批卡片、不倒计时、不让 AI 复核，直接执行。可选保留「支付类 app 仍然要问」。
+- **系统提示词**：自称 Piggy，默认中文回复，审批规则按 Ultra 开关动态生成。
+- **更快**：点击、输入、滑动等动作执行完直接带回新屏幕，省掉一轮 AI 往返；`send_text` 一次完成「粘贴 + 点发送 + 确认发出」；`open_notification` 直接跳进通知对应的聊天；状态栏实时显示当前在做哪一步。
+- **输入**：普通 app 的输入框先走剪贴板粘贴，不行再点 Gboard 建议栏里的剪贴板条，最后才直接写入文字。
+- **记忆**：`memory_save` / `memory_delete` 长期记忆，每次运行都会带上；`app_tip` 记下操作某个 app 的技巧。
+- **规则自己管**：`rules_list` / `rule_save` / `rule_delete`，聊天里一句话就能建规则；每条规则有「Piggy 的经验」，执行时它自己更新（规则执行中只能改自己那条的经验）。
+- 包名 `app.piggy.assistant`，可以和原版 Buddy 同时安装；自动更新指向本仓库的 Release（`piggy.apk`）。
+
+---
+
 <p align="center">
   <img src="docs/banner.png" alt="Buddy: Claude Code, Codex, OpenCode, Antigravity and Grok in a bubble on your Android phone" width="100%">
 </p>

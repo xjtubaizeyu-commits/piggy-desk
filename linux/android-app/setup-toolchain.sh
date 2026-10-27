@@ -1,5 +1,5 @@
 #!/bin/bash
-# One-time setup of the Android build tools inside Buddy's Linux (about 400 MB). Safe to run again.
+# One-time setup of the Android build tools inside Piggy's Linux (about 400 MB). Safe to run again.
 #   aapt2/zipalign: Alpine's android-build-tools (edge/testing, built for ARM)
 #   javac: OpenJDK 17;  d8 + apksigner: Google's build-tools jars;  android.jar: the Android 36 platform
 set -euo pipefail

@@ -1,16 +1,16 @@
 #!/bin/sh
-# Buddy's stand-in for arecord (and SoX's rec): the phone's microphone as raw signed 16-bit PCM on stdout.
-# Lets Claude Code's /voice work in Buddy's terminal. Only works while Buddy's Terminal is on screen.
+# Piggy's stand-in for arecord (and SoX's rec): the phone's microphone as raw signed 16-bit PCM on stdout.
+# Lets Claude Code's /voice work in Piggy's terminal. Only works while Piggy's Terminal is on screen.
 #   arecord -f S16_LE -r 16000 -c 1 -t raw -q -
 rate=16000 ch=1
 while [ $# -gt 0 ]; do
   case "$1" in
     -r|--rate) rate=$2; shift ;;
     -c|--channels) ch=$2; shift ;;
-    -l|-L|--list-devices|--list-pcms) echo "card 0: Buddy [Buddy microphone], device 0: phone microphone"; exit 0 ;;
+    -l|-L|--list-devices|--list-pcms) echo "card 0: Piggy [Piggy microphone], device 0: phone microphone"; exit 0 ;;
   esac
   shift
 done
-tok=$(cat /root/.buddy/mic-token 2>/dev/null) || { echo "arecord: Buddy's microphone is off (open Buddy's Terminal)" >&2; exit 1; }
+tok=$(cat /root/.buddy/mic-token 2>/dev/null) || { echo "arecord: Piggy's microphone is off (open Piggy's Terminal)" >&2; exit 1; }
 # nc keeps reading after the request line; Claude Code stops recording by ending this process
 { echo "$tok $rate $ch"; exec sleep 2147483647; } | exec nc 127.0.0.1 8766

@@ -24,7 +24,7 @@ import java.util.Set;
  * notification (only its category is looked at). Nothing is kept.
  */
 final class AutoPause {
-    static final String ACTION_RESUME = "app.buddy.assistant.RESUME";
+    static final String ACTION_RESUME = "app.piggy.assistant.RESUME";
     /** MotionEvent.FLAG_IS_ACCESSIBILITY_EVENT (hidden, Android 12+): an accessibility service made it (Buddy's own taps). */
     private static final int FLAG_FROM_ACCESSIBILITY = 0x800;
     private static final long POLL_MS = 700;
@@ -122,7 +122,7 @@ final class AutoPause {
 
     /** A notification came or went (NotificationWatcher): only whether it's a call is looked at. */
     static void onNotification(StatusBarNotification s, boolean posted) {
-        if (s == null || s.getNotification() == null || BuildInfo.class.getPackage().getName().equals(s.getPackageName())) return;
+        if (s == null || s.getNotification() == null || BuildInfo.APP_ID.equals(s.getPackageName())) return;
         if (!Notification.CATEGORY_CALL.equals(s.getNotification().category)) return;
         if (!posted) {
             calls.remove(s.getKey());

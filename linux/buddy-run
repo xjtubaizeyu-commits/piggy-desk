@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run by the Buddy app inside its built-in Linux (Alpine, through proot).
+# Run by the Piggy app inside its built-in Linux (Alpine, through proot).
 #   buddy-run <token> ask <session> <claude|codex|opencode|agy|grok> <dev:0|1|rule|play> <message> [model] [attachment-ids]
 #     (rule: a notification rule's run, working for someone else's message: no shell, files or web tools;
 #      play: the Play version, which has no Linux tools at all)
@@ -11,7 +11,7 @@
 #   buddy-run <token> kill <pid>           stop a running Claude Code / Codex process and its children
 #   buddy-run <token> recent               list recent Claude Code / Codex sessions from their history (buddy_recent)
 #   buddy-run <token> transcript <claude|codex> <file>   last messages of a session (buddy_transcript)
-#   buddy-run <token> adopt <session> <claude|codex> <agent-session-id>  continue that session as a Buddy chat
+#   buddy-run <token> adopt <session> <claude|codex> <agent-session-id>  continue that session as a Piggy chat
 # Every event sent to the bubble carries "buddy_session" so the app can route it.
 HELPER_VERSION=16
 set -u
@@ -93,7 +93,7 @@ case "$CMD" in
       '{type:"buddy_pong",text:$s,signed:$g,helper:$v,codex_models:$cm,opencode_models:$om,agy_models:$am,grok_models:$gm}' | post
     exit 0 ;;
   procs)
-    # map every process started by a Buddy chat to that chat
+    # map every process started by a Piggy chat to that chat
     declare -A owner=()
     for f in "$D"/sessions/*/pid; do
       [ -f "$f" ] || continue
@@ -153,7 +153,7 @@ case "$CMD" in
           | ([.[] | select(.type=="response_item" and .payload.type=="message" and .payload.role=="user")
                 | .payload.content[]? | .text // empty
                 | select(startswith("<")|not)
-                | (if contains("User message from the Buddy bubble:\n") then split("User message from the Buddy bubble:\n")|last else . end)]
+                | (if contains("User message from the Piggy bubble:\n") then split("User message from the Piggy bubble:\n")|last else . end)]
              | last // "") as $t
           | {agent:"codex", file:$f, id:($meta.id//""), cwd:($meta.cwd//""), title:($t|.[0:120]),
              mtime:($m|tonumber)}' 2>/dev/null
@@ -230,7 +230,7 @@ if [ -n "${FILES:-}" ]; then
       ATT+=("$S/files/$id")
       case "${id,,}" in *.jpg|*.jpeg|*.png|*.webp|*.gif) IMGS+=("$S/files/$id") ;; esac
     else
-      event buddy_error "Couldn't get the attachment ${id#*_} from Buddy."
+      event buddy_error "Couldn't get the attachment ${id#*_} from Piggy."
     fi
   done
   if [ ${#ATT[@]} -gt 0 ]; then
@@ -295,7 +295,7 @@ stream_claude() {
 
 # ---------------------------------------------------------------------- Codex
 # The phone server is passed with -c (no config file needed). Only the phone tools are
-# pre-approved. Normal mode keeps Codex's shell read-only; developer mode opens all of Buddy's Linux to it.
+# pre-approved. Normal mode keeps Codex's shell read-only; developer mode opens all of Piggy's Linux to it.
 run_codex() {
   local prompt=$MSG
   local cfg=(-c 'mcp_servers.phone.url="'"$URL"'/mcp?chat='"$SID"'"'
@@ -303,7 +303,7 @@ run_codex() {
     -c 'mcp_servers.phone.default_tools_approval_mode="approve"'
     -c 'mcp_servers.phone.tool_timeout_sec=600')
   local sandbox=(--sandbox read-only)
-  # developer mode: the whole of Buddy's Linux, like Claude Code's Bash and OpenCode (so apk add works too)
+  # developer mode: the whole of Piggy's Linux, like Claude Code's Bash and OpenCode (so apk add works too)
   [ "$DEV" = 1 ] && sandbox=(--sandbox danger-full-access)
   [ -n "${MODEL:-}" ] && cfg+=(-m "$MODEL")
   [ -n "${EFFORT:-}" ] && cfg+=(-c "model_reasoning_effort=\"$EFFORT\"")
@@ -314,8 +314,8 @@ run_codex() {
     BUDDY_TOKEN=$TOKEN codex exec "${cfg[@]}" "${sandbox[@]}" --json --skip-git-repo-check \
       resume "${img[@]}" -- "$(cat "$S/codex-thread")" "$prompt" </dev/null 2>"$S/last-error.log"
   else
-    # codex exec has no system-prompt flag, so Buddy's instructions lead the first message.
-    prompt="$SYSTEM"$'\n\n---\n\nUser message from the Buddy bubble:\n'"$MSG"
+    # codex exec has no system-prompt flag, so Piggy's instructions lead the first message.
+    prompt="$SYSTEM"$'\n\n---\n\nUser message from the Piggy bubble:\n'"$MSG"
     BUDDY_TOKEN=$TOKEN codex exec "${cfg[@]}" "${sandbox[@]}" "${img[@]}" --json --skip-git-repo-check \
       -- "$prompt" </dev/null 2>"$S/last-error.log"
   fi
@@ -357,21 +357,23 @@ stream_codex() {
 }
 
 # ------------------------------------------------------------------- OpenCode
-# Config goes in through OPENCODE_CONFIG_CONTENT: the phone server, Buddy's instructions (a file), no
+# Config goes in through OPENCODE_CONFIG_CONTENT: the phone server, Piggy's instructions (a file), no
 # auto-update or sharing. Normal mode sets shell and edits to "ask", which a non-interactive run
 # auto-rejects ("deny" would drop those tools, and OpenCode's free models refuse a changed tool set).
 run_opencode() {
   # OpenCode names MCP tools <server>_<tool>; small models otherwise call "read_screen" and give up
   printf '%s\n\n%s\n' "$SYSTEM" "In this app the phone tools are named with a phone_ prefix: phone_read_screen, phone_tap, \
 phone_long_press, phone_type_text, phone_scroll, phone_swipe, phone_press, phone_open_app, phone_list_apps, phone_open_url, \
-phone_screenshot, phone_wait, phone_confirm, phone_ask, phone_notify, phone_reply_notification, phone_update_buddy, phone_install_apk and phone_wait_for_install\
+phone_screenshot, phone_wait, phone_confirm, phone_ask, phone_notify, phone_reply_notification, phone_send_text, \
+phone_open_notification, phone_memory_list, phone_memory_save, phone_memory_delete, phone_app_tip, phone_rules_list, \
+phone_rule_save, phone_rule_delete, phone_update_buddy, phone_install_apk and phone_wait_for_install\
 $([ "$BROWSER" = 1 ] && printf '%s' ", and for the background browser phone_browser_open, phone_browser_read, phone_browser_click, \
 phone_browser_type, phone_browser_scroll, phone_browser_screenshot, phone_browser_back and phone_browser_tabs"). Always call them by \
 these exact names; they are available in every message of this chat." > "$S/system.md"
   local cfg v2=0
   oc2 && v2=1
   # OpenCode 2 ignores instructions given through OPENCODE_CONFIG_CONTENT (the model never saw this prompt),
-  # but reads its global AGENTS.md, next to the work folder's own. Buddy owns that file (marked on line 1)
+  # but reads its global AGENTS.md, next to the work folder's own. Piggy owns that file (marked on line 1)
   # and leaves one the user wrote alone.
   if [ "$v2" = 1 ]; then
     local g=$HOME/.config/opencode/AGENTS.md
@@ -398,7 +400,7 @@ these exact names; they are available in every message of this chat." > "$S/syst
 
 # Translate OpenCode's JSON events into the Claude Code stream format the bubble understands.
 # Only the text of the step that ends the turn (its answer) is shown: text written before tool calls is
-# the model thinking out loud (free models even leak their reasoning, ending in </think>), and Buddy
+# the model thinking out loud (free models even leak their reasoning, ending in </think>), and Piggy
 # doesn't show Claude Code's or Codex's thinking either. Tool calls still show as steps.
 stream_opencode() {
   local pending="" failed="" line sid typ t
@@ -455,7 +457,8 @@ stream_opencode() {
 # Only the phone tools (and the chat's attachments) are pre-approved; developer mode skips agy's permission checks,
 # like Codex's full access. timeoutSeconds: an approval card may wait for the user (10 minutes, as for the others).
 AGY_PHONE_TOOLS='["read_screen","tap","long_press","type_text","scroll","swipe","press","open_app","list_apps","open_url",
-"screenshot","wait","confirm","ask","notify","reply_notification","update_buddy","install_apk","wait_for_install","point_out"]'
+"screenshot","wait","confirm","ask","notify","reply_notification","update_buddy","install_apk","wait_for_install","point_out",
+"send_text","open_notification","memory_list","memory_save","memory_delete","app_tip","rules_list","rule_save","rule_delete"]'
 run_agy() {
   local h=$S/agy-home g=$HOME/.gemini/antigravity-cli f list tools sigs
   mkdir -p "$h/.gemini/config" "$h/.gemini/antigravity-cli" "$g" "$HOME/.gemini/config"
@@ -474,7 +477,7 @@ run_agy() {
   ( umask 077
     jq -n --arg url "$URL/mcp?chat=$SID" --arg auth "Bearer $TOKEN" \
       '{mcpServers:{phone:{url:$url, headers:{Authorization:$auth}, timeoutSeconds:600}}}' > "$h/.gemini/config/mcp_config.json" )
-  # the phone's tools as the server lists them (a newer Buddy may have more); the known list if that fails
+  # the phone's tools as the server lists them (a newer Piggy may have more); the known list if that fails
   list=$(curl -s -m 10 -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
     -H 'Accept: application/json, text/event-stream' --data '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' \
     "$URL/mcp?chat=$SID")
@@ -488,7 +491,7 @@ run_agy() {
     '{permissions:{allow:([$t[] | "mcp(phone/\(.))"] + ["read_file(\($files))", "read_file(\($brain))"])}}' \
     > "$h/.gemini/antigravity-cli/settings.json"
   local prompt=$MSG args names note
-  # agy has no system-prompt flag, so Buddy's instructions lead a new conversation's first message (as for Codex).
+  # agy has no system-prompt flag, so Piggy's instructions lead a new conversation's first message (as for Codex).
   # It also lists MCP tools only by file: say how to call the phone's, or it goes looking (e.g. with ls, which a
   # normal chat refuses, and then it stops).
   [ -n "$sigs" ] || sigs=$(jq -r 'join(", ")' <<<"$AGY_PHONE_TOOLS" 2>/dev/null)
@@ -497,7 +500,7 @@ run_agy() {
 to read their descriptions first; only if an argument is unclear, read_file \
 $h/.gemini/antigravity-cli/mcp/phone/<tool>.json."
   [ "$DEV" = 1 ] || note="$note Shell commands are not available in this chat; don't try them."
-  [ -s "$S/agy-conversation" ] || prompt="$SYSTEM"$'\n\n'"$note"$'\n\n---\n\nUser message from the Buddy bubble:\n'"$MSG"
+  [ -s "$S/agy-conversation" ] || prompt="$SYSTEM"$'\n\n'"$note"$'\n\n---\n\nUser message from the Piggy bubble:\n'"$MSG"
   args=(-p "$prompt" --output-format stream-json)
   [ -s "$S/agy-conversation" ] && args+=(--conversation "$(cat "$S/agy-conversation")")
   [ -n "${MODEL:-}" ] && args+=(--model "$MODEL")
@@ -658,7 +661,7 @@ run_grok() {
 (tool_name \"phone__<tool>\", e.g. phone__read_screen, and tool_input with its arguments${sigs:+ as listed here; ? marks an \
 optional one: $sigs}). You don't need search_tool for them."
   [ "$DEV" = 1 ] || note="$note Shell commands are not available in this chat; don't try them."
-  # --rules adds Buddy's instructions to grok's own, on every run (as --append-system-prompt does for Claude Code)
+  # --rules adds Piggy's instructions to grok's own, on every run (as --append-system-prompt does for Claude Code)
   local args=(-p "$MSG" --output-format streaming-messages-json --rules "$SYSTEM"$'\n\n'"$note" --allow 'MCPTool(phone__*)')
   case "$DEV" in
     1) args+=(--always-approve) ;;
@@ -732,7 +735,7 @@ stream_grok() {
 # ------------------------------------------------------------------------ run
 (
   if [ "$BACKEND" = opencode ]; then
-    if ! have opencode; then event buddy_error "OpenCode isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have opencode; then event buddy_error "OpenCode isn't installed yet. Install it in Piggy's Settings."; exit 0; fi
     run_opencode | stream_opencode
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/opencode-session" ] && grep -q -i -E 'not found|no such|session' "$S/last-error.log" 2>/dev/null; then
@@ -742,7 +745,7 @@ stream_grok() {
     fi
     name=OpenCode
   elif [ "$BACKEND" = agy ]; then
-    if ! have agy; then event buddy_error "Antigravity isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have agy; then event buddy_error "Antigravity isn't installed yet. Install it in Piggy's Settings."; exit 0; fi
     # a rule's run must get no shell, files or web; agy's allow list can't promise that yet (see Account.runsRules)
     if [ "$DEV" = rule ]; then event buddy_error "Antigravity can't run notification rules yet. Pick another agent for this rule."; exit 0; fi
     # the last run's raw events stay in the session folder, for checking how agy reports its steps
@@ -750,7 +753,7 @@ stream_grok() {
     status=${PIPESTATUS[0]}
     # a refusal ended its turn without a word: nudge it on once, in the same conversation
     if [ -s "$S/agy-denied" ] && [ -s "$S/agy-conversation" ]; then
-      MSG="(From Buddy, not the user) This chat doesn't allow that: $(cat "$S/agy-denied"). Carry on with the phone \
+      MSG="(From Piggy, not the user) This chat doesn't allow that: $(cat "$S/agy-denied"). Carry on with the phone \
 tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
       run_agy | tee -a "$S/agy-last.jsonl" | stream_agy last
       status=${PIPESTATUS[0]}
@@ -765,7 +768,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     [ -s "$S/agy-error" ] && status=0
     name=Antigravity
   elif [ "$BACKEND" = grok ]; then
-    if ! have grok; then event buddy_error "Grok isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have grok; then event buddy_error "Grok isn't installed yet. Install it in Piggy's Settings."; exit 0; fi
     run_grok | stream_grok
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/grok-session" ] && grep -q -i -E 'session.*not found|failed to restore session' "$S/last-error.log" 2>/dev/null; then
@@ -778,7 +781,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     [ -s "$S/grok-error" ] && status=0
     name=Grok
   elif [ "$BACKEND" = codex ]; then
-    if ! have codex; then event buddy_error "Codex isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have codex; then event buddy_error "Codex isn't installed yet. Install it in Piggy's Settings."; exit 0; fi
     run_codex | stream_codex
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && [ -s "$S/codex-thread" ] && grep -q -i -E 'not found|no such|unknown (thread|session)' "$S/last-error.log" 2>/dev/null; then
@@ -788,7 +791,7 @@ tools (call_mcp_tool, ServerName \"phone\") and finish the user's request."
     fi
     name=Codex
   else
-    if ! have claude; then event buddy_error "Claude Code isn't installed yet. Install it in Buddy's Settings."; exit 0; fi
+    if ! have claude; then event buddy_error "Claude Code isn't installed yet. Install it in Piggy's Settings."; exit 0; fi
     run_claude | stream_claude
     status=${PIPESTATUS[0]}
     if [ "$status" -ne 0 ] && grep -q -i 'no conversation found' "$S/last-error.log" 2>/dev/null; then

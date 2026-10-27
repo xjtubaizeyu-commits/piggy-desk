@@ -23,56 +23,38 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
-      # Release signing is optional: add the BUDDY_KEYSTORE_BASE64 and BUDDY_KEYSTORE_PASSWORD
-      # repository secrets to get a signed APK; otherwise the APK is unsigned.
+      # Release signing: the PIGGY_KEYSTORE_BASE64 and PIGGY_KEYSTORE_PASSWORD repository secrets. Without them the
+      # APK is unsigned (it still shows whether the code compiles, but Android won't install it).
       - name: Decode signing key
         env:
-          KEYSTORE_BASE64: ${{ secrets.BUDDY_KEYSTORE_BASE64 }}
+          KEYSTORE_BASE64: ${{ secrets.PIGGY_KEYSTORE_BASE64 }}
         if: env.KEYSTORE_BASE64 != ''
         run: |
-          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
-          echo "BUDDY_KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.p12"
+          echo "BUDDY_KEYSTORE=$RUNNER_TEMP/release.p12" >> "$GITHUB_ENV"
 
-      - name: Build release APK (GitHub) and bundle (Google Play)
+      - name: Build release APK
         env:
-          BUDDY_KEYSTORE_PASSWORD: ${{ secrets.BUDDY_KEYSTORE_PASSWORD }}
-        run: ./gradlew --no-daemon assembleGithubRelease bundlePlayRelease
+          BUDDY_KEYSTORE_PASSWORD: ${{ secrets.PIGGY_KEYSTORE_PASSWORD }}
+          BUDDY_KEY_ALIAS: piggy
+        run: ./gradlew --no-daemon assembleGithubRelease
 
       - name: Collect APK
         run: |
           mkdir -p dist
           apk=$(find app/build/outputs/apk/github/release -name '*.apk' | head -1)
-          cp "$apk" "dist/buddy-${GITHUB_REF_NAME//\//-}.apk"
-          # fixed name too, so releases/latest/download/buddy.apk always gets the newest version
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/buddy.apk; fi
+          cp "$apk" "dist/piggy-${GITHUB_REF_NAME//\//-}.apk"
+          # fixed name too, so releases/latest/download/piggy.apk always gets the newest version (self-update)
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/piggy.apk; fi
           ls -l dist
+          if [ -z "$BUDDY_KEYSTORE" ]; then
+            echo "::warning::No PIGGY_KEYSTORE_BASE64 secret: this APK is unsigned and can't be installed."
+          fi
 
       - uses: actions/upload-artifact@v7
         with:
-          name: buddy-apk
+          name: piggy-apk
           path: dist/*.apk
-
-      # The Play bundle is never attached to the GitHub release; on tags it goes to Google Play (below).
-      - uses: actions/upload-artifact@v7
-        with:
-          name: buddy-play-aab
-          path: app/build/outputs/bundle/playRelease/*.aab
-
-      # On tags, send the bundle to the closed testing track (Alpha) for review, with the notes in
-      # play/whatsnew. Needs the PLAY_SERVICE_ACCOUNT_JSON secret (a service account with release
-      # rights in the Play Console); without it this step is skipped and the bundle is uploaded by hand.
-      - name: Upload to Google Play
-        if: startsWith(github.ref, 'refs/tags/v') && env.PLAY_JSON != ''
-        env:
-          PLAY_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: app.buddy.assistant
-          releaseFiles: app/build/outputs/bundle/playRelease/*.aab
-          track: alpha
-          status: completed
-          whatsNewDirectory: play/whatsnew
 
       - name: Publish GitHub release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -83,5 +65,5 @@ jobs:
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" dist/*.apk --clobber
           else
-            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Buddy $GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Piggy $GITHUB_REF_NAME" --generate-notes
           fi

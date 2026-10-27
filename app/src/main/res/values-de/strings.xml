@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Every text Buddy shows, in German (du). Source and translator notes: res/values/strings.xml. -->
+<!-- Every text Piggy shows, in German (du). Source and translator notes: res/values/strings.xml. -->
 <resources>
-    <string name="service_label">Buddy-Assistent</string>
-    <string name="service_description">Zeigt die Chat-Bubble von Buddy an und lässt den von dir gewählten Agenten (Claude Code, Codex, OpenCode, Antigravity oder Grok), der in Buddy auf diesem Smartphone läuft, den Bildschirm lesen und für dich tippen, Text eingeben und scrollen. Nichts verlässt das Smartphone, außer dem, was der Agent selbst an seinen KI-Dienst sendet (Anthropic, OpenAI, Google, xAI oder den Anbieter deines OpenCode-Modells).</string>
+    <string name="service_label">Piggy-Assistent</string>
+    <string name="service_description">Zeigt die Chat-Bubble von Piggy an und lässt den von dir gewählten Agenten (Claude Code, Codex, OpenCode, Antigravity oder Grok), der in Piggy auf diesem Smartphone läuft, den Bildschirm lesen und für dich tippen, Text eingeben und scrollen. Nichts verlässt das Smartphone, außer dem, was der Agent selbst an seinen KI-Dienst sendet (Anthropic, OpenAI, Google, xAI oder den Anbieter deines OpenCode-Modells).</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -16,7 +16,7 @@
     <string name="onboarding_stuck">Hängst du fest?</string>
 
     <!-- Guide, welcome screen. -->
-    <string name="onboarding_welcome_title">Das ist Buddy</string>
+    <string name="onboarding_welcome_title">Das ist Piggy</string>
     <string name="onboarding_welcome_text">Eine Chat-Bubble, die dein Smartphone für dich bedienen kann.</string>
     <string name="onboarding_welcome_ask_title">Frag ganz normal</string>
     <string name="onboarding_welcome_ask_text">„Antworte Sam, dass ich mich verspäte“, „leg Milch in meinen Warenkorb“.</string>
@@ -38,26 +38,26 @@
     <string name="onboarding_brain_both">Installiere beide und wähle pro Chat. Claude Code bleibt der Standard.</string>
     <string name="onboarding_recommended">empfohlen</string>
 
-    <!-- Guide, step: turn on Buddy's accessibility service. -->
-    <string name="onboarding_access_title">Lass Buddy sehen und tippen</string>
+    <!-- Guide, step: turn on Piggy's accessibility service. -->
+    <string name="onboarding_access_title">Lass Piggy sehen und tippen</string>
     <string name="onboarding_access_done">Die Bedienungshilfe ist aktiviert.</string>
-    <string name="onboarding_access_text">Die Bedienungshilfe von Buddy zeigt die Bubble an und lässt den Agenten den Bildschirm lesen, tippen und Text eingeben – nur wenn du ihn um etwas bittest.</string>
+    <string name="onboarding_access_text">Die Bedienungshilfe von Piggy zeigt die Bubble an und lässt den Agenten den Bildschirm lesen, tippen und Text eingeben – nur wenn du ihn um etwas bittest.</string>
     <string name="onboarding_access_privacy">Nichts verlässt das Smartphone, außer dem, was %1$s an %2$s sendet, um dir zu antworten. Senden, Posten, Kaufen und Löschen brauchen immer zuerst dein OK.</string>
     <string name="onboarding_access_privacy_both">Nichts verlässt das Smartphone, außer dem, was Claude Code und Codex an Anthropic und OpenAI senden, um dir zu antworten. Senden, Posten, Kaufen und Löschen brauchen immer zuerst dein OK.</string>
     <string name="onboarding_access_privacy_opencode">Nichts verlässt das Smartphone, außer dem, was %1$s an den Anbieter des Modells sendet, um dir zu antworten. Senden, Posten, Kaufen und Löschen brauchen immer zuerst dein OK.</string>
-    <string name="onboarding_access_list_hint">In der Liste: Heruntergeladene Apps → Buddy-Assistent → aktivieren.</string>
+    <string name="onboarding_access_list_hint">In der Liste: Heruntergeladene Apps → Piggy-Assistent → aktivieren.</string>
     <string name="onboarding_access_open">Bedienungshilfen öffnen</string>
     <string name="onboarding_access_greyed_title">Schalter ausgegraut?</string>
     <string name="onboarding_access_greyed_text">Android blockiert das bei Apps, die aus einer Datei installiert wurden. Tippe auf App-Info (unten), dann oben rechts auf ⋮ → Eingeschränkte Einstellungen zulassen und versuche es noch einmal.</string>
     <string name="onboarding_access_restricted_steps">1. Tippe unten auf App-Info.\n2. Tippe oben rechts auf ⋮ → Eingeschränkte Einstellungen zulassen.\n3. Komm zurück und öffne die Bedienungshilfen noch einmal.</string>
     <string name="onboarding_app_info">App-Info</string>
 
-    <!-- Guide, step: install the agent inside Buddy and sign in. -->
+    <!-- Guide, step: install the agent inside Piggy and sign in. -->
     <string name="onboarding_agents_title">Installieren und anmelden</string>
     <string name="onboarding_agents_done_title">Bereit</string>
     <string name="onboarding_agents_done">%1$s ist installiert und angemeldet.</string>
     <string name="onboarding_agents_done_both">Claude Code und Codex sind installiert und angemeldet.</string>
-    <string name="onboarding_agents_text">Buddy installiert %1$s direkt in der App, dann meldest du dich einmal an. Termux ist nicht nötig.</string>
+    <string name="onboarding_agents_text">Piggy installiert %1$s direkt in der App, dann meldest du dich einmal an. Termux ist nicht nötig.</string>
     <string name="onboarding_agent_names_both">Claude Code und Codex</string>
     <!-- Agent card status lines: small lowercase mono text, one line. -->
     <string name="onboarding_agent_ready">bereit · %1$s</string>
@@ -67,11 +67,11 @@
     <string name="onboarding_agent_installing">wird installiert…</string>
     <string name="onboarding_agent_installed">installiert · nicht angemeldet</string>
     <string name="onboarding_agent_not_installed">nicht installiert</string>
-    <string name="onboarding_agent_sign_in_claude">Melde dich mit deinem Claude-Konto an. Dein Browser öffnet sich; tippe auf „Autorisieren“ und Buddy kommt von selbst zurück.</string>
+    <string name="onboarding_agent_sign_in_claude">Melde dich mit deinem Claude-Konto an. Dein Browser öffnet sich; tippe auf „Autorisieren“ und Piggy kommt von selbst zurück.</string>
     <string name="onboarding_agent_checking_opencode">OpenCode wird geprüft…</string>
     <string name="onboarding_agent_sign_in_codex">Melde dich im Browser mit deinem ChatGPT-Konto an und komm dann zurück.</string>
-    <string name="onboarding_agent_sign_in_agy">Melde dich mit deinem Google-Konto an. Dein Browser öffnet sich; melde dich dort an und Buddy übernimmt den Code von selbst.</string>
-    <string name="onboarding_agent_sign_in_grok">Melde dich mit deinem Grok-Konto an. Dein Browser öffnet sich; bestätige dort den Code und Buddy kommt von selbst zurück.</string>
+    <string name="onboarding_agent_sign_in_agy">Melde dich mit deinem Google-Konto an. Dein Browser öffnet sich; melde dich dort an und Piggy übernimmt den Code von selbst.</string>
+    <string name="onboarding_agent_sign_in_grok">Melde dich mit deinem Grok-Konto an. Dein Browser öffnet sich; bestätige dort den Code und Piggy kommt von selbst zurück.</string>
     <string name="onboarding_agent_download_claude">Lädt einmalig etwa 235 MB herunter (Buddys Linux und Claude Code von Anthropic).</string>
     <string name="onboarding_agent_download_opencode">Lädt einmalig etwa 230 MB herunter (Buddys Linux, Node.js und OpenCode). Kein Konto nötig.</string>
     <string name="onboarding_agent_download_codex">Lädt einmalig etwa 150 MB herunter (Buddys Linux, Node.js und Codex von OpenAI).</string>
@@ -84,29 +84,29 @@
     <string name="onboarding_install_agent">%1$s installieren</string>
     <string name="onboarding_agents_wifi">Nutze am besten WLAN. Du kannst diesen Bildschirm während der Installation verlassen.</string>
     <string name="onboarding_stuck_sign_in_q">Nach der Anmeldung nicht zurückgekommen?</string>
-    <string name="onboarding_stuck_sign_in_a">Claude: Tippe auf der Claude-Seite auf „Code kopieren“ und komm dann zurück zu Buddy; Buddy übernimmt den Code aus der Zwischenablage.</string>
+    <string name="onboarding_stuck_sign_in_a">Claude: Tippe auf der Claude-Seite auf „Code kopieren“ und komm dann zurück zu Piggy; Piggy übernimmt den Code aus der Zwischenablage.</string>
     <string name="onboarding_stuck_install_q">Installation fehlgeschlagen?</string>
     <string name="onboarding_stuck_install_a">Prüfe deine Verbindung und starte die Installation noch einmal; sie macht dort weiter, wo sie aufgehört hat.</string>
 
-    <!-- Guide, step: let Buddy run in the background (Android's battery optimization). -->
+    <!-- Guide, step: let Piggy run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Weiterlaufen lassen</string>
-    <string name="onboarding_background_done">Buddy darf im Hintergrund laufen.</string>
-    <string name="onboarding_background_text">Damit dein Smartphone Buddy nicht zum Akkusparen beendet, während der Agent arbeitet.</string>
+    <string name="onboarding_background_done">Piggy darf im Hintergrund laufen.</string>
+    <string name="onboarding_background_text">Damit dein Smartphone Piggy nicht zum Akkusparen beendet, während der Agent arbeitet.</string>
     <string name="onboarding_allow">Zulassen</string>
     <string name="onboarding_skip_for_now">Vorerst überspringen</string>
 
     <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Wie oft soll der Agent fragen?</string>
-    <string name="onboarding_safety_text">Apps für Nachrichten, soziale Medien, Shopping, Zahlungen und Banking brauchen immer dein OK, bevor Buddy etwas sendet, postet, kauft oder löscht. Für deine anderen Apps:</string>
+    <string name="onboarding_safety_text">Apps für Nachrichten, soziale Medien, Shopping, Zahlungen und Banking brauchen immer dein OK, bevor Piggy etwas sendet, postet, kauft oder löscht. Für deine anderen Apps:</string>
     <string name="onboarding_safety_ask_title">Frag mich zuerst</string>
     <string name="onboarding_safety_ask_text">Der Agent fragt vor jedem riskanten Schritt, etwa bevor er eine Einstellung ändert. Sicherer, aber mehr Rückfragen.</string>
     <string name="onboarding_safety_auto_title">Selbstständig arbeiten</string>
     <string name="onboarding_safety_auto_text">Keine Rückfragen: Der Agent erledigt einfach, worum du gebeten hast, etwa eine Kamera oder ein Licht einschalten.</string>
-    <string name="onboarding_safety_note">Du kannst das jederzeit pro App ändern: Einstellungen → App-Berechtigungen. Stelle eine App auf „Frei“, damit der Agent dort ohne Rückfragen arbeitet, oder auf „Streng“, damit Buddy dich selbst fragt.</string>
+    <string name="onboarding_safety_note">Du kannst das jederzeit pro App ändern: Einstellungen → App-Berechtigungen. Stelle eine App auf „Frei“, damit der Agent dort ohne Rückfragen arbeitet, oder auf „Streng“, damit Piggy dich selbst fragt.</string>
 
     <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Alles bereit</string>
-    <string name="onboarding_try_text">Probiere eine erste Aufgabe aus. Buddy öffnet die Einstellungen und schaut für dich nach.</string>
+    <string name="onboarding_try_text">Probiere eine erste Aufgabe aus. Piggy öffnet die Einstellungen und schaut für dich nach.</string>
     <string name="onboarding_try_prompt">Öffne die Einstellungen und sag mir meine Android-Version</string>
     <string name="onboarding_try_prompt_quoted">„%1$s“</string>
     <string name="onboarding_try_tip">Tipp: Die Bubble schwebt über anderen Apps. Ziehe sie auf das ✕, um sie auszublenden.</string>
@@ -119,7 +119,7 @@
     <string name="main_status_setup">Einrichtung %1$d/%2$d</string>
     <string name="main_setup_title">Schließe die Einrichtung ab, um Chats zu nutzen</string>
     <string name="main_setup_next">Als Nächstes: %1$s</string>
-    <string name="main_setup_next_accessibility">Als Nächstes: Bedienungshilfe von Buddy öffnen</string>
+    <string name="main_setup_next_accessibility">Als Nächstes: Bedienungshilfe von Piggy öffnen</string>
     <string name="main_section_working">Aktiv</string>
     <string name="main_section_recent">Kürzlich</string>
     <string name="main_empty_title">Noch keine Chats</string>
@@ -148,28 +148,28 @@
 
     <!-- Notification shown after the bubble is dragged away to hide it. -->
     <string name="notice_channel_name">Ausgeblendete Bubble</string>
-    <string name="notice_hidden_title">Buddy ist ausgeblendet</string>
+    <string name="notice_hidden_title">Piggy ist ausgeblendet</string>
     <string name="notice_hidden_text">Tippe, um die Bubble wieder anzuzeigen.</string>
     <string name="notice_open_chats">Chats öffnen</string>
 
-    <!-- Buddy's own updates (GitHub version): notification, update sheet and messages. -->
-    <string name="update_channel_name">Buddy-Updates</string>
-    <string name="update_available_title">Buddy %1$s ist verfügbar</string>
+    <!-- Piggy's own updates (GitHub version): notification, update sheet and messages. -->
+    <string name="update_channel_name">Piggy-Updates</string>
+    <string name="update_available_title">Piggy %1$s ist verfügbar</string>
     <string name="update_notification_text">Du hast %1$s. Tippe, um die Neuerungen zu sehen und zu aktualisieren; deine Chats bleiben erhalten.</string>
     <string name="update_action">Aktualisieren</string>
     <string name="update_mute">Stummschalten</string>
     <string name="update_muted">Keine Update-Hinweise mehr. Du kannst sie in den Einstellungen wieder einschalten.</string>
     <string name="update_checking">Suche nach Updates…</string>
     <string name="update_check_failed">GitHub ist nicht erreichbar. Versuche es später noch einmal.</string>
-    <string name="update_up_to_date">Buddy %1$s ist auf dem neuesten Stand.</string>
+    <string name="update_up_to_date">Piggy %1$s ist auf dem neuesten Stand.</string>
     <string name="update_sheet_text">Du hast %1$s. Beim Aktualisieren bleiben deine Chats, Einstellungen und Anmeldungen erhalten.</string>
     <string name="update_later">Später</string>
     <string name="update_downloading">Lädt herunter…</string>
-    <string name="update_needs_permission">Erlaube Buddy, Apps zu installieren, und tippe dann noch einmal auf „Aktualisieren“.</string>
-    <string name="update_error_no_apk">Das Release enthält noch keine buddy.apk.</string>
+    <string name="update_needs_permission">Erlaube Piggy, Apps zu installieren, und tippe dann noch einmal auf „Aktualisieren“.</string>
+    <string name="update_error_no_apk">Das Release enthält noch keine piggy.apk.</string>
     <string name="update_error_download">Der Download ist fehlgeschlagen (%1$s).</string>
-    <string name="update_error_not_newer">Die heruntergeladene Datei ist keine neuere Buddy-Version und wurde daher nicht geöffnet.</string>
-    <string name="update_failed_manual">%1$s Du bekommst das Update auch unter %2$s (buddy.apk) oder über Obtainium mit automatischen Updates (siehe %3$s).</string>
+    <string name="update_error_not_newer">Die heruntergeladene Datei ist keine neuere Piggy-Version und wurde daher nicht geöffnet.</string>
+    <string name="update_failed_manual">%1$s Du bekommst das Update auch unter %2$s (piggy.apk) oder über Obtainium mit automatischen Updates (siehe %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">System</string>
@@ -189,7 +189,7 @@
     <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
 
     <!-- Floating bubble, read by TalkBack. -->
-    <string name="bubble_face_description">Buddy. Tippen zum Öffnen, gedrückt halten für Aktionen</string>
+    <string name="bubble_face_description">Piggy. Tippen zum Öffnen, gedrückt halten für Aktionen</string>
     <string name="bubble_show_actions">Aktionen anzeigen</string>
 
     <!-- Status pill beside the bubble: at most two lines, about 250dp wide. -->
@@ -235,8 +235,8 @@
     <string name="bubble_stopping">Wird gestoppt…</string>
     <string name="bubble_nothing_running">In Buddys Chats läuft gerade nichts.</string>
     <string name="bubble_nothing_running_chat">In diesem Chat läuft gerade nichts.</string>
-    <string name="bubble_allow_mic_tap_mic">Erlaube Buddy den Mikrofonzugriff und tippe dann noch einmal auf das Mikrofon.</string>
-    <string name="bubble_allow_mic_tap_bubble">Erlaube Buddy den Mikrofonzugriff und tippe dann noch einmal auf die Bubble.</string>
+    <string name="bubble_allow_mic_tap_mic">Erlaube Piggy den Mikrofonzugriff und tippe dann noch einmal auf das Mikrofon.</string>
+    <string name="bubble_allow_mic_tap_bubble">Erlaube Piggy den Mikrofonzugriff und tippe dann noch einmal auf die Bubble.</string>
     <string name="bubble_note_added">Verstanden: %1$s berücksichtigt das</string>
     <string name="bubble_copied">Kopiert</string>
 
@@ -304,12 +304,12 @@
     <string name="card_note_skipped">Frage übersprungen</string>
 
     <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
-    <string name="control_channel_name">Buddy bedient dein Smartphone</string>
+    <string name="control_channel_name">Piggy bedient dein Smartphone</string>
     <string name="control_channel_description">Wird in der Statusleiste angezeigt, während ein Agent das Smartphone bedient.</string>
-    <string name="control_title">Buddy bedient dein Smartphone</string>
-    <string name="control_text">Berühre den Bildschirm nicht, bis Buddy fertig ist, oder tippe auf „Stoppen“, um selbst zu übernehmen.</string>
+    <string name="control_title">Piggy bedient dein Smartphone</string>
+    <string name="control_text">Berühre den Bildschirm nicht, bis Piggy fertig ist, oder tippe auf „Stoppen“, um selbst zu übernehmen.</string>
     <string name="control_stop">Stoppen</string>
-    <string name="pause_call_ended_title">Anruf beendet · Buddy ist pausiert</string>
+    <string name="pause_call_ended_title">Anruf beendet · Piggy ist pausiert</string>
     <string name="pause_call_ended_text">Tippe, um die Aufgabe fortzusetzen</string>
 
     <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, BuddyService, Voice) ===== -->
@@ -344,7 +344,7 @@
     <string name="schedule_title">Zeitplan</string>
     <string name="schedule_set">Zeitplan festlegen</string>
     <string name="schedule_set_info">Schick diesem Chat zu festen Zeiten von selbst eine Nachricht, z. B. jeden Tag um 14:00.</string>
-    <string name="schedule_info">Zur festgelegten Zeit schickt Buddy diese Nachricht in den Chat, als hättest du sie getippt, mit dem Agenten und den Optionen dieses Chats. Freigabekarten warten weiterhin auf dich. Braucht es den Bildschirm, während das Handy gesperrt ist, bittet es dich zu entsperren.</string>
+    <string name="schedule_info">Zur festgelegten Zeit schickt Piggy diese Nachricht in den Chat, als hättest du sie getippt, mit dem Agenten und den Optionen dieses Chats. Freigabekarten warten weiterhin auf dich. Braucht es den Bildschirm, während das Handy gesperrt ist, bittet es dich zu entsperren.</string>
     <string name="schedule_time">Uhrzeit</string>
     <string name="schedule_days">Tage</string>
     <string name="schedule_daily">Jeden Tag</string>
@@ -354,7 +354,7 @@
     <string name="schedule_message_hint">Was gesendet wird, z. B. Öffne die App und mach den heutigen Check-in</string>
     <string name="schedule_wake">Handy für diese Aufgabe wecken</string>
     <string name="schedule_wake_info">Wenn es den Bildschirm braucht, geht er an (und ein Sperrbildschirm ohne PIN, Muster oder Fingerabdruck öffnet sich). Solange es läuft, kann jeder in der Nähe den Bildschirm sehen.</string>
-    <string name="schedule_inexact">Genaue Wecker sind für Buddy aus, daher kann es ein paar Minuten später starten.</string>
+    <string name="schedule_inexact">Genaue Wecker sind für Piggy aus, daher kann es ein paar Minuten später starten.</string>
     <string name="schedule_allow_exact">Genaue Wecker erlauben</string>
     <string name="schedule_save">Speichern</string>
     <string name="schedule_remove">Entfernen</string>
@@ -370,7 +370,7 @@
     <string name="schedule_skipped_title">Geplante Aufgabe übersprungen: %1$s</string>
     <string name="schedule_stopped_title">Geplante Aufgabe gestoppt: %1$s</string>
     <string name="schedule_skip_running">Dieser Chat war noch mit seiner letzten Aufgabe beschäftigt.</string>
-    <string name="schedule_skip_busy">Buddy war eine Stunde lang beschäftigt (eine andere Aufgabe, eine Pause oder kein Internet).</string>
+    <string name="schedule_skip_busy">Piggy war eine Stunde lang beschäftigt (eine andere Aufgabe, eine Pause oder kein Internet).</string>
     <string name="schedule_skip_screen">Das Handy blieb eine Stunde lang gesperrt.</string>
     <string name="schedule_marker">Geplant</string>
 
@@ -408,7 +408,7 @@
     <string name="live_ended">Live-Stimme beendet.</string>
     <string name="live_ended_why">Live-Stimme beendet: %1$s</string>
     <string name="live_ended_screen_off">der Bildschirm ging aus</string>
-    <string name="live_ended_paused">Buddy wurde pausiert</string>
+    <string name="live_ended_paused">Piggy wurde pausiert</string>
     <string name="live_ended_idle">5 Minuten lang wurde nichts gesagt</string>
     <string name="live_notification_title">Live-Stimme mit Codex</string>
     <string name="live_mic_busy">Die Live-Stimme nutzt das Mikrofon. Beende sie zuerst.</string>
@@ -456,7 +456,7 @@
         <item quantity="other">%1$d Tool-Aufrufe</item>
     </plurals>
 
-    <!-- Notes Buddy posts into a chat, and the chat's status line -->
+    <!-- Notes Piggy posts into a chat, and the chat's status line -->
     <string name="hub_continuing">Eine frühere Sitzung von %1$s wird fortgesetzt. Wenn sie noch in einem Terminal offen ist, schließe sie dort zuerst.</string>
     <string name="hub_still_working_attachments">In diesem Chat läuft noch eine Aufgabe. Sende Anhänge, wenn sie fertig ist.</string>
     <string name="hub_thinking">Denkt nach…</string>
@@ -509,8 +509,8 @@
     <string name="hub_tool_asking">Fragt: %1$s</string>
     <string name="hub_tool_point_out">Zeigt dir: %1$s</string>
     <string name="hub_tool_point_out_any">Zeigt dir etwas auf dem Bildschirm</string>
-    <string name="hub_tool_update_download">Lädt das Buddy-Update herunter</string>
-    <string name="hub_tool_update_check">Sucht nach einem Buddy-Update</string>
+    <string name="hub_tool_update_download">Lädt das Piggy-Update herunter</string>
+    <string name="hub_tool_update_check">Sucht nach einem Piggy-Update</string>
     <string name="hub_tool_web_search">Sucht im Web: %1$s</string>
     <string name="hub_tool_web_fetch">Liest %1$s</string>
     <string name="hub_tool_command">Führt aus: %1$s</string>
@@ -520,9 +520,9 @@
     <string name="hub_tool_read_file">Liest %1$s</string>
     <string name="hub_tool_other">Nutzt %1$s</string>
 
-    <!-- Transcript of an earlier agent session that isn't a Buddy chat (read-only) -->
+    <!-- Transcript of an earlier agent session that isn't a Piggy chat (read-only) -->
     <string name="transcript_loading">Wird geladen…</string>
-    <string name="transcript_continue">In Buddy fortsetzen</string>
+    <string name="transcript_continue">In Piggy fortsetzen</string>
     <string name="transcript_empty">Keine lesbaren Nachrichten in dieser Sitzung.</string>
     <plurals name="transcript_last_messages">
         <item quantity="one">letzte Nachricht · nur lesen</item>
@@ -533,11 +533,11 @@
     <string name="ui_no_app_for_link">Keine App kann diesen Link öffnen</string>
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
-    <string name="ui_a11y_title">Wie Buddy die Bedienungshilfen nutzt</string>
-    <string name="ui_a11y_what">Buddy nutzt den Bedienungshilfen-Dienst von Android, um in anderen Apps zu erledigen, worum du bittest: Buddy liest, was auf dem Bildschirm zu sehen ist, und tippt, schreibt und scrollt für dich. Außerdem zeigt Buddy die schwebende Bubble an.</string>
+    <string name="ui_a11y_title">Wie Piggy die Bedienungshilfen nutzt</string>
+    <string name="ui_a11y_what">Piggy nutzt den Bedienungshilfen-Dienst von Android, um in anderen Apps zu erledigen, worum du bittest: Piggy liest, was auf dem Bildschirm zu sehen ist, und tippt, schreibt und scrollt für dich. Außerdem zeigt Piggy die schwebende Bubble an.</string>
     <string name="ui_a11y_data">Während eine Aufgabe läuft, werden die Bildschirminhalte, die persönliche Informationen wie Nachrichten, Namen oder Adressen enthalten können, an den KI-Dienst des von dir gewählten Agenten gesendet (Anthropic für Claude Code, OpenAI für Codex, Google für Antigravity, xAI für Grok oder der Anbieter deines OpenCode-Modells), und zwar ausschließlich, um deine Anfrage auszuführen.</string>
-    <string name="ui_a11y_no_servers">Buddy hat keine eigenen Server. Buddy erhebt, verkauft oder teilt diese Daten nicht und nutzt sie nicht für Werbung.</string>
-    <string name="ui_a11y_asks">Bevor etwas gesendet, gepostet, gekauft oder gelöscht wird, fragt Buddy nach deinem OK. Du kannst den Dienst jederzeit in den Android-Einstellungen unter „Bedienungshilfen“ deaktivieren.</string>
+    <string name="ui_a11y_no_servers">Piggy hat keine eigenen Server. Piggy erhebt, verkauft oder teilt diese Daten nicht und nutzt sie nicht für Werbung.</string>
+    <string name="ui_a11y_asks">Bevor etwas gesendet, gepostet, gekauft oder gelöscht wird, fragt Piggy nach deinem OK. Du kannst den Dienst jederzeit in den Android-Einstellungen unter „Bedienungshilfen“ deaktivieren.</string>
     <string name="ui_privacy_policy">Datenschutzerklärung</string>
     <string name="ui_no_thanks">Nein danke</string>
     <string name="ui_agree_continue">Zustimmen und weiter</string>
@@ -548,7 +548,7 @@
     <string name="ui_nav_settings">Einstellungen</string>
 
     <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
-    <string name="service_pause_expired">Nach 5 Minuten Pause hat Buddy die Aufgabe beendet.</string>
+    <string name="service_pause_expired">Nach 5 Minuten Pause hat Piggy die Aufgabe beendet.</string>
     <string name="service_stopped_toast">Gestoppt. Dein Smartphone gehört wieder dir.</string>
     <string name="service_paused_note">Pausiert: Das Smartphone gehört dir, bis du die Aufgabe fortsetzt</string>
     <string name="service_paused_toast">Pausiert. Nutze dein Smartphone und tippe dann neben der Bubble auf „Pausiert“, um die Aufgabe fortzusetzen.</string>
@@ -557,7 +557,7 @@
     <string name="service_autopaused_call">Pausiert wegen eines Anrufs. Tippe neben der Bubble auf „Pausiert“, um die Aufgabe fortzusetzen.</string>
 
     <!-- Voice input and output -->
-    <string name="voice_mic_needed">Buddy braucht das Mikrofon. Öffne die Buddy-App und tippe einmal auf 🎙, um den Zugriff zu erlauben.</string>
+    <string name="voice_mic_needed">Piggy braucht das Mikrofon. Öffne die Piggy-App und tippe einmal auf 🎙, um den Zugriff zu erlauben.</string>
     <string name="voice_no_recognizer">Auf diesem Smartphone gibt es keinen Spracherkennungsdienst.</string>
     <string name="voice_starting">Startet…</string>
     <string name="voice_finishing">Gleich fertig…</string>
@@ -575,11 +575,11 @@
 
     <!-- Sign-in screen: the agent isn't installed yet. -->
     <string name="signin_install">%1$s installieren</string>
-    <string name="signin_install_sub_claude">Führt Claude Code in Buddy aus – mit deinem Claude-Abo.</string>
-    <string name="signin_install_sub_opencode">Führt OpenCode in Buddy aus. Die kostenlosen Modelle funktionieren sofort, ohne Konto; eigene Anbieter (Anthropic, OpenAI, GitHub Copilot …) kannst du jederzeit verbinden.</string>
-    <string name="signin_install_sub_codex">Führt Codex in Buddy aus – mit deinem ChatGPT-Abo.</string>
-    <string name="signin_install_sub_agy">Führt Googles Antigravity CLI in Buddy aus – mit deinem Google-Konto: im kostenlosen Tarif oder mit Google AI Pro bzw. Ultra.</string>
-    <string name="signin_install_sub_grok">Führt Grok Build von xAI in Buddy aus – mit deinem Grok-Konto (Anmeldung mit Google oder X geht auch).</string>
+    <string name="signin_install_sub_claude">Führt Claude Code in Piggy aus – mit deinem Claude-Abo.</string>
+    <string name="signin_install_sub_opencode">Führt OpenCode in Piggy aus. Die kostenlosen Modelle funktionieren sofort, ohne Konto; eigene Anbieter (Anthropic, OpenAI, GitHub Copilot …) kannst du jederzeit verbinden.</string>
+    <string name="signin_install_sub_codex">Führt Codex in Piggy aus – mit deinem ChatGPT-Abo.</string>
+    <string name="signin_install_sub_agy">Führt Googles Antigravity CLI in Piggy aus – mit deinem Google-Konto: im kostenlosen Tarif oder mit Google AI Pro bzw. Ultra.</string>
+    <string name="signin_install_sub_grok">Führt Grok Build von xAI in Piggy aus – mit deinem Grok-Konto (Anmeldung mit Google oder X geht auch).</string>
     <string name="signin_install_size_claude">Lädt einmalig etwa 235 MB herunter: Buddys Linux und Claude Code von Anthropic. Nutze am besten WLAN.</string>
     <string name="signin_install_size_opencode">Lädt einmalig etwa 230 MB herunter: Buddys Linux, Node.js und OpenCode. Nutze am besten WLAN.</string>
     <string name="signin_install_size_codex">Lädt einmalig etwa 150 MB herunter: Buddys Linux, Node.js und Codex von OpenAI. Nutze am besten WLAN.</string>
@@ -596,10 +596,10 @@
     <string name="signin_title_chatgpt">Bei ChatGPT anmelden</string>
     <string name="signin_title_google">Bei Google anmelden</string>
     <string name="signin_title_grok">Bei Grok anmelden</string>
-    <string name="signin_sub_claude">Nutze dein Claude-Konto (Pro oder Max). Dein Browser öffnet sich; bestätige dort und Buddy kommt von selbst zurück.</string>
-    <string name="signin_sub_chatgpt">Nutze dein ChatGPT-Konto (Plus, Pro oder Business). Dein Browser öffnet sich; bestätige dort und Buddy kommt von selbst zurück.</string>
-    <string name="signin_sub_agy">Nutze dein Google-Konto. Dein Browser öffnet sich; melde dich dort an und Buddy übernimmt den Code von selbst. Antigravity wartet etwa eine Minute.</string>
-    <string name="signin_sub_grok">Nutze dein Grok-Konto; die Anmeldung mit Google oder X geht auch. Dein Browser öffnet sich mit einem Code; bestätige ihn dort und Buddy kommt von selbst zurück.</string>
+    <string name="signin_sub_claude">Nutze dein Claude-Konto (Pro oder Max). Dein Browser öffnet sich; bestätige dort und Piggy kommt von selbst zurück.</string>
+    <string name="signin_sub_chatgpt">Nutze dein ChatGPT-Konto (Plus, Pro oder Business). Dein Browser öffnet sich; bestätige dort und Piggy kommt von selbst zurück.</string>
+    <string name="signin_sub_agy">Nutze dein Google-Konto. Dein Browser öffnet sich; melde dich dort an und Piggy übernimmt den Code von selbst. Antigravity wartet etwa eine Minute.</string>
+    <string name="signin_sub_grok">Nutze dein Grok-Konto; die Anmeldung mit Google oder X geht auch. Dein Browser öffnet sich mit einem Code; bestätige ihn dort und Piggy kommt von selbst zurück.</string>
     <string name="signin_with_claude">Mit Claude anmelden</string>
     <string name="signin_with_chatgpt">Mit ChatGPT anmelden</string>
     <string name="signin_with_google">Mit Google anmelden</string>
@@ -611,10 +611,10 @@
     <string name="signin_sign_in">Anmelden</string>
     <string name="signin_starting">Anmeldung wird gestartet…</string>
     <string name="signin_approve_title">Im Browser bestätigen</string>
-    <string name="signin_approve_claude">Tippe auf der Claude-Seite auf „Autorisieren“. Buddy übernimmt den Code und kommt von selbst zurück.</string>
-    <string name="signin_approve_codex">Melde dich an und erlaube Codex den Zugriff. Komm dann zurück zu Buddy; der Rest geht automatisch.</string>
-    <string name="signin_approve_agy">Melde dich an und erlaube Antigravity den Zugriff. Buddy übernimmt den Code, den die Seite anzeigt, und kommt von selbst zurück. Dauert es länger als eine Minute, starte die Anmeldung neu.</string>
-    <string name="signin_approve_grok">Prüfe, ob die Seite %1$s anzeigt, dann bestätige und melde dich an. Buddy kommt von selbst zurück.</string>
+    <string name="signin_approve_claude">Tippe auf der Claude-Seite auf „Autorisieren“. Piggy übernimmt den Code und kommt von selbst zurück.</string>
+    <string name="signin_approve_codex">Melde dich an und erlaube Codex den Zugriff. Komm dann zurück zu Piggy; der Rest geht automatisch.</string>
+    <string name="signin_approve_agy">Melde dich an und erlaube Antigravity den Zugriff. Piggy übernimmt den Code, den die Seite anzeigt, und kommt von selbst zurück. Dauert es länger als eine Minute, starte die Anmeldung neu.</string>
+    <string name="signin_approve_grok">Prüfe, ob die Seite %1$s anzeigt, dann bestätige und melde dich an. Piggy kommt von selbst zurück.</string>
     <string name="signin_open_again">Anmeldeseite noch einmal öffnen</string>
     <string name="signin_signing_in">Anmeldung läuft</string>
     <string name="signin_finishing">Anmeldung wird abgeschlossen…</string>
@@ -623,9 +623,9 @@
     <!-- Sign-in screen: signing in from another device. -->
     <string name="signin_remote_claude">Öffne diesen Link auf einem beliebigen Gerät und bestätige. Kopiere dann den Code, den die Seite anzeigt, und füge ihn unten ein.</string>
     <string name="signin_enter_code">Gib diesen Code ein</string>
-    <string name="signin_remote_codex">Öffne auf einem beliebigen Gerät den Link unten, melde dich bei ChatGPT an und gib den Code ein. Buddy erledigt den Rest von selbst.</string>
+    <string name="signin_remote_codex">Öffne auf einem beliebigen Gerät den Link unten, melde dich bei ChatGPT an und gib den Code ein. Piggy erledigt den Rest von selbst.</string>
     <string name="signin_remote_agy">Öffne diesen Link auf einem beliebigen Gerät und melde dich an. Kopiere dann den Code, den die Seite anzeigt, und füge ihn innerhalb von etwa einer Minute unten ein.</string>
-    <string name="signin_remote_grok">Öffne auf einem beliebigen Gerät den Link unten, melde dich bei Grok an und bestätige den Code. Buddy erledigt den Rest von selbst.</string>
+    <string name="signin_remote_grok">Öffne auf einem beliebigen Gerät den Link unten, melde dich bei Grok an und bestätige den Code. Piggy erledigt den Rest von selbst.</string>
     <string name="signin_copy_code">Code kopieren</string>
     <string name="signin_code_copied">Code kopiert</string>
     <string name="signin_code_expiry">Der Code ist 15 Minuten lang gültig.</string>
@@ -639,8 +639,8 @@
 
     <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Code manuell einfügen</string>
-    <string name="signin_paste_help">Falls Buddy nicht von selbst zurückkommt: Tippe auf der Claude-Seite auf „Code kopieren“ und füge den Code hier ein.</string>
-    <string name="signin_paste_help_agy">Falls Buddy nicht von selbst zurückkommt: Tippe auf der Antigravity-Seite auf „Copy to Clipboard“ und füge den Code hier ein.</string>
+    <string name="signin_paste_help">Falls Piggy nicht von selbst zurückkommt: Tippe auf der Claude-Seite auf „Code kopieren“ und füge den Code hier ein.</string>
+    <string name="signin_paste_help_agy">Falls Piggy nicht von selbst zurückkommt: Tippe auf der Antigravity-Seite auf „Copy to Clipboard“ und füge den Code hier ein.</string>
     <string name="signin_code_hint">Code</string>
     <string name="signin_use_code">Nutzen</string>
     <string name="signin_start_again">Starte die Anmeldung zuerst neu.</string>
@@ -651,7 +651,7 @@
     <string name="signin_done">Fertig</string>
     <string name="signin_sign_out">Abmelden</string>
     <string name="signin_sign_out_title">Bei %1$s abmelden?</string>
-    <string name="signin_sign_out_text">%1$s funktioniert in Buddy erst wieder, wenn du dich erneut anmeldest.</string>
+    <string name="signin_sign_out_text">%1$s funktioniert in Piggy erst wieder, wenn du dich erneut anmeldest.</string>
     <string name="signin_opencode_ready">OpenCode ist bereit</string>
     <string name="signin_opencode_free">Nutzt die kostenlosen Modelle von OpenCode. Wähle in jedem Chat oben ein Modell aus oder verbinde einen eigenen Anbieter.</string>
     <string name="signin_opencode_connected">Verbunden: %1$s. Die kostenlosen Modelle von OpenCode bleiben ebenfalls verfügbar.</string>
@@ -723,7 +723,7 @@
     <string name="remote_start_failed">Start fehlgeschlagen: %1$s</string>
     <string name="remote_keeps_stopping">Die Sitzung bricht immer wieder ab. Schalte sie aus und wieder ein oder prüfe die Anmeldung bei Claude Code.</string>
     <string name="codex_pair_getting">Code wird geholt…</string>
-    <string name="codex_pair_text">Gib diesen Code in ChatGPT ein: auf einem Smartphone in Codex, auf einem Computer unter Einstellungen → Verbindungen → Andere Geräte steuern. Er funktioniert einmal, bis %1$s. Buddy erscheint dort als „localhost“.</string>
+    <string name="codex_pair_text">Gib diesen Code in ChatGPT ein: auf einem Smartphone in Codex, auf einem Computer unter Einstellungen → Verbindungen → Andere Geräte steuern. Er funktioniert einmal, bis %1$s. Piggy erscheint dort als „localhost“.</string>
     <string name="codex_pair_failed">Kopplungscode nicht erhalten: %1$s</string>
     <string name="codex_keeps_stopping">Die Sitzung mit Codex bricht immer wieder ab: %1$s</string>
     <string name="ssh_keeps_stopping">Der SSH-Server stoppt immer wieder: %1$s</string>
@@ -734,40 +734,40 @@
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Einstellungen</string>
-    <string name="setup_settings_subtitle">Buddy führt Claude Code, Codex, OpenCode, Antigravity oder Grok direkt in der App aus, mit deinem eigenen Abo (oder den kostenlosen Modellen von OpenCode und dem kostenlosen Tarif von Antigravity).</string>
+    <string name="setup_settings_subtitle">Piggy führt Claude Code, Codex, OpenCode, Antigravity oder Grok direkt in der App aus, mit deinem eigenen Abo (oder den kostenlosen Modellen von OpenCode und dem kostenlosen Tarif von Antigravity).</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <string name="setup_card_title">Einrichtung</string>
     <string name="setup_open_guide">Schritt-für-Schritt-Anleitung öffnen</string>
-    <string name="setup_all_set">Alles eingerichtet. Buddy ist bereit.</string>
+    <string name="setup_all_set">Alles eingerichtet. Piggy ist bereit.</string>
     <string name="setup_next_step">Als Nächstes: %1$s</string>
-    <string name="setup_step_a11y_title">Bedienungshilfe von Buddy aktivieren</string>
-    <string name="setup_step_a11y_body">Damit erscheint die Bubble und Buddy kann den Bildschirm lesen sowie für dich tippen und Text eingeben.</string>
+    <string name="setup_step_a11y_title">Bedienungshilfe von Piggy aktivieren</string>
+    <string name="setup_step_a11y_body">Damit erscheint die Bubble und Piggy kann den Bildschirm lesen sowie für dich tippen und Text eingeben.</string>
     <string name="setup_step_a11y_restricted">Schalter ausgegraut („Eingeschränkte Einstellung“)? Android blockiert das bei Apps, die aus einer Datei installiert wurden. Tippe auf App-Info, dann oben rechts auf ⋮ → Eingeschränkte Einstellungen zulassen und versuche es noch einmal.</string>
     <string name="setup_open_settings">Einstellungen öffnen</string>
     <string name="setup_app_info">App-Info</string>
     <string name="setup_step_install_title">%1$s installieren</string>
-    <string name="setup_step_install_done">%1$s ist in Buddy installiert.</string>
-    <string name="setup_step_install_claude">Buddy lädt sein eigenes kleines Linux und %1$s von Anthropic herunter (etwa 235 MB).</string>
-    <string name="setup_step_install_opencode">Buddy lädt sein eigenes kleines Linux und %1$s herunter (etwa 230 MB mit Node.js).</string>
-    <string name="setup_step_install_codex">Buddy lädt sein eigenes kleines Linux und %1$s von OpenAI herunter (etwa 150 MB).</string>
-    <string name="setup_step_install_grok">Buddy lädt sein eigenes kleines Linux und %1$s von xAI herunter (etwa 170 MB).</string>
+    <string name="setup_step_install_done">%1$s ist in Piggy installiert.</string>
+    <string name="setup_step_install_claude">Piggy lädt sein eigenes kleines Linux und %1$s von Anthropic herunter (etwa 235 MB).</string>
+    <string name="setup_step_install_opencode">Piggy lädt sein eigenes kleines Linux und %1$s herunter (etwa 230 MB mit Node.js).</string>
+    <string name="setup_step_install_codex">Piggy lädt sein eigenes kleines Linux und %1$s von OpenAI herunter (etwa 150 MB).</string>
+    <string name="setup_step_install_grok">Piggy lädt sein eigenes kleines Linux und %1$s von xAI herunter (etwa 170 MB).</string>
     <string name="setup_install">Installieren</string>
     <string name="setup_step_signin_title">Anmelden</string>
     <string name="setup_step_signin_opencode_done">Keine Anmeldung nötig: Die kostenlosen Modelle von OpenCode funktionieren sofort. Eigene Anbieter kannst du jederzeit verbinden.</string>
     <string name="setup_step_signin_opencode">Für die kostenlosen Modelle von OpenCode ist keine Anmeldung nötig.</string>
     <string name="setup_step_signin_done">Angemeldet.</string>
     <string name="setup_step_signin_done_email">Angemeldet als %1$s.</string>
-    <string name="setup_step_signin_claude">Mit deinem Claude-Konto (Pro oder Max). Dein Browser öffnet sich; bestätige dort und Buddy kommt von selbst zurück.</string>
-    <string name="setup_step_signin_codex">Mit deinem ChatGPT-Konto. Dein Browser öffnet sich; bestätige dort und Buddy kommt von selbst zurück.</string>
-    <string name="setup_step_signin_grok">Mit deinem Grok-Konto. Dein Browser öffnet sich; bestätige dort den Code und Buddy kommt von selbst zurück.</string>
+    <string name="setup_step_signin_claude">Mit deinem Claude-Konto (Pro oder Max). Dein Browser öffnet sich; bestätige dort und Piggy kommt von selbst zurück.</string>
+    <string name="setup_step_signin_codex">Mit deinem ChatGPT-Konto. Dein Browser öffnet sich; bestätige dort und Piggy kommt von selbst zurück.</string>
+    <string name="setup_step_signin_grok">Mit deinem Grok-Konto. Dein Browser öffnet sich; bestätige dort den Code und Piggy kommt von selbst zurück.</string>
     <string name="setup_sign_in">Anmelden</string>
-    <string name="setup_step_background_title">Buddy im Hintergrund laufen lassen</string>
+    <string name="setup_step_background_title">Piggy im Hintergrund laufen lassen</string>
     <string name="setup_step_background_done">Zugelassen.</string>
-    <string name="setup_step_background_body">Damit dein Smartphone Buddy nicht zum Akkusparen beendet, während der Agent arbeitet.</string>
+    <string name="setup_step_background_body">Damit dein Smartphone Piggy nicht zum Akkusparen beendet, während der Agent arbeitet.</string>
     <string name="setup_allow">Zulassen</string>
     <string name="setup_step_try_title">Ausprobieren</string>
-    <string name="setup_step_try_done">Buddy hat dir geantwortet. Tippe jederzeit auf die Bubble, um mehr zu fragen.</string>
+    <string name="setup_step_try_done">Piggy hat dir geantwortet. Tippe jederzeit auf die Bubble, um mehr zu fragen.</string>
     <string name="setup_step_try_body">Tippe auf die Bubble am Bildschirmrand und frag etwas wie „Öffne Messenger“ oder starte hier einen Chat.</string>
     <string name="setup_step_try_wait">Schließe zuerst die Schritte oben ab.</string>
     <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
@@ -780,7 +780,7 @@
     <string name="setup_theme_mode">Modus</string>
     <string name="setup_accent">Akzentfarbe</string>
     <string name="setup_surface">Hintergrund</string>
-    <string name="setup_surface_note">Warm ist der ursprüngliche Farbton von Buddy. Schwarz (echtes Schwarz) gilt nur im dunklen Modus.</string>
+    <string name="setup_surface_note">Warm ist der ursprüngliche Farbton von Piggy. Schwarz (echtes Schwarz) gilt nur im dunklen Modus.</string>
     <string name="setup_face">Buddys Aussehen</string>
     <string name="setup_face_buddy">Original</string>
     <string name="setup_face_picture">Eigenes Bild</string>
@@ -817,13 +817,13 @@
     <string name="setup_voice">Stimme</string>
     <string name="setup_voice_input">Spracheingabe</string>
     <string name="setup_voice_phone">Gerät</string>
-    <string name="setup_voice_input_claude">Die Diktierfunktion von Claude Code über dein Claude-Abo: sehr genau. Unterstützt Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch, Niederländisch, Türkisch, Russisch, Japanisch und mehr, aber kein Arabisch: Dafür nutzt Buddy die Spracherkennung des Smartphones. Der Text erscheint, sobald du eine Pause machst.</string>
+    <string name="setup_voice_input_claude">Die Diktierfunktion von Claude Code über dein Claude-Abo: sehr genau. Unterstützt Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch, Niederländisch, Türkisch, Russisch, Japanisch und mehr, aber kein Arabisch: Dafür nutzt Piggy die Spracherkennung des Smartphones. Der Text erscheint, sobald du eine Pause machst.</string>
     <string name="setup_voice_input_chatgpt">Die Stimme von ChatGPT über Codex, mit deinem ChatGPT-Abo. Versteht jede Sprache, sogar gemischt in einem Satz. Nur deine Worte werden genutzt: Die gesprochenen Antworten von ChatGPT sind stummgeschaltet und es kann nichts ausführen.</string>
     <string name="setup_voice_input_phone">Die Spracherkennung deines Smartphones (auf den meisten Geräten von Google). Live-Text beim Sprechen; erkennt, welche deiner Sprachen du sprichst.</string>
     <string name="setup_voice_output">Sprachausgabe</string>
     <string name="setup_voice_output_chatgpt">Antworten werden mit der natürlichen Stimme von ChatGPT vorgelesen (dein ChatGPT-Abo, über Codex). Das zählt zu deiner ChatGPT-Sprachnutzung; ist die ChatGPT-Stimme nicht verfügbar, liest stattdessen die Stimme des Smartphones vor.</string>
     <string name="setup_voice_output_phone">Die Stimmen der Sprachausgabe deines Smartphones, in der Sprache der Antwort.</string>
-    <string name="setup_voice_sample">Bonjour ! Hallo, ich bin Buddy. So klinge ich.</string>
+    <string name="setup_voice_sample">Bonjour ! Hallo, ich bin Piggy. So klinge ich.</string>
     <string name="setup_languages">Sprachen</string>
     <string name="setup_languages_hint">Tippe, um die Sprachen auszuwählen, die du sprichst. Halte eine gedrückt, um sie als Standard festzulegen. Halte im Chat das Mikrofon gedrückt, um die Sprache zu wechseln.</string>
     <string name="setup_sign_in_first">Melde dich zuerst bei %1$s an</string>
@@ -834,7 +834,7 @@
     <!-- Settings screen: Remote Control (a Claude Code session you continue from the Claude app). -->
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Sitzung mit Claude Code</string>
-    <string name="setup_remote_session_info">Eine Sitzung mit Claude Code, die mit den Smartphone-Tools in Buddy läuft. Setze sie in der Claude-App (Code) fort, auf diesem Smartphone oder auf jedem anderen Gerät.</string>
+    <string name="setup_remote_session_info">Eine Sitzung mit Claude Code, die mit den Smartphone-Tools in Piggy läuft. Setze sie in der Claude-App (Code) fort, auf diesem Smartphone oder auf jedem anderen Gerät.</string>
     <string name="setup_remote_sign_in_first">Melde dich zuerst bei Claude Code an.</string>
     <string name="setup_remote_active">aktiv · „%1$s“ in der Claude-App</string>
     <string name="setup_remote_starting">startet…</string>
@@ -842,7 +842,7 @@
     <string name="setup_remote_open">In der Claude-App öffnen</string>
     <string name="setup_remote_open_failed">Öffnen fehlgeschlagen.</string>
     <string name="setup_codex_session">Sitzung mit Codex</string>
-    <string name="setup_codex_session_info">Codex mit den Smartphone-Tools, in Buddy. Nutze es in der ChatGPT-App (Codex) auf diesem Smartphone oder auf einem Computer. Die Sandbox von Codex läuft hier nicht, daher fragt es mit Standardberechtigungen vor jedem Befehl.</string>
+    <string name="setup_codex_session_info">Codex mit den Smartphone-Tools, in Piggy. Nutze es in der ChatGPT-App (Codex) auf diesem Smartphone oder auf einem Computer. Die Sandbox von Codex läuft hier nicht, daher fragt es mit Standardberechtigungen vor jedem Befehl.</string>
     <string name="setup_codex_active">läuft · „localhost“ in ChatGPT</string>
     <string name="setup_codex_pair">Gerät koppeln</string>
     <string name="setup_ssh">SSH aus Termux</string>
@@ -850,11 +850,11 @@
     <string name="setup_ssh_active">läuft · Port %1$d</string>
     <string name="setup_ssh_how">Kopiere diesen Befehl und führe ihn einmal in Termux aus, innerhalb von 10 Minuten. Danach öffnest du Buddys Linux, indem du in Termux ssh buddy eingibst.</string>
 
-    <!-- Settings screen: chats left over from when Buddy ran its agents in Termux. -->
+    <!-- Settings screen: chats left over from when Piggy ran its agents in Termux. -->
     <string name="setup_old_chats_title">Alte Termux-Chats entfernen</string>
     <plurals name="setup_old_chats_body">
-        <item quantity="one">%1$d Chat aus der Zeit, bevor Buddy ein eigenes Linux hatte. Agenten können ihn nicht fortsetzen.</item>
-        <item quantity="other">%1$d Chats aus der Zeit, bevor Buddy ein eigenes Linux hatte. Agenten können sie nicht fortsetzen.</item>
+        <item quantity="one">%1$d Chat aus der Zeit, bevor Piggy ein eigenes Linux hatte. Agenten können ihn nicht fortsetzen.</item>
+        <item quantity="other">%1$d Chats aus der Zeit, bevor Piggy ein eigenes Linux hatte. Agenten können sie nicht fortsetzen.</item>
     </plurals>
     <plurals name="setup_old_chats_remove">
         <item quantity="one">%1$d alten Chat entfernen?</item>
@@ -873,31 +873,31 @@
     <string name="setup_tap_talk">Sprechen</string>
     <string name="setup_tap_app">Vollbild</string>
     <string name="setup_tap_panel_info">Öffnet den schwebenden Chat über der App, in der du gerade bist. Halte die Bubble gedrückt für weitere Optionen.</string>
-    <string name="setup_tap_app_info">Öffnet den Chat im Vollbild in Buddy. Halte die Bubble gedrückt für weitere Optionen.</string>
+    <string name="setup_tap_app_info">Öffnet den Chat im Vollbild in Piggy. Halte die Bubble gedrückt für weitere Optionen.</string>
     <string name="setup_panel_size">Größe des Chatfensters</string>
     <string name="setup_panel_full">Groß</string>
     <string name="setup_panel_compact">Kompakt</string>
     <string name="setup_panel_size_info">„Groß“ reicht von Rand zu Rand. „Kompakt“ ist kleiner und hält Abstand zu den Bildschirmrändern, damit Wischgesten am Rand weiterhin funktionieren.</string>
     <string name="setup_tap_to_talk_info">Einmal tippen öffnet das Mikrofon: Sag, was du möchtest, und es wird gesendet, sobald du eine Pause machst. Halte die Bubble gedrückt für den Chat und mehr.</string>
     <string name="setup_read_aloud">Antworten vorlesen</string>
-    <string name="setup_read_aloud_info">Buddy liest die Antworten der Agenten vor, mit der Stimme, die du unter „Stimme“ auswählst.</string>
+    <string name="setup_read_aloud_info">Piggy liest die Antworten der Agenten vor, mit der Stimme, die du unter „Stimme“ auswählst.</string>
     <string name="setup_update_notices">Update-Hinweise</string>
-    <string name="setup_update_notices_info">Buddy prüft einmal täglich GitHub und benachrichtigt dich, wenn eine neue Version da ist.</string>
+    <string name="setup_update_notices_info">Piggy prüft einmal täglich GitHub und benachrichtigt dich, wenn eine neue Version da ist.</string>
     <string name="setup_check_updates">Nach Updates suchen</string>
-    <string name="setup_check_updates_info">Du hast Buddy %1$s. Oder sag einem beliebigen Agenten: „Aktualisiere dich selbst“.</string>
+    <string name="setup_check_updates_info">Du hast Piggy %1$s. Oder sag einem beliebigen Agenten: „Aktualisiere dich selbst“.</string>
     <string name="setup_app_permissions">App-Berechtigungen</string>
-    <string name="setup_app_permissions_info">Wähle pro App: Bei „Frei“ arbeitet der Agent dort ohne Rückfragen; bei „Streng“ fragt Buddy dich selbst vor Senden, Bezahlen, Löschen …</string>
+    <string name="setup_app_permissions_info">Wähle pro App: Bei „Frei“ arbeitet der Agent dort ohne Rückfragen; bei „Streng“ fragt Piggy dich selbst vor Senden, Bezahlen, Löschen …</string>
     <string name="setup_dev_mode">Linux-Tools in neuen Chats</string>
     <string name="setup_dev_mode_info">Mit Linux-Tools darf der Agent Befehle ausführen, Pakete installieren und Dateien in ~/.buddy/work bearbeiten, also Apps bauen und installieren. Neue Chats starten mit dieser Einstellung; jeder Chat kann sie unter seinem Titel ändern.</string>
     <string name="setup_agents_tap">Agenten auf Buddys Bildschirmen tippen lassen</string>
-    <string name="setup_agents_tap_info">Zum Testen von Buddy mit einem Agenten (zum Beispiel Claude Code in Termux mit den Smartphone-Tools). Die Bubble, Freigabekarten, App-Berechtigungen und diese Schalter bleiben gesperrt.</string>
+    <string name="setup_agents_tap_info">Zum Testen von Piggy mit einem Agenten (zum Beispiel Claude Code in Termux mit den Smartphone-Tools). Die Bubble, Freigabekarten, App-Berechtigungen und diese Schalter bleiben gesperrt.</string>
     <string name="setup_dev_mode_warning">Lieber ausgeschaltet lassen und Linux-Tools nur in den Chats einschalten, die sie brauchen. Sind sie an, könnte eine bösartige Nachricht oder Webseite auf dem Bildschirm versuchen, den Agenten zum Ausführen von Befehlen zu verleiten. Freigabekarten schützen weiterhin Senden, Posten, Kaufen und Löschen.</string>
 
     <!-- Settings screen: footer links. -->
     <string name="setup_licences">Open-Source-Lizenzen</string>
     <string name="setup_privacy_policy">Datenschutzerklärung</string>
 
-    <!-- Errors while installing Buddy's built-in Linux (Alpine). Shown after "Install failed:". -->
+    <!-- Errors while installing Piggy's built-in Linux (Alpine). Shown after "Install failed:". -->
     <string name="linux_download_corrupt">Alpine-Download ist beschädigt (sha256 %1$s)</string>
     <string name="linux_move_failed">Alpine konnte nicht an seinen Platz verschoben werden</string>
     <string name="linux_download_failed_http">Download fehlgeschlagen: HTTP %1$d</string>
@@ -905,7 +905,7 @@
     <string name="linux_symlink_failed">symlink %1$s: %2$s</string>
     <string name="linux_truncated_archive">Archiv ist unvollständig</string>
 
-    <!-- Terminal screen (a shell in Buddy's Linux, in tabs). -->
+    <!-- Terminal screen (a shell in Piggy's Linux, in tabs). -->
     <string name="terminal_title">Terminal</string>
     <string name="terminal_back">Zurück</string>
     <string name="terminal_hide_keyboard">Tastatur ausblenden</string>
@@ -949,9 +949,9 @@
     <string name="monitor_checking">Wird geprüft…</string>
     <string name="monitor_recent">Kürzlich</string>
     <string name="monitor_loading">Wird geladen…</string>
-    <string name="monitor_service_off">Die Bedienungshilfe von Buddy ist aus, daher können Sitzungen nicht geprüft werden. Aktiviere sie in den Einstellungen.</string>
+    <string name="monitor_service_off">Die Bedienungshilfe von Piggy ist aus, daher können Sitzungen nicht geprüft werden. Aktiviere sie in den Einstellungen.</string>
     <string name="monitor_nothing_running">Gerade läuft nichts.</string>
-    <string name="monitor_deleted_chat">Gelöschter Buddy-Chat</string>
+    <string name="monitor_deleted_chat">Gelöschter Piggy-Chat</string>
     <string name="monitor_background_session">Hintergrundsitzung</string>
     <string name="monitor_terminal_session">Terminalsitzung</string>
     <string name="monitor_tag_background">Hintergrund</string>
@@ -961,8 +961,8 @@
     <string name="monitor_open_chat">Chat öffnen</string>
     <string name="monitor_stop">Stoppen</string>
     <string name="monitor_stop_title">Diese Sitzung von %1$s stoppen?</string>
-    <string name="monitor_stop_background_body">Sie läuft im Hintergrund, zum Beispiel ein Chat, den du in der Claude-App fortsetzt. Es könnte sogar die Sitzung sein, die Buddy gerade steuert. Wenn du sie stoppst, endet die aktuelle Arbeit in dieser Unterhaltung.</string>
-    <string name="monitor_stop_terminal_body">Vielleicht nutzt du diese Sitzung gerade in einem Terminal. Es könnte sogar die Sitzung sein, die Buddy gerade steuert. Wenn du sie stoppst, endet die aktuelle Arbeit in dieser Unterhaltung.</string>
+    <string name="monitor_stop_background_body">Sie läuft im Hintergrund, zum Beispiel ein Chat, den du in der Claude-App fortsetzt. Es könnte sogar die Sitzung sein, die Piggy gerade steuert. Wenn du sie stoppst, endet die aktuelle Arbeit in dieser Unterhaltung.</string>
+    <string name="monitor_stop_terminal_body">Vielleicht nutzt du diese Sitzung gerade in einem Terminal. Es könnte sogar die Sitzung sein, die Piggy gerade steuert. Wenn du sie stoppst, endet die aktuelle Arbeit in dieser Unterhaltung.</string>
     <string name="monitor_stopping">Wird gestoppt…</string>
     <string name="monitor_service_title">Hintergrunddienst von Claude Code</string>
     <string name="monitor_service_meta">pid %1$d · Laufzeit %2$s · für Hintergrundsitzungen</string>
@@ -995,7 +995,7 @@
     <!-- Button rules screen: buttons that always or never need the user's OK. -->
     <string name="perms_rules_intro">Für Apps auf „Streng“ oder „Smart“. Eine Regel aus den Vorschlägen gilt für diese App; eingegebener Text gilt für alle Apps. Tippe auf eine Regel, um sie zu entfernen.</string>
     <string name="perms_builtin_title">Integrierte Risikowörter</string>
-    <string name="perms_builtin_sub">Bei Buttons wie Senden, Posten, Bezahlen, Kaufen, Bestellen, Löschen, Anrufen, Abmelden … wird immer gefragt, in jeder Sprache von Buddy.</string>
+    <string name="perms_builtin_sub">Bei Buttons wie Senden, Posten, Bezahlen, Kaufen, Bestellen, Löschen, Anrufen, Abmelden … wird immer gefragt, in jeder Sprache von Piggy.</string>
     <string name="perms_always_ask">Immer fragen</string>
     <string name="perms_never_ask">Nie fragen</string>
     <string name="perms_ask">Fragen</string>
@@ -1022,7 +1022,7 @@
     <string name="tools_card_enter_in">In %1$s Enter drücken, um zu senden</string>
     <string name="tools_card_detail">%1$s:\n%2$s</string>
     <string name="tools_card_quote">„%1$s“</string>
-    <string name="tools_card_no_reviewer">Kein Prüfer ist angemeldet, daher fragt Buddy dich.</string>
+    <string name="tools_card_no_reviewer">Kein Prüfer ist angemeldet, daher fragt Piggy dich.</string>
     <string name="tools_card_reviewer_block">%1$s rät ab: %2$s</string>
     <string name="tools_card_reviewer_ask">%1$s rät, dich zu fragen: %2$s</string>
 
@@ -1031,14 +1031,14 @@
     <string name="tools_status_tap_install">Tippe auf „Installieren“ und bestätige dann</string>
     <string name="tools_status_tap_update">Tippe auf „Aktualisieren“ und bestätige dann</string>
     <string name="tools_status_installed">Installiert</string>
-    <string name="tools_status_downloading">Buddy %1$s wird heruntergeladen…</string>
+    <string name="tools_status_downloading">Piggy %1$s wird heruntergeladen…</string>
 
     <!-- Smart reviewer: its reason when it fails, shown on the approval card after "Claude says ask you:". -->
     <string name="reviewer_failed">Der Prüfer konnte nicht antworten (%1$s)</string>
     <string name="reviewer_no_answer">keine Antwort</string>
     <string name="reviewer_timed_out">Zeitüberschreitung</string>
 
-    <!-- Error when a chat can't start because Buddy's built-in Linux isn't set up yet. -->
+    <!-- Error when a chat can't start because Piggy's built-in Linux isn't set up yet. -->
     <string name="helper_linux_missing">Buddys Linux ist noch nicht installiert. Öffne die Einstellungen, um es einzurichten.</string>
 
     <!-- Voice input (dictation): "Claude voice" and "ChatGPT voice" are the two voice input options. -->
@@ -1076,16 +1076,16 @@
     <string name="setup_rules_info">Lass einen Agenten handeln, wenn eine Benachrichtigung eintrifft: eine Nachricht beantworten, eine Lieferung in deinen Kalender eintragen …</string>
     <string name="tools_card_reply">%1$s in %2$s antworten:\n„%3$s“</string>
     <string name="tools_card_open_url">Link öffnen: %1$s</string>
-    <string name="rules_service_label">Buddy-Benachrichtigungsregeln</string>
+    <string name="rules_service_label">Piggy-Benachrichtigungsregeln</string>
     <string name="rules_title">Benachrichtigungsregeln</string>
-    <string name="rules_intro">Wenn eine Benachrichtigung eintrifft, die du ausgewählt hast, gibt Buddy deine Anweisung an einen Agenten weiter, als hättest du sie selbst getippt. Benachrichtigungen, auf die keine Regel passt, werden ignoriert.</string>
+    <string name="rules_intro">Wenn eine Benachrichtigung eintrifft, die du ausgewählt hast, gibt Piggy deine Anweisung an einen Agenten weiter, als hättest du sie selbst getippt. Benachrichtigungen, auf die keine Regel passt, werden ignoriert.</string>
     <string name="rules_access_off_title">Zugriff auf Benachrichtigungen ist aus</string>
-    <string name="rules_access_off_text">Buddy braucht diesen Zugriff, um die Benachrichtigungen zu sehen, auf die deine Regeln achten.</string>
+    <string name="rules_access_off_text">Piggy braucht diesen Zugriff, um die Benachrichtigungen zu sehen, auf die deine Regeln achten.</string>
     <string name="rules_access_turn_on">Aktivieren</string>
     <string name="rules_run">Regeln ausführen</string>
     <string name="rules_run_info">Ausschalten, um alle Regeln zu pausieren.</string>
     <string name="rules_section">Regeln</string>
-    <string name="rules_empty">Noch keine Regeln. Zum Beispiel: Wenn dir ein Kunde auf WhatsApp schreibt, antwortet Buddy mit deinen Öffnungszeiten.</string>
+    <string name="rules_empty">Noch keine Regeln. Zum Beispiel: Wenn dir ein Kunde auf WhatsApp schreibt, antwortet Piggy mit deinen Öffnungszeiten.</string>
     <string name="rules_add">Regel hinzufügen</string>
     <string name="rules_any">Jede Benachrichtigung</string>
     <string name="rules_from_summary">Von %1$s</string>
@@ -1125,12 +1125,12 @@
     <string name="waiting_open_chat">Chat öffnen</string>
     <string name="waiting_state_wrote_again">%1$s hat seitdem wieder geschrieben: Diese Antwort ist vielleicht veraltet.</string>
     <string name="waiting_state_answered">Du hast in %1$s schon geantwortet.</string>
-    <string name="waiting_state_gone">Die Benachrichtigung ist weg: Buddy kopiert die Antwort und öffnet %1$s zum Einfügen.</string>
+    <string name="waiting_state_gone">Die Benachrichtigung ist weg: Piggy kopiert die Antwort und öffnet %1$s zum Einfügen.</string>
     <string name="waiting_sent">An %1$s gesendet</string>
     <string name="waiting_copied">Kopiert. Füge sie in %1$s ein.</string>
     <string name="waiting_note_sent">✓ Aus „Wartet auf dich“ gesendet: %1$s</string>
     <string name="rules_log_error">Nicht ausgeführt: %1$s</string>
-    <string name="rules_log_no_service">Die Bedienungshilfe von Buddy ist aus</string>
+    <string name="rules_log_no_service">Die Bedienungshilfe von Piggy ist aus</string>
     <string name="rules_log_not_signed_in">%1$s ist nicht angemeldet</string>
     <string name="rules_new">Neue Regel</string>
     <string name="rules_edit">Regel bearbeiten</string>
@@ -1141,7 +1141,7 @@
     <string name="rules_from_hint">Alle oder Namen, durch Kommas getrennt</string>
     <string name="rules_words">Enthält (optional)</string>
     <string name="rules_words_hint">Beliebiger Text oder Wörter, durch Kommas getrennt</string>
-    <string name="rules_instruction">Was soll Buddy tun?</string>
+    <string name="rules_instruction">Was soll Piggy tun?</string>
     <string name="rules_instruction_hint">Zum Beispiel: Antworte in meinem Stil. Wir haben von 8 bis 18 Uhr geöffnet, sonntags geschlossen.</string>
     <string name="rules_example_reply">Für mich antworten</string>
     <string name="rules_example_reply_text">Antworte in meinem Stil, kurz und freundlich.</string>
@@ -1162,11 +1162,11 @@
     <string name="rules_delete">Löschen</string>
     <string name="rules_delete_title">Diese Regel löschen?</string>
     <string name="rules_need_app">Wähle zuerst eine App aus.</string>
-    <string name="rules_need_instruction">Schreib, was Buddy tun soll.</string>
+    <string name="rules_need_instruction">Schreib, was Piggy tun soll.</string>
     <string name="rules_access_title">Zugriff auf Benachrichtigungen zulassen?</string>
-    <string name="rules_access_what">Buddy prüft jede Benachrichtigung anhand deiner Regeln. Benachrichtigungen, auf die keine Regel passt, werden sofort ignoriert: nicht gespeichert, nirgendwohin gesendet.</string>
+    <string name="rules_access_what">Piggy prüft jede Benachrichtigung anhand deiner Regeln. Benachrichtigungen, auf die keine Regel passt, werden sofort ignoriert: nicht gespeichert, nirgendwohin gesendet.</string>
     <string name="rules_access_data">Passt eine, gehen ihre App, ihr Absender und ihr Text zusammen mit deiner Anweisung an den Agenten der Regel (Claude Code, Codex oder OpenCode).</string>
-    <string name="rules_access_reply">Buddy kann über den Button „Antworten“ einer Benachrichtigung antworten. Vorher fragt Buddy dich, außer du stellst für die Regel einen Countdown ein.</string>
+    <string name="rules_access_reply">Piggy kann über den Button „Antworten“ einer Benachrichtigung antworten. Vorher fragt Piggy dich, außer du stellst für die Regel einen Countdown ein.</string>
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
     <string name="rules_status_checking">Wird anhand deiner Regel geprüft…</string>
     <string name="rules_channel_results">Benachrichtigungsregeln: Ergebnisse</string>
@@ -1179,7 +1179,7 @@
     <!-- Background browser -->
     <string name="browser_section">Hintergrund-Browser</string>
     <string name="browser_switch">Hintergrund-Browser</string>
-    <string name="browser_switch_info">Ein Browser in Buddy, den Agenten für Webseiten nutzen, ohne dein Smartphone zu übernehmen. Du kannst ihn im Chat beobachten und selbst bedienen. Beim ersten Mal lädt Buddy Chromium herunter (etwa 300 MB).</string>
+    <string name="browser_switch_info">Ein Browser in Piggy, den Agenten für Webseiten nutzen, ohne dein Smartphone zu übernehmen. Du kannst ihn im Chat beobachten und selbst bedienen. Beim ersten Mal lädt Piggy Chromium herunter (etwa 300 MB).</string>
     <string name="browser_state_installing">Chromium wird installiert…</string>
     <string name="browser_state_starting">startet…</string>
     <string name="browser_state_running">läuft</string>

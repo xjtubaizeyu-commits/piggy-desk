@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Ukrainian translation of Buddy's UI. Source: res/values/strings.xml. -->
+<!-- Ukrainian translation of Piggy's UI. Source: res/values/strings.xml. -->
 <resources>
-    <string name="service_label">Помічник Buddy</string>
-    <string name="service_description">Показує бульбашку чату Buddy і дає змогу вибраному вами агенту (Claude Code, Codex, OpenCode, Antigravity або Grok), що працює в Buddy на цьому телефоні, читати екран, а також натискати, вводити текст і прокручувати за вас. Ніщо не покидає телефон, окрім того, що сам агент надсилає своєму ШІ-сервісу (Anthropic, OpenAI, Google, xAI або провайдеру вашої моделі в OpenCode).</string>
+    <string name="service_label">Помічник Piggy</string>
+    <string name="service_description">Показує бульбашку чату Piggy і дає змогу вибраному вами агенту (Claude Code, Codex, OpenCode, Antigravity або Grok), що працює в Piggy на цьому телефоні, читати екран, а також натискати, вводити текст і прокручувати за вас. Ніщо не покидає телефон, окрім того, що сам агент надсилає своєму ШІ-сервісу (Anthropic, OpenAI, Google, xAI або провайдеру вашої моделі в OpenCode).</string>
 
     <!-- ===== First run (OnboardingActivity), the Chats home screen (MainActivity), updates, appearance ===== -->
 
@@ -10,7 +10,7 @@
     <!-- Button at the top right of every step. Keep short. -->
     <string name="onboarding_skip_setup">Пропустити</string>
     <string name="onboarding_skip_title">Пропустити майстер налаштування?</string>
-    <!-- "Settings" = Buddy's own Settings tab. -->
+    <!-- "Settings" = Piggy's own Settings tab. -->
     <string name="onboarding_skip_text">Завершити налаштування можна будь-коли на вкладці «Налаштування». Доти чати не працюватимуть.</string>
     <!-- Verb. Confirm button of the "Skip the setup guide?" sheet. -->
     <string name="onboarding_skip_action">Пропустити</string>
@@ -22,7 +22,7 @@
     <string name="onboarding_stuck">Не виходить?</string>
 
     <!-- Guide, welcome screen. -->
-    <string name="onboarding_welcome_title">Знайомтеся: Buddy</string>
+    <string name="onboarding_welcome_title">Знайомтеся: Piggy</string>
     <string name="onboarding_welcome_text">Бульбашка чату, яка вміє користуватися телефоном за вас.</string>
     <string name="onboarding_welcome_ask_title">Просіть звичайними словами</string>
     <!-- Two example requests a user could type. Translate them naturally and use your language's quotation marks. -->
@@ -30,14 +30,14 @@
     <string name="onboarding_welcome_plan_title">Ваша підписка, без API-ключа</string>
     <string name="onboarding_welcome_plan_text">Claude Code працює за вашою підпискою Claude. Підійдуть і Codex із підпискою ChatGPT, Antigravity з обліковим записом Google, Grok з обліковим записом Google чи X та безкоштовні моделі OpenCode.</string>
     <string name="onboarding_welcome_control_title">Контроль залишається за вами</string>
-    <string name="onboarding_welcome_control_text">Перед надсиланням, публікацією, покупкою чи видаленням Buddy завжди питає.</string>
+    <string name="onboarding_welcome_control_text">Перед надсиланням, публікацією, покупкою чи видаленням Piggy завжди питає.</string>
     <!-- Small lowercase mono line under the list. -->
     <string name="onboarding_welcome_time">налаштування займе близько 5 хвилин</string>
     <string name="onboarding_get_started">Почати</string>
 
     <!-- Guide, step: choose the agent. Agent names next to each option stay in English. -->
     <string name="onboarding_brain_title">Виберіть агента</string>
-    <!-- "Settings" = Buddy's own Settings tab. -->
+    <!-- "Settings" = Piggy's own Settings tab. -->
     <string name="onboarding_brain_text">Хто відповідатиме у ваших чатах. Інших агентів можна додати пізніше на вкладці «Налаштування».</string>
     <string name="onboarding_brain_claude">Використовує вашу підписку Claude (Pro або Max).</string>
     <string name="onboarding_brain_codex">Використовує вашу підписку ChatGPT.</string>
@@ -49,18 +49,18 @@
     <!-- Small lowercase tag next to "Claude Code". Keep very short. -->
     <string name="onboarding_recommended">рекомендуємо</string>
 
-    <!-- Guide, step: turn on Buddy's accessibility service. -->
-    <string name="onboarding_access_title">Дозвольте Buddy бачити й натискати</string>
+    <!-- Guide, step: turn on Piggy's accessibility service. -->
+    <string name="onboarding_access_title">Дозвольте Piggy бачити й натискати</string>
     <string name="onboarding_access_done">Сервіс спеціальних можливостей увімкнено.</string>
-    <string name="onboarding_access_text">Сервіс спеціальних можливостей Buddy показує бульбашку й дає агенту змогу читати екран, натискати й вводити текст — лише тоді, коли ви про щось просите.</string>
+    <string name="onboarding_access_text">Сервіс спеціальних можливостей Piggy показує бульбашку й дає агенту змогу читати екран, натискати й вводити текст — лише тоді, коли ви про щось просите.</string>
     <!-- %1$s = the agent's name (Claude Code or Codex); %2$s = the company it sends to (Anthropic or OpenAI). -->
     <string name="onboarding_access_privacy">Ніщо не покидає телефон, окрім того, що %1$s надсилає до %2$s, щоб вам відповісти. Для надсилання, публікації, покупок і видалення завжди спершу потрібен ваш дозвіл.</string>
     <!-- Same as onboarding_access_privacy, when both Claude Code and Codex are set up. -->
     <string name="onboarding_access_privacy_both">Ніщо не покидає телефон, окрім того, що Claude Code і Codex надсилають до Anthropic і OpenAI, щоб вам відповісти. Для надсилання, публікації, покупок і видалення завжди спершу потрібен ваш дозвіл.</string>
     <!-- Same as onboarding_access_privacy, for OpenCode. %1$s = OpenCode. The model's provider = whichever AI company runs the chosen model. -->
     <string name="onboarding_access_privacy_opencode">Ніщо не покидає телефон, окрім того, що %1$s надсилає провайдеру моделі, щоб вам відповісти. Для надсилання, публікації, покупок і видалення завжди спершу потрібен ваш дозвіл.</string>
-    <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Buddy assistant" = Buddy's service name (service_label). -->
-    <string name="onboarding_access_list_hint">У списку: Завантажені додатки → Помічник Buddy → увімкніть.</string>
+    <!-- Path in Android's Accessibility settings. "Downloaded apps" = that section's name on Android (use Android's wording in your language); "Piggy assistant" = Piggy's service name (service_label). -->
+    <string name="onboarding_access_list_hint">У списку: Завантажені додатки → Помічник Piggy → увімкніть.</string>
     <string name="onboarding_access_open">Відкрити спеціальні можливості</string>
     <!-- Android 13+ greys out the switch for apps installed from a file. Title of a help box and a help question. -->
     <string name="onboarding_access_greyed_title">Перемикач неактивний?</string>
@@ -68,10 +68,10 @@
     <string name="onboarding_access_greyed_text">Android блокує це для додатків, установлених із файлу. Натисніть «Про додаток» (нижче), потім ⋮ угорі праворуч → «Дозволити обмежені налаштування» і спробуйте ще раз.</string>
     <!-- Numbered steps, one per line. Same names as in onboarding_access_greyed_text. -->
     <string name="onboarding_access_restricted_steps">1. Натисніть «Про додаток» нижче.\n2. Натисніть ⋮ угорі праворуч → «Дозволити обмежені налаштування».\n3. Поверніться й знову відкрийте спеціальні можливості.</string>
-    <!-- Button: opens Android's App info page for Buddy. Use Android's name for that page. -->
+    <!-- Button: opens Android's App info page for Piggy. Use Android's name for that page. -->
     <string name="onboarding_app_info">Про додаток</string>
 
-    <!-- Guide, step: install the agent inside Buddy and sign in. -->
+    <!-- Guide, step: install the agent inside Piggy and sign in. -->
     <string name="onboarding_agents_title">Установлення та вхід</string>
     <!-- Title once every chosen agent is installed and signed in. -->
     <string name="onboarding_agents_done_title">Готово</string>
@@ -80,7 +80,7 @@
     <!-- Same as onboarding_agents_done, when both Claude Code and Codex are set up. -->
     <string name="onboarding_agents_done_both">Claude Code і Codex установлено, вхід виконано.</string>
     <!-- %1$s = the agent's name (Claude Code, Codex, OpenCode) or onboarding_agent_names_both. -->
-    <string name="onboarding_agents_text">Buddy встановлює %1$s у самому додатку, а ви один раз входите в обліковий запис. Termux не потрібен.</string>
+    <string name="onboarding_agents_text">Piggy встановлює %1$s у самому додатку, а ви один раз входите в обліковий запис. Termux не потрібен.</string>
     <!-- Both agents together, inserted as %1$s into onboarding_agents_text. -->
     <string name="onboarding_agent_names_both">Claude Code і Codex</string>
     <!-- Agent card status lines: small lowercase mono text, one line. -->
@@ -94,12 +94,12 @@
     <string name="onboarding_agent_installed">установлено · вхід не виконано</string>
     <string name="onboarding_agent_not_installed">не встановлено</string>
     <!-- Agent card help text. "Authorize" = the button on Claude's sign-in web page (the page may be in English). -->
-    <string name="onboarding_agent_sign_in_claude">Увійдіть в обліковий запис Claude. Відкриється браузер: натисніть «Authorize», і Buddy повернеться сам.</string>
+    <string name="onboarding_agent_sign_in_claude">Увійдіть в обліковий запис Claude. Відкриється браузер: натисніть «Authorize», і Piggy повернеться сам.</string>
     <string name="onboarding_agent_checking_opencode">Перевірка OpenCode…</string>
     <string name="onboarding_agent_sign_in_codex">Увійдіть в обліковий запис ChatGPT у браузері, а потім поверніться.</string>
-    <string name="onboarding_agent_sign_in_agy">Увійдіть в обліковий запис Google. Відкриється браузер: увійдіть там, і Buddy сам отримає код.</string>
-    <string name="onboarding_agent_sign_in_grok">Увійдіть в обліковий запис Grok. Відкриється браузер: підтвердьте там код, і Buddy повернеться сам.</string>
-    <!-- "Buddy's Linux" = the small Linux system built into Buddy. -->
+    <string name="onboarding_agent_sign_in_agy">Увійдіть в обліковий запис Google. Відкриється браузер: увійдіть там, і Piggy сам отримає код.</string>
+    <string name="onboarding_agent_sign_in_grok">Увійдіть в обліковий запис Grok. Відкриється браузер: підтвердьте там код, і Piggy повернеться сам.</string>
+    <!-- "Piggy's Linux" = the small Linux system built into Piggy. -->
     <string name="onboarding_agent_download_claude">Одноразово завантажується близько 235 МБ (вбудований Linux і Claude Code від Anthropic).</string>
     <string name="onboarding_agent_download_opencode">Одноразово завантажується близько 230 МБ (вбудований Linux, Node.js і OpenCode). Обліковий запис не потрібен.</string>
     <string name="onboarding_agent_download_codex">Одноразово завантажується близько 150 МБ (вбудований Linux, Node.js і Codex від OpenAI).</string>
@@ -114,35 +114,35 @@
     <string name="onboarding_install_agent">Установити %1$s</string>
     <string name="onboarding_agents_wifi">За можливості використовуйте Wi-Fi. Під час установлення можна вийти з цього екрана.</string>
     <!-- Help questions and answers under "Stuck?". "Copy Code" = a button on Claude's web page. -->
-    <string name="onboarding_stuck_sign_in_q">Buddy не відкрився після входу?</string>
-    <string name="onboarding_stuck_sign_in_a">Claude: на сторінці Claude натисніть «Copy Code» і поверніться в Buddy — він сам візьме код із буфера обміну.</string>
+    <string name="onboarding_stuck_sign_in_q">Piggy не відкрився після входу?</string>
+    <string name="onboarding_stuck_sign_in_a">Claude: на сторінці Claude натисніть «Copy Code» і поверніться в Piggy — він сам візьме код із буфера обміну.</string>
     <string name="onboarding_stuck_install_q">Не вдалося встановити?</string>
     <!-- "Install" = the Install button on the agent card (onboarding_install_agent). -->
     <string name="onboarding_stuck_install_a">Перевірте з\'єднання й знову натисніть «Установити» — установлення продовжиться з місця зупинки.</string>
 
-    <!-- Guide, step: let Buddy run in the background (Android's battery optimization). -->
+    <!-- Guide, step: let Piggy run in the background (Android's battery optimization). -->
     <string name="onboarding_background_title">Нехай працює у фоні</string>
-    <string name="onboarding_background_done">Buddy може працювати у фоновому режимі.</string>
-    <string name="onboarding_background_text">Щоб телефон не зупиняв Buddy для економії заряду, поки агент працює.</string>
-    <!-- Button: opens Android's dialog to let Buddy run in the background. -->
+    <string name="onboarding_background_done">Piggy може працювати у фоновому режимі.</string>
+    <string name="onboarding_background_text">Щоб телефон не зупиняв Piggy для економії заряду, поки агент працює.</string>
+    <!-- Button: opens Android's dialog to let Piggy run in the background. -->
     <string name="onboarding_allow">Дозволити</string>
     <string name="onboarding_skip_for_now">Поки що пропустити</string>
 
     <!-- Guide, step: how much the agent asks before acting. -->
     <string name="onboarding_safety_title">Як часто питати вас?</string>
     <!-- Ends with a colon: the two options follow. -->
-    <string name="onboarding_safety_text">У месенджерах, соцмережах, додатках для покупок, платежів і банкінгу Buddy завжди питає вашого дозволу, перш ніж щось надіслати, опублікувати, купити чи видалити. Для інших додатків:</string>
+    <string name="onboarding_safety_text">У месенджерах, соцмережах, додатках для покупок, платежів і банкінгу Piggy завжди питає вашого дозволу, перш ніж щось надіслати, опублікувати, купити чи видалити. Для інших додатків:</string>
     <string name="onboarding_safety_ask_title">Спершу питати мене</string>
     <string name="onboarding_safety_ask_text">Агент питає перед будь-якою ризикованою дією, як-от зміною налаштування. Безпечніше, але запитів більше.</string>
     <string name="onboarding_safety_auto_title">Працювати самостійно</string>
     <string name="onboarding_safety_auto_text">Без запитів: агент просто робить те, що ви попросили, як-от вмикає камеру чи світло.</string>
-    <!-- "Settings → App permissions" = Buddy's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
-    <string name="onboarding_safety_note">Це можна будь-коли змінити для кожного додатка: Налаштування → Дозволи додатків. У режимі «Довіра» агент працює в додатку без запитів, а в режимі «Суворий» Buddy сам питає вас.</string>
+    <!-- "Settings → App permissions" = Piggy's own screens. "Trust" and "Hard" = names of approval modes; use the same translations as those mode labels. -->
+    <string name="onboarding_safety_note">Це можна будь-коли змінити для кожного додатка: Налаштування → Дозволи додатків. У режимі «Довіра» агент працює в додатку без запитів, а в режимі «Суворий» Piggy сам питає вас.</string>
 
     <!-- Guide, last step: try a first task. -->
     <string name="onboarding_try_title">Усе готово</string>
     <!-- "Settings" = Android's Settings app. -->
-    <string name="onboarding_try_text">Спробуйте перше завдання: Buddy відкриє Налаштування й прочитає потрібне за вас.</string>
+    <string name="onboarding_try_text">Спробуйте перше завдання: Piggy відкриє Налаштування й прочитає потрібне за вас.</string>
     <!-- Example request: shown on this screen and put in the chat's input box, ready to send to the agent. "Settings" = Android's Settings app. -->
     <string name="onboarding_try_prompt">Відкрий Налаштування й скажи, яка в мене версія Android</string>
     <!-- onboarding_try_prompt in quotation marks (%1$s). Use your language's quotation marks. -->
@@ -155,14 +155,14 @@
     <!-- Home screen: the chat list. -->
     <!-- Floating button that starts a chat, and the title of the sheet that picks its agent. Keep short. -->
     <string name="main_new_chat">Новий чат</string>
-    <!-- Small lowercase mono status under the app name when Buddy is ready. %1$s = Buddy's local server address (127.0.0.1:8765). -->
+    <!-- Small lowercase mono status under the app name when Piggy is ready. %1$s = Piggy's local server address (127.0.0.1:8765). -->
     <string name="main_status_ready">готово · %1$s</string>
     <!-- Small lowercase mono status while setup isn't finished: %1$d steps done out of %2$d. -->
     <string name="main_status_setup">налаштування %1$d/%2$d</string>
     <string name="main_setup_title">Завершіть налаштування, щоб запускати чати</string>
     <!-- %1$s = the name of the next setup step, e.g. Turn on the accessibility service. -->
     <string name="main_setup_next">Далі: %1$s</string>
-    <string name="main_setup_next_accessibility">Далі: увімкніть сервіс спеціальних можливостей Buddy</string>
+    <string name="main_setup_next_accessibility">Далі: увімкніть сервіс спеціальних можливостей Piggy</string>
     <!-- Section header, shown in capitals: chats whose task is running now. The count follows it. -->
     <string name="main_section_working">У роботі</string>
     <!-- Section header, shown in capitals. -->
@@ -204,30 +204,30 @@
     </plurals>
 
     <!-- Notification shown after the bubble is dragged away to hide it. -->
-    <!-- Notification category name in Android's notification settings for Buddy. -->
+    <!-- Notification category name in Android's notification settings for Piggy. -->
     <string name="notice_channel_name">Прихована бульбашка</string>
-    <string name="notice_hidden_title">Buddy приховано</string>
+    <string name="notice_hidden_title">Piggy приховано</string>
     <string name="notice_hidden_text">Натисніть, щоб знову показати бульбашку.</string>
-    <!-- Notification button: opens Buddy's chat list. Keep short. -->
+    <!-- Notification button: opens Piggy's chat list. Keep short. -->
     <string name="notice_open_chats">Відкрити чати</string>
 
-    <!-- Buddy's own updates (GitHub version): notification, update sheet and messages. -->
-    <!-- Notification category name in Android's notification settings for Buddy. -->
-    <string name="update_channel_name">Оновлення Buddy</string>
+    <!-- Piggy's own updates (GitHub version): notification, update sheet and messages. -->
+    <!-- Notification category name in Android's notification settings for Piggy. -->
+    <string name="update_channel_name">Оновлення Piggy</string>
     <!-- Notification and sheet title. %1$s = the new version number, e.g. 2.1.14. -->
-    <string name="update_available_title">Доступна версія Buddy %1$s</string>
+    <string name="update_available_title">Доступна версія Piggy %1$s</string>
     <!-- %1$s = the installed version number. -->
     <string name="update_notification_text">У вас версія %1$s. Натисніть, щоб дізнатися, що нового, і оновити; чати збережуться.</string>
     <!-- Verb: download and install the new version. Notification button and sheet button (half width). Keep short. -->
     <string name="update_action">Оновити</string>
     <!-- Notification button: stop update notifications. Keep short. -->
     <string name="update_mute">Не сповіщати</string>
-    <!-- "Settings" = Buddy's own Settings tab (its Update notices switch). -->
+    <!-- "Settings" = Piggy's own Settings tab (its Update notices switch). -->
     <string name="update_muted">Сповіщень про оновлення більше не буде. Їх можна знову ввімкнути на вкладці «Налаштування».</string>
     <string name="update_checking">Перевірка оновлень…</string>
     <string name="update_check_failed">Не вдалося з\'єднатися з GitHub. Спробуйте пізніше.</string>
     <!-- %1$s = the installed version number. -->
-    <string name="update_up_to_date">У вас найновіша версія Buddy (%1$s).</string>
+    <string name="update_up_to_date">У вас найновіша версія Piggy (%1$s).</string>
     <!-- Under the sheet title. %1$s = the installed version number. -->
     <string name="update_sheet_text">У вас версія %1$s. Оновлення збереже ваші чати, налаштування та входи в облікові записи.</string>
     <!-- Sheet button (half width): close without updating. -->
@@ -235,21 +235,21 @@
     <!-- On the Update button while the new version downloads. -->
     <string name="update_downloading">Завантаження…</string>
     <!-- "Update" = the button (update_action). -->
-    <string name="update_needs_permission">Дозвольте Buddy встановлювати додатки, а потім знову натисніть «Оновити».</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). buddy.apk is a file name. -->
-    <string name="update_error_no_apk">У релізі ще немає buddy.apk.</string>
+    <string name="update_needs_permission">Дозвольте Piggy встановлювати додатки, а потім знову натисніть «Оновити».</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
+    <string name="update_error_no_apk">У релізі ще немає piggy.apk.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">Не вдалося завантажити файл (%1$s).</string>
-    <string name="update_error_not_newer">Завантажений файл не є новішою версією Buddy, тому його не відкрито.</string>
+    <string name="update_error_not_newer">Завантажений файл не є новішою версією Piggy, тому його не відкрито.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s Оновлення також можна завантажити з %2$s (buddy.apk) або отримувати автоматично через Obtainium (див. %3$s).</string>
+    <string name="update_failed_manual">%1$s Оновлення також можна завантажити з %2$s (piggy.apk) або отримувати автоматично через Obtainium (див. %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->
     <string name="prefs_theme_system">Системна</string>
     <string name="prefs_theme_light">Світла</string>
     <string name="prefs_theme_dark">Темна</string>
-    <!-- Surface (background) tone, segmented control: keep short. Warm = Buddy's original warm greys; Black = true black, in dark mode only. -->
+    <!-- Surface (background) tone, segmented control: keep short. Warm = Piggy's original warm greys; Black = true black, in dark mode only. -->
     <string name="prefs_surface_warm">Теплий</string>
     <string name="prefs_surface_neutral">Нейтральний</string>
     <string name="prefs_surface_black">Чорний</string>
@@ -264,7 +264,7 @@
     <!-- ===== The bubble, its hold menu, chat panel and approval cards (Bubble, RadialMenu, ControlIndicator) ===== -->
 
     <!-- Floating bubble, read by TalkBack. -->
-    <string name="bubble_face_description">Buddy. Натисніть, щоб відкрити, або утримуйте, щоб побачити дії</string>
+    <string name="bubble_face_description">Piggy. Натисніть, щоб відкрити, або утримуйте, щоб побачити дії</string>
     <!-- TalkBack action on the bubble, read as "Double-tap and hold to show actions". Lowercase. -->
     <string name="bubble_show_actions">показати дії</string>
 
@@ -302,7 +302,7 @@
     <string name="menu_pause">Пауза</string>
     <!-- Dictate an extra instruction for the agent while it works. -->
     <string name="menu_add_instruction">Уточнити</string>
-    <!-- Stops Buddy reading a reply aloud. -->
+    <!-- Stops Piggy reading a reply aloud. -->
     <string name="menu_stop_voice">Вимк. голос</string>
     <!-- Verb: starts voice input to the agent. A hold-menu label (keep under ~12 characters) and the chat panel's
          mic button (read by TalkBack). -->
@@ -316,7 +316,7 @@
     <string name="menu_peek_stop">Стоп</string>
     <!-- Verb. -->
     <string name="menu_peek_add">Уточнити</string>
-    <!-- Noun: Buddy's spoken voice (the action silences it). -->
+    <!-- Noun: Piggy's spoken voice (the action silences it). -->
     <string name="menu_peek_voice">Голос</string>
     <!-- Badge under the preview: long-press the bubble; "me" is the bubble. -->
     <string name="menu_peek_hint">Утримуйте мене</string>
@@ -325,10 +325,10 @@
     <string name="bubble_tip_stop_voice">Порада: утримуйте бульбашку, щоб вимкнути голос</string>
     <string name="bubble_tip_hold_menu">Порада: утримуйте бульбашку, щоб поставити на паузу, зупинити або уточнити завдання</string>
     <string name="bubble_stopping">Зупиняю…</string>
-    <string name="bubble_nothing_running">У чатах Buddy нічого не виконується.</string>
+    <string name="bubble_nothing_running">У чатах Piggy нічого не виконується.</string>
     <string name="bubble_nothing_running_chat">У цьому чаті нічого не виконується.</string>
-    <string name="bubble_allow_mic_tap_mic">Дозвольте Buddy доступ до мікрофона, а потім знову натисніть мікрофон.</string>
-    <string name="bubble_allow_mic_tap_bubble">Дозвольте Buddy доступ до мікрофона, а потім знову натисніть бульбашку.</string>
+    <string name="bubble_allow_mic_tap_mic">Дозвольте Piggy доступ до мікрофона, а потім знову натисніть мікрофон.</string>
+    <string name="bubble_allow_mic_tap_bubble">Дозвольте Piggy доступ до мікрофона, а потім знову натисніть бульбашку.</string>
     <!-- After dictating an instruction while the agent works. %1$s: the agent's name (Claude Code, Codex or OpenCode). -->
     <string name="bubble_note_added">Зрозуміло: %1$s це врахує</string>
     <!-- A message was copied to the clipboard. -->
@@ -364,7 +364,7 @@
     <string name="bubble_paste">Вставити</string>
     <!-- Verb: sends the message (read by TalkBack). -->
     <string name="bubble_send">Надіслати</string>
-    <!-- A chat with no messages yet. %1$s: the agent's name (Claude Code, Codex or OpenCode); "me" is Buddy. -->
+    <!-- A chat with no messages yet. %1$s: the agent's name (Claude Code, Codex or OpenCode); "me" is Piggy. -->
     <string name="bubble_empty_chat">Новий чат з %1$s. Попросіть мене щось зробити на телефоні.</string>
     <!-- Header of a collapsible group of the agent's steps in the chat. -->
     <plurals name="bubble_tool_calls">
@@ -405,7 +405,7 @@
     <string name="card_label_approval">ПОТРІБЕН ВАШ ДОЗВІЛ</string>
     <!-- Small all-caps label at the top of a question card. -->
     <string name="card_label_question">ЗАПИТАННЯ</string>
-    <!-- The card's label when the request comes from an agent session outside Buddy's chats (e.g. a terminal).
+    <!-- The card's label when the request comes from an agent session outside Piggy's chats (e.g. a terminal).
          %1$s: card_label_approval or card_label_question. All caps. -->
     <string name="card_label_other_session">%1$s · З ІНШОГО СЕАНСУ</string>
     <!-- Buttons side by side at the bottom of the card: keep them short. -->
@@ -432,14 +432,14 @@
 
     <!-- Notification while an agent operates the phone; on Android 16 also a chip in the status bar. -->
     <!-- Name of this notification category in Android's notification settings. -->
-    <string name="control_channel_name">Buddy керує вашим телефоном</string>
+    <string name="control_channel_name">Piggy керує вашим телефоном</string>
     <string name="control_channel_description">Показується в рядку стану, поки агент керує телефоном.</string>
-    <string name="control_title">Buddy керує вашим телефоном</string>
+    <string name="control_title">Piggy керує вашим телефоном</string>
     <!-- "Stop" is the notification's button (control_stop): use the same word. -->
     <string name="control_text">Не торкайтеся екрана, доки все не завершиться, або натисніть «Зупинити», щоб узяти керування на себе.</string>
     <!-- Notification button, verb: stops the agent and gives the phone back to the user. -->
     <string name="control_stop">Зупинити</string>
-    <string name="pause_call_ended_title">Дзвінок завершено · Buddy на паузі</string>
+    <string name="pause_call_ended_title">Дзвінок завершено · Piggy на паузі</string>
     <string name="pause_call_ended_text">Торкніться, щоб продовжити завдання</string>
 
     <!-- ===== Full-screen chat, agent progress lines, transcripts, shared UI, voice (ChatActivity, ChatHub, Ui, BuddyService, Voice) ===== -->
@@ -454,11 +454,11 @@
     <string name="chat_read_aloud_off">Відповіді не читатимуться вголос</string>
 
     <!-- Chat screen: Linux tools, the chip beside the model chip (also in the bubble's panel and the New chat sheets) -->
-    <!-- A chat's own switch that lets its agent work in Buddy's Linux: run commands, install packages, edit files,
+    <!-- A chat's own switch that lets its agent work in Piggy's Linux: run commands, install packages, edit files,
          build and install apps. The name on the small chip under the chat's title, and of the switch in the New chat
          sheets. Keep short. -->
     <string name="chat_linux_tools">Інструменти Linux</string>
-    <!-- Under the Linux tools switch in the New chat sheets. "Buddy's Linux" = the Linux system inside the app. -->
+    <!-- Under the Linux tools switch in the New chat sheets. "Piggy's Linux" = the Linux system inside the app. -->
     <string name="chat_linux_tools_info">Команди, файли й збирання додатків у вбудованому Linux</string>
     <!-- Title of the sheet that opens when the user turns Linux tools on in a chat. -->
     <string name="chat_linux_tools_title">Увімкнути інструменти Linux?</string>
@@ -486,7 +486,7 @@
     <string name="schedule_title">Розклад</string>
     <string name="schedule_set">Задати розклад</string>
     <string name="schedule_set_info">Сам надсилає повідомлення в цей чат у заданий час, наприклад щодня о 14:00.</string>
-    <string name="schedule_info">У заданий час Buddy надсилає це повідомлення в чат, ніби ви його набрали, з агентом і налаштуваннями цього чату. Картки підтвердження й далі чекають на вас. Якщо йому потрібен екран, коли телефон заблоковано, він попросить розблокувати.</string>
+    <string name="schedule_info">У заданий час Piggy надсилає це повідомлення в чат, ніби ви його набрали, з агентом і налаштуваннями цього чату. Картки підтвердження й далі чекають на вас. Якщо йому потрібен екран, коли телефон заблоковано, він попросить розблокувати.</string>
     <string name="schedule_time">Час</string>
     <string name="schedule_days">Дні</string>
     <string name="schedule_daily">Щодня</string>
@@ -496,7 +496,7 @@
     <string name="schedule_message_hint">Що надіслати, наприклад: Відкрий застосунок і відмітися за сьогодні</string>
     <string name="schedule_wake">Будити телефон для цього завдання</string>
     <string name="schedule_wake_info">Коли потрібен екран, він вмикається (а екран блокування без PIN-коду, графічного ключа чи відбитка відкривається). Поки завдання триває, екран бачать усі поруч.</string>
-    <string name="schedule_inexact">Точні будильники для Buddy вимкнено, тому він може почати на кілька хвилин пізніше.</string>
+    <string name="schedule_inexact">Точні будильники для Piggy вимкнено, тому він може почати на кілька хвилин пізніше.</string>
     <string name="schedule_allow_exact">Дозволити точні будильники</string>
     <string name="schedule_save">Зберегти</string>
     <string name="schedule_remove">Видалити</string>
@@ -512,7 +512,7 @@
     <string name="schedule_skipped_title">Завдання за розкладом пропущено: %1$s</string>
     <string name="schedule_stopped_title">Завдання за розкладом зупинено: %1$s</string>
     <string name="schedule_skip_running">Цей чат ще виконував попереднє завдання.</string>
-    <string name="schedule_skip_busy">Buddy був зайнятий цілу годину (інше завдання, пауза або немає інтернету).</string>
+    <string name="schedule_skip_busy">Piggy був зайнятий цілу годину (інше завдання, пауза або немає інтернету).</string>
     <string name="schedule_skip_screen">Телефон залишався заблокованим цілу годину.</string>
     <string name="schedule_marker">За розкладом</string>
 
@@ -556,7 +556,7 @@
     <!-- Language sheet (long-press the mic) -->
     <!-- Title, followed by a list of languages to speak in. -->
     <string name="chat_speak_in">Якою мовою говорите?</string>
-    <!-- "Settings → Voice" = the Voice section of Buddy's Settings tab; use the same names as there. -->
+    <!-- "Settings → Voice" = the Voice section of Piggy's Settings tab; use the same names as there. -->
     <string name="chat_speak_in_help">Виберіть свої мови: Налаштування → Голос.</string>
     <string name="live_option">Живий голос</string>
     <string name="live_option_sub">Говоріть із Codex уголос. Він відповідає голосом ChatGPT і діє на телефоні в цьому чаті.</string>
@@ -567,7 +567,7 @@
     <string name="live_ended">Живий голос завершено.</string>
     <string name="live_ended_why">Живий голос завершено: %1$s</string>
     <string name="live_ended_screen_off">екран вимкнувся</string>
-    <string name="live_ended_paused">Buddy призупинено</string>
+    <string name="live_ended_paused">Piggy призупинено</string>
     <string name="live_ended_idle">5 хвилин нічого не було сказано</string>
     <string name="live_notification_title">Живий голос із Codex</string>
     <string name="live_mic_busy">Живий голос використовує мікрофон. Спершу завершіть його.</string>
@@ -632,8 +632,8 @@
         <item quantity="other">%1$d виклику інструмента</item>
     </plurals>
 
-    <!-- Notes Buddy posts into a chat, and the chat's status line -->
-    <!-- After "Continue in Buddy" on an earlier session. %1$s = agent name. -->
+    <!-- Notes Piggy posts into a chat, and the chat's status line -->
+    <!-- After "Continue in Piggy" on an earlier session. %1$s = agent name. -->
     <string name="hub_continuing">Продовження попереднього сеансу %1$s. Якщо він ще відкритий у терміналі, спершу закрийте його там.</string>
     <string name="hub_still_working_attachments">Цей чат ще працює. Надішліть вкладення, коли завдання буде виконано.</string>
     <!-- Status right after a message is sent, until the agent's first step. -->
@@ -719,8 +719,8 @@
     <string name="hub_tool_asking">Запитую: %1$s</string>
     <string name="hub_tool_point_out">Позначає: %1$s</string>
     <string name="hub_tool_point_out_any">Позначає щось на екрані</string>
-    <string name="hub_tool_update_download">Завантажую оновлення Buddy</string>
-    <string name="hub_tool_update_check">Перевіряю оновлення Buddy</string>
+    <string name="hub_tool_update_download">Завантажую оновлення Piggy</string>
+    <string name="hub_tool_update_check">Перевіряю оновлення Piggy</string>
     <!-- %1$s = what is searched for. -->
     <string name="hub_tool_web_search">Шукаю в інтернеті: %1$s</string>
     <!-- Reading a web page. %1$s = web address. -->
@@ -736,10 +736,10 @@
     <!-- Any other tool. %1$s = the tool's name, not translated. -->
     <string name="hub_tool_other">Використовую %1$s</string>
 
-    <!-- Transcript of an earlier agent session that isn't a Buddy chat (read-only) -->
+    <!-- Transcript of an earlier agent session that isn't a Piggy chat (read-only) -->
     <string name="transcript_loading">Завантаження…</string>
-    <!-- Button: continue this earlier session as a Buddy chat. -->
-    <string name="transcript_continue">Продовжити в Buddy</string>
+    <!-- Button: continue this earlier session as a Piggy chat. -->
+    <string name="transcript_continue">Продовжити в Piggy</string>
     <string name="transcript_empty">У цьому сеансі немає повідомлень, які можна прочитати.</string>
     <!-- Above the messages. %1$d = how many of the session's last messages are shown. -->
     <plurals name="transcript_last_messages">
@@ -754,11 +754,11 @@
     <string name="ui_no_app_for_link">Немає додатка, який може відкрити це посилання</string>
 
     <!-- Accessibility disclosure, shown before Android's accessibility settings open (required by Google Play) -->
-    <string name="ui_a11y_title">Як Buddy використовує спеціальні можливості</string>
-    <string name="ui_a11y_what">Buddy використовує сервіс спеціальних можливостей Android, щоб виконувати ваші прохання в інших додатках: він читає вміст екрана, а також натискає, вводить текст і прокручує за вас. Ще він показує плаваючу бульбашку.</string>
+    <string name="ui_a11y_title">Як Piggy використовує спеціальні можливості</string>
+    <string name="ui_a11y_what">Piggy використовує сервіс спеціальних можливостей Android, щоб виконувати ваші прохання в інших додатках: він читає вміст екрана, а також натискає, вводить текст і прокручує за вас. Ще він показує плаваючу бульбашку.</string>
     <string name="ui_a11y_data">Поки виконується завдання, вміст екрана, який може містити особисту інформацію, як-от повідомлення, імена чи адреси, надсилається ШІ-сервісу вибраного вами агента (Anthropic для Claude Code, OpenAI для Codex, Google для Antigravity, xAI для Grok або провайдеру вашої моделі в OpenCode) лише для виконання вашого запиту.</string>
-    <string name="ui_a11y_no_servers">Buddy не має власних серверів. Він не збирає, не продає й не передає ці дані та не використовує їх для реклами.</string>
-    <string name="ui_a11y_asks">Перед будь-якою дією, що надсилає, публікує, купує чи видаляє, Buddy просить вашого дозволу. Сервіс можна будь-коли вимкнути в налаштуваннях спеціальних можливостей Android.</string>
+    <string name="ui_a11y_no_servers">Piggy не має власних серверів. Він не збирає, не продає й не передає ці дані та не використовує їх для реклами.</string>
+    <string name="ui_a11y_asks">Перед будь-якою дією, що надсилає, публікує, купує чи видаляє, Piggy просить вашого дозволу. Сервіс можна будь-коли вимкнути в налаштуваннях спеціальних можливостей Android.</string>
     <string name="ui_privacy_policy">Політика конфіденційності</string>
     <!-- Button: close the disclosure without opening the settings. -->
     <string name="ui_no_thanks">Ні, дякую</string>
@@ -766,16 +766,16 @@
     <string name="ui_agree_continue">Погодитися й продовжити</string>
 
     <!-- Bottom navigation of the main screens. Keep very short (about 10 characters). -->
-    <!-- Tab: the list of Buddy chats. -->
+    <!-- Tab: the list of Piggy chats. -->
     <string name="ui_nav_chats">Чати</string>
     <!-- Tab: every agent session on the phone (running and recent). -->
     <string name="ui_nav_sessions">Сеанси</string>
-    <!-- Tab: Buddy's settings. -->
+    <!-- Tab: Piggy's settings. -->
     <string name="ui_nav_settings">Налаштування</string>
 
     <!-- Accessibility service: pause from the bubble's hold menu, Stop on the control indicator -->
     <!-- Toast when a pause runs out after 5 minutes. -->
-    <string name="service_pause_expired">Пауза тривала 5 хвилин, тому Buddy зупинив завдання.</string>
+    <string name="service_pause_expired">Пауза тривала 5 хвилин, тому Piggy зупинив завдання.</string>
     <!-- Toast after the user stops the task to use the phone. -->
     <string name="service_stopped_toast">Зупинено. Телефон знову ваш.</string>
     <!-- Note in the chat when the user pauses the agent. -->
@@ -788,7 +788,7 @@
 
     <!-- Voice input and output -->
     <!-- 🎙 = the mic button. -->
-    <string name="voice_mic_needed">Buddy потрібен доступ до мікрофона. Відкрийте додаток Buddy і один раз натисніть 🎙, щоб його надати.</string>
+    <string name="voice_mic_needed">Piggy потрібен доступ до мікрофона. Відкрийте додаток Piggy і один раз натисніть 🎙, щоб його надати.</string>
     <string name="voice_no_recognizer">На цьому телефоні немає сервісу розпізнавання мовлення.</string>
     <!-- Status in the recording bar while speech recognition starts. Keep short. -->
     <string name="voice_starting">Запуск…</string>
@@ -811,18 +811,18 @@
          (Claude, ChatGPT, Codex, OpenCode, Anthropic, OpenAI, Pro, Max, Plus, Business) stay as they are. -->
     <!-- Content description of the back arrow in the top bar (read by TalkBack). -->
     <string name="signin_back">Назад</string>
-    <!-- Subtitle while Buddy checks whether the agent is installed and signed in. -->
+    <!-- Subtitle while Piggy checks whether the agent is installed and signed in. -->
     <string name="signin_checking">Перевірка…</string>
 
     <!-- Sign-in screen: the agent isn't installed yet. -->
     <!-- Screen title and the button that starts the install. %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="signin_install">Установити %1$s</string>
-    <string name="signin_install_sub_claude">Claude Code працюватиме в Buddy за вашою підпискою Claude.</string>
-    <string name="signin_install_sub_opencode">OpenCode працюватиме в Buddy. Його безкоштовні моделі доступні одразу, без облікового запису; власних провайдерів (Anthropic, OpenAI, GitHub Copilot…) можна підключити будь-коли.</string>
-    <string name="signin_install_sub_codex">Codex працюватиме в Buddy за вашою підпискою ChatGPT.</string>
-    <string name="signin_install_sub_agy">Antigravity CLI від Google працюватиме в Buddy з вашим обліковим записом Google: безкоштовний тариф, Google AI Pro або Ultra.</string>
-    <string name="signin_install_sub_grok">Grok Build від xAI працюватиме в Buddy з вашим обліковим записом Grok (можна увійти через Google або X).</string>
-    <!-- "Buddy's Linux" = the small Linux system Buddy installs inside the app. -->
+    <string name="signin_install_sub_claude">Claude Code працюватиме в Piggy за вашою підпискою Claude.</string>
+    <string name="signin_install_sub_opencode">OpenCode працюватиме в Piggy. Його безкоштовні моделі доступні одразу, без облікового запису; власних провайдерів (Anthropic, OpenAI, GitHub Copilot…) можна підключити будь-коли.</string>
+    <string name="signin_install_sub_codex">Codex працюватиме в Piggy за вашою підпискою ChatGPT.</string>
+    <string name="signin_install_sub_agy">Antigravity CLI від Google працюватиме в Piggy з вашим обліковим записом Google: безкоштовний тариф, Google AI Pro або Ultra.</string>
+    <string name="signin_install_sub_grok">Grok Build від xAI працюватиме в Piggy з вашим обліковим записом Grok (можна увійти через Google або X).</string>
+    <!-- "Piggy's Linux" = the small Linux system Piggy installs inside the app. -->
     <string name="signin_install_size_claude">Одноразово завантажується близько 235 МБ: вбудований Linux і Claude Code від Anthropic. За можливості використовуйте Wi-Fi.</string>
     <string name="signin_install_size_opencode">Одноразово завантажується близько 230 МБ: вбудований Linux, Node.js і OpenCode. За можливості використовуйте Wi-Fi.</string>
     <string name="signin_install_size_codex">Одноразово завантажується близько 150 МБ: вбудований Linux, Node.js і Codex від OpenAI. За можливості використовуйте Wi-Fi.</string>
@@ -839,10 +839,10 @@
     <string name="signin_title_chatgpt">Вхід у ChatGPT</string>
     <string name="signin_title_google">Вхід у Google</string>
     <string name="signin_title_grok">Вхід у Grok</string>
-    <string name="signin_sub_claude">Використовуйте обліковий запис Claude (Pro або Max). Відкриється браузер: підтвердьте вхід там, і Buddy повернеться сам.</string>
-    <string name="signin_sub_chatgpt">Використовуйте обліковий запис ChatGPT (Plus, Pro або Business). Відкриється браузер: підтвердьте вхід там, і Buddy повернеться сам.</string>
-    <string name="signin_sub_agy">Використовуйте обліковий запис Google. Відкриється браузер: увійдіть там, і Buddy сам отримає код. Antigravity чекає близько хвилини.</string>
-    <string name="signin_sub_grok">Використовуйте обліковий запис Grok; увійти через Google або X теж можна. Відкриється браузер із кодом: підтвердьте його там, і Buddy повернеться сам.</string>
+    <string name="signin_sub_claude">Використовуйте обліковий запис Claude (Pro або Max). Відкриється браузер: підтвердьте вхід там, і Piggy повернеться сам.</string>
+    <string name="signin_sub_chatgpt">Використовуйте обліковий запис ChatGPT (Plus, Pro або Business). Відкриється браузер: підтвердьте вхід там, і Piggy повернеться сам.</string>
+    <string name="signin_sub_agy">Використовуйте обліковий запис Google. Відкриється браузер: увійдіть там, і Piggy сам отримає код. Antigravity чекає близько хвилини.</string>
+    <string name="signin_sub_grok">Використовуйте обліковий запис Grok; увійти через Google або X теж можна. Відкриється браузер із кодом: підтвердьте його там, і Piggy повернеться сам.</string>
     <!-- Main button. -->
     <string name="signin_with_claude">Увійти через Claude</string>
     <string name="signin_with_chatgpt">Увійти через ChatGPT</string>
@@ -860,10 +860,10 @@
     <string name="signin_starting">Починаю вхід…</string>
     <string name="signin_approve_title">Підтвердьте в браузері</string>
     <!-- "Authorize" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
-    <string name="signin_approve_claude">Натисніть «Authorize» на сторінці Claude. Buddy сам отримає код і повернеться.</string>
-    <string name="signin_approve_codex">Увійдіть і надайте доступ Codex. Потім поверніться в Buddy — він завершить усе сам.</string>
-    <string name="signin_approve_agy">Увійдіть і надайте доступ Antigravity. Buddy сам отримає код, який покаже сторінка, і повернеться. Якщо це займе понад хвилину, почніть вхід заново.</string>
-    <string name="signin_approve_grok">Перевірте, що на сторінці показано код %1$s, потім підтвердьте й увійдіть. Buddy повернеться сам.</string>
+    <string name="signin_approve_claude">Натисніть «Authorize» на сторінці Claude. Piggy сам отримає код і повернеться.</string>
+    <string name="signin_approve_codex">Увійдіть і надайте доступ Codex. Потім поверніться в Piggy — він завершить усе сам.</string>
+    <string name="signin_approve_agy">Увійдіть і надайте доступ Antigravity. Piggy сам отримає код, який покаже сторінка, і повернеться. Якщо це займе понад хвилину, почніть вхід заново.</string>
+    <string name="signin_approve_grok">Перевірте, що на сторінці показано код %1$s, потім підтвердьте й увійдіть. Piggy повернеться сам.</string>
     <!-- Button. -->
     <string name="signin_open_again">Знову відкрити сторінку входу</string>
     <!-- Screen title after the code was handed over. -->
@@ -877,9 +877,9 @@
     <string name="signin_remote_claude">Відкрийте це посилання на будь-якому пристрої й підтвердьте вхід. Потім скопіюйте код зі сторінки та вставте його нижче.</string>
     <!-- Screen title (ChatGPT): a one-time code is shown below it. -->
     <string name="signin_enter_code">Введіть цей код</string>
-    <string name="signin_remote_codex">На будь-якому пристрої відкрийте посилання нижче, увійдіть у ChatGPT і введіть код. Buddy завершить усе сам.</string>
+    <string name="signin_remote_codex">На будь-якому пристрої відкрийте посилання нижче, увійдіть у ChatGPT і введіть код. Piggy завершить усе сам.</string>
     <string name="signin_remote_agy">Відкрийте це посилання на будь-якому пристрої й увійдіть. Потім скопіюйте код зі сторінки та вставте його нижче — у вас є близько хвилини.</string>
-    <string name="signin_remote_grok">На будь-якому пристрої відкрийте посилання нижче, увійдіть у Grok і підтвердьте код. Buddy завершить усе сам.</string>
+    <string name="signin_remote_grok">На будь-якому пристрої відкрийте посилання нижче, увійдіть у Grok і підтвердьте код. Piggy завершить усе сам.</string>
     <!-- Buttons and the toasts after them. -->
     <string name="signin_copy_code">Копіювати код</string>
     <string name="signin_code_copied">Код скопійовано</string>
@@ -899,8 +899,8 @@
     <!-- Sign-in screen: fold-out box for pasting Claude's sign-in code by hand. -->
     <string name="signin_paste_instead">Вставити код вручну</string>
     <!-- "Copy Code" is the button on Claude's sign-in web page; use the label that page shows in your language. -->
-    <string name="signin_paste_help">Якщо Buddy не повертається сам, натисніть «Copy Code» на сторінці Claude і вставте код сюди.</string>
-    <string name="signin_paste_help_agy">Якщо Buddy не повертається сам, натисніть «Copy to Clipboard» на сторінці Antigravity і вставте код сюди.</string>
+    <string name="signin_paste_help">Якщо Piggy не повертається сам, натисніть «Copy Code» на сторінці Claude і вставте код сюди.</string>
+    <string name="signin_paste_help_agy">Якщо Piggy не повертається сам, натисніть «Copy to Clipboard» на сторінці Antigravity і вставте код сюди.</string>
     <!-- Hint inside the empty text box for the code. Lowercase in English. -->
     <string name="signin_code_hint">код</string>
     <!-- Short button next to the text box: use the pasted code. Verb. -->
@@ -918,14 +918,14 @@
     <string name="signin_sign_out">Вийти</string>
     <!-- Confirmation sheet. %1$s = agent name. -->
     <string name="signin_sign_out_title">Вийти з %1$s?</string>
-    <string name="signin_sign_out_text">%1$s у Buddy не працюватиме, доки ви знову не ввійдете.</string>
+    <string name="signin_sign_out_text">%1$s у Piggy не працюватиме, доки ви знову не ввійдете.</string>
     <string name="signin_opencode_ready">OpenCode готовий до роботи</string>
     <!-- "model chip" = the button at the top of a chat that shows the agent and model. -->
     <string name="signin_opencode_free">Використовуються безкоштовні моделі OpenCode. Вибирайте модель для кожного чату кнопкою моделі вгорі або підключіть власного провайдера.</string>
     <!-- %1$s = connected providers, comma-separated (e.g. "anthropic, openai"). -->
     <string name="signin_opencode_connected">Підключено: %1$s. Безкоштовні моделі OpenCode теж залишаються доступними.</string>
     <!-- %1$s = the command "opencode auth login", %2$s = the command "opencode auth logout" (both stay as they are). -->
-    <string name="signin_opencode_connect_note">Щоб підключити провайдера, Buddy відкриє свій термінал із командою %1$s: виберіть провайдера й виконайте вказані кроки. Щоб пізніше вилучити провайдера, виконайте там %2$s.</string>
+    <string name="signin_opencode_connect_note">Щоб підключити провайдера, Piggy відкриє свій термінал із командою %1$s: виберіть провайдера й виконайте вказані кроки. Щоб пізніше вилучити провайдера, виконайте там %2$s.</string>
     <!-- Button. -->
     <string name="signin_connect_provider">Підключити провайдера</string>
     <!-- Installed version. %1$s = agent name, %2$s = version number (e.g. "Claude Code 2.1.40."). -->
@@ -1024,45 +1024,45 @@
     <string name="remote_start_failed">Не вдалося запустити: %1$s</string>
     <string name="remote_keeps_stopping">Сеанс постійно зупиняється. Вимкніть і знову ввімкніть його або перевірте вхід у Claude Code.</string>
     <string name="codex_pair_getting">Отримання коду…</string>
-    <string name="codex_pair_text">Введіть цей код у ChatGPT: на телефоні — у розділі Codex, на комп’ютері — у «Налаштування → Підключення → Керувати іншими пристроями». Він спрацьовує один раз, до %1$s. Buddy відображається там як «localhost».</string>
+    <string name="codex_pair_text">Введіть цей код у ChatGPT: на телефоні — у розділі Codex, на комп’ютері — у «Налаштування → Підключення → Керувати іншими пристроями». Він спрацьовує один раз, до %1$s. Piggy відображається там як «localhost».</string>
     <string name="codex_pair_failed">Не вдалося отримати код під’єднання: %1$s</string>
     <string name="codex_keeps_stopping">Сеанс Codex постійно зупиняється: %1$s</string>
     <string name="ssh_keeps_stopping">SSH-сервер постійно зупиняється: %1$s</string>
     <string name="ssh_key_added">Готово. Щоб відкрити вбудований Linux з Termux, введіть ssh buddy.</string>
-    <string name="ssh_code_expired">Цю команду вже використано, або їй понад 10 хвилин. Скопіюйте її знову в «Налаштуваннях» Buddy.</string>
+    <string name="ssh_code_expired">Цю команду вже використано, або їй понад 10 хвилин. Скопіюйте її знову в «Налаштуваннях» Piggy.</string>
 
     <!-- ===== Settings, the built-in Linux, terminal and sessions (SetupActivity, Linux, Terminal*, MonitorActivity) ===== -->
 
     <!-- Settings screen: header. -->
     <string name="setup_settings_title">Налаштування</string>
-    <string name="setup_settings_subtitle">Buddy запускає Claude Code, Codex, OpenCode, Antigravity або Grok в самому додатку за вашою підпискою (або на безкоштовних моделях OpenCode і безкоштовному тарифі Antigravity).</string>
+    <string name="setup_settings_subtitle">Piggy запускає Claude Code, Codex, OpenCode, Antigravity або Grok в самому додатку за вашою підпискою (або на безкоштовних моделях OpenCode і безкоштовному тарифі Antigravity).</string>
 
     <!-- Settings screen: the setup checklist card (5 steps). -->
     <!-- Title of the setup checklist card (noun). -->
     <string name="setup_card_title">Початкове налаштування</string>
     <string name="setup_open_guide">Відкрити покроковий майстер</string>
-    <string name="setup_all_set">Усе налаштовано. Buddy готовий до роботи.</string>
+    <string name="setup_all_set">Усе налаштовано. Piggy готовий до роботи.</string>
     <!-- %1$s = name of the next unfinished setup step, e.g. "Install Claude Code". -->
     <string name="setup_next_step">Далі: %1$s</string>
-    <string name="setup_step_a11y_title">Увімкніть сервіс спеціальних можливостей Buddy</string>
-    <string name="setup_step_a11y_body">Сервіс показує бульбашку й дає Buddy змогу читати екран, натискати й вводити текст за вас.</string>
+    <string name="setup_step_a11y_title">Увімкніть сервіс спеціальних можливостей Piggy</string>
+    <string name="setup_step_a11y_body">Сервіс показує бульбашку й дає Piggy змогу читати екран, натискати й вводити текст за вас.</string>
     <!-- Second paragraph of the accessibility step on Android 13+. "Restricted setting", "App info" and "Allow restricted settings" are Android's own labels: use the wording Android uses in your language. ⋮ is the three-dot menu icon. -->
     <string name="setup_step_a11y_restricted">Перемикач неактивний («Обмежене налаштування»)? Android блокує це для додатків, установлених із файлу. Натисніть «Про додаток», потім ⋮ угорі праворуч → «Дозволити обмежені налаштування» і спробуйте ще раз.</string>
     <!-- Button: opens Android's accessibility settings. -->
     <string name="setup_open_settings">Відкрити налаштування</string>
-    <!-- Button: opens Android's App info page for Buddy (Android's own label). -->
+    <!-- Button: opens Android's App info page for Piggy (Android's own label). -->
     <string name="setup_app_info">Про додаток</string>
     <!-- %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="setup_step_install_title">Установіть %1$s</string>
     <!-- %1$s = agent name. -->
-    <string name="setup_step_install_done">%1$s установлено в Buddy.</string>
+    <string name="setup_step_install_done">%1$s установлено в Piggy.</string>
     <!-- %1$s = Claude Code. -->
-    <string name="setup_step_install_claude">Buddy завантажує власний невеликий Linux і %1$s від Anthropic (близько 235 МБ).</string>
+    <string name="setup_step_install_claude">Piggy завантажує власний невеликий Linux і %1$s від Anthropic (близько 235 МБ).</string>
     <!-- %1$s = OpenCode. -->
-    <string name="setup_step_install_opencode">Buddy завантажує власний невеликий Linux і %1$s (близько 230 МБ разом із Node.js).</string>
+    <string name="setup_step_install_opencode">Piggy завантажує власний невеликий Linux і %1$s (близько 230 МБ разом із Node.js).</string>
     <!-- %1$s = Codex. -->
-    <string name="setup_step_install_codex">Buddy завантажує власний невеликий Linux і %1$s від OpenAI (близько 150 МБ).</string>
-    <string name="setup_step_install_grok">Buddy завантажує власний невеликий Linux і %1$s від xAI (близько 170 МБ).</string>
+    <string name="setup_step_install_codex">Piggy завантажує власний невеликий Linux і %1$s від OpenAI (близько 150 МБ).</string>
+    <string name="setup_step_install_grok">Piggy завантажує власний невеликий Linux і %1$s від xAI (близько 170 МБ).</string>
     <!-- Button (verb). -->
     <string name="setup_install">Установити</string>
     <!-- Name of the sign-in setup step. -->
@@ -1072,20 +1072,20 @@
     <string name="setup_step_signin_done">Вхід виконано.</string>
     <!-- %1$s = the account's email address. -->
     <string name="setup_step_signin_done_email">Ви ввійшли як %1$s.</string>
-    <string name="setup_step_signin_claude">Через обліковий запис Claude (Pro або Max). Відкриється браузер: підтвердьте вхід там, і Buddy повернеться сам.</string>
-    <string name="setup_step_signin_codex">Через обліковий запис ChatGPT. Відкриється браузер: підтвердьте вхід там, і Buddy повернеться сам.</string>
-    <string name="setup_step_signin_grok">Через обліковий запис Grok. Відкриється браузер: підтвердьте там код, і Buddy повернеться сам.</string>
+    <string name="setup_step_signin_claude">Через обліковий запис Claude (Pro або Max). Відкриється браузер: підтвердьте вхід там, і Piggy повернеться сам.</string>
+    <string name="setup_step_signin_codex">Через обліковий запис ChatGPT. Відкриється браузер: підтвердьте вхід там, і Piggy повернеться сам.</string>
+    <string name="setup_step_signin_grok">Через обліковий запис Grok. Відкриється браузер: підтвердьте там код, і Piggy повернеться сам.</string>
     <!-- Button (verb). -->
     <string name="setup_sign_in">Увійти</string>
-    <string name="setup_step_background_title">Дозвольте Buddy працювати у фоні</string>
+    <string name="setup_step_background_title">Дозвольте Piggy працювати у фоні</string>
     <string name="setup_step_background_done">Дозволено.</string>
-    <string name="setup_step_background_body">Щоб телефон не зупиняв Buddy для економії заряду, поки агент працює.</string>
-    <!-- Button (verb): lets Buddy ignore battery optimization. -->
+    <string name="setup_step_background_body">Щоб телефон не зупиняв Piggy для економії заряду, поки агент працює.</string>
+    <!-- Button (verb): lets Piggy ignore battery optimization. -->
     <string name="setup_allow">Дозволити</string>
-    <!-- Name of the last setup step: try Buddy out. -->
+    <!-- Name of the last setup step: try Piggy out. -->
     <string name="setup_step_try_title">Спробуйте</string>
-    <string name="setup_step_try_done">Buddy вам відповів. Натискайте бульбашку будь-коли, щоб попросити ще щось.</string>
-    <!-- "open Messenger" is an example of what to say to Buddy: translate it. -->
+    <string name="setup_step_try_done">Piggy вам відповів. Натискайте бульбашку будь-коли, щоб попросити ще щось.</string>
+    <!-- "open Messenger" is an example of what to say to Piggy: translate it. -->
     <string name="setup_step_try_body">Натисніть бульбашку біля краю екрана й попросіть щось на кшталт «відкрий Messenger» або почніть чат тут.</string>
     <string name="setup_step_try_wait">Спершу виконайте кроки вище.</string>
     <!-- Short names of the setup steps, shown after "Next:" in the Chats header. -->
@@ -1102,11 +1102,11 @@
     <!-- Label of the background tone picker. -->
     <string name="setup_surface">Фон</string>
     <!-- "Warm" and "Black" are options of the Surface picker: use the same words as those options. -->
-    <string name="setup_surface_note">«Теплий» — оригінальний тон Buddy. «Чорний» (справжній чорний) діє лише в темній темі.</string>
-    <string name="setup_face">Вигляд Buddy</string>
+    <string name="setup_surface_note">«Теплий» — оригінальний тон Piggy. «Чорний» (справжній чорний) діє лише в темній темі.</string>
+    <string name="setup_face">Вигляд Piggy</string>
     <string name="setup_face_buddy">Оригінал</string>
     <string name="setup_face_picture">Своє зображення</string>
-    <string name="setup_face_note">Найкраще підійде PNG або WebP із прозорим фоном. Воно з\'явиться на бульбашці та поруч із відповідями Buddy.</string>
+    <string name="setup_face_note">Найкраще підійде PNG або WebP із прозорим фоном. Воно з\'явиться на бульбашці та поруч із відповідями Piggy.</string>
     <string name="setup_face_change">Вибрати інше зображення</string>
     <string name="setup_face_unreadable">Не вдалося прочитати зображення. Спробуйте PNG або WebP.</string>
     <!-- Read by TalkBack: the swatch that opens the custom colour sheet. -->
@@ -1120,9 +1120,9 @@
     <string name="setup_agent">Агент</string>
     <!-- Which AI agent answers new chats. -->
     <string name="setup_default_brain">Основний мозок</string>
-    <!-- "New chat" is the name of a button in Buddy. -->
+    <!-- "New chat" is the name of a button in Piggy. -->
     <string name="setup_default_brain_info">Хто відповідає в нових чатах, створених із бульбашки чи кнопкою «Новий чат». Claude Code використовує вашу підписку Claude, Codex — підписку ChatGPT, Antigravity — обліковий запис Google, Grok — обліковий запис Grok, OpenCode — свої безкоштовні моделі або ваших провайдерів. Вибрати можна лише налаштованих агентів.</string>
-    <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Buddy. -->
+    <!-- Toast. %1$s = agent name. "New chat" is the name of a button in Piggy. -->
     <string name="setup_default_brain_set">Нові чати використовуватимуть %1$s. Агента для окремого чату можна вибрати кнопкою «Новий чат».</string>
     <!-- Toast. %1$s = agent name. -->
     <string name="setup_set_up_first">Спершу налаштуйте %1$s.</string>
@@ -1139,7 +1139,7 @@
 
     <!-- Settings screen: Phone tools in your own sessions (MCP server). -->
     <string name="setup_phone_tools">Інструменти телефона у ваших сеансах</string>
-    <string name="setup_phone_tools_info">Інструменти телефона в Buddy — це звичайний MCP-сервер на цьому телефоні. Один раз виконайте цю команду в терміналі на телефоні (наприклад, у Termux), і відповідний агент отримає інструменти телефона в кожному сеансі, навіть без бульбашки.</string>
+    <string name="setup_phone_tools_info">Інструменти телефона в Piggy — це звичайний MCP-сервер на цьому телефоні. Один раз виконайте цю команду в терміналі на телефоні (наприклад, у Termux), і відповідний агент отримає інструменти телефона в кожному сеансі, навіть без бульбашки.</string>
     <!-- Button. -->
     <string name="setup_copy_command">Копіювати команду</string>
     <string name="setup_command_copied">Скопійовано. Вставте її в термінал.</string>
@@ -1149,14 +1149,14 @@
     <string name="setup_voice_input">Голосове введення</string>
     <!-- Option next to Claude and ChatGPT: the phone's own speech engine. Keep short. -->
     <string name="setup_voice_phone">Телефон</string>
-    <string name="setup_voice_input_claude">Диктування Claude Code за вашою підпискою Claude: дуже точне. Підтримує англійську, французьку, німецьку, іспанську, італійську, португальську, нідерландську, турецьку, російську, японську та інші мови, але не арабську: для арабської Buddy використовує розпізнавання мовлення телефона. Слова з\'являються, коли ви робите паузу.</string>
+    <string name="setup_voice_input_claude">Диктування Claude Code за вашою підпискою Claude: дуже точне. Підтримує англійську, французьку, німецьку, іспанську, італійську, португальську, нідерландську, турецьку, російську, японську та інші мови, але не арабську: для арабської Piggy використовує розпізнавання мовлення телефона. Слова з\'являються, коли ви робите паузу.</string>
     <string name="setup_voice_input_chatgpt">Голос ChatGPT через Codex за вашою підпискою ChatGPT. Розуміє будь-яку мову, навіть кілька мов в одному реченні. Використовуються лише ваші слова: голосові відповіді ChatGPT вимкнено, і він не може нічого запускати.</string>
     <string name="setup_voice_input_phone">Розпізнавання мовлення вашого телефона (на більшості телефонів — Google). Текст з\'являється, поки ви говорите; визначає, якою з ваших мов ви говорите.</string>
     <string name="setup_voice_output">Озвучення</string>
     <string name="setup_voice_output_chatgpt">Відповіді читає природний голос ChatGPT (за вашою підпискою ChatGPT, через Codex). Це зараховується до ліміту голосових функцій ChatGPT; якщо він недоступний, читає голос телефона.</string>
     <string name="setup_voice_output_phone">Голоси синтезу мовлення вашого телефона, мовою відповіді.</string>
     <!-- Spoken aloud to preview the chosen ChatGPT voice. Mixing two languages is on purpose (it shows the voice switches languages): keep a greeting in another language. -->
-    <string name="setup_voice_sample">Bonjour ! Привіт, я Buddy. Ось так я звучу.</string>
+    <string name="setup_voice_sample">Bonjour ! Привіт, я Piggy. Ось так я звучу.</string>
     <string name="setup_languages">Мови</string>
     <string name="setup_languages_hint">Натисніть, щоб вибрати мови, якими ви говорите. Натисніть і утримуйте мову, щоб зробити її основною. У чаті натисніть і утримуйте мікрофон, щоб змінити мову.</string>
     <!-- Sheet title. %1$s = agent name (Claude Code or Codex). -->
@@ -1173,7 +1173,7 @@
     <string name="setup_remote_control">Remote Control</string>
     <string name="setup_remote_session">Сеанс Claude Code</string>
     <!-- "Code" is the name of a section of the Claude app. -->
-    <string name="setup_remote_session_info">Сеанс Claude Code, що працює в Buddy з інструментами телефона. Продовжуйте його в додатку Claude (розділ Code) на цьому телефоні чи будь-де.</string>
+    <string name="setup_remote_session_info">Сеанс Claude Code, що працює в Piggy з інструментами телефона. Продовжуйте його в додатку Claude (розділ Code) на цьому телефоні чи будь-де.</string>
     <string name="setup_remote_sign_in_first">Спершу увійдіть у Claude Code.</string>
     <!-- Status, lowercase. %1$s = the session's name as shown in the Claude app. -->
     <string name="setup_remote_active">активний · «%1$s» у додатку Claude</string>
@@ -1184,7 +1184,7 @@
     <string name="setup_remote_open">Відкрити в додатку Claude</string>
     <string name="setup_remote_open_failed">Не вдалося відкрити.</string>
     <string name="setup_codex_session">Сеанс Codex</string>
-    <string name="setup_codex_session_info">Codex з інструментами телефона, що працює в Buddy. Користуйтеся ним у додатку ChatGPT (розділ Codex) на цьому телефоні чи на комп’ютері. Пісочниця Codex тут не працює, тож із типовими дозволами він питає перед кожною командою.</string>
+    <string name="setup_codex_session_info">Codex з інструментами телефона, що працює в Piggy. Користуйтеся ним у додатку ChatGPT (розділ Codex) на цьому телефоні чи на комп’ютері. Пісочниця Codex тут не працює, тож із типовими дозволами він питає перед кожною командою.</string>
     <string name="setup_codex_active">працює · «localhost» у ChatGPT</string>
     <string name="setup_codex_pair">Під’єднати пристрій</string>
     <string name="setup_ssh">SSH з Termux</string>
@@ -1192,13 +1192,13 @@
     <string name="setup_ssh_active">працює · порт %1$d</string>
     <string name="setup_ssh_how">Скопіюйте цю команду й виконайте її один раз у Termux протягом 10 хвилин. Після цього вводьте ssh buddy у Termux, щоб відкрити вбудований Linux.</string>
 
-    <!-- Settings screen: chats left over from when Buddy ran its agents in Termux. -->
+    <!-- Settings screen: chats left over from when Piggy ran its agents in Termux. -->
     <string name="setup_old_chats_title">Вилучити старі чати Termux</string>
     <plurals name="setup_old_chats_body">
-        <item quantity="one">%1$d чат, створений ще до появи в Buddy власного Linux. Агенти не можуть його продовжити.</item>
-        <item quantity="few">%1$d чати, створені ще до появи в Buddy власного Linux. Агенти не можуть їх продовжити.</item>
-        <item quantity="many">%1$d чатів, створених ще до появи в Buddy власного Linux. Агенти не можуть їх продовжити.</item>
-        <item quantity="other">%1$d чату, створеного ще до появи в Buddy власного Linux. Агенти не можуть їх продовжити.</item>
+        <item quantity="one">%1$d чат, створений ще до появи в Piggy власного Linux. Агенти не можуть його продовжити.</item>
+        <item quantity="few">%1$d чати, створені ще до появи в Piggy власного Linux. Агенти не можуть їх продовжити.</item>
+        <item quantity="many">%1$d чатів, створених ще до появи в Piggy власного Linux. Агенти не можуть їх продовжити.</item>
+        <item quantity="other">%1$d чату, створеного ще до появи в Piggy власного Linux. Агенти не можуть їх продовжити.</item>
     </plurals>
     <plurals name="setup_old_chats_remove">
         <item quantity="one">Вилучити %1$d старий чат?</item>
@@ -1206,7 +1206,7 @@
         <item quantity="many">Вилучити %1$d старих чатів?</item>
         <item quantity="other">Вилучити %1$d старого чату?</item>
     </plurals>
-    <string name="setup_old_chats_remove_body">Їх буде вилучено зі списку чатів Buddy. Цю дію не можна скасувати.</string>
+    <string name="setup_old_chats_remove_body">Їх буде вилучено зі списку чатів Piggy. Цю дію не можна скасувати.</string>
     <!-- Button (verb). -->
     <string name="setup_remove">Вилучити</string>
     <string name="setup_removed">Вилучено.</string>
@@ -1227,7 +1227,7 @@
     <!-- Explains the "Chat panel" choice. -->
     <string name="setup_tap_panel_info">Відкриває плаваючий чат поверх поточного додатка. Утримуйте бульбашку, щоб відкрити інші дії.</string>
     <!-- Explains the "Full app" choice. -->
-    <string name="setup_tap_app_info">Відкриває чат на весь екран у Buddy. Утримуйте бульбашку, щоб відкрити інші дії.</string>
+    <string name="setup_tap_app_info">Відкриває чат на весь екран у Piggy. Утримуйте бульбашку, щоб відкрити інші дії.</string>
     <!-- Setting: the size of the floating chat panel. Title above two short choices. -->
     <string name="setup_panel_size">Розмір панелі чату</string>
     <!-- Choice: the panel fills the screen. Keep it short. -->
@@ -1239,22 +1239,22 @@
     <string name="setup_tap_to_talk_info">Одне натискання вмикає мікрофон: скажіть, що потрібно, і повідомлення надішлеться, коли ви зробите паузу. Утримуйте бульбашку, щоб відкрити чат та інші дії.</string>
     <string name="setup_read_aloud">Читати відповіді вголос</string>
     <!-- "Voice" = the Settings section of that name (setup_voice). -->
-    <string name="setup_read_aloud_info">Buddy читає відповіді агентів вголос — тим голосом, який ви вибрали в розділі «Голос».</string>
+    <string name="setup_read_aloud_info">Piggy читає відповіді агентів вголос — тим голосом, який ви вибрали в розділі «Голос».</string>
     <string name="setup_update_notices">Сповіщення про оновлення</string>
-    <string name="setup_update_notices_info">Buddy раз на день перевіряє GitHub і сповіщає вас про вихід нової версії.</string>
+    <string name="setup_update_notices_info">Piggy раз на день перевіряє GitHub і сповіщає вас про вихід нової версії.</string>
     <string name="setup_check_updates">Перевірити оновлення</string>
-    <!-- %1$s = Buddy's version number. "update yourself" is what you can say to an agent: translate it. -->
-    <string name="setup_check_updates_info">У вас Buddy %1$s. Або попросіть будь-якого агента: «оновися».</string>
+    <!-- %1$s = Piggy's version number. "update yourself" is what you can say to an agent: translate it. -->
+    <string name="setup_check_updates_info">У вас Piggy %1$s. Або попросіть будь-якого агента: «оновися».</string>
     <!-- Name of the App permissions screen. -->
     <string name="setup_app_permissions">Дозволи додатків</string>
     <!-- "Trust" and "Hard" are names of approval modes on the App permissions screen: use the same words. Send, Pay, Delete are example buttons in other apps. -->
-    <string name="setup_app_permissions_info">Вибирайте для кожного додатка: у режимі «Довіра» агент працює там без запитів; у режимі «Суворий» Buddy сам питає вас перед «Надіслати», «Оплатити», «Видалити»…</string>
+    <string name="setup_app_permissions_info">Вибирайте для кожного додатка: у режимі «Довіра» агент працює там без запитів; у режимі «Суворий» Piggy сам питає вас перед «Надіслати», «Оплатити», «Видалити»…</string>
     <!-- Settings switch: whether new chats start with Linux tools (chat_linux_tools); each chat can change it. -->
     <string name="setup_dev_mode">Інструменти Linux у нових чатах</string>
     <string name="setup_dev_mode_info">З інструментами Linux агент може виконувати команди, встановлювати пакети й редагувати файли в ~/.buddy/work, щоб створювати та встановлювати додатки. Нові чати отримують це значення; у кожному чаті його можна змінити під назвою чату.</string>
-    <string name="setup_agents_tap">Дозволити агентам натискати на екранах Buddy</string>
-    <!-- "App permissions" is the name of a screen in Buddy. -->
-    <string name="setup_agents_tap_info">Для тестування Buddy за допомогою агента (наприклад, Claude Code у Termux з інструментами телефона). Бульбашка, картки схвалення, «Дозволи додатків» і ці перемикачі залишаються недоступними.</string>
+    <string name="setup_agents_tap">Дозволити агентам натискати на екранах Piggy</string>
+    <!-- "App permissions" is the name of a screen in Piggy. -->
+    <string name="setup_agents_tap_info">Для тестування Piggy за допомогою агента (наприклад, Claude Code у Termux з інструментами телефона). Бульбашка, картки схвалення, «Дозволи додатків» і ці перемикачі залишаються недоступними.</string>
     <!-- Warning shown while Linux tools in new chats (setup_dev_mode) is on. -->
     <string name="setup_dev_mode_warning">Краще залишити це вимкненим і вмикати інструменти Linux лише в чатах, яким вони потрібні. Коли їх увімкнено, шкідливе повідомлення чи вебсторінка на екрані можуть спробувати обманом змусити агента виконати команди. Картки схвалення все одно захищають надсилання, публікацію, покупки й видалення.</string>
 
@@ -1263,7 +1263,7 @@
     <string name="setup_licences">Ліцензії відкритого коду</string>
     <string name="setup_privacy_policy">Політика конфіденційності</string>
 
-    <!-- Errors while installing Buddy's built-in Linux (Alpine). Shown after "Install failed:". -->
+    <!-- Errors while installing Piggy's built-in Linux (Alpine). Shown after "Install failed:". -->
     <!-- %1$s = SHA-256 checksum of the download. -->
     <string name="linux_download_corrupt">Завантажений файл Alpine пошкоджено (sha256 %1$s)</string>
     <string name="linux_move_failed">Не вдалося перемістити Alpine на місце</string>
@@ -1275,8 +1275,8 @@
     <string name="linux_symlink_failed">Не вдалося створити символьне посилання %1$s: %2$s</string>
     <string name="linux_truncated_archive">Неповний архів</string>
 
-    <!-- Terminal screen (a shell in Buddy's Linux, in tabs). -->
-    <!-- Name of Buddy's built-in terminal: title of the Terminal screen and its menu, and of the Terminal card on the Sessions screen. -->
+    <!-- Terminal screen (a shell in Piggy's Linux, in tabs). -->
+    <!-- Name of Piggy's built-in terminal: title of the Terminal screen and its menu, and of the Terminal card on the Sessions screen. -->
     <string name="terminal_title">Термінал</string>
     <!-- Read by TalkBack: back button. -->
     <string name="terminal_back">Назад</string>
@@ -1284,7 +1284,7 @@
     <string name="terminal_hide_keyboard">Сховати клавіатуру</string>
     <!-- Read by TalkBack: button that opens the terminal menu. -->
     <string name="terminal_menu">Меню</string>
-    <!-- Status line under the title, lowercase. "buddy linux" is the name of Buddy's Linux: keep it. Only shown for 2 or more. -->
+    <!-- Status line under the title, lowercase. "buddy linux" is the name of Piggy's Linux: keep it. Only shown for 2 or more. -->
     <plurals name="terminal_sessions_count">
         <item quantity="one">%1$d сеанс · buddy linux</item>
         <item quantity="few">%1$d сеанси · buddy linux</item>
@@ -1337,10 +1337,10 @@
     <string name="monitor_checking">Перевірка…</string>
     <string name="monitor_recent">Нещодавні</string>
     <string name="monitor_loading">Завантаження…</string>
-    <string name="monitor_service_off">Сервіс спеціальних можливостей Buddy вимкнено, тому сеанси неможливо перевірити. Увімкніть його на вкладці «Налаштування».</string>
+    <string name="monitor_service_off">Сервіс спеціальних можливостей Piggy вимкнено, тому сеанси неможливо перевірити. Увімкніть його на вкладці «Налаштування».</string>
     <string name="monitor_nothing_running">Нічого не запущено.</string>
-    <!-- Title of a running session whose Buddy chat was deleted. -->
-    <string name="monitor_deleted_chat">Видалений чат Buddy</string>
+    <!-- Title of a running session whose Piggy chat was deleted. -->
+    <string name="monitor_deleted_chat">Видалений чат Piggy</string>
     <string name="monitor_background_session">Фоновий сеанс</string>
     <string name="monitor_terminal_session">Сеанс у терміналі</string>
     <!-- Small lowercase tag on a running session: where it runs. Keep very short. -->
@@ -1356,8 +1356,8 @@
     <string name="monitor_stop">Зупинити</string>
     <!-- Sheet title. %1$s = agent name (Claude Code, Codex or OpenCode). -->
     <string name="monitor_stop_title">Зупинити цей сеанс %1$s?</string>
-    <string name="monitor_stop_background_body">Він працює у фоні — наприклад, це чат, який ви продовжуєте в додатку Claude. Можливо, саме він зараз керує Buddy. Зупинка перерве поточну роботу в цій розмові.</string>
-    <string name="monitor_stop_terminal_body">Це може бути сеанс, яким ви зараз користуєтеся в терміналі. Можливо, саме він керує Buddy. Зупинка перерве поточну роботу в цій розмові.</string>
+    <string name="monitor_stop_background_body">Він працює у фоні — наприклад, це чат, який ви продовжуєте в додатку Claude. Можливо, саме він зараз керує Piggy. Зупинка перерве поточну роботу в цій розмові.</string>
+    <string name="monitor_stop_terminal_body">Це може бути сеанс, яким ви зараз користуєтеся в терміналі. Можливо, саме він керує Piggy. Зупинка перерве поточну роботу в цій розмові.</string>
     <string name="monitor_stopping">Зупиняю…</string>
     <string name="monitor_service_title">Фоновий сервіс Claude Code</string>
     <!-- Monospace details line. %1$d = process id, %2$s = how long it has been running (e.g. 1:02:03). -->
@@ -1381,7 +1381,7 @@
     <!-- Approval mode name (see perms_mode_trust), keep it short. Smart = the button rules, then a reviewer AI checks every other tap. -->
     <string name="perms_mode_smart">Розумний</string>
     <!-- Explains the three modes, one per line. Trust, Hard and Smart are the mode names above; Send, Pay, Delete are example button labels. -->
-    <string name="perms_modes_intro">Довіра: агент працює тут самостійно, без запитів на схвалення.\nСуворий: вирішують ваші правила кнопок. «Надіслати», «Оплатити», «Видалити»… потребують вашого дозволу на картці.\nРозумний: спершу правила, потім окремий ШІ-рецензент перевіряє кожне інше натискання на відповідність вашому запиту.\nАгент ніколи не може натискати бульбашку, картки чи налаштування самого Buddy.</string>
+    <string name="perms_modes_intro">Довіра: агент працює тут самостійно, без запитів на схвалення.\nСуворий: вирішують ваші правила кнопок. «Надіслати», «Оплатити», «Видалити»… потребують вашого дозволу на картці.\nРозумний: спершу правила, потім окремий ШІ-рецензент перевіряє кожне інше натискання на відповідність вашому запиту.\nАгент ніколи не може натискати бульбашку, картки чи налаштування самого Piggy.</string>
     <!-- Section title: which AI reviews the taps in apps set to Smart. -->
     <string name="perms_smart_reviewer">Рецензент режиму «Розумний»</string>
     <!-- Reviewer choice in a segmented control, next to “Claude Code” and “Codex”: the same agent as the chat. Keep it short. -->
@@ -1404,16 +1404,16 @@
     <string name="perms_apps">Додатки</string>
     <!-- Row that sets the mode of every app at once. -->
     <string name="perms_all_apps">Усі додатки</string>
-    <!-- Link under “All apps”: puts every app back on the mode Buddy suggests for it. -->
+    <!-- Link under “All apps”: puts every app back on the mode Piggy suggests for it. -->
     <string name="perms_reset_suggested">Скинути до рекомендованих</string>
 
     <!-- Button rules screen: buttons that always or never need the user's OK. Hard and Smart are approval mode names (perms_mode_*). -->
     <string name="perms_rules_intro">Для додатків у режимі «Суворий» або «Розумний». Правило, вибране з пропозицій, діє для цього додатка; введений вручну текст — для всіх додатків. Натисніть правило, щоб вилучити його.</string>
-    <!-- Switch title: Buddy's own list of risky button words. -->
+    <!-- Switch title: Piggy's own list of risky button words. -->
     <string name="perms_builtin_title">Вбудовані ризиковані слова</string>
     <!-- Switch description. The words are examples from the built-in list, which only covers the languages named here:
          if your language isn't one of them, keep the example words in English. -->
-    <string name="perms_builtin_sub">Кнопки «Надіслати», «Опублікувати», «Сплатити», «Купити», «Замовити», «Видалити», «Зателефонувати», «Вийти»… завжди потребують дозволу, будь-якою мовою Buddy.</string>
+    <string name="perms_builtin_sub">Кнопки «Надіслати», «Опублікувати», «Сплатити», «Купити», «Замовити», «Видалити», «Зателефонувати», «Вийти»… завжди потребують дозволу, будь-якою мовою Piggy.</string>
     <!-- List title: buttons that always need the user's OK. -->
     <string name="perms_always_ask">Завжди питати</string>
     <!-- List title, and an option in a small segmented control (keep it short): buttons the agent may tap without asking. -->
@@ -1434,13 +1434,13 @@
     <string name="guard_rule_all_apps">%1$s · усі додатки</string>
     <!-- Why an app has its mode, in small text under the app's name. Here: the user picked it. -->
     <string name="guard_why_choice">Ваш вибір</string>
-    <!-- Buddy suggests Hard for this app because of the kind of app it is. -->
+    <!-- Piggy suggests Hard for this app because of the kind of app it is. -->
     <string name="guard_why_category">Рекомендовано: повідомлення, соцмережі, дзвінки чи гроші</string>
-    <!-- Buddy suggests Hard because the app's name contains a word like bank or pay. %1$s = that word, as found (usually English). -->
+    <!-- Piggy suggests Hard because the app's name contains a word like bank or pay. %1$s = that word, as found (usually English). -->
     <string name="guard_why_name">Рекомендовано: у назві є «%1$s»</string>
-    <!-- Buddy suggests Hard because Android lists the app as a social app. -->
+    <!-- Piggy suggests Hard because Android lists the app as a social app. -->
     <string name="guard_why_social">Рекомендовано: соціальний додаток</string>
-    <!-- The mode is Buddy's suggestion. -->
+    <!-- The mode is Piggy's suggestion. -->
     <string name="guard_why_suggested">Рекомендовано</string>
     <!-- The mode comes from the first setup, where the user chose that the agent asks first. -->
     <string name="guard_why_setup">Ваш вибір під час налаштування: спершу питати</string>
@@ -1458,12 +1458,12 @@
     <string name="tools_card_enter">Натиснути Enter, щоб надіслати</string>
     <!-- Same, %1$s = the app's name. -->
     <string name="tools_card_enter_in">Натиснути Enter, щоб надіслати в %1$s</string>
-    <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Buddy asks. -->
+    <!-- %1$s = the action (e.g. Tap “Send” in WhatsApp); on the next line, %2$s = what it would send, or why Piggy asks. -->
     <string name="tools_card_detail">%1$s:\n%2$s</string>
     <!-- Quotation marks around text on the card (a draft message, a reason). Use your language's quotation marks. -->
     <string name="tools_card_quote">«%1$s»</string>
     <!-- In an app set to Smart, when neither Claude Code nor Codex is signed in to review the tap. -->
-    <string name="tools_card_no_reviewer">Рецензент недоступний (вхід не виконано), тож Buddy питає вас.</string>
+    <string name="tools_card_no_reviewer">Рецензент недоступний (вхід не виконано), тож Piggy питає вас.</string>
     <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
     <string name="tools_card_reviewer_block">%1$s радить цього не робити: %2$s</string>
     <!-- The smart reviewer's answer. %1$s = Claude or Codex; %2$s = its short reason, in the reviewer's own words. -->
@@ -1478,8 +1478,8 @@
     <string name="tools_status_tap_update">Натисніть «Оновити», а потім підтвердьте</string>
     <!-- An app the agent opened the installer for is now installed (adjective). -->
     <string name="tools_status_installed">Установлено</string>
-    <!-- Downloading Buddy's update. %1$s = version number, e.g. 2.1.13 -->
-    <string name="tools_status_downloading">Завантажую Buddy %1$s…</string>
+    <!-- Downloading Piggy's update. %1$s = version number, e.g. 2.1.13 -->
+    <string name="tools_status_downloading">Завантажую Piggy %1$s…</string>
 
     <!-- Smart reviewer: its reason when it fails, shown on the approval card after “Claude says ask you:”, so it starts lowercase.
          %1$s = the technical reason (reviewer_no_answer, reviewer_timed_out, or an error in English). -->
@@ -1489,7 +1489,7 @@
     <!-- In the parentheses of reviewer_failed: the reviewer took too long. -->
     <string name="reviewer_timed_out">час очікування минув</string>
 
-    <!-- Error when a chat can't start because Buddy's built-in Linux isn't set up yet. -->
+    <!-- Error when a chat can't start because Piggy's built-in Linux isn't set up yet. -->
     <string name="helper_linux_missing">Вбудований Linux ще не встановлено. Відкрийте «Налаштування», щоб налаштувати його.</string>
 
     <!-- Voice input (dictation). “Claude voice” and “ChatGPT voice” are the names of two voice input options: Claude Code's
@@ -1547,11 +1547,11 @@
     <string name="setup_rules_info">Дозвольте агентові діяти, коли надходить сповіщення: відповісти на повідомлення, додати доставку в календар…</string>
     <string name="tools_card_reply">Відповісти: %1$s · %2$s\n«%3$s»</string>
     <string name="tools_card_open_url">Відкрити %1$s</string>
-    <string name="rules_service_label">Правила сповіщень Buddy</string>
+    <string name="rules_service_label">Правила сповіщень Piggy</string>
     <string name="rules_title">Правила сповіщень</string>
-    <string name="rules_intro">Коли надходить вибране вами сповіщення, Buddy передає агентові вашу вказівку, ніби ви самі написали йому повідомлення. Сповіщення, які не відповідають жодному правилу, ігноруються.</string>
+    <string name="rules_intro">Коли надходить вибране вами сповіщення, Piggy передає агентові вашу вказівку, ніби ви самі написали йому повідомлення. Сповіщення, які не відповідають жодному правилу, ігноруються.</string>
     <string name="rules_access_off_title">Доступ до сповіщень вимкнено</string>
-    <string name="rules_access_off_text">Він потрібен Buddy, щоб бачити сповіщення, які відстежують ваші правила.</string>
+    <string name="rules_access_off_text">Він потрібен Piggy, щоб бачити сповіщення, які відстежують ваші правила.</string>
     <string name="rules_access_turn_on">Увімкнути</string>
     <string name="rules_run">Виконувати правила</string>
     <string name="rules_run_info">Вимкніть, щоб призупинити всі правила.</string>
@@ -1596,12 +1596,12 @@
     <string name="waiting_open_chat">Відкрити чат</string>
     <string name="waiting_state_wrote_again">Відтоді прийшло нове повідомлення від %1$s: ця відповідь могла застаріти.</string>
     <string name="waiting_state_answered">Ви вже відповіли в %1$s.</string>
-    <string name="waiting_state_gone">Сповіщення вже немає: Buddy скопіює відповідь і відкриє %1$s, щоб ви її вставили.</string>
+    <string name="waiting_state_gone">Сповіщення вже немає: Piggy скопіює відповідь і відкриє %1$s, щоб ви її вставили.</string>
     <string name="waiting_sent">Надіслано: %1$s</string>
     <string name="waiting_copied">Скопійовано. Вставте в %1$s.</string>
     <string name="waiting_note_sent">✓ Надіслано з «Чекає на вас»: %1$s</string>
     <string name="rules_log_error">Не запущено: %1$s</string>
-    <string name="rules_log_no_service">сервіс спеціальних можливостей Buddy вимкнено</string>
+    <string name="rules_log_no_service">сервіс спеціальних можливостей Piggy вимкнено</string>
     <string name="rules_log_not_signed_in">вхід у %1$s не виконано</string>
     <string name="rules_new">Нове правило</string>
     <string name="rules_edit">Редагувати правило</string>
@@ -1612,7 +1612,7 @@
     <string name="rules_from_hint">Будь-хто або імена через кому</string>
     <string name="rules_words">Містить (необов\'язково)</string>
     <string name="rules_words_hint">Будь-що або слова через кому</string>
-    <string name="rules_instruction">Що має зробити Buddy?</string>
+    <string name="rules_instruction">Що має зробити Piggy?</string>
     <string name="rules_instruction_hint">Наприклад: Відповідай у моєму стилі. Ми працюємо з 8 до 18, у неділю вихідний.</string>
     <string name="rules_example_reply">Відповісти за мене</string>
     <string name="rules_example_reply_text">Відповідай у моєму стилі, коротко й дружньо.</string>
@@ -1633,11 +1633,11 @@
     <string name="rules_delete">Видалити</string>
     <string name="rules_delete_title">Видалити це правило?</string>
     <string name="rules_need_app">Спершу виберіть додаток.</string>
-    <string name="rules_need_instruction">Напишіть, що має зробити Buddy.</string>
+    <string name="rules_need_instruction">Напишіть, що має зробити Piggy.</string>
     <string name="rules_access_title">Дозволити доступ до сповіщень?</string>
-    <string name="rules_access_what">Buddy перевіряє кожне сповіщення на відповідність вашим правилам. Сповіщення, які не відповідають жодному правилу, одразу ігноруються: вони ніде не зберігаються й нікуди не надсилаються.</string>
+    <string name="rules_access_what">Piggy перевіряє кожне сповіщення на відповідність вашим правилам. Сповіщення, які не відповідають жодному правилу, одразу ігноруються: вони ніде не зберігаються й нікуди не надсилаються.</string>
     <string name="rules_access_data">Якщо сповіщення відповідає правилу, його додаток, відправник і текст передаються агентові цього правила (Claude Code, Codex або OpenCode) разом із вашою вказівкою.</string>
-    <string name="rules_access_reply">Buddy може відповідати через кнопку «Відповісти» в сповіщенні. Спершу він питає вас, якщо тільки ви не задасте для правила таймер.</string>
+    <string name="rules_access_reply">Piggy може відповідати через кнопку «Відповісти» в сповіщенні. Спершу він питає вас, якщо тільки ви не задасте для правила таймер.</string>
     <string name="rules_chat_shown">🔔 %1$s · %2$s: %3$s\n⚡ %4$s</string>
     <string name="rules_status_checking">Перевіряю на відповідність вашому правилу…</string>
     <string name="rules_channel_results">Правила сповіщень: результати</string>
@@ -1649,7 +1649,7 @@
     <!-- Background browser -->
     <string name="browser_section">Фоновий браузер</string>
     <string name="browser_switch">Фоновий браузер</string>
-    <string name="browser_switch_info">Браузер у Buddy, через який агенти працюють із вебсторінками, не займаючи ваш телефон. Його можна переглядати й використовувати в чаті. Першого разу Buddy завантажує Chromium (близько 300 МБ).</string>
+    <string name="browser_switch_info">Браузер у Piggy, через який агенти працюють із вебсторінками, не займаючи ваш телефон. Його можна переглядати й використовувати в чаті. Першого разу Piggy завантажує Chromium (близько 300 МБ).</string>
     <string name="browser_state_installing">встановлення Chromium…</string>
     <string name="browser_state_starting">запуск…</string>
     <string name="browser_state_running">працює</string>

@@ -77,7 +77,7 @@ final class Linux {
                 "--kill-on-exit", "--link2symlink", "-0",
                 "-r", root(c).getAbsolutePath(),
                 "-b", "/dev", "-b", "/proc", "-b", "/sys",
-                // one sound card, "Buddy microphone" (Android hides its own): programs then try to record, and
+                // one sound card, "Piggy microphone" (Android hides its own): programs then try to record, and
                 // recording goes through Buddy's stand-in arecord/rec (MicServer)
                 "-b", root(c).getAbsolutePath() + "/etc/buddy/asound-cards:/proc/asound/cards",
                 "-w", "/root"));

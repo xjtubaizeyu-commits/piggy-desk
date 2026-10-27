@@ -111,7 +111,7 @@ final class TermSession implements TermEmulator.Host {
                         s.changed();
                     } catch (RuntimeException e) {
                         // a bug on odd output must not take down the whole app (bubble, phone tools, agents)
-                        android.util.Log.e("Buddy", "terminal output", e);
+                        android.util.Log.e("Piggy", "terminal output", e);
                     }
                 }
             } catch (IOException ignored) {

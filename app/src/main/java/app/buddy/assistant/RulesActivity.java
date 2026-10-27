@@ -283,6 +283,9 @@ public class RulesActivity extends Screen {
             chips.add(c);
         }
         body.addView(chips.view(), gap(8));
+        // what Piggy learned running this rule (it keeps them up to date itself; the user may correct them)
+        body.addView(label(getString(R.string.rules_notes)), gap(18));
+        body.addView(field(draft.notes, getString(R.string.rules_notes_hint), true, s -> draft.notes = s), gap(8));
 
         body.addView(label(getString(R.string.rules_agent)), gap(20));
         java.util.Set<String> notReady = new java.util.HashSet<>();

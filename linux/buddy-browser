@@ -1,11 +1,11 @@
 #!/bin/sh
-# Run by the Buddy app inside its built-in Linux (Settings > Background browser): one headless Chromium for the
+# Run by the Piggy app inside its built-in Linux (Settings > Background browser): one headless Chromium for the
 # agents' browser tools, with its own profile in /root/.buddy/browser (sign-ins stay between runs).
 #   buddy-browser install   install Chromium if it isn't yet (progress on stderr), then print BUDDY_INSTALLED
 #   buddy-browser run       the same, then run Chromium until the app closes this script's input
-# Buddy speaks Chromium's DevTools protocol through this script's stdin and stdout (--remote-debugging-pipe):
+# Piggy speaks Chromium's DevTools protocol through this script's stdin and stdout (--remote-debugging-pipe):
 # messages are JSON, each ended by a NUL byte. There is no debugging port on purpose: any app or agent on the
-# phone can reach a 127.0.0.1 port, and could then drive the browser (and its sign-ins) around Buddy's approvals.
+# phone can reach a 127.0.0.1 port, and could then drive the browser (and its sign-ins) around Piggy's approvals.
 # Chromium comes from Alpine (musl); Playwright's own downloads are glibc builds and don't run here.
 PROFILE=/root/.buddy/browser
 LOG=/root/.buddy/browser.log

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_ultra">Ultra 模式</string>
+    <string name="setup_ultra_info">Piggy 什么都不问：所有 app、所有通知规则都不弹审批卡片、不倒计时、不让 AI 复核，直接执行。</string>
+    <string name="setup_money_floor">支付类 app 仍然要问</string>
+    <string name="setup_money_floor_info">即使开着 Ultra，支付、银行、加密货币类 app 还是会弹审批卡片。</string>
+    <string name="guard_why_ultra">Ultra 模式</string>
+    <string name="guard_why_floor">Ultra 模式，但这是支付类 app</string>
+    <string name="rules_notes">Piggy 的经验</string>
+    <string name="rules_notes_hint">Piggy 执行这条规则时学到的东西，它会自己更新，你也可以改。</string>
+    <string name="hub_tool_send_text">发送“%1$s”</string>
+    <string name="hub_tool_open_notification">打开通知</string>
+    <string name="hub_tool_memory_list">查看记忆</string>
+    <string name="hub_tool_memory_save">记住“%1$s”</string>
+    <string name="hub_tool_memory_delete">删除一条记忆</string>
+    <string name="hub_tool_app_tip">记下技巧：%1$s</string>
+    <string name="hub_tool_rules_list">查看通知规则</string>
+    <string name="hub_tool_rule_save">保存通知规则</string>
+    <string name="hub_tool_rule_delete">删除通知规则</string>
+</resources>

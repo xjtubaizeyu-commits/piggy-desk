@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texts Piggy added on top of Buddy, in English. Chinese: values-zh-rCN/piggy_strings.xml; other languages fall back to these. -->
+<resources>
+    <!-- Settings: the Ultra switch -->
+    <string name="setup_ultra">Ultra mode</string>
+    <string name="setup_ultra_info">Piggy never asks: no approval cards, no countdowns, no reviewer, in every app and every notification rule.</string>
+    <string name="setup_money_floor">Still ask in payment apps</string>
+    <string name="setup_money_floor_info">Even in Ultra, payment, bank and crypto apps keep their approval cards.</string>
+    <!-- App permissions: why an app is on Trust or Hard under Ultra -->
+    <string name="guard_why_ultra">Ultra mode</string>
+    <string name="guard_why_floor">Ultra mode, but a payment app</string>
+    <!-- Rule editor: the notes Piggy keeps for a rule -->
+    <string name="rules_notes">Piggy\'s notes</string>
+    <string name="rules_notes_hint">What Piggy learned running this rule. It keeps these up to date itself; you can correct them.</string>
+    <!-- Chat transcript lines for Piggy's own tools -->
+    <string name="hub_tool_send_text">Sending “%1$s”</string>
+    <string name="hub_tool_open_notification">Opening the notification</string>
+    <string name="hub_tool_memory_list">Reading memory</string>
+    <string name="hub_tool_memory_save">Remembering “%1$s”</string>
+    <string name="hub_tool_memory_delete">Forgetting a note</string>
+    <string name="hub_tool_app_tip">Noting a tip: %1$s</string>
+    <string name="hub_tool_rules_list">Reading notification rules</string>
+    <string name="hub_tool_rule_save">Saving a notification rule</string>
+    <string name="hub_tool_rule_delete">Deleting a notification rule</string>
+</resources>

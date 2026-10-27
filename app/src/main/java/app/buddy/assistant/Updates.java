@@ -38,12 +38,12 @@ import static app.buddy.assistant.Ui.*;
  * notification (Settings → Update notices), and the sheet that notification opens.
  */
 public final class Updates extends BroadcastReceiver {
-    static final String REPO = "https://github.com/ghorbelhamdi/buddy-android";
+    static final String REPO = "https://github.com/PIGxjtu/piggy-assistant";
     /** For the agent (update_buddy), so English; the sheet shows R.string.update_failed_manual instead. */
-    static final String MANUAL = "You can also get it at " + REPO + "/releases/latest (buddy.apk), or with Obtainium "
+    static final String MANUAL = "You can also get it at " + REPO + "/releases/latest (piggy.apk), or with Obtainium "
             + "for automatic updates (see " + REPO + "#updating).";
-    private static final String API = "https://api.github.com/repos/ghorbelhamdi/buddy-android/releases/latest";
-    private static final String CHANNEL = "updates", ACTION_MUTE = "app.buddy.assistant.MUTE_UPDATES";
+    private static final String API = "https://api.github.com/repos/PIGxjtu/piggy-assistant/releases/latest";
+    private static final String CHANNEL = "updates", ACTION_MUTE = "app.piggy.assistant.MUTE_UPDATES";
     private static final int ID = 3;
     private static final long DAY = 24 * 3600_000L;
 
@@ -70,7 +70,7 @@ public final class Updates extends BroadcastReceiver {
         for (int i = 0; assets != null && i < assets.length(); i++) {
             JSONObject a = assets.getJSONObject(i);
             String url = a.optString("browser_download_url");
-            if ("buddy.apk".equals(a.optString("name")) && url.startsWith(REPO + "/releases/download/")) apk = url;
+            if ("piggy.apk".equals(a.optString("name")) && url.startsWith(REPO + "/releases/download/")) apk = url;
         }
         String notes = rel.optString("body").trim();
         if (notes.length() > 1200) notes = notes.substring(0, 1200) + "…";
@@ -90,7 +90,7 @@ public final class Updates extends BroadcastReceiver {
 
     /** {@link #install(Context, Release)}; with user, what went wrong is in the user's language (for the sheet). */
     private static String install(Context c, Release r, boolean user) {
-        if (r.apkUrl == null) return user ? c.getString(R.string.update_error_no_apk) : "The release has no buddy.apk yet.";
+        if (r.apkUrl == null) return user ? c.getString(R.string.update_error_no_apk) : "The release has no piggy.apk yet.";
         File out = FilesProvider.apkFile(c);
         try {
             HttpURLConnection h = (HttpURLConnection) new URL(r.apkUrl).openConnection();
@@ -108,7 +108,7 @@ public final class Updates extends BroadcastReceiver {
         android.content.pm.PackageInfo pi = c.getPackageManager().getPackageArchiveInfo(out.getPath(), 0);
         if (pi == null || !c.getPackageName().equals(pi.packageName) || pi.getLongVersionCode() <= BuildInfo.VERSION_CODE) {
             return user ? c.getString(R.string.update_error_not_newer)
-                    : "The downloaded file isn't a newer Buddy, so it wasn't opened.";
+                    : "The downloaded file isn't a newer Piggy, so it wasn't opened.";
         }
         if (!c.getPackageManager().canRequestPackageInstalls()) {
             c.startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
@@ -185,7 +185,7 @@ public final class Updates extends BroadcastReceiver {
 
     // ------------------------------------------------------------ the sheet
 
-    /** "Buddy X is available": what's new, and Update. Checks GitHub first; says so if Buddy is up to date. */
+    /** "Piggy X is available": what's new, and Update. Checks GitHub first; says so if Buddy is up to date. */
     static void showSheet(Activity a) {
         Handler main = new Handler(Looper.getMainLooper());
         Toast checking = Toast.makeText(a, R.string.update_checking, Toast.LENGTH_SHORT);
