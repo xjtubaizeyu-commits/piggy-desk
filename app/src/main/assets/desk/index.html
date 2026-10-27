@@ -1,24 +1,23 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 <title>Piggy Desk</title>
-<style>
-  body { margin: 0; background: #262624; color: #f5f4ef; font: 15px/1.5 system-ui, sans-serif;
-         display: grid; place-items: center; height: 100vh; }
-  small { color: #9c9a92; }
-</style>
+<link rel="stylesheet" href="desk.css">
 </head>
 <body>
-<div><h1>Piggy Desk</h1><small id="v">…</small></div>
-<script>
-  // Placeholder until the workspace page lands: proves the bridge works both ways.
-  window.desk = {
-    recv(m) { if (m.type === "state") document.getElementById("v").textContent = "v" + m.app.version; },
-    back() { return false; }
-  };
-  if (window.PiggyDesk) PiggyDesk.post(JSON.stringify({ type: "ready" }));
-</script>
+<div id="app">
+  <aside id="side"></aside>
+  <main id="main"></main>
+  <aside id="panel"></aside>
+</div>
+<script src="icons.js"></script>
+<script src="md.js"></script>
+<script src="core.js"></script>
+<script src="thread.js"></script>
+<script src="settings.js"></script>
+<script src="mock.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

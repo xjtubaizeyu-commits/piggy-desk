@@ -30,8 +30,9 @@ import java.util.Collections;
 
 /**
  * The tablet workspace: one WebView showing assets/desk/ (sidebar, conversation, side panel), talking to the app
- * through a small message bridge (docs/desk-bridge.md). The pages are served from https://appassets.androidplatform.net/desk/
- * straight out of the APK, so they get a normal https origin instead of file:// rules. Nothing else is loaded: the
+ * through a small message bridge (docs/desk-bridge.md). The pages (assets/desk/, and assets/fonts/ for the typefaces) are
+ * served from https://appassets.androidplatform.net/ straight out of the APK, so they get a normal https origin instead
+ * of file:// rules. Nothing else is loaded: the
  * WebView never goes to the network itself.
  */
 public class DeskActivity extends Activity {
@@ -179,7 +180,8 @@ public class DeskActivity extends Activity {
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
             Uri u = req.getUrl();
             String path = u.getPath();
-            if (!HOST.equals(u.getHost()) || path == null || !path.startsWith("/desk/") || path.contains("..")) {
+            if (!HOST.equals(u.getHost()) || path == null || path.contains("..")
+                    || !(path.startsWith("/desk/") || path.startsWith("/fonts/"))) {
                 return blocked(); // only the bundled pages; the WebView never reaches the network
             }
             String asset = path.substring(1);

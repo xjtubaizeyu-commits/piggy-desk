@@ -108,3 +108,5 @@ Items (`item.kind`):
 | `openUrl` | `url` | opens in the browser |
 | `copy` | `text` | to the clipboard |
 | `toast` | `text` | |
+| `customGet` ⇄ | | → `{claudeMd, skills, agents, commands, mcpServers}` (each list `[{name, description, path, type, status}]`) |
+| `customSave` ⇄ | `claudeMd` | writes the tablet's `~/.claude/CLAUDE.md` |

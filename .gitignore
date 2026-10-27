@@ -17,3 +17,4 @@ local.properties
 
 # design exports (kept locally)
 design/
+.claude/
