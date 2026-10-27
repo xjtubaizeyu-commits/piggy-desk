@@ -1,7 +1,10 @@
 package app.buddy.assistant;
 
-/** The terminal's pseudo-terminal, implemented in native/pty.c (libbuddypty.so). */
-final class Pty {
+/**
+ * The terminal's pseudo-terminal, implemented in native/pty.c (libbuddypty.so). It stays in Buddy's package because
+ * the prebuilt library's JNI names (Java_app_buddy_assistant_Pty_*) are bound to it; the rest of the app is app.piggy.desk.
+ */
+public final class Pty {
     static {
         System.loadLibrary("buddypty");
     }
@@ -10,15 +13,15 @@ final class Pty {
     }
 
     /** Starts {@code path} on a new pty; returns {masterFd, pid}. */
-    static native int[] start(String path, String[] args, String[] env, String cwd, int rows, int cols)
+    public static native int[] start(String path, String[] args, String[] env, String cwd, int rows, int cols)
             throws java.io.IOException;
 
-    static native void resize(int fd, int rows, int cols);
+    public static native void resize(int fd, int rows, int cols);
 
     /** Blocks until the program exits; returns its exit code. */
-    static native int waitFor(int pid);
+    public static native int waitFor(int pid);
 
-    static native void hangup(int pid);
+    public static native void hangup(int pid);
 
-    static native void close(int fd);
+    public static native void close(int fd);
 }

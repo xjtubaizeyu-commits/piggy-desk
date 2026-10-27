@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piggy Desk</title>
+<style>
+  body { margin: 0; background: #262624; color: #f5f4ef; font: 15px/1.5 system-ui, sans-serif;
+         display: grid; place-items: center; height: 100vh; }
+  small { color: #9c9a92; }
+</style>
+</head>
+<body>
+<div><h1>Piggy Desk</h1><small id="v">…</small></div>
+<script>
+  // Placeholder until the workspace page lands: proves the bridge works both ways.
+  window.desk = {
+    recv(m) { if (m.type === "state") document.getElementById("v").textContent = "v" + m.app.version; },
+    back() { return false; }
+  };
+  if (window.PiggyDesk) PiggyDesk.post(JSON.stringify({ type: "ready" }));
+</script>
+</body>
+</html>

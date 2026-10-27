@@ -6,8 +6,8 @@ cd "$(dirname "$0")"
 
 SDK_JAR=${SDK_JAR:-$HOME/android-sdk/android-36/android.jar}
 KEYSTORE=${KEYSTORE:-$HOME/.piggy-keys/release.jks}
-PACKAGE=app.buddy.assistant # Java package (R class); the installed app is APP_ID
-APP_ID=app.piggy.assistant
+PACKAGE=app.piggy.desk # Java package (R class), same as the installed app
+APP_ID=app.piggy.desk
 INFO=app/src/main/java/app/buddy/assistant/BuildInfo.java
 VERSION_NAME=$(sed -n 's/.*VERSION = "\(.*\)";/\1/p' "$INFO")
 VERSION_CODE=$(sed -n 's/.*VERSION_CODE = \([0-9]*\);/\1/p' "$INFO")

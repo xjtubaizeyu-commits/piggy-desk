@@ -162,10 +162,10 @@
     <string name="update_later">後で</string>
     <string name="update_downloading">ダウンロード中…</string>
     <string name="update_needs_permission">Piggy に「不明なアプリのインストール」を許可してから、もう一度「アップデート」をタップしてください。</string>
-    <string name="update_error_no_apk">このリリースにはまだ piggy.apk がありません。</string>
+    <string name="update_error_no_apk">このリリースにはまだ piggy-desk.apk がありません。</string>
     <string name="update_error_download">ダウンロードに失敗しました（%1$s）。</string>
     <string name="update_error_not_newer">ダウンロードしたファイルは新しいバージョンの Piggy ではないため、開きませんでした。</string>
-    <string name="update_failed_manual">%1$s %2$s（piggy.apk）から入手することもできます。Obtainium を使うと自動でアップデートできます（%3$s を参照）。</string>
+    <string name="update_failed_manual">%1$s %2$s（piggy-desk.apk）から入手することもできます。Obtainium を使うと自動でアップデートできます（%3$s を参照）。</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">システム</string>

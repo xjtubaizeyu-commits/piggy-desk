@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Every text Piggy shows, in English. Translations: res/values-<language>/strings.xml (see CONTRIBUTING.md). -->
 <resources>
-    <string name="app_name" translatable="false">Piggy</string>
+    <string name="app_name" translatable="false">Piggy Desk</string>
     <string name="service_label">Piggy assistant</string>
     <string name="service_description">Shows the Piggy chat bubble and lets the agent you choose (Claude Code, Codex, OpenCode, Antigravity or Grok), running inside Piggy on this phone, read the screen and tap, type and scroll for you. Nothing leaves the phone except what the agent itself sends to its AI service (Anthropic, OpenAI, Google, xAI or your OpenCode model\'s provider).</string>
 
@@ -235,13 +235,13 @@
     <string name="update_downloading">Downloading…</string>
     <!-- "Update" = the button (update_action). -->
     <string name="update_needs_permission">Allow Piggy to install apps, then tap Update again.</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
-    <string name="update_error_no_apk">The release has no piggy.apk yet.</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy-desk.apk is a file name. -->
+    <string name="update_error_no_apk">The release has no piggy-desk.apk yet.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">The download failed (%1$s).</string>
     <string name="update_error_not_newer">The downloaded file isn\'t a newer Piggy, so it wasn\'t opened.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s You can also get it at %2$s (piggy.apk), or with Obtainium for automatic updates (see %3$s).</string>
+    <string name="update_failed_manual">%1$s You can also get it at %2$s (piggy-desk.apk), or with Obtainium for automatic updates (see %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->

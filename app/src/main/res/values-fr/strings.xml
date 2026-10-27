@@ -230,13 +230,13 @@
     <string name="update_downloading">Téléchargement…</string>
     <!-- "Update" = the button (update_action). -->
     <string name="update_needs_permission">Autorisez Piggy à installer des applis, puis appuyez à nouveau sur Mettre à jour.</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
-    <string name="update_error_no_apk">Cette version ne contient pas encore de fichier piggy.apk.</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy-desk.apk is a file name. -->
+    <string name="update_error_no_apk">Cette version ne contient pas encore de fichier piggy-desk.apk.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">Le téléchargement a échoué (%1$s).</string>
     <string name="update_error_not_newer">Le fichier téléchargé n\'est pas une version plus récente de Piggy, il n\'a donc pas été ouvert.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s Vous pouvez aussi télécharger la mise à jour sur %2$s (piggy.apk), ou utiliser Obtainium pour les mises à jour automatiques (voir %3$s).</string>
+    <string name="update_failed_manual">%1$s Vous pouvez aussi télécharger la mise à jour sur %2$s (piggy-desk.apk), ou utiliser Obtainium pour les mises à jour automatiques (voir %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->

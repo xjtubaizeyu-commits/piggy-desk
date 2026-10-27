@@ -166,10 +166,10 @@
     <string name="update_later">Later</string>
     <string name="update_downloading">Downloaden…</string>
     <string name="update_needs_permission">Sta Piggy toe om apps te installeren en tik daarna opnieuw op Updaten.</string>
-    <string name="update_error_no_apk">Deze release heeft nog geen piggy.apk.</string>
+    <string name="update_error_no_apk">Deze release heeft nog geen piggy-desk.apk.</string>
     <string name="update_error_download">Het downloaden is mislukt (%1$s).</string>
     <string name="update_error_not_newer">Het gedownloade bestand is geen nieuwere versie van Piggy en is daarom niet geopend.</string>
-    <string name="update_failed_manual">%1$s Je kunt de update ook downloaden via %2$s (piggy.apk), of Obtainium gebruiken voor automatische updates (zie %3$s).</string>
+    <string name="update_failed_manual">%1$s Je kunt de update ook downloaden via %2$s (piggy-desk.apk), of Obtainium gebruiken voor automatische updates (zie %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">Systeem</string>

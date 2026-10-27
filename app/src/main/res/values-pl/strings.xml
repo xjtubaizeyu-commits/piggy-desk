@@ -175,10 +175,10 @@
     <string name="update_later">Później</string>
     <string name="update_downloading">Pobieranie…</string>
     <string name="update_needs_permission">Zezwól Piggy na instalowanie aplikacji, a potem ponownie kliknij Aktualizuj.</string>
-    <string name="update_error_no_apk">W tym wydaniu nie ma jeszcze pliku piggy.apk.</string>
+    <string name="update_error_no_apk">W tym wydaniu nie ma jeszcze pliku piggy-desk.apk.</string>
     <string name="update_error_download">Pobieranie się nie udało (%1$s).</string>
     <string name="update_error_not_newer">Pobrany plik nie jest nowszą wersją Piggy, więc nie został otwarty.</string>
-    <string name="update_failed_manual">%1$s Możesz też pobrać aplikację ze strony %2$s (piggy.apk) albo użyć Obtainium, by otrzymywać aktualizacje automatycznie (zobacz %3$s).</string>
+    <string name="update_failed_manual">%1$s Możesz też pobrać aplikację ze strony %2$s (piggy-desk.apk) albo użyć Obtainium, by otrzymywać aktualizacje automatycznie (zobacz %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">Systemowy</string>

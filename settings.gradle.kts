@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "buddy"
+rootProject.name = "piggy-desk"
 include(":app")

@@ -227,13 +227,13 @@
     <string name="update_downloading">正在下载…</string>
     <!-- "Update" = the button (update_action). -->
     <string name="update_needs_permission">请允许 Piggy 安装应用，然后再次点按“更新”。</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
-    <string name="update_error_no_apk">此版本尚未提供 piggy.apk。</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy-desk.apk is a file name. -->
+    <string name="update_error_no_apk">此版本尚未提供 piggy-desk.apk。</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">下载失败（%1$s）。</string>
     <string name="update_error_not_newer">下载的文件不是更新版本的 Piggy，因此没有打开。</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s你也可以从 %2$s 获取（piggy.apk），或使用 Obtainium 自动更新（参见 %3$s）。</string>
+    <string name="update_failed_manual">%1$s你也可以从 %2$s 获取（piggy-desk.apk），或使用 Obtainium 自动更新（参见 %3$s）。</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->

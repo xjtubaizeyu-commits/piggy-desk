@@ -176,10 +176,10 @@
     <string name="update_later">لاحقًا</string>
     <string name="update_downloading">جارٍ التنزيل…</string>
     <string name="update_needs_permission">اسمح لـ Piggy بتثبيت التطبيقات، ثم انقر على «تحديث» مرة أخرى.</string>
-    <string name="update_error_no_apk">لا يتضمن هذا الإصدار ملف piggy.apk بعد.</string>
+    <string name="update_error_no_apk">لا يتضمن هذا الإصدار ملف piggy-desk.apk بعد.</string>
     <string name="update_error_download">تعذّر التنزيل (%1$s).</string>
     <string name="update_error_not_newer">الملف الذي تم تنزيله ليس إصدارًا أحدث من Piggy، لذا لم يُفتح.</string>
-    <string name="update_failed_manual">%1$s يمكنك أيضًا تنزيله من %2$s (الملف piggy.apk)، أو باستخدام Obtainium للحصول على تحديثات تلقائية (راجع %3$s).</string>
+    <string name="update_failed_manual">%1$s يمكنك أيضًا تنزيله من %2$s (الملف piggy-desk.apk)، أو باستخدام Obtainium للحصول على تحديثات تلقائية (راجع %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">النظام</string>

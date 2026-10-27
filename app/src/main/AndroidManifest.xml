@@ -51,15 +51,25 @@
         android:extractNativeLibs="true"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
+        <!-- The tablet workspace (WebView over assets/desk/). It handles its own rotation, keyboard and theme changes,
+             so a mouse or keyboard being plugged in never reloads the page. -->
         <activity
-            android:name=".MainActivity"
+            android:name=".DeskActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Piggy's phone home screen, kept for the bubble's screens that still open it -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
 
         <activity
             android:name=".ChatActivity"
@@ -113,7 +123,7 @@
 
         <provider
             android:name=".FilesProvider"
-            android:authorities="app.piggy.assistant.files"
+            android:authorities="app.piggy.desk.files"
             android:exported="false"
             android:grantUriPermissions="true" />
 

@@ -23,37 +23,37 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
-      # Release signing: the PIGGY_KEYSTORE_BASE64 and PIGGY_KEYSTORE_PASSWORD repository secrets. Without them the
+      # Release signing: the DESK_KEYSTORE_BASE64 and DESK_KEYSTORE_PASSWORD repository secrets. Without them the
       # APK is unsigned (it still shows whether the code compiles, but Android won't install it).
       - name: Decode signing key
         env:
-          KEYSTORE_BASE64: ${{ secrets.PIGGY_KEYSTORE_BASE64 }}
+          KEYSTORE_BASE64: ${{ secrets.DESK_KEYSTORE_BASE64 }}
         if: env.KEYSTORE_BASE64 != ''
         run: |
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.p12"
-          echo "BUDDY_KEYSTORE=$RUNNER_TEMP/release.p12" >> "$GITHUB_ENV"
+          echo "DESK_KEYSTORE=$RUNNER_TEMP/release.p12" >> "$GITHUB_ENV"
 
       - name: Build release APK
         env:
-          BUDDY_KEYSTORE_PASSWORD: ${{ secrets.PIGGY_KEYSTORE_PASSWORD }}
-          BUDDY_KEY_ALIAS: piggy
-        run: ./gradlew --no-daemon assembleGithubRelease
+          DESK_KEYSTORE_PASSWORD: ${{ secrets.DESK_KEYSTORE_PASSWORD }}
+          DESK_KEY_ALIAS: desk
+        run: ./gradlew --no-daemon assembleRelease
 
       - name: Collect APK
         run: |
           mkdir -p dist
-          apk=$(find app/build/outputs/apk/github/release -name '*.apk' | head -1)
-          cp "$apk" "dist/piggy-${GITHUB_REF_NAME//\//-}.apk"
-          # fixed name too, so releases/latest/download/piggy.apk always gets the newest version (self-update)
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/piggy.apk; fi
+          apk=$(find app/build/outputs/apk/release -name '*.apk' | head -1)
+          cp "$apk" "dist/piggy-desk-${GITHUB_REF_NAME//\//-}.apk"
+          # fixed name too, so releases/latest/download/piggy-desk.apk always gets the newest version (self-update)
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then cp "$apk" dist/piggy-desk.apk; fi
           ls -l dist
-          if [ -z "$BUDDY_KEYSTORE" ]; then
-            echo "::warning::No PIGGY_KEYSTORE_BASE64 secret: this APK is unsigned and can't be installed."
+          if [ -z "${DESK_KEYSTORE:-}" ]; then
+            echo "::warning::No DESK_KEYSTORE_BASE64 secret: this APK is unsigned and can't be installed."
           fi
 
       - uses: actions/upload-artifact@v7
         with:
-          name: piggy-apk
+          name: piggy-desk-apk
           path: dist/*.apk
 
       - name: Publish GitHub release
@@ -65,5 +65,5 @@ jobs:
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" dist/*.apk --clobber
           else
-            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Piggy $GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" dist/*.apk --title "Piggy Desk $GITHUB_REF_NAME" --generate-notes
           fi

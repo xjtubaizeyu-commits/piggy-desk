@@ -227,13 +227,13 @@
     <string name="update_downloading">Mendownload…</string>
     <!-- "Update" = the button (update_action). -->
     <string name="update_needs_permission">Izinkan Piggy menginstal aplikasi, lalu ketuk Update lagi.</string>
-    <!-- Why an update failed (%1$s of update_failed_manual). piggy.apk is a file name. -->
-    <string name="update_error_no_apk">Rilis ini belum memiliki piggy.apk.</string>
+    <!-- Why an update failed (%1$s of update_failed_manual). piggy-desk.apk is a file name. -->
+    <string name="update_error_no_apk">Rilis ini belum memiliki piggy-desk.apk.</string>
     <!-- %1$s = the system's technical error message (usually English). -->
     <string name="update_error_download">Download gagal (%1$s).</string>
     <string name="update_error_not_newer">File yang didownload bukan versi Piggy yang lebih baru, jadi tidak dibuka.</string>
     <!-- Message after a failed update. %1$s = what went wrong (an update_error_ sentence); %2$s = the web address of the latest release; %3$s = the web address of the update instructions. Obtainium is an app name. -->
-    <string name="update_failed_manual">%1$s Anda juga bisa mendapatkannya di %2$s (piggy.apk), atau dengan Obtainium untuk update otomatis (lihat %3$s).</string>
+    <string name="update_failed_manual">%1$s Anda juga bisa mendapatkannya di %2$s (piggy-desk.apk), atau dengan Obtainium untuk update otomatis (lihat %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <!-- Light/dark mode, segmented control: keep short. System = follow the phone's setting. -->

@@ -164,10 +164,10 @@
     <string name="update_later">बाद में</string>
     <string name="update_downloading">डाउनलोड हो रहा है…</string>
     <string name="update_needs_permission">Piggy को ऐप इंस्टॉल करने की अनुमति दें, फिर “अपडेट करें” पर दोबारा टैप करें.</string>
-    <string name="update_error_no_apk">इस रिलीज़ में अभी piggy.apk नहीं है.</string>
+    <string name="update_error_no_apk">इस रिलीज़ में अभी piggy-desk.apk नहीं है.</string>
     <string name="update_error_download">डाउनलोड नहीं हो सका (%1$s).</string>
     <string name="update_error_not_newer">डाउनलोड की गई फ़ाइल Piggy का नया वर्शन नहीं है, इसलिए उसे नहीं खोला गया.</string>
-    <string name="update_failed_manual">%1$s आप इसे %2$s (piggy.apk) से भी पा सकते हैं या अपने-आप अपडेट पाने के लिए Obtainium का इस्तेमाल कर सकते हैं (%3$s देखें).</string>
+    <string name="update_failed_manual">%1$s आप इसे %2$s (piggy-desk.apk) से भी पा सकते हैं या अपने-आप अपडेट पाने के लिए Obtainium का इस्तेमाल कर सकते हैं (%3$s देखें).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">सिस्टम</string>

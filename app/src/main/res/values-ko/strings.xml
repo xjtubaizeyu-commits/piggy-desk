@@ -162,10 +162,10 @@
     <string name="update_later">나중에</string>
     <string name="update_downloading">다운로드 중…</string>
     <string name="update_needs_permission">Buddy가 앱을 설치할 수 있도록 ‘알 수 없는 앱 설치’를 허용한 다음 ‘업데이트’를 다시 탭하세요.</string>
-    <string name="update_error_no_apk">이 릴리스에는 아직 piggy.apk가 없어요.</string>
+    <string name="update_error_no_apk">이 릴리스에는 아직 piggy-desk.apk가 없어요.</string>
     <string name="update_error_download">다운로드에 실패했어요(%1$s).</string>
     <string name="update_error_not_newer">다운로드한 파일이 더 새로운 Buddy가 아니라서 열지 않았어요.</string>
-    <string name="update_failed_manual">%1$s %2$s에서 직접 받거나(piggy.apk), Obtainium으로 자동 업데이트를 받을 수도 있어요(%3$s 참고).</string>
+    <string name="update_failed_manual">%1$s %2$s에서 직접 받거나(piggy-desk.apk), Obtainium으로 자동 업데이트를 받을 수도 있어요(%3$s 참고).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">시스템</string>

@@ -169,10 +169,10 @@
     <string name="update_later">Sonra</string>
     <string name="update_downloading">İndiriliyor…</string>
     <string name="update_needs_permission">Piggy\'nin uygulama yüklemesine izin verin, ardından Güncelle düğmesine tekrar dokunun.</string>
-    <string name="update_error_no_apk">Bu sürümde henüz piggy.apk yok.</string>
+    <string name="update_error_no_apk">Bu sürümde henüz piggy-desk.apk yok.</string>
     <string name="update_error_download">İndirme başarısız oldu (%1$s).</string>
     <string name="update_error_not_newer">İndirilen dosya daha yeni bir Piggy sürümü değil, bu yüzden açılmadı.</string>
-    <string name="update_failed_manual">%1$s Uygulamayı %2$s adresinden (piggy.apk) de indirebilir veya otomatik güncellemeler için Obtainium\'u kullanabilirsiniz (bkz. %3$s).</string>
+    <string name="update_failed_manual">%1$s Uygulamayı %2$s adresinden (piggy-desk.apk) de indirebilir veya otomatik güncellemeler için Obtainium\'u kullanabilirsiniz (bkz. %3$s).</string>
 
     <!-- Settings, Appearance: option names. -->
     <string name="prefs_theme_system">Sistem</string>

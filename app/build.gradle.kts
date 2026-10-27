@@ -3,7 +3,7 @@ plugins {
 }
 
 // Version lives in BuildInfo.java so the Gradle and on-device (build.sh) builds always agree.
-val buildInfo = file("src/main/java/app/buddy/assistant/BuildInfo.java").readText()
+val buildInfo = file("src/main/java/app/piggy/desk/BuildInfo.java").readText()
 val appVersionName = Regex("""VERSION = "([^"]+)"""").find(buildInfo)!!.groupValues[1]
 val appVersionCode = Regex("""VERSION_CODE = (\d+)""").find(buildInfo)!!.groupValues[1].toInt()
 
@@ -14,11 +14,11 @@ android {
             useLegacyPackaging = true
         }
     }
-    namespace = "app.buddy.assistant"
+    namespace = "app.piggy.desk"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "app.piggy.assistant"
+        applicationId = "app.piggy.desk"
         minSdk = 30
         targetSdk = 36
         versionCode = appVersionCode
@@ -27,24 +27,17 @@ android {
 
     // Release signing comes from environment variables (set as GitHub Actions secrets).
     // Without them, assembleRelease produces an unsigned APK.
-    val keystorePath = System.getenv("BUDDY_KEYSTORE")
+    val keystorePath = System.getenv("DESK_KEYSTORE")
     signingConfigs {
         if (keystorePath != null) {
             create("release") {
                 storeFile = file(keystorePath)
-                storePassword = System.getenv("BUDDY_KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("BUDDY_KEY_ALIAS") ?: "buddy"
-                keyPassword = System.getenv("BUDDY_KEY_PASSWORD") ?: System.getenv("BUDDY_KEYSTORE_PASSWORD")
+                storeType = "PKCS12"
+                storePassword = System.getenv("DESK_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("DESK_KEY_ALIAS") ?: "desk"
+                keyPassword = System.getenv("DESK_KEYSTORE_PASSWORD")
             }
         }
-    }
-
-    // github: the release on GitHub (self-updates, APK installs, developer mode).
-    // play: the Google Play build, without those (Play's policies). Same package, same key.
-    flavorDimensions += "store"
-    productFlavors {
-        create("github") { dimension = "store" }
-        create("play") { dimension = "store" }
     }
 
     buildTypes {
@@ -63,3 +56,4 @@ android {
         buildConfig = false
     }
 }
+
