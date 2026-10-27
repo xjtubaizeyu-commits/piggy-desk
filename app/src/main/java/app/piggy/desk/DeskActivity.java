@@ -2,8 +2,7 @@ package app.piggy.desk;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -18,7 +18,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,24 +29,29 @@ import java.util.Collections;
 
 /**
  * The tablet workspace: one WebView showing assets/desk/ (sidebar, conversation, side panel), talking to the app
- * through a small message bridge (docs/desk-bridge.md). The pages (assets/desk/, and assets/fonts/ for the typefaces) are
- * served from https://appassets.androidplatform.net/ straight out of the APK, so they get a normal https origin instead
- * of file:// rules. Nothing else is loaded: the
- * WebView never goes to the network itself.
+ * through a small message bridge (docs/desk-bridge.md) that {@link Desk} answers. The pages (assets/desk/, and
+ * assets/fonts/ for the typefaces) are served from https://appassets.androidplatform.net/ straight out of the APK, so
+ * they get a normal https origin instead of file:// rules. Nothing else is loaded: the WebView never goes to the network.
  */
 public class DeskActivity extends Activity {
     static final String HOST = "appassets.androidplatform.net";
     static final String HOME = "https://" + HOST + "/desk/index.html";
+    static final int REQ_MIC = 11, REQ_LOCATION = 12;
+    private static final int REQ_PICK = 21, REQ_CAMERA = 22;
     /** Sidebar colour of the dark theme, behind the system bars and before the page paints. */
     private static final int BACKDROP = Color.rgb(0x1f, 0x1e, 0x1d);
 
     private final Handler main = new Handler(Looper.getMainLooper());
     private WebView web;
+    private Desk desk;
+    private Desk.Picked picking;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        desk = Desk.get(this);
+        DeskService.start(this);
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(BACKDROP);
         root.setFitsSystemWindows(true);
@@ -64,12 +68,25 @@ public class DeskActivity extends Activity {
         web.addJavascriptInterface(new Bridge(), "PiggyDesk");
         root.addView(web);
         setContentView(root);
+        desk.attach(this);
         if (Build.VERSION.SDK_INT >= 33) {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                     android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, this::back);
         }
         if (state == null) web.loadUrl(HOME);
         else web.restoreState(state);
+        if (!NetGuard.locationAllowed(this)) {
+            // the Wi-Fi name (is this the phone's hotspot?) can only be read with location access
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION}, REQ_LOCATION);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        desk.attach(this);
+        desk.onPageResumed();
     }
 
     @Override
@@ -97,6 +114,7 @@ public class DeskActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        desk.detach(this);
         if (web != null) {
             web.removeJavascriptInterface("PiggyDesk");
             web.destroy();
@@ -113,64 +131,68 @@ public class DeskActivity extends Activity {
         });
     }
 
-    /** Answers a page request that carried an id. */
-    void reply(JSONObject req, Object data, String error) {
+    // ------------------------------------------------------------------ pickers and permissions
+
+    /** Lets the user pick images or files, or take a photo; {@code done} gets the URIs, or null if cancelled. */
+    void pick(String kind, Desk.Picked done) {
+        if (picking != null) picking.done(null);
+        picking = done;
         try {
-            JSONObject r = new JSONObject().put("type", "reply").put("id", req.opt("id"));
-            if (error != null) r.put("ok", false).put("error", error);
-            else r.put("ok", true).put("data", data == null ? JSONObject.NULL : data);
-            send(r);
-        } catch (JSONException ignored) {
+            if ("camera".equals(kind)) {
+                FilesProvider.captureFile(this).delete();
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, FilesProvider.captureUri())
+                        .addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivityForResult(i, REQ_CAMERA);
+            } else {
+                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+                        .setType("image".equals(kind) ? "image/*" : "*/*").putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(i, REQ_PICK);
+            }
+        } catch (ActivityNotFoundException e) {
+            picking = null;
+            done.done(null);
+            desk.toast("这台平板上没有能用的" + ("camera".equals(kind) ? "相机" : "文件选择器"));
         }
     }
 
-    private void onMessage(String json) {
-        JSONObject m;
-        try {
-            m = new JSONObject(json);
-        } catch (JSONException e) {
+    @Override
+    @SuppressWarnings("deprecation")
+    protected void onActivityResult(int request, int result, Intent data) {
+        super.onActivityResult(request, result, data);
+        if (request != REQ_PICK && request != REQ_CAMERA) return;
+        Desk.Picked p = picking;
+        picking = null;
+        if (p == null) return;
+        if (result != RESULT_OK) {
+            p.done(null);
             return;
         }
-        switch (m.optString("type")) {
-            case "ready":
-                sendState();
-                break;
-            case "openUrl": {
-                Uri u = Uri.parse(m.optString("url"));
-                if ("https".equals(u.getScheme()) || "http".equals(u.getScheme())) {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, u));
-                    } catch (Exception ignored) {
-                    }
-                }
-                break;
-            }
-            case "copy":
-                getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText("Piggy Desk", m.optString("text")));
-                break;
-            case "toast":
-                Toast.makeText(this, m.optString("text"), Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                if (m.has("id")) reply(m, null, "unknown request: " + m.optString("type"));
+        boolean captured = request == REQ_CAMERA && FilesProvider.captureFile(this).length() > 0;
+        // the photo through our own provider, so it is imported as a photo (scaled, turned upright)
+        p.done(Desk.uris(request == REQ_PICK ? data : null, captured ? FilesProvider.captureUri() : null));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int request, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(request, permissions, results);
+        if (request == REQ_LOCATION) {
+            NetGuard.recheck();
+            if (NetGuard.locationAllowed(this) && !NetGuard.locationOn(this)) desk.toast("还要打开定位，才能读到 Wi-Fi 名字");
         }
     }
 
-    /** Everything the page shows at start. */
-    private void sendState() {
-        try {
-            JSONObject app = new JSONObject().put("version", BuildInfo.VERSION).put("id", BuildInfo.APP_ID);
-            send(new JSONObject().put("type", "state").put("app", app));
-        } catch (JSONException ignored) {
-        }
-    }
+    // ------------------------------------------------------------------ the page
 
     /** The page's calls into the app; they arrive on a WebView thread and are handled on the main thread. */
     private final class Bridge {
         @JavascriptInterface
         public void post(String json) {
             main.post(() -> {
-                if (web != null) onMessage(json);
+                if (web == null) return;
+                try {
+                    desk.onMessage(DeskActivity.this, new JSONObject(json));
+                } catch (JSONException ignored) {
+                }
             });
         }
     }

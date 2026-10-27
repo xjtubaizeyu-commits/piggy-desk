@@ -1,5 +1,7 @@
 # 电脑端工具（pc-tools.py）
 
+程序本体在 `app/src/main/assets/pc/pc-tools.py`（随应用打包，连电脑时推过去）；这里是它的测试和说明。
+
 项目放在电脑上时，平板上的 Claude Code 通过这个程序在电脑上读写文件、跑命令。它是一个 MCP 服务器，走 SSH 的标准输入输出。电脑本身不连 Anthropic，Claude 还在平板上运行。
 
 - 只用 Python 标准库，电脑上自带的 `python`（3.11）就能跑，不用装任何东西。

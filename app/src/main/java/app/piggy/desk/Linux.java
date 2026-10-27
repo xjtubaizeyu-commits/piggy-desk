@@ -70,8 +70,22 @@ final class Linux {
         if (!staging.renameTo(root)) throw new IOException(c.getString(R.string.linux_move_failed));
     }
 
+    /**
+     * Every network connection from the built-in Linux goes through the app's own proxy (EgressProxy), which only lets
+     * it out on an allowed Wi-Fi (the phone's hotspot): Claude's traffic must leave through the phone.
+     */
+    static final String[] PROXY_ENV = {
+            "HTTPS_PROXY=http://127.0.0.1:" + EgressProxy.LOCAL_PORT, "https_proxy=http://127.0.0.1:" + EgressProxy.LOCAL_PORT,
+            "HTTP_PROXY=http://127.0.0.1:" + EgressProxy.LOCAL_PORT, "http_proxy=http://127.0.0.1:" + EgressProxy.LOCAL_PORT,
+            "NO_PROXY=localhost,127.0.0.1,::1", "no_proxy=localhost,127.0.0.1,::1"};
+
     /** The proot command line for running {@code cmd} inside Alpine. */
     static List<String> command(Context c, String... cmd) {
+        return command(c, "/root", null, cmd);
+    }
+
+    /** As {@link #command(Context, String...)}, starting in {@code cwd} (a path inside Linux) with extra variables. */
+    static List<String> command(Context c, String cwd, List<String> env, String... cmd) {
         String lib = c.getApplicationInfo().nativeLibraryDir;
         List<String> a = new ArrayList<>(Arrays.asList(lib + "/libproot.so",
                 "--kill-on-exit", "--link2symlink", "-0",
@@ -80,21 +94,28 @@ final class Linux {
                 // one sound card, "Piggy microphone" (Android hides its own): programs then try to record, and
                 // recording goes through Buddy's stand-in arecord/rec (MicServer)
                 "-b", root(c).getAbsolutePath() + "/etc/buddy/asound-cards:/proc/asound/cards",
-                "-w", "/root"));
+                "-w", cwd == null ? "/root" : cwd));
         // the phone's own fonts, for every script and emoji: the background browser shows pages in any language
         // without a big font download (Alpine's Chromium only brings a Latin one)
         if (new File("/system/fonts").isDirectory()) a.addAll(Arrays.asList("-b", "/system/fonts:/usr/share/fonts/android"));
         a.addAll(Arrays.asList("/usr/bin/env", "-i", "HOME=/root", "LANG=C.UTF-8", "TERM=xterm-256color", "COLORTERM=truecolor",
                 "PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"));
+        a.addAll(Arrays.asList(PROXY_ENV));
+        if (env != null) a.addAll(env);
         a.addAll(Arrays.asList(cmd));
         return a;
     }
 
     static ProcessBuilder builder(Context c, String... cmd) {
+        return builder(c, "/root", null, cmd);
+    }
+
+    /** A process inside Linux, started in {@code cwd} with extra environment variables ("NAME=value"). */
+    static ProcessBuilder builder(Context c, String cwd, List<String> env, String... cmd) {
         String lib = c.getApplicationInfo().nativeLibraryDir;
         File tmp = new File(c.getCacheDir(), "proot");
         tmp.mkdirs();
-        ProcessBuilder pb = new ProcessBuilder(command(c, cmd));
+        ProcessBuilder pb = new ProcessBuilder(command(c, cwd, env, cmd));
         pb.environment().put("PROOT_LOADER", lib + "/libproot-loader.so");
         pb.environment().put("PROOT_TMP_DIR", tmp.getAbsolutePath());
         pb.environment().put("LD_LIBRARY_PATH", lib);

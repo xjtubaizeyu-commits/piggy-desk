@@ -244,6 +244,7 @@ function permissionCard(sid, p) {
   add(card, [
     h("h4", icon("shield", 18), "允许 Claude " + L.label + (L.where ? "（" + L.where + "）" : "") + "？"),
     inp.description ? h("div.why", { text: inp.description }) : null,
+    p.reason ? h("div.why.muted", { text: p.reason }) : null,
     preview,
     h("div", { style: { marginTop: "10px" } }, why),
     h("div.actions",
@@ -327,7 +328,8 @@ function refreshWorking(sid) {
     w = h("div.working", h("span.star", icon("star", 16)), h("span.wt"), h("span.muted.wtime"), h("span.kbd", { text: "Esc 中断" }));
     thread.append(w);
   }
-  const phase = { thinking: "思考中…", tool: "运行工具…", waiting: "等待中…" }[st.status.phase] || "处理中…";
+  const phase = { thinking: "思考中…", tool: "运行工具…", waiting: "等你确认…", starting: "正在启动 Claude Code…",
+    connecting: "正在连接电脑…", compacting: "正在压缩对话…" }[st.status.phase] || "处理中…";
   $(".wt", w).textContent = phase;
   const tick = () => { const t = $(".wtime", w); if (t && st.status.since) t.textContent = fmtSecs(Date.now() - st.status.since); };
   tick();

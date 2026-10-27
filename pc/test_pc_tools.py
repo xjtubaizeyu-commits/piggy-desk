@@ -20,7 +20,7 @@ import zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SERVER = HERE / "pc-tools.py"
+SERVER = HERE.parent / "app" / "src" / "main" / "assets" / "pc" / "pc-tools.py"  # shipped in the APK, pushed to the PC
 
 
 class Client:

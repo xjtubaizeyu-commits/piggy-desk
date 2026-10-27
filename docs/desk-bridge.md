@@ -49,12 +49,12 @@ Each one replaces that part of `state`: `{"type": "setup" | "account" | "net" | 
 | `transcript` | `items` | the whole conversation, when a session is opened |
 | `item` | `item` | add an item, or replace the one with the same `item.id` |
 | `delta` | `itemId`, `text` | append streamed text to an `assistant` or `thinking` item |
-| `status` | `running`, `phase` (`thinking` \| `tool` \| `waiting` \| `idle`), `since` | the spinner line |
+| `status` | `running`, `phase` (`starting` \| `connecting` \| `thinking` \| `tool` \| `waiting` \| `compacting` \| `idle`), `since` | the spinner line |
 | `context` | `used`, `window`, `breakdown` `[{label, tokens}]` | the 上下文 panel (`breakdown` may be empty) |
 | `outputs` | `files` `[{path, action: "write"\|"edit", at}]` | the 输出内容 panel |
 | `todos` | `todos` `[{content, status, activeForm}]` | the to-do panel |
 | `env` | `env` (`tablet`\|`pc`), `cwd`, `branch`, `remote` | the 环境 panel |
-| `permission` | `requestId`, `tool`, `input`, `kind` (`tool` \| `plan` \| `question`), `suggestions` | a card waiting for an answer |
+| `permission` | `requestId`, `tool`, `input`, `kind` (`tool` \| `plan` \| `question`), `suggestions`, `reason`, `blockedPath` | a card waiting for an answer |
 | `permissionDone` | `requestId` | that card was answered (here or elsewhere) |
 
 Items (`item.kind`):
@@ -110,3 +110,17 @@ Items (`item.kind`):
 | `toast` | `text` | |
 | `customGet` ⇄ | | → `{claudeMd, skills, agents, commands, mcpServers}` (each list `[{name, description, path, type, status}]`) |
 | `customSave` ⇄ | `claudeMd` | writes the tablet's `~/.claude/CLAUDE.md` |
+
+## How the app answers (Desk.java, Engine.java)
+
+- Each session runs one `claude -p --input-format stream-json --output-format stream-json --verbose
+  --include-partial-messages --permission-prompt-tool stdio` inside the app's Linux, driven with Claude Code's SDK
+  control protocol: `initialize` (models, commands, account), `interrupt`, `set_permission_mode`, `set_model`,
+  `can_use_tool` (→ `permission` cards), `get_context_usage` (the 上下文 panel after each turn), `get_usage` and
+  `rate_limit_event` (the 额度 ring), `remote_control` (the toggle).
+- The page's mode `default` is Claude Code's `manual` on the command line (`default` again in `set_permission_mode`).
+- Effort is fixed when Claude Code starts (`--effort`): changing it restarts the session at the next message
+  (`--resume` keeps the conversation). Idle sessions stop after 15 minutes; at most 3 run at once.
+- A project on the PC runs Claude Code in an empty folder on the tablet with the PC's `pc` MCP server
+  (`ssh … python .piggy-desk\pc-tools.py --root <folder>`), the local file and shell tools switched off, and the
+  PC's CLAUDE.md files in the system prompt.
