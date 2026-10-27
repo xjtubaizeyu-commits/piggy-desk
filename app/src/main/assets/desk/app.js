@@ -395,8 +395,11 @@ function renderSetup(main) {
       step(1, netOk, !netOk, "网络", netOk ? "已连上「" + n.ssid + "」" : n.ssid ? "现在连的是「" + n.ssid + "」，不在允许列表里（" + (n.allow || []).join("、") + "）" : "需要定位权限才能读 Wi-Fi 名字（只用来判断是不是手机热点）",
         netOk ? null : h("button.btn", { text: n.ssid ? "改允许列表" : "允许定位", on: { click: () => n.ssid ? (S.settingsTab = "network", openView("settings")) : bridge.post({ type: "openNative", screen: "location" }) } })),
       step(2, installed, netOk && !installed, "安装 Claude Code",
-        s.claude === "installing" ? (s.detail || "正在安装…") : s.claude === "error" ? (s.detail || "安装失败") : installed ? "版本 " + (s.version || "") : "大约 260 MB，走手机流量，只装一次",
-        installed ? null : s.claude === "installing" ? icon("spinner") : h("button.btn.accent", { text: s.claude === "error" ? "重试" : "安装", disabled: !netOk, on: { click: () => bridge.post({ type: "installClaude" }) } })),
+        s.claude === "installing" ? (s.detail || "正在安装…") : s.claude === "error" ? (s.detail || "安装失败") + "（已下的部分会保留，重试接着下）"
+          : installed ? "版本 " + (s.version || "") : "压缩包约 100 MB，走手机流量；断了会接着下，只装一次",
+        installed ? null : s.claude === "installing" ? icon("spinner") : h("div.row",
+          h("button.btn.ghost", { text: "从文件", title: "用已经下好的 claude.zst（比如电脑下好用 Taildrop 发过来的）", on: { click: () => bridge.post({ type: "installClaudeFile" }) } }),
+          h("button.btn.accent", { text: s.claude === "error" ? "接着下" : "安装", disabled: !netOk, on: { click: () => bridge.post({ type: "installClaude" }) } }))),
       step(3, !!a.signedIn, installed && !a.signedIn, "登录 Claude",
         a.signedIn ? (a.email || "已登录") : a.signingIn ? "在浏览器里批准，回来就好了" : "用你的 Claude 账号（Pro / Max）在浏览器里登录",
         a.signedIn ? null : a.signingIn ? icon("spinner") : h("button.btn.accent", { text: "登录", disabled: !installed || !netOk, on: { click: () => bridge.post({ type: "signIn" }) } }))),

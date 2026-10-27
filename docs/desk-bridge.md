@@ -99,7 +99,7 @@ Items (`item.kind`):
 | `gitDiff` ⇄ | `sessionId` | → `{diff}` |
 | `remoteControl` | `sessionId`, `on` | hand the session to Claude Code's Remote Control, or take it back |
 | `refreshUsage` / `refreshContext` | `sessionId` | |
-| `signIn` / `signOut` / `installClaude` / `updateClaude` | | |
+| `signIn` / `signOut` / `installClaude` / `installClaudeFile` / `updateClaude` | | `installClaudeFile` asks for claude.zst or the program |
 | `setPref` | `key`, `value` | `theme`, `fontSize`, `model`, `effort`, `mode`, `allowSsid`, … |
 | `egressSet` | `on`, `port`, `code` | the built-in exit for the PC |
 | `pcSet` | `on`, `host`, `user` | |

@@ -312,6 +312,14 @@ final class Account {
 
     /** Installs Buddy's Linux (4 MB) if needed, then the agent: Claude Code (~230 MB) or Codex. */
     void install(Context c) {
+        install(c, null);
+    }
+
+    /**
+     * As {@link #install(Context)}; for Claude Code, {@code fromFile} (claude.zst or the program, picked by the user)
+     * instead of downloading it. Claude Code comes through {@link ClaudeInstall}: resumable, compressed, checked.
+     */
+    void install(Context c, Uri fromFile) {
         app = c.getApplicationContext();
         if (busy()) return;
         final Context app = c.getApplicationContext();
@@ -325,14 +333,14 @@ final class Account {
                     String o = Linux.exec(app, "apk update -q && apk add -q bash curl jq libgcc libstdc++ ripgrep git "
                             + "ca-certificates procps coreutils findutils" + (claude() || agy() || grok() ? "" : " nodejs npm")
                             + (agy() ? " util-linux-misc" : "") // script: Antigravity's sign-in needs a terminal
+                            + (claude() ? " zstd openssh-client" : "") // unpacking Claude Code; SSH to the PC
                             + " && echo TOOLS_OK", 900);
                     if (!o.contains("TOOLS_OK")) throw new IOException(tail(o));
                 }
                 if (claude()) {
                     set(Step.INSTALLING, app.getString(R.string.account_downloading_claude));
-                    String o = Linux.exec(app, "curl -fsSL https://claude.ai/install.sh -o /tmp/install.sh && bash /tmp/install.sh"
-                            + " && /root/.local/bin/claude --version && echo AGENT_OK", 1800);
-                    if (!o.contains("AGENT_OK")) throw new IOException(tail(o));
+                    ClaudeInstall.Status st = text -> set(Step.INSTALLING, text);
+                    version = fromFile != null ? ClaudeInstall.fromFile(app, fromFile, st) : ClaudeInstall.download(app, st);
                 } else if (agy()) {
                     set(Step.INSTALLING, app.getString(R.string.account_downloading, name()));
                     // Google's installer picks the Alpine (musl) build and puts agy in ~/.local/bin

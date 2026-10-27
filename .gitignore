@@ -19,3 +19,4 @@ local.properties
 design/
 .claude/
 __pycache__/
+downloads/

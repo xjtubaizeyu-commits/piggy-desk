@@ -196,7 +196,7 @@
         case "egressSet": Object.assign(D.egress, { on: m.on, port: m.port, code: m.code }); send({ type: "egress", value: D.egress }); break;
         case "remoteControl": send({ type: "env", sessionId: m.sessionId, env: "tablet", cwd: "/root/projects/piggy-desk", branch: "main", remote: m.on }); send({ type: "toast", text: m.on ? "已交给 Remote Control，可以在手机 Claude App 里接着用" : "已收回" }); break;
         case "signIn": D.account = { signingIn: true }; send({ type: "account", value: D.account }); later(1500, () => { D.account = { signedIn: true, email: "pig@example.com", name: "PIG", plan: "Pro" }; send({ type: "account", value: D.account }); }); break;
-        case "installClaude": D.setup = { claude: "installing", detail: "下载 Claude Code… 38%" }; send({ type: "setup", value: D.setup }); later(1500, () => { D.setup = { claude: "ready", version: "2.3.4" }; send({ type: "setup", value: D.setup }); }); break;
+        case "installClaudeFile": case "installClaude": D.setup = { claude: "installing", detail: "下载 Claude Code 2.1.311：38.2 / 96.4 MB · 410 KB/s · 还要约 3 分钟" }; send({ type: "setup", value: D.setup }); later(1500, () => { D.setup = { claude: "ready", version: "2.3.4" }; send({ type: "setup", value: D.setup }); }); break;
         case "copy": if (navigator.clipboard) navigator.clipboard.writeText(m.text).catch(() => {}); break;
         case "openUrl": window.open(m.url, "_blank"); break;
         case "openNative": send({ type: "toast", text: "（应用里会打开：" + m.screen + "）" }); break;

@@ -454,8 +454,15 @@ final class Desk implements Account.Listener, NetGuard.Listener {
                     Engine.refreshContext(sid);
                     break;
                 case "signIn":
-                case "installClaude":
                     a.startActivity(new Intent(a, SignInActivity.class).putExtra("agent", "claude"));
+                    break;
+                case "installClaude": // progress shows on the page (setup.detail)
+                    Account.CLAUDE.install(app);
+                    break;
+                case "installClaudeFile":
+                    a.pick("file", uris -> {
+                        if (uris != null && !uris.isEmpty()) Account.CLAUDE.install(app, uris.get(0));
+                    });
                     break;
                 case "signOut":
                     Engine.stopAll();

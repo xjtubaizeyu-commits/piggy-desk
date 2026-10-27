@@ -153,17 +153,9 @@ final class Linux {
 
     // ------------------------------------------------------------------ helpers
 
+    /** Resumes after a dropped connection and retries by itself (roaming data); the caller checks the checksum. */
     private static void download(String url, File to) throws IOException {
-        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
-        con.setConnectTimeout(20000);
-        con.setReadTimeout(60000);
-        try (InputStream in = openOk(con); OutputStream out = new FileOutputStream(to)) {
-            byte[] buf = new byte[64 * 1024];
-            int n;
-            while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
-        } finally {
-            con.disconnect();
-        }
+        Download.fetch(url, to, 0, null, null, null);
     }
 
     private static InputStream openOk(HttpURLConnection con) throws IOException {

@@ -37,7 +37,9 @@ function renderSettings(main) {
             : h("button.btn.accent", { text: a.signingIn ? "等待浏览器…" : "登录", disabled: !!a.signingIn, on: { click: () => bridge.post({ type: "signIn" }) } })),
         setRow("Claude Code", st.claude === "ready" ? "版本 " + (st.version || "?") : st.claude === "installing" ? (st.detail || "正在安装…") : st.claude === "error" ? (st.detail || "出错了") : "还没安装",
           st.claude === "ready" ? h("button.btn", { text: "检查更新", on: { click: () => bridge.post({ type: "updateClaude" }) } })
-            : st.claude === "installing" ? icon("spinner") : h("button.btn.accent", { text: "安装", on: { click: () => bridge.post({ type: "installClaude" }) } })),
+            : st.claude === "installing" ? icon("spinner") : h("div.row",
+              h("button.btn.ghost", { text: "从文件", on: { click: () => bridge.post({ type: "installClaudeFile" }) } }),
+              h("button.btn.accent", { text: st.claude === "error" ? "接着下" : "安装", on: { click: () => bridge.post({ type: "installClaude" }) } }))),
         setRow("额度", "5 小时和每周的用量", h("button.btn", { text: "查看", on: { click: usageDialog } })))]);
   }
 
