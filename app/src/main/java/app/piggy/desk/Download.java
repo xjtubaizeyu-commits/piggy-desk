@@ -49,14 +49,7 @@ final class Download {
             }
             HttpURLConnection con = null;
             try {
-                Network n = net == null ? null : net.get();
-                URL u = new URL(url);
-                con = (HttpURLConnection) (n == null ? u.openConnection() : n.openConnection(u));
-                con.setConnectTimeout(20000);
-                con.setReadTimeout(30000);
-                con.setRequestProperty("User-Agent", "PiggyDesk/" + BuildInfo.VERSION);
-                con.setRequestProperty("Accept-Encoding", "identity");
-                if (have > 0) con.setRequestProperty("Range", "bytes=" + have + "-");
+                con = open(url, net, have > 0 ? "bytes=" + have + "-" : null);
                 int code = con.getResponseCode();
                 if (code == 416 && have > 0) { // asked past the end: what we have is all of it, or it's stale
                     if (size <= 0) break;
@@ -120,11 +113,7 @@ final class Download {
         for (int i = 0; i < 5; i++) {
             HttpURLConnection con = null;
             try {
-                Network n = net == null ? null : net.get();
-                URL u = new URL(url);
-                con = (HttpURLConnection) (n == null ? u.openConnection() : n.openConnection(u));
-                con.setConnectTimeout(20000);
-                con.setReadTimeout(30000);
+                con = open(url, net, null);
                 if (con.getResponseCode() != 200) throw new IOException("HTTP " + con.getResponseCode() + "：" + url);
                 try (InputStream in = con.getInputStream()) {
                     java.io.ByteArrayOutputStream o = new java.io.ByteArrayOutputStream();
@@ -145,6 +134,38 @@ final class Download {
             }
         }
         throw last != null ? last : new IOException("下载失败：" + url);
+    }
+
+    /**
+     * A connection over the given network, or the system route when there is none or binding to it is refused
+     * (see {@link NetGuard#bindBlocked}); the Net still decides whether to connect at all.
+     */
+    private static HttpURLConnection open(String url, Net net, String range) throws IOException {
+        Network n = net == null ? null : net.get();
+        URL u = new URL(url);
+        if (n != null && !NetGuard.bindBlocked) {
+            HttpURLConnection con = null;
+            try {
+                con = prepare((HttpURLConnection) n.openConnection(u), range);
+                con.connect();
+                return con;
+            } catch (IOException e) {
+                String m = String.valueOf(e.getMessage());
+                if (con != null) con.disconnect();
+                if (!m.contains("EPERM") && !m.contains("not permitted")) throw e;
+                NetGuard.bindBlocked = true;
+            }
+        }
+        return prepare((HttpURLConnection) u.openConnection(), range);
+    }
+
+    private static HttpURLConnection prepare(HttpURLConnection con, String range) {
+        con.setConnectTimeout(20000);
+        con.setReadTimeout(30000);
+        con.setRequestProperty("User-Agent", "PiggyDesk/" + BuildInfo.VERSION);
+        con.setRequestProperty("Accept-Encoding", "identity");
+        if (range != null) con.setRequestProperty("Range", range);
+        return con;
     }
 
     static String sha256(File f) throws IOException {

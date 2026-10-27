@@ -34,6 +34,8 @@ final class NetGuard {
     static volatile String reason = "正在检查网络";
     static volatile Network wifi;
     static volatile long since = System.currentTimeMillis();
+    /** Binding sockets to the Wi-Fi network is refused (a VPN without bypass, e.g. Tailscale): use the system route. */
+    static volatile boolean bindBlocked;
 
     private static final Handler main = new Handler(Looper.getMainLooper());
     private static final List<Listener> listeners = new ArrayList<>();

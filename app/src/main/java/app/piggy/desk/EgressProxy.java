@@ -262,12 +262,20 @@ final class EgressProxy {
         }
         Network net = NetGuard.wifi;
         if (net == null || !NetGuard.allowed) throw new IOException("tablet egress closed: " + NetGuard.reason);
-        InetAddress[] addrs = net.getAllByName(host);
+        InetAddress[] addrs;
+        try {
+            addrs = net.getAllByName(host);
+        } catch (IOException e) {
+            addrs = InetAddress.getAllByName(host);
+        }
+        // IPv4 first: a phone hotspot often has no working IPv6, and each dead address costs a timeout
+        List<InetAddress> order = new ArrayList<>();
+        for (InetAddress a : addrs) if (a instanceof Inet4Address) order.add(a);
+        for (InetAddress a : addrs) if (!(a instanceof Inet4Address)) order.add(a);
         IOException last = null;
-        for (InetAddress a : addrs) {
-            Socket s = new Socket();
+        for (InetAddress a : order) {
+            Socket s = bound(net);
             try {
-                net.bindSocket(s);
                 s.connect(new InetSocketAddress(a, port), 15000);
                 s.setTcpNoDelay(true);
                 return s;
@@ -276,7 +284,30 @@ final class EgressProxy {
                 quietClose(s);
             }
         }
+        lastError = host + ":" + port + " → " + (last != null ? last.getMessage() : "解析不到地址");
         throw last != null ? last : new IOException("can't resolve " + host);
+    }
+
+    /** The last upstream failure, shown when an install fails. */
+    static volatile String lastError = "";
+
+    /**
+     * A socket on the Wi-Fi network itself. A VPN that doesn't allow bypassing it (Tailscale's, for one) makes binding
+     * fail with EPERM: then the system's route is used, which with such a VPN (no exit node) is that same Wi-Fi. The
+     * guard still decides: off the allowed Wi-Fi nothing is forwarded at all.
+     */
+    private static Socket bound(Network net) {
+        Socket s = new Socket();
+        if (NetGuard.bindBlocked) return s;
+        try {
+            net.bindSocket(s);
+            return s;
+        } catch (IOException e) {
+            NetGuard.bindBlocked = true;
+            android.util.Log.w("PiggyDesk", "can't bind to the Wi-Fi network, using the system route", e);
+            quietClose(s);
+            return new Socket();
+        }
     }
 
     private static boolean authorized(List<String[]> headers) {
