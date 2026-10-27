@@ -677,7 +677,7 @@ final class Ui {
         return d;
     }
 
-    static final String PRIVACY_URL = "https://github.com/PIGxjtu/piggy-assistant/blob/main/docs/PRIVACY.md";
+    static final String PRIVACY_URL = "https://github.com/xjtubaizeyu-commits/piggy-assistant/blob/main/docs/PRIVACY.md";
 
     /**
      * Opens Android's accessibility settings, after the user has agreed to what Buddy's accessibility service does

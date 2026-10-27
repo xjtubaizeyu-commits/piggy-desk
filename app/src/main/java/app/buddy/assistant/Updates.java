@@ -38,11 +38,11 @@ import static app.buddy.assistant.Ui.*;
  * notification (Settings → Update notices), and the sheet that notification opens.
  */
 public final class Updates extends BroadcastReceiver {
-    static final String REPO = "https://github.com/PIGxjtu/piggy-assistant";
+    static final String REPO = "https://github.com/xjtubaizeyu-commits/piggy-assistant";
     /** For the agent (update_buddy), so English; the sheet shows R.string.update_failed_manual instead. */
     static final String MANUAL = "You can also get it at " + REPO + "/releases/latest (piggy.apk), or with Obtainium "
             + "for automatic updates (see " + REPO + "#updating).";
-    private static final String API = "https://api.github.com/repos/PIGxjtu/piggy-assistant/releases/latest";
+    private static final String API = "https://api.github.com/repos/xjtubaizeyu-commits/piggy-assistant/releases/latest";
     private static final String CHANNEL = "updates", ACTION_MUTE = "app.piggy.assistant.MUTE_UPDATES";
     private static final int ID = 3;
     private static final long DAY = 24 * 3600_000L;
