@@ -60,6 +60,9 @@ final class DeskBrowser {
     private volatile int progress;
     private volatile String title = "", url = "";
     private volatile CountDownLatch loaded = new CountDownLatch(0);
+    /** The page's slot (CSS pixels), and whether anything was opened yet: until then the page's own hint shows there. */
+    private boolean slotShown, used;
+    private double sx, sy, sw, sh;
 
     DeskBrowser(Activity a, FrameLayout parent) {
         this.a = a;
@@ -100,7 +103,12 @@ final class DeskBrowser {
 
     /** Where the page's slot is, in CSS pixels from the top-left of the workspace page, or that it is hidden. */
     void place(boolean visible, double x, double y, double w, double h) {
-        if (!visible) {
+        slotShown = visible;
+        sx = x;
+        sy = y;
+        sw = w;
+        sh = h;
+        if (!visible || !used) {
             if (page != null) page.setVisibility(View.INVISIBLE);
             return;
         }
@@ -136,7 +144,10 @@ final class DeskBrowser {
                 CookieManager.getInstance().removeAllCookies(null);
                 WebStorage.getInstance().deleteAllData();
                 v.clearCache(true);
+                v.loadUrl("about:blank");
                 v.clearHistory();
+                used = false;
+                v.setVisibility(View.INVISIBLE);
                 break;
             case "state":
                 break;
@@ -154,7 +165,9 @@ final class DeskBrowser {
         }
         loaded = new CountDownLatch(1);
         loading = true;
+        used = true;
         view().loadUrl(target);
+        if (slotShown) place(true, sx, sy, sw, sh);
     }
 
     /** Tells the page what the browser shows (shown: Claude is using it, so the panel switches to it). */

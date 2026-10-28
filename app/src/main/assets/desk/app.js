@@ -180,6 +180,7 @@ function refreshPanel(sid, tabs) {
 }
 
 function onBrowser(m) {
+  if (m.url === "about:blank") m.url = m.title = "";
   S.browser = m;
   if (m.shown && S.current && sesState(S.current).tab !== "browser") { setTab(S.current, "browser"); return; }
   if (!S.current || sesState(S.current).tab !== "browser") return;
