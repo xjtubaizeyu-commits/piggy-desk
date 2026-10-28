@@ -50,6 +50,8 @@ final class Desk implements Account.Listener, NetGuard.Listener {
     private DeskActivity page;
     /** The session open on the page (it doesn't get "unread"). */
     private volatile String viewing;
+    /** The page is on screen (not behind another app): no notifications then. */
+    private volatile boolean visible;
     private boolean dictating;
 
     static synchronized Desk get(Context c) {
@@ -73,6 +75,11 @@ final class Desk implements Account.Listener, NetGuard.Listener {
 
     void detach(DeskActivity a) {
         if (page == a) page = null;
+    }
+
+    void setVisible(boolean v) {
+        visible = v;
+        if (v) DeskService.clearDone(app);
     }
 
     // ------------------------------------------------------------------ to the page
@@ -210,6 +217,10 @@ final class Desk implements Account.Listener, NetGuard.Listener {
         emitPart("sessions", sessions());
     }
 
+    void pushSessionsSoon() {
+        main.post(this::pushSessions);
+    }
+
     /** The page says "default" for Claude Code's "manual" (ask before acting). */
     static String cliMode(String m) {
         return m == null || m.isEmpty() || "default".equals(m) ? "manual" : m;
@@ -316,6 +327,13 @@ final class Desk implements Account.Listener, NetGuard.Listener {
         JSONObject s = store.session(sid);
         if (s != null && !sid.equals(viewing)) store.update(s, "unread", true);
         pushSessions();
+        if (s != null && !visible && store.bool("notify", true)) DeskService.notifyDone(app, sid, s.optString("title"), "Claude 做完了");
+    }
+
+    /** Claude is waiting for an OK while nobody is looking: say so. */
+    void onWaiting(String sid, String what) {
+        JSONObject s = store.session(sid);
+        if (s != null && !visible && store.bool("notify", true)) DeskService.notifyDone(app, sid, s.optString("title"), what);
     }
 
     /** The 环境 panel for a session. */
@@ -444,7 +462,53 @@ final class Desk implements Account.Listener, NetGuard.Listener {
                 case "pcTest":
                 case "customGet":
                 case "customSave":
-                    work.execute(() -> slow(m));
+                case "fileIndex":
+                case "memoryGet":
+                case "memoryRead":
+                case "memorySave":
+                case "memoryDelete":
+                case "memorySet":
+                case "exportSession":
+                case "openFile":
+                    work.execute(() -> slow(m, a));
+                    break;
+                case "pinSession": {
+                    JSONObject s = store.session(sid);
+                    if (s != null) store.update(s, "pinned", m.optBoolean("pinned"));
+                    pushSessions();
+                    break;
+                }
+                case "forkSession": {
+                    JSONObject s = store.forkSession(sid);
+                    pushSessions();
+                    reply(m, new Engine.Obj("sessionId", s.optString("id")).o, null);
+                    break;
+                }
+                case "planRefresh":
+                    Engine.refreshPlan(sid);
+                    break;
+                case "stopTask":
+                    Engine.stopTask(sid, m.optString("taskId"));
+                    break;
+                case "taskOutput":
+                    Engine.taskOutput(sid, m.optString("taskId"), resp -> {
+                        if (resp == null) reply(m, null, "读不到输出（Claude Code 没在运行，或者任务已经清掉了）");
+                        else reply(m, new Engine.Obj("output", resp.optString("output"), "truncated", resp.optBoolean("truncated")).o, null);
+                    });
+                    break;
+                case "sideQuestion":
+                    if (!NetGuard.allowed) throw new IOException("Claude 已断开：" + NetGuard.reason);
+                    Engine.sideQuestion(app, sid, m.optString("question"), resp -> {
+                        Engine.Run r = Engine.run(sid);
+                        if (resp == null) reply(m, null, "没问成：" + (r == null ? "Claude Code 没在运行" : r.lastControlError));
+                        else reply(m, new Engine.Obj("answer", resp.optString("response")).o, null);
+                    });
+                    break;
+                case "browser":
+                    if (a.browser() != null) a.browser().op(m.optString("op"), m.optString("url"));
+                    break;
+                case "browserSlot":
+                    if (a.browser() != null) a.browser().place(m.optBoolean("visible"), m.optDouble("x"), m.optDouble("y"), m.optDouble("w"), m.optDouble("h"));
                     break;
                 case "remoteControl":
                     Engine.remoteControl(app, sid, m.optBoolean("on"));
@@ -476,11 +540,23 @@ final class Desk implements Account.Listener, NetGuard.Listener {
                     Engine.stopAll();
                     Account.CLAUDE.update(app);
                     break;
-                case "setPref":
-                    store.setPref(m.optString("key"), m.opt("value"));
-                    if ("allowSsid".equals(m.optString("key"))) NetGuard.recheck();
+                case "setPref": {
+                    String key = m.optString("key");
+                    store.setPref(key, m.opt("value"));
+                    if ("allowSsid".equals(key)) NetGuard.recheck();
+                    if ("outputStyle".equals(key)) { // Claude Code reads it from its own settings file
+                        String v = m.optString("value");
+                        work.execute(() -> {
+                            try {
+                                DeskMemory.setSetting(app, "outputStyle", v.isEmpty() ? null : v);
+                            } catch (Exception e) {
+                                toast(e.getMessage());
+                            }
+                        });
+                    }
                     emitPart("prefs", prefsForPage());
                     break;
+                }
                 case "egressSet": {
                     boolean on = m.optBoolean("on");
                     String code = m.optString("code").trim();
@@ -580,6 +656,19 @@ final class Desk implements Account.Listener, NetGuard.Listener {
         if (ctx != null && ctx.optLong("used") > 0) sessionEvent(sid, ctx);
         if (meta.has("outputs")) sessionEvent(sid, new Engine.Obj("type", "outputs", "files", meta.optJSONArray("outputs")).o);
         if (meta.has("todos")) sessionEvent(sid, new Engine.Obj("type", "todos", "todos", meta.optJSONArray("todos")).o);
+        if (meta.optJSONObject("plan") != null) {
+            JSONObject plan = meta.optJSONObject("plan");
+            put(plan, "open", false);
+            sessionEvent(sid, plan);
+        }
+        if (meta.has("tasks")) {
+            JSONArray tasks = meta.optJSONArray("tasks");
+            for (int i = 0; tasks != null && !live && i < tasks.length(); i++) { // a stopped Claude Code took its tasks with it
+                JSONObject t = tasks.optJSONObject(i);
+                if (t != null && "running".equals(t.optString("status"))) put(t, "status", "stopped");
+            }
+            sessionEvent(sid, new Engine.Obj("type", "tasks", "tasks", tasks).o);
+        }
         sessionEvent(sid, new Engine.Obj("type", "status", "running", live, "phase", live ? "thinking" : "idle",
                 "since", r == null ? 0 : r.since).o);
         for (JSONObject p : Engine.pending(sid)) sessionEvent(sid, p);
@@ -647,9 +736,37 @@ final class Desk implements Account.Listener, NetGuard.Listener {
 
     // ------------------------------------------------------------------ slow requests (worker threads)
 
-    private void slow(JSONObject m) {
+    private void slow(JSONObject m, DeskActivity a) {
         try {
             String type = m.optString("type");
+            if (type.startsWith("memory")) {
+                JSONObject p = store.project(m.optString("projectId"));
+                if (p == null) throw new IOException("项目不存在");
+                if ("memoryGet".equals(type)) reply(m, DeskMemory.get(app, p), null);
+                else if ("memoryRead".equals(type)) reply(m, new Engine.Obj("text", DeskMemory.read(app, p, m.optString("where"), m.optString("path"))).o, null);
+                else if ("memorySave".equals(type)) {
+                    DeskMemory.save(app, p, m.optString("where"), m.optString("path"), m.optString("text"));
+                    reply(m, new JSONObject(), null);
+                } else if ("memoryDelete".equals(type)) {
+                    DeskMemory.delete(app, p, m.optString("path"));
+                    reply(m, new JSONObject(), null);
+                } else if ("memorySet".equals(type)) {
+                    if (m.has("autoMemoryEnabled")) DeskMemory.setSetting(app, "autoMemoryEnabled", m.optBoolean("autoMemoryEnabled") ? null : false);
+                    if (m.has("autoDreamEnabled")) DeskMemory.setSetting(app, "autoDreamEnabled", m.optBoolean("autoDreamEnabled"));
+                    reply(m, new JSONObject(), null);
+                }
+                return;
+            }
+            if ("exportSession".equals(type)) {
+                reply(m, new Engine.Obj("where", exportSession(m.optString("sessionId"))).o, null);
+                return;
+            }
+            if ("fileIndex".equals(type) && m.optString("sessionId").isEmpty()) {
+                JSONObject p = store.project(m.optString("projectId"));
+                if (p == null) throw new IOException("项目不存在");
+                reply(m, new Engine.Obj("files", DeskFiles.index(app, p)).o, null);
+                return;
+            }
             if ("pcTest".equals(type)) {
                 reply(m, PcLink.test(app), null);
                 return;
@@ -671,8 +788,14 @@ final class Desk implements Account.Listener, NetGuard.Listener {
             boolean onPc = DeskStore.PC.equals(p.optString("env"));
             String root = p.optString("path");
             if ("listFiles".equals(type)) reply(m, onPc ? pcList(root, m.optString("path")) : tabletList(root, m.optString("path")), null);
-            else if ("readFile".equals(type)) reply(m, onPc ? pcRead(root, m.optString("path")) : tabletRead(root, m.optString("path")), null);
+            else if ("readFile".equals(type)) reply(m, DeskFiles.read(app, p, m.optString("path"), m.optString("where")), null);
             else if ("gitDiff".equals(type)) reply(m, onPc ? pcDiff(root) : tabletDiff(root), null);
+            else if ("fileIndex".equals(type)) reply(m, new Engine.Obj("files", DeskFiles.index(app, p)).o, null);
+            else if ("openFile".equals(type)) {
+                JSONObject r = DeskFiles.read(app, p, m.optString("path"), m.optString("where"));
+                File f = DeskFiles.file(r.optString("token"));
+                if (f != null) main.post(() -> DeskFiles.openWith(a, f));
+            }
         } catch (Exception e) {
             reply(m, null, e.getMessage() == null ? e.toString() : e.getMessage());
         }
@@ -718,11 +841,9 @@ final class Desk implements Account.Listener, NetGuard.Listener {
 
     private JSONObject tabletDiff(String root) throws Exception {
         String out = Linux.exec(app, "cd " + PcLink.shq(root) + " 2>/dev/null || exit 0; git rev-parse --abbrev-ref HEAD 2>/dev/null;"
+                + " echo __NEW__; git ls-files --others --exclude-standard 2>/dev/null | head -200;"
                 + " echo __DIFF__; git --no-pager diff HEAD --no-color 2>/dev/null | head -c 400000", 60);
-        int at = out.indexOf("__DIFF__");
-        String branch = at > 0 ? out.substring(0, at).trim() : "";
-        String diff = at >= 0 ? out.substring(at + 8).replaceAll("\\n\\[exit \\d+\\]\\s*$", "").trim() : "";
-        return new Engine.Obj("branch", branch, "diff", diff).o;
+        return splitDiff(out.replaceAll("\\n\\[exit \\d+\\]\\s*$", ""));
     }
 
     private JSONObject pcList(String root, String path) throws Exception {
@@ -757,10 +878,61 @@ final class Desk implements Account.Listener, NetGuard.Listener {
 
     private JSONObject pcDiff(String root) throws Exception {
         JSONObject r = PcLink.call(app, root, "bash", new Engine.Obj("command",
-                "git rev-parse --abbrev-ref HEAD 2>/dev/null; echo __DIFF__; git --no-pager diff HEAD --no-color 2>/dev/null | head -c 400000").o);
-        String out = PcLink.text(r);
-        int at = out.indexOf("__DIFF__");
-        return new Engine.Obj("branch", at > 0 ? out.substring(0, at).trim() : "", "diff", at >= 0 ? out.substring(at + 8).trim() : "").o;
+                "git rev-parse --abbrev-ref HEAD 2>/dev/null; echo __NEW__; git ls-files --others --exclude-standard 2>/dev/null | head -200;"
+                        + " echo __DIFF__; git --no-pager diff HEAD --no-color 2>/dev/null | head -c 400000").o);
+        return splitDiff(PcLink.text(r));
+    }
+
+    /** "branch __NEW__ untracked files __DIFF__ the diff" → {branch, untracked, diff}. */
+    private static JSONObject splitDiff(String out) {
+        int n = out.indexOf("__NEW__"), d = out.indexOf("__DIFF__");
+        JSONArray untracked = new JSONArray();
+        if (n >= 0 && d > n) for (String l : out.substring(n + 7, d).split("\n")) if (!l.trim().isEmpty()) untracked.put(l.trim());
+        return new Engine.Obj("branch", n > 0 ? out.substring(0, n).trim() : "", "untracked", untracked,
+                "diff", d >= 0 ? out.substring(d + 8).trim() : "").o;
+    }
+
+    /** The conversation as Markdown, saved to Downloads/Piggy Desk/. Returns where, for the page to say. */
+    private String exportSession(String sid) throws Exception {
+        JSONObject s = store.session(sid);
+        if (s == null) throw new IOException("会话不存在");
+        StringBuilder b = new StringBuilder("# ").append(s.optString("title")).append("\n\n");
+        for (JSONObject it : store.items(sid)) {
+            if (it.has("parentId")) continue;
+            switch (it.optString("kind")) {
+                case "user":
+                    b.append("## 你\n\n").append(it.optString("text")).append("\n\n");
+                    break;
+                case "assistant":
+                    b.append("## Claude\n\n").append(it.optString("text")).append("\n\n");
+                    break;
+                case "tool": {
+                    JSONObject in = it.optJSONObject("input");
+                    String arg = in == null ? "" : in.optString("command", in.optString("file_path", in.optString("url", in.optString("pattern", ""))));
+                    b.append("> 🔧 ").append(it.optString("name")).append(arg.isEmpty() ? "" : "：`" + arg.split("\n")[0] + "`").append("\n\n");
+                    break;
+                }
+                case "system":
+                case "compact":
+                    b.append("> ").append(it.optString("text")).append("\n\n");
+                    break;
+                default:
+            }
+        }
+        String name = s.optString("title").replaceAll("[\\\\/:*?\"<>|\\n]", " ").trim();
+        if (name.length() > 60) name = name.substring(0, 60);
+        name = (name.isEmpty() ? "会话" : name) + " " + new java.text.SimpleDateFormat("yyyyMMdd-HHmm", Locale.ROOT).format(new java.util.Date()) + ".md";
+        android.content.ContentValues v = new android.content.ContentValues();
+        v.put(android.provider.MediaStore.Downloads.DISPLAY_NAME, name);
+        v.put(android.provider.MediaStore.Downloads.MIME_TYPE, "text/markdown");
+        v.put(android.provider.MediaStore.Downloads.RELATIVE_PATH, android.os.Environment.DIRECTORY_DOWNLOADS + "/Piggy Desk");
+        Uri uri = app.getContentResolver().insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, v);
+        if (uri == null) throw new IOException("存不了文件");
+        try (OutputStream o = app.getContentResolver().openOutputStream(uri)) {
+            if (o == null) throw new IOException("存不了文件");
+            o.write(b.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        }
+        return "下载/Piggy Desk/" + name;
     }
 
     /** 自定义: the tablet's ~/.claude (memory, skills, agents, commands) and its MCP servers. */

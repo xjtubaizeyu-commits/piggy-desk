@@ -44,6 +44,7 @@ public class FilesProvider extends ContentProvider {
         if (p.size() == 1 && "capture".equals(p.get(0))) return captureFile(getContext());
         if (p.size() == 2 && "a".equals(p.get(0))) return Attachments.file(getContext(), p.get(1));
         if (p.size() == 2 && "apk".equals(p.get(0))) return apkFile(getContext());
+        if (p.size() >= 2 && "f".equals(p.get(0))) return DeskFiles.file(p.get(1)); // a file the side panel showed
         return null;
     }
 
@@ -73,7 +74,7 @@ public class FilesProvider extends ContentProvider {
         if (n.endsWith(".pdf")) return "application/pdf";
         if (n.endsWith(".apk")) return "application/vnd.android.package-archive";
         if (n.endsWith(".txt") || n.endsWith(".md") || n.endsWith(".csv")) return "text/plain";
-        return "application/octet-stream";
+        return DeskFiles.mime(n);
     }
 
     @Override
@@ -81,7 +82,8 @@ public class FilesProvider extends ContentProvider {
         File f = fileFor(uri);
         if (f == null) return null;
         MatrixCursor c = new MatrixCursor(new String[]{OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE});
-        String name = f.equals(apkFile(getContext())) ? "app.apk"
+        String name = "f".equals(uri.getPathSegments().get(0)) ? f.getName()
+                : f.equals(apkFile(getContext())) ? "app.apk"
                 : f.getParentFile() != null && "attachments".equals(f.getParentFile().getName())
                 ? Attachments.name(f.getName()) : "photo.jpg";
         c.addRow(new Object[]{name, f.length()});

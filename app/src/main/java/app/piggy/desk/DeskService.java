@@ -61,6 +61,28 @@ public class DeskService extends Service {
         return null;
     }
 
+    private static final String DONE_CHANNEL = "desk-done";
+    private static final int DONE_ID = 7102;
+
+    /** "Claude 做完了" (or is waiting for an OK) while the app is out of sight; a tap opens that session. */
+    static void notifyDone(Context c, String sid, String title, String text) {
+        NotificationManager nm = c.getSystemService(NotificationManager.class);
+        nm.createNotificationChannel(new NotificationChannel(DONE_CHANNEL, "Claude 做完了或等你确认", NotificationManager.IMPORTANCE_DEFAULT));
+        PendingIntent open = PendingIntent.getActivity(c, sid.hashCode(), new Intent(c, DeskActivity.class).putExtra("sessionId", sid)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        nm.notify(DONE_ID, new Notification.Builder(c, DONE_CHANNEL)
+                .setSmallIcon(R.drawable.ic_launcher_monochrome)
+                .setContentTitle(title == null || title.isEmpty() ? "Piggy Desk" : title)
+                .setContentText(text)
+                .setAutoCancel(true)
+                .setContentIntent(open)
+                .build());
+    }
+
+    static void clearDone(Context c) {
+        c.getSystemService(NotificationManager.class).cancel(DONE_ID);
+    }
+
     private static Notification build(Context c) {
         PendingIntent open = PendingIntent.getActivity(c, 0, new Intent(c, DeskActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);

@@ -56,11 +56,21 @@ final class McpServer {
 
     private final String token;
     private final Handler handler;
+    private final int port;
+    private final String name, instructions;
     private final ExecutorService pool = Executors.newCachedThreadPool();
     private volatile ServerSocket socket;
     private volatile boolean running;
 
     McpServer(String token, Handler handler) {
+        this(PORT, "buddy-phone", INSTRUCTIONS, token, handler);
+    }
+
+    /** Another server on its own port (Piggy Desk's browser tools), with its own name and instructions. */
+    McpServer(int port, String name, String instructions, String token, Handler handler) {
+        this.port = port;
+        this.name = name;
+        this.instructions = instructions;
         this.token = token;
         this.handler = handler;
     }
@@ -86,7 +96,7 @@ final class McpServer {
             try {
                 ServerSocket ss = new ServerSocket();
                 ss.setReuseAddress(true);
-                ss.bind(new InetSocketAddress(InetAddress.getByName("127.0.0.1"), PORT));
+                ss.bind(new InetSocketAddress(InetAddress.getByName("127.0.0.1"), port));
                 socket = ss;
                 while (running) {
                     final Socket s = ss.accept();
@@ -239,8 +249,8 @@ final class McpServer {
                     JSONObject result = new JSONObject()
                             .put("protocolVersion", params.optString("protocolVersion", DEFAULT_PROTOCOL))
                             .put("capabilities", new JSONObject().put("tools", new JSONObject()))
-                            .put("serverInfo", new JSONObject().put("name", "buddy-phone").put("version", BuildInfo.VERSION))
-                            .put("instructions", INSTRUCTIONS);
+                            .put("serverInfo", new JSONObject().put("name", name).put("version", BuildInfo.VERSION))
+                            .put("instructions", instructions);
                     return res.put("result", result);
                 }
                 case "ping":

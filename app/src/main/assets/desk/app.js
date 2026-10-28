@@ -35,11 +35,13 @@ function handle(m) {
     else if (m.type === "usage" || m.type === "models" || m.type === "efforts" || m.type === "modes") renderBelow();
     else if (m.type === "setup" || m.type === "account" || m.type === "net") { renderSide(); renderMain(); }
     else if (S.view === "settings") renderMain();
-    if (m.type === "pc" || m.type === "egress" || m.type === "net") renderPanel();
+    if (m.type === "pc" || m.type === "egress" || m.type === "net") refreshPanel(S.current, ["overview"]);
     return;
   }
   if (m.type === "toast") return toast(m.text);
   if (m.type === "dictation") return onDictation(m);
+  if (m.type === "browser") return onBrowser(m);
+  if (m.type === "open") { if (sessionById(m.sessionId)) openSession(m.sessionId); return; }
   const sid = m.sessionId;
   if (!sid) return;
   const st = sesState(sid);
@@ -63,10 +65,23 @@ function handle(m) {
       refreshWorking(sid);
       if (S.current === sid) renderComposerState();
       break;
-    case "context": st.context = m; if (S.current === sid) renderPanel(); break;
-    case "outputs": st.outputs = m.files || []; if (S.current === sid) renderPanel(); break;
-    case "todos": st.todos = m.todos || []; if (S.current === sid) renderPanel(); break;
-    case "env": st.env = m; if (S.current === sid) renderPanel(); break;
+    case "context": st.context = m; refreshPanel(sid, ["overview"]); break;
+    case "outputs":
+      st.outputs = m.files || [];
+      st.diff = null;
+      for (const f of st.files) if (st.outputs.some((o) => o.path === f.path)) delete st.fileCache[f.key];
+      refreshPanel(sid, ["overview", "diff"].concat(st.files.map((f) => f.key)));
+      break;
+    case "todos": st.todos = m.todos || []; refreshPanel(sid, ["overview"]); break;
+    case "env": st.env = m; refreshPanel(sid, ["overview"]); break;
+    case "tasks": st.tasks = m.tasks || []; refreshPanel(sid, ["overview"]); break;
+    case "plan":
+      st.plan = { text: m.text, path: m.path, at: m.at || Date.now() };
+      if (m.open && S.current === sid) setTab(sid, "plan");
+      else refreshPanel(sid, ["plan", "overview", "diff", "files"].concat(st.files.map((f) => f.key)));
+      break;
+    case "suggestion": st.suggestion = m.text || ""; if (S.current === sid) renderComposerState(); break;
+    case "memoryChanged": st.memory = null; st.memoryAt = 0; refreshPanel(sid, ["overview"]); break;
     case "permission":
       st.permissions.set(m.requestId, m);
       if (S.current === sid) { const t = $("#thread"); if (t) { t.append(permissionCard(sid, m)); refreshWorking(sid); scrollToEnd(true); } }
@@ -99,16 +114,95 @@ function renderAll() {
 
 function layout() {
   root.classList.toggle("no-side", !S.ui.side);
-  root.classList.toggle("no-panel", !S.ui.panel || S.view !== "chat" || !S.current);
+  root.classList.toggle("no-panel", !S.ui.panel || S.view !== "chat" || !S.current || setupNeeded());
   root.classList.toggle("side-over", S.ui.sideOver);
   root.classList.toggle("panel-over", S.ui.panelOver);
   let scrim = $(".over-scrim");
   if (S.ui.sideOver || S.ui.panelOver) {
     if (!scrim) document.body.append(h("div.over-scrim", { on: { click: () => { S.ui.sideOver = S.ui.panelOver = false; layout(); } } }));
   } else if (scrim) scrim.remove();
+  applyWidths();
+  syncBrowserSoon();
 }
 const narrow = () => innerWidth <= 900;
 const midWidth = () => innerWidth <= 1100;
+
+/* both sides can be dragged wider or narrower (the handles on their inner edges); a double tap puts them back */
+const SIDE_W = 272, PANEL_W = 360;
+const clampSide = (w) => Math.round(Math.max(210, Math.min(w, 460, innerWidth * 0.36)));
+function clampPanel(w) {
+  const side = S.ui.side && !narrow() ? clampSide(S.ui.sideW || SIDE_W) : 0;
+  return Math.round(Math.max(300, Math.min(w, innerWidth - side - 400)));
+}
+function applyWidths() {
+  const st = document.documentElement.style;
+  st.setProperty("--side-w", clampSide(S.ui.sideW || SIDE_W) + "px");
+  st.setProperty("--panel-w", (midWidth() ? Math.min(S.ui.panelW || PANEL_W, innerWidth - 48) : clampPanel(S.ui.panelMax ? 99999 : S.ui.panelW || PANEL_W)) + "px");
+}
+function startResize(which, e) {
+  if (e.button > 0) return;
+  e.preventDefault();
+  const handle = e.currentTarget;
+  handle.setPointerCapture(e.pointerId);
+  const x0 = e.clientX;
+  const w0 = which === "side" ? clampSide(S.ui.sideW || SIDE_W) : clampPanel(S.ui.panelMax ? 99999 : S.ui.panelW || PANEL_W);
+  document.body.classList.add("resizing-x");
+  syncBrowser(); // the native browser hides while the edge moves, then comes back at its new size
+  const move = (ev) => {
+    const dx = ev.clientX - x0;
+    if (which === "side") S.ui.sideW = clampSide(w0 + dx);
+    else { S.ui.panelW = clampPanel(w0 - dx); S.ui.panelMax = false; }
+    applyWidths();
+  };
+  const up = () => {
+    handle.removeEventListener("pointermove", move);
+    handle.removeEventListener("pointerup", up);
+    handle.removeEventListener("pointercancel", up);
+    document.body.classList.remove("resizing-x");
+    saveUi();
+    if (which === "panel") renderPanel(); else syncBrowserSoon();
+  };
+  handle.addEventListener("pointermove", move);
+  handle.addEventListener("pointerup", up);
+  handle.addEventListener("pointercancel", up);
+}
+for (const which of ["side", "panel"]) {
+  const el = $("#rz-" + which);
+  el.addEventListener("pointerdown", (e) => startResize(which, e));
+  el.addEventListener("dblclick", () => { if (which === "side") S.ui.sideW = SIDE_W; else { S.ui.panelW = PANEL_W; S.ui.panelMax = false; } saveUi(); applyWidths(); renderPanel(); });
+}
+
+/** Re-draws the side panel if it is showing one of these tabs (the browser tab is left alone while its address is being typed). */
+function refreshPanel(sid, tabs) {
+  if (!sid || S.current !== sid) return;
+  const st = sesState(sid);
+  if (tabs.includes(st.tab)) renderPanel();
+}
+
+function onBrowser(m) {
+  S.browser = m;
+  if (m.shown && S.current && sesState(S.current).tab !== "browser") { setTab(S.current, "browser"); return; }
+  if (!S.current || sesState(S.current).tab !== "browser") return;
+  const addr = $(".btool .addr");
+  if (addr && document.activeElement === addr) return;
+  renderPanel();
+}
+
+function insertComposer(text) {
+  const ta = $("#composer-input");
+  if (!ta) { S.draft.text += (S.draft.text && !/\s$/.test(S.draft.text) ? " " : "") + text; return; }
+  const at = ta.selectionStart != null ? ta.selectionStart : ta.value.length;
+  const before = ta.value.slice(0, at), after = ta.value.slice(ta.selectionEnd || at);
+  const pad = before && !/\s$/.test(before) ? " " : "";
+  ta.value = before + pad + text + after;
+  S.draft.text = ta.value;
+  autosize(ta);
+  renderComposerState();
+  ta.focus();
+  const pos = (before + pad + text).length;
+  ta.setSelectionRange(pos, pos);
+  if (midWidth()) { S.ui.panelOver = false; layout(); }
+}
 
 function toggleSide() {
   if (narrow()) S.ui.sideOver = !S.ui.sideOver;
@@ -138,8 +232,15 @@ function renderSide() {
 
   const list = h("div.side-list");
   const sessions = S.sessions.filter((s) => !s.archived).sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+  const pinned = sessions.filter((s) => s.pinned);
+  if (pinned.length) {
+    const collapsed = !!S.ui.groups["pinned"];
+    list.append(h("div.group-head" + (collapsed ? ".collapsed" : ""), { on: { click: () => { S.ui.groups["pinned"] = !collapsed; saveUi(); renderSide(); } } },
+      icon("chevDown"), h("span.grow", { text: "置顶" })));
+    if (!collapsed) for (const s of pinned) list.append(sessionRow(s));
+  }
   for (const p of S.projects) {
-    const mine = sessions.filter((s) => s.projectId === p.id);
+    const mine = sessions.filter((s) => s.projectId === p.id && !s.pinned);
     const collapsed = !!S.ui.groups[p.id];
     const head = h("div.group-head" + (collapsed ? ".collapsed" : ""), {
       on: {
@@ -207,7 +308,14 @@ function accountMenu(anchor) {
 
 function sessionMenu(s, at) {
   menu(at, [
+    { label: s.pinned ? "取消置顶" : "置顶", icon: "pin", on: () => bridge.post({ type: "pinSession", sessionId: s.id, pinned: !s.pinned }) },
     { label: "重命名", icon: "edit", on: () => renameSession(s) },
+    { label: "分叉会话", icon: "fork", sub: "复制到这里为止的对话，另开一条线", on: async () => {
+      try { const r = await bridge.call("forkSession", { sessionId: s.id }); openSession(r.sessionId); toast("已分叉：新会话从这里接着聊，原来的不变"); } catch (e) { toast(e.message); }
+    } },
+    { label: "导出为 Markdown", icon: "download", on: async () => {
+      try { const r = await bridge.call("exportSession", { sessionId: s.id }, 60000); toast("已保存到 " + r.where); } catch (e) { toast(e.message); }
+    } },
     { label: "复制会话 ID", icon: "copy", on: () => { bridge.post({ type: "copy", text: s.claudeSessionId || s.id }); toast("已复制"); } },
     { label: s.archived ? "取消归档" : "归档", icon: "archive", on: () => bridge.post({ type: "archiveSession", sessionId: s.id, archived: !s.archived }) },
     "-",
@@ -314,11 +422,13 @@ function renderTopbar() {
   tb.append(h("button.title-btn", { on: { click: (e) => sessionMenu(s, e.currentTarget) } }, h("span", { text: s.title || "新会话" }), icon("chevDown", 15)));
   const p = projectById(s.projectId);
   if (p) tb.append(h("span.muted", { style: { fontSize: "13px", whiteSpace: "nowrap" }, text: p.name + (p.env === "pc" ? " · 电脑" : "") }));
+  const st = sesState(S.current);
+  const showing = (tab) => panelVisible() && st.tab === tab ? ".on" : "";
+  const tabBtn = (tab, ic, title) => h("button.icon-btn" + showing(tab), { title, on: { click: () => (panelVisible() && st.tab === tab ? togglePanel() : setTab(S.current, tab)) } }, icon(ic));
   tb.append(h("div.top-tools",
     h("button.icon-btn", { title: "终端", on: { click: () => bridge.post({ type: "openNative", screen: "terminal", sessionId: S.current }) } }, icon("terminal")),
-    h("button.icon-btn", { title: "改动", on: { click: diffDialog } }, icon("diff")),
-    h("button.icon-btn", { title: "文件", on: { click: () => filesDialog("") } }, icon("folder")),
-    h("button.icon-btn" + (S.ui.panel && !midWidth() || S.ui.panelOver ? ".on" : ""), { title: "右侧栏 (Ctrl+Shift+B)", on: { click: togglePanel } }, icon("panel"))));
+    tabBtn("plan", "plan", "计划"), tabBtn("diff", "diff", "改动"), tabBtn("files", "folder", "文件"), tabBtn("browser", "globe", "浏览器"),
+    h("button.icon-btn" + (panelVisible() ? ".on" : ""), { title: "右侧栏 (Ctrl+Shift+B)", on: { click: togglePanel } }, icon("panel"))));
 }
 
 function netBanner() {
@@ -412,7 +522,7 @@ function composer(onHero) {
   const wrap = h("div.composer-wrap", { style: { position: "relative" } });
   const box = h("div.composer");
   const atts = h("div.atts#composer-atts");
-  const ta = h("textarea#composer-input", { rows: 1, placeholder: onHero ? "描述一下要做的事…" : "回复 Claude…（/ 看命令）" });
+  const ta = h("textarea#composer-input", { rows: 1, placeholder: onHero ? "描述一下要做的事…（@ 提到文件）" : "回复 Claude…（/ 看命令，@ 提到文件）" });
   ta.value = S.draft.text;
   ta.addEventListener("input", () => { S.draft.text = ta.value; autosize(ta); slashMenu(ta); renderComposerState(); });
   ta.addEventListener("keydown", composerKeys);
@@ -437,6 +547,8 @@ function renderComposerState() {
   send.classList.toggle("stop", !!(running && !has));
   send.disabled = !running && !has;
   send.title = running && !has ? "停止 (Esc)" : "发送 (Enter)";
+  const ta = $("#composer-input");
+  if (ta && st) ta.placeholder = st.suggestion && !running ? st.suggestion + "　　Tab 填入" : "回复 Claude…（/ 看命令，@ 提到文件）";
 }
 
 function renderBelow() {
@@ -569,7 +681,10 @@ async function sendOrStop() {
     if (st && st.status.running) bridge.post({ type: "interrupt", sessionId: S.current });
     return;
   }
+  if (/^\/memory\s*$/.test(text)) { clearComposer(); customTab = "memory"; const s = sessionById(S.current); if (s) memoryProject = s.projectId; openView("customize"); return; }
   if (S.net && S.net.allowed === false) { toast("现在不在允许的 Wi-Fi 上，Claude 连不上"); return; }
+  const btw = /^\/btw\s+([\s\S]+)/.exec(text);
+  if (btw && S.current) { clearComposer(); sideQuestion(S.current, btw[1].trim()); return; }
   let sid = S.current;
   if (!sid) {
     if (!S.draftProject) { toast("先建一个项目"); newProjectDialog(); return; }
@@ -583,6 +698,7 @@ async function sendOrStop() {
     renderMain();
   }
   bridge.post({ type: "send", sessionId: sid, text, attachments: atts.map((a) => a.id) });
+  sesState(sid).suggestion = "";
   S.draft = { text: "", attachments: [] };
   const ta = $("#composer-input");
   if (ta) { ta.value = ""; autosize(ta); }
@@ -591,23 +707,53 @@ async function sendOrStop() {
   stickToEnd = true;
 }
 
-/* slash commands */
-let slashSel = 0;
+function clearComposer() {
+  S.draft = { text: "", attachments: [] };
+  const ta = $("#composer-input");
+  if (ta) { ta.value = ""; autosize(ta); }
+  renderAttachments();
+  renderComposerState();
+}
+
+/** /btw: a quick question on the side, answered from the conversation so far without disturbing the work in progress. */
+async function sideQuestion(sid, q) {
+  let body = h("div.md", h("div.working", icon("spinner", 16), h("span", { text: "在问…" })));
+  dialog((box, close) => add(box, [h("h3", { text: "顺口问一句" }), h("div.muted", { style: { marginBottom: "10px" }, text: q }), body,
+    h("div.actions", h("button.btn.primary", { text: "好", on: { click: close } }))]), ".dialog.wide");
+  try {
+    const r = await bridge.call("sideQuestion", { sessionId: sid, question: q }, 180000);
+    body.innerHTML = renderMarkdown(r.answer || "（没有回答）");
+  } catch (e) { body.textContent = e.message; }
+}
+
+/* slash commands, and @ for files */
+let popSel = 0;
 function slashMenu(ta) {
   let box = $(".slash");
   const v = ta.value;
   const m = /^\/(\S*)$/.exec(v);
-  if (!m) { if (box) box.remove(); return; }
-  const builtin = [{ name: "compact", description: "压缩对话，腾出上下文" }, { name: "clear", description: "清空，从头开始" }, { name: "context", description: "看上下文用量" }];
-  const all = builtin.concat((S.commands || []).filter((c) => !builtin.some((b) => b.name === c.name)));
-  const hits = all.filter((c) => c.name.toLowerCase().startsWith(m[1].toLowerCase())).slice(0, 30);
+  const at = !m && /(^|\s)@([^\s@]*)$/.exec(v.slice(0, ta.selectionStart == null ? v.length : ta.selectionStart));
+  if (!m && !at) { if (box) box.remove(); return; }
+  let hits;
+  if (m) {
+    const builtin = [{ name: "compact", description: "压缩对话，腾出上下文" }, { name: "clear", description: "清空，从头开始" }, { name: "context", description: "看上下文用量" },
+      { name: "memory", description: "看和改记忆" }, { name: "btw", description: "顺口问一句，不打断手上的活" }];
+    const all = builtin.concat((S.commands || []).filter((c) => !builtin.some((b) => b.name === c.name)));
+    hits = all.filter((c) => c.name.toLowerCase().startsWith(m[1].toLowerCase())).slice(0, 30)
+      .map((c) => ({ key: c.name, label: "/" + c.name, sub: c.description || "", pick: () => pickSlash(c.name) }));
+  } else {
+    const idx = mentionIndex();
+    if (!idx) { if (box) box.remove(); return; }
+    hits = (at[2] ? fuzzyFiles(idx, at[2], 12) : idx.slice(0, 12)).map((p) => ({ key: p, label: basename(p), sub: p, icon: fileIcon(p), pick: () => pickMention(p) }));
+  }
   if (!hits.length) { if (box) box.remove(); return; }
   if (!box) { box = h("div.menu.slash"); ta.closest(".composer-wrap").append(box); }
   box.style.position = "absolute";
   clear(box);
-  slashSel = Math.min(slashSel, hits.length - 1);
-  hits.forEach((c, k) => box.append(h("button.mi" + (k === slashSel ? ".kb" : ""), { "data-cmd": c.name, on: { click: () => pickSlash(c.name) } },
-    h("span.mono", { text: "/" + c.name }), h("span.grow.muted", { style: { fontSize: "13px" }, text: c.description || "" }))));
+  popSel = Math.min(popSel, hits.length - 1);
+  hits.forEach((c, k) => box.append(h("button.mi" + (k === popSel ? ".kb" : ""), { on: { click: c.pick } },
+    c.icon ? icon(c.icon, 15) : null, h("span.mono", { text: c.label }), h("span.grow.muted", { style: { fontSize: "13px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", direction: c.icon ? "rtl" : "" }, text: c.sub }))));
+  box._hits = hits;
 }
 function pickSlash(name) {
   const ta = $("#composer-input");
@@ -618,6 +764,35 @@ function pickSlash(name) {
   ta.focus();
   renderComposerState();
 }
+/** The project's files for @: fetched once per project, then filtered here. */
+const mentionFiles = {};
+function mentionIndex() {
+  const s = sessionById(S.current);
+  const pid = s ? s.projectId : S.draftProject;
+  if (!pid) return null;
+  const m = mentionFiles[pid];
+  if (m && m.files && Date.now() - m.at < 120000) return m.files;
+  if (!m || !m.loading) {
+    mentionFiles[pid] = Object.assign(m || {}, { loading: true });
+    bridge.call("fileIndex", { sessionId: S.current || undefined, projectId: pid }, 60000)
+      .then((r) => { mentionFiles[pid] = { files: r.files || [], at: Date.now() }; const ta = $("#composer-input"); if (ta) slashMenu(ta); })
+      .catch(() => { mentionFiles[pid] = { files: [], at: Date.now() }; });
+  }
+  return m && m.files;
+}
+function pickMention(path) {
+  const ta = $("#composer-input");
+  const end = ta.selectionStart == null ? ta.value.length : ta.selectionStart;
+  const before = ta.value.slice(0, end).replace(/@[^\s@]*$/, "@" + path + " ");
+  ta.value = before + ta.value.slice(end);
+  S.draft.text = ta.value;
+  const box = $(".slash");
+  if (box) box.remove();
+  ta.focus();
+  ta.setSelectionRange(before.length, before.length);
+  autosize(ta);
+  renderComposerState();
+}
 
 function composerKeys(e) {
   const box = $(".slash");
@@ -625,121 +800,27 @@ function composerKeys(e) {
     const items = $$(".mi", box);
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
-      slashSel = (slashSel + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length;
-      items.forEach((it, k) => it.classList.toggle("kb", k === slashSel));
+      popSel = (popSel + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length;
+      items.forEach((it, k) => it.classList.toggle("kb", k === popSel));
       return;
     }
-    if ((e.key === "Enter" || e.key === "Tab") && items[slashSel]) { e.preventDefault(); pickSlash(items[slashSel].dataset.cmd); return; }
+    if ((e.key === "Enter" || e.key === "Tab") && box._hits && box._hits[popSel]) { e.preventDefault(); box._hits[popSel].pick(); return; }
     if (e.key === "Escape") { e.preventDefault(); box.remove(); return; }
+  }
+  const st = S.current ? sesState(S.current) : null;
+  if (e.key === "Tab" && !e.shiftKey && st && st.suggestion && !e.target.value) {
+    e.preventDefault();
+    e.target.value = st.suggestion;
+    S.draft.text = st.suggestion;
+    autosize(e.target);
+    renderComposerState();
+    return;
   }
   if (e.key === "Enter" && !e.shiftKey && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); sendOrStop(); return; }
   if (e.key === "Tab" && e.shiftKey) { e.preventDefault(); cycleMode(); return; }
 }
 
-/* ------------------------------------------------------------------ side panel */
-const CTX_COLORS = ["var(--c1)", "var(--c2)", "var(--c3)", "var(--c4)", "var(--c5)", "var(--c6)", "var(--faint)"];
-function renderPanel() {
-  const panel = clear($("#panel"));
-  if (!S.current) return;
-  const st = sesState(S.current);
-  const s = sessionById(S.current) || {};
-  const p = projectById(s.projectId) || {};
-  const env = st.env || { env: p.env, cwd: p.path };
-  const pcard = (key, title, body) => {
-    const collapsed = !!S.ui.groups["panel." + key];
-    return h("div.pcard" + (collapsed ? ".collapsed" : ""),
-      h("div.pcard-head", { on: { click: () => { S.ui.groups["panel." + key] = !collapsed; saveUi(); renderPanel(); } } }, h("span", { text: title }), icon("chevDown")),
-      h("div.pcard-body", body));
-  };
-
-  // 环境
-  const onPc = env.env === "pc";
-  const pcOk = S.pc && S.pc.status === "ok";
-  panel.append(pcard("env", "环境", [
-    h("div.prow", icon(onPc ? "monitor" : "tablet"), h("span.lbl", { text: onPc ? "电脑 · " + (S.pc.host || "piggy-pc") : "本平板" }),
-      onPc ? h("span.v", h("span.pill" + (pcOk ? ".ok" : S.pc.status === "connecting" ? ".wait" : ".bad"), { text: pcOk ? "已连接" : S.pc.status === "connecting" ? "连接中" : "未连接" })) : null),
-    h("div.prow.click", { title: env.cwd, on: { click: () => filesDialog("") } }, icon("folder"), h("span.lbl", { text: p.name || basename(env.cwd) }), h("span.v.mono", { text: env.cwd || "" })),
-    env.branch ? h("div.prow", icon("branch"), h("span.lbl", { text: env.branch })) : null,
-    h("div.prow", icon("cloud"), h("span.lbl", { text: "Remote Control" }),
-      h("button.toggle" + (env.remote ? ".on" : ""), { title: "交给 Claude Code 的远程控制，在手机的 Claude App 里接着用", on: { click: () => bridge.post({ type: "remoteControl", sessionId: S.current, on: !env.remote }) } })),
-  ]));
-
-  // 上下文
-  const c = st.context;
-  if (c && c.window) {
-    const pct = Math.round((c.used / c.window) * 100);
-    const parts = (c.breakdown || []).filter((b) => b.tokens > 0);
-    const bar = h("div.ctx-bar", parts.length ? parts.map((b, k) => h("span", { style: { width: (b.tokens / c.window) * 100 + "%", background: CTX_COLORS[k % CTX_COLORS.length] } }))
-      : h("span", { style: { width: pct + "%", background: "var(--c1)" } }));
-    const left = c.autoCompactAt ? Math.max(0, c.autoCompactAt - c.used) : null;
-    panel.append(pcard("ctx", "上下文", [
-      h("div.ctx-top", h("span", { text: "已使用 " + pct + "%" }), h("span.muted", { text: fmtTokens(c.used) + " / " + fmtTokens(c.window) })),
-      bar,
-      parts.map((b, k) => h("div.ctx-row", h("span.sw", { style: { background: CTX_COLORS[k % CTX_COLORS.length] } }), h("span", { text: b.label }),
-        h("span.n", { text: fmtTokens(b.tokens) }), h("span.p", { text: ((b.tokens / c.window) * 100).toFixed(1) + "%" }))),
-      h("div.ctx-foot", h("span", { text: left != null ? "距自动压缩还剩 " + fmtTokens(left) : "" }),
-        h("button.btn", { text: "压缩会话", on: { click: () => bridge.post({ type: "send", sessionId: S.current, text: "/compact", attachments: [] }) } })),
-    ]));
-  } else {
-    panel.append(pcard("ctx", "上下文", h("div.empty-note", { text: "发第一条消息后显示用量" })));
-  }
-
-  // 待办
-  if (st.todos && st.todos.length) panel.append(pcard("todos", "待办", todoList(st.todos)));
-
-  // 输出内容
-  panel.append(pcard("out", "输出内容", st.outputs.length ? st.outputs.slice().reverse().map((f) =>
-    h("div.file-row", { title: f.path, on: { click: () => viewFile(f.path) } }, icon("file", 15), h("span.fn", { text: "\u200e" + f.path }), h("span.tag", { text: f.action === "edit" ? "改" : "新" })))
-    : h("div.empty-note", { text: "Claude 写过、改过的文件会列在这里" })));
-}
-
-/* ------------------------------------------------------------------ files, diff, search */
-async function filesDialog(path) {
-  let entries = [];
-  try { entries = (await bridge.call("listFiles", { sessionId: S.current, path })).entries || []; } catch (e) { toast(e.message); return; }
-  dialog((box, close) => {
-    const up = path ? path.split("/").slice(0, -1).join("/") : null;
-    add(box, [h("h3", { text: path || "项目文件" }),
-      h("div", { style: { maxHeight: "60vh", overflowY: "auto" } },
-        up !== null ? h("div.file-row", { on: { click: () => filesDialog(up) } }, icon("chevLeft", 15), h("span", { text: ".." })) : null,
-        entries.map((e) => h("div.file-row", { on: { click: () => e.dir ? filesDialog((path ? path + "/" : "") + e.name) : viewFile((path ? path + "/" : "") + e.name) } },
-          icon(e.dir ? "folder" : "file", 15), h("span.grow", { text: e.name }), h("span.tag", { text: e.dir ? "" : fmtSize(e.size) })))),
-      h("div.actions", h("button.btn.primary", { text: "关闭", on: { click: close } }))]);
-  });
-}
-const fmtSize = (n) => (n == null ? "" : n < 1024 ? n + " B" : n < 1048576 ? (n / 1024).toFixed(1) + " KB" : (n / 1048576).toFixed(1) + " MB");
-
-async function viewFile(path) {
-  let r;
-  try { r = await bridge.call("readFile", { sessionId: S.current, path }); } catch (e) { toast(e.message); return; }
-  dialog((box, close) => add(box, [h("h3.mono", { style: { fontSize: "14px", wordBreak: "break-all" }, text: path }),
-    r.image ? h("img", { src: r.image, style: { maxWidth: "100%" } }) : h("div.codeblock", h("pre", h("code", { html: highlight(r.text || "", path.split(".").pop()) }))),
-    h("div.actions", h("button.btn.primary", { text: "关闭", on: { click: close } }))]), ".dialog.wide");
-  const d = $(".dialog.wide");
-  if (d) d.style.width = "min(960px, calc(100% - 32px))";
-}
-
-async function diffDialog() {
-  let r;
-  try { r = await bridge.call("gitDiff", { sessionId: S.current }); } catch (e) { toast(e.message); return; }
-  dialog((box, close) => {
-    const view = h("div.diff", { style: { maxHeight: "65vh" } });
-    const lines = String(r.diff || "").split("\n");
-    if (!r.diff) view.append(h("div.ln.ctx.muted", { text: "没有未提交的改动" }));
-    for (const l of lines) {
-      if (/^diff --git /.test(l)) view.append(h("div.file", { text: l.replace(/^diff --git a\/(.*) b\/.*$/, "$1") }));
-      else if (/^(index |--- |\+\+\+ )/.test(l)) continue;
-      else if (l.startsWith("@@")) view.append(h("div.ln.ctx.muted", { text: l }));
-      else if (l.startsWith("+")) view.append(h("div.ln.add", { text: l.slice(1) }));
-      else if (l.startsWith("-")) view.append(h("div.ln.del", { text: l.slice(1) }));
-      else view.append(h("div.ln.ctx", { text: l.slice(1) }));
-    }
-    add(box, [h("h3", { text: "未提交的改动" + (r.branch ? " · " + r.branch : "") }), view, h("div.actions", h("button.btn.primary", { text: "关闭", on: { click: close } }))]);
-  });
-  const d = $(".dialog");
-  if (d) d.style.width = "min(1000px, calc(100% - 32px))";
-}
-
+/* ------------------------------------------------------------------ search, shortcuts */
 function openSearch() {
   dialog((box, close) => {
     const input = h("input", { placeholder: "搜索会话…" });

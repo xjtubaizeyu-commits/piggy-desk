@@ -153,6 +153,38 @@ final class Engine {
         if (r != null) r.exec.execute(r::askContext);
     }
 
+    static void refreshPlan(String sid) {
+        Run r = run(sid);
+        if (r != null && r.initialized) r.exec.execute(r::refreshPlan);
+    }
+
+    static void stopTask(String sid, String taskId) {
+        Run r = run(sid);
+        if (r != null) r.exec.execute(() -> r.control(new Obj("subtype", "stop_task", "task_id", taskId).o, null));
+    }
+
+    /** The end of a background shell's output (get_task_output), or null with the reason in lastControlError. */
+    static void taskOutput(String sid, String taskId, Run.Callback cb) {
+        Run r = run(sid);
+        if (r == null) {
+            cb.done(null);
+            return;
+        }
+        r.exec.execute(() -> r.control(new Obj("subtype", "get_task_output", "task_id", taskId).o, cb));
+    }
+
+    /** /btw: a question on the side, answered from the conversation without disturbing the turn in progress. */
+    static void sideQuestion(Context c, String sid, String question, Run.Callback cb) {
+        Run r = runFor(c, sid);
+        r.exec.execute(() -> {
+            if (!r.ensureStarted()) {
+                cb.done(null);
+                return;
+            }
+            r.control(new Obj("subtype", "side_question", "question", question).o, cb);
+        });
+    }
+
     /** The permission cards still waiting in a session (shown again when the page opens it). */
     static List<JSONObject> pending(String sid) {
         Run r = run(sid);
@@ -188,7 +220,9 @@ final class Engine {
         private final Map<Integer, String> streamIds = new HashMap<>();
         private final Map<String, Long> thinkingStart = new HashMap<>();
         private String streamMsg = "";
-        private boolean turnHadText, resumed, sawOutput;
+        private boolean turnHadText, resumed, sawOutput, forking;
+        /** Background tasks (shells and agents sent to the background), for the side panel. */
+        private final Map<String, JSONObject> tasks = new LinkedHashMap<>();
         private JSONObject lastUser;
         private final StringBuilder errTail = new StringBuilder();
 
@@ -252,8 +286,19 @@ final class Engine {
                 args.add(effort);
             }
             String csid = s.optString("claudeSessionId");
+            String forkFrom = s.optString("forkFrom");
             resumed = !csid.isEmpty() && s.optBoolean("started");
-            if (resumed) {
+            forking = !forkFrom.isEmpty();
+            if (forking) { // a fork's first start: a copy of the old conversation under a new id
+                csid = UUID.randomUUID().toString();
+                st.update(s, "claudeSessionId", csid);
+                args.add("--resume");
+                args.add(forkFrom);
+                args.add("--fork-session");
+                args.add("--session-id");
+                args.add(csid);
+                resumed = true;
+            } else if (resumed) {
                 args.add("--resume");
                 args.add(csid);
             } else {
@@ -266,22 +311,33 @@ final class Engine {
                     "You are running inside Piggy Desk, a desktop-style app on the user's Android tablet (Honor MagicPad 13). "
                             + "Claude Code itself runs in the app's Alpine Linux (proot, as root); the user reads your replies "
                             + "in the app. Reply in the user's language.");
+            JSONObject servers = new JSONObject();
             if (onPc) {
                 PcLink.Ctx ctx;
                 try {
                     status("connecting");
                     ctx = PcLink.prepare(app, p.optString("path"));
+                    put(servers, "pc", new JSONObject(ctx.mcpConfig).getJSONObject("mcpServers").getJSONObject("pc"));
                 } catch (Exception e) {
                     fail("连不上电脑：" + e.getMessage() + "（设置 → 电脑）");
                     return false;
                 }
-                args.add("--mcp-config");
-                args.add(ctx.mcpConfig);
                 args.add("--disallowedTools");
                 args.add(PC_DISALLOWED);
                 prompt.append("\n\n").append(ctx.prompt);
                 st.putMeta(sid, "branch", ctx.branch);
             }
+            if (prefs.optBoolean("browserTools", true)) { // the side panel's browser (mcp__browser__*)
+                DeskBrowser.startServer();
+                put(servers, "browser", DeskBrowser.mcpEntry());
+                prompt.append("\n\nThe app's right-hand panel has a web browser the user can see; the mcp__browser__* tools "
+                        + "drive it. Prefer it over WebFetch when a page needs JavaScript, a login, or the user should watch.");
+            }
+            if (servers.length() > 0) {
+                args.add("--mcp-config");
+                args.add(new Obj("mcpServers", servers).o.toString());
+            }
+            if (prefs.optBoolean("suggestions", true)) args.add("--prompt-suggestions");
             args.add("--append-system-prompt");
             args.add(prompt.toString());
 
@@ -413,6 +469,7 @@ final class Engine {
             }
             if (p != null) p.destroy();
             lastControlError = "Claude Code 已停止";
+            endTasks();
             for (Callback cb : cbs) cb.done(null);
             for (String id : open) desk().sessionEvent(sid, new Obj("type", "permissionDone", "requestId", id).o);
             if (busy) {
@@ -498,6 +555,7 @@ final class Engine {
                 perms.clear();
             }
             lastControlError = "Claude Code 退出了";
+            endTasks();
             for (Callback cb : cbs) cb.done(null);
             for (String id : open) desk().sessionEvent(sid, new Obj("type", "permissionDone", "requestId", id).o);
             String err;
@@ -508,7 +566,7 @@ final class Engine {
                 // the saved conversation is gone: start a fresh one and send the message again
                 DeskStore st = DeskStore.get(app);
                 JSONObject s = st.session(sid);
-                if (s != null) st.update(s, "claudeSessionId", "", "started", false);
+                if (s != null) st.update(s, "claudeSessionId", "", "started", false, "forkFrom", "");
                 item(new Obj("id", "sys" + System.currentTimeMillis(), "kind", "system", "level", "warn",
                         "text", "原来的对话在 Claude Code 里找不到了，接着开了一个新对话（上面的内容 Claude 看不到）。").o, true);
                 JSONObject again = lastUser;
@@ -579,6 +637,9 @@ final class Engine {
                 case "rate_limit_event":
                     desk().onRateLimit(m.optJSONObject("rate_limit_info"));
                     return;
+                case "prompt_suggestion":
+                    desk().sessionEvent(sid, new Obj("type", "suggestion", "text", m.optString("suggestion")).o);
+                    return;
                 default:
             }
         }
@@ -596,6 +657,8 @@ final class Engine {
             }
             status("waiting");
             desk().sessionEvent(sid, permissionEvent(id, req));
+            String tool = req.optString("tool_name");
+            desk().onWaiting(sid, "ExitPlanMode".equals(tool) ? "计划拟好了，等你批准" : "AskUserQuestion".equals(tool) ? "Claude 有问题想问你" : "Claude 在等你确认");
         }
 
         private static JSONObject permissionEvent(String id, JSONObject req) {
@@ -623,6 +686,10 @@ final class Engine {
                 if (s != null && !csid.isEmpty() && !csid.equals(s.optString("claudeSessionId"))) {
                     DeskStore.get(app).update(s, "claudeSessionId", csid);
                 }
+                if (s != null && forking) {
+                    forking = false;
+                    DeskStore.get(app).update(s, "forkFrom", "");
+                }
                 if (m.has("model")) model = modelAlias(m.optString("model"), model);
                 JSONArray servers = m.optJSONArray("mcp_servers");
                 for (int i = 0; servers != null && i < servers.length(); i++) {
@@ -639,6 +706,12 @@ final class Engine {
                         "text", pre > 0 ? "对话已压缩（之前约 " + (pre / 1000) + "k tokens）" : "对话已压缩").o, true);
             } else if ("status".equals(sub)) {
                 if ("compacting".equals(m.optString("status"))) status("compacting");
+            } else if ("memory_saved".equals(sub) || "memory_recall".equals(sub)) {
+                onMemory(m, "memory_recall".equals(sub));
+            } else if (sub.startsWith("task_") || "background_tasks_changed".equals(sub)) {
+                onTask(sub, m);
+            } else if ("api_retry".equals(sub)) {
+                status("retrying");
             } else if ("local_command_output".equals(sub)) {
                 String text = m.optString("content", m.optString("output"));
                 if (!text.isEmpty()) {
@@ -746,6 +819,22 @@ final class Engine {
         /** To-dos and the files Claude wrote, for the side panel. */
         private void sideEffects(String name, JSONObject input) {
             DeskStore st = DeskStore.get(app);
+            if ("ExitPlanMode".equals(name) && !input.optString("plan").isEmpty()) {
+                JSONObject old = st.meta(sid).optJSONObject("plan");
+                plan(input.optString("plan"), input.optString("planFilePath", old == null ? "" : old.optString("path")), true);
+                return;
+            }
+            String written = input.optString("file_path");
+            if (("Write".equals(name) || "Edit".equals(name)) && written.startsWith("/root/.claude/plans/") && written.endsWith(".md")) {
+                // plan mode writes its plan to a file first: show it as it grows
+                main.postDelayed(() -> {
+                    try {
+                        plan(DeskStore.read(new File(Linux.root(app), written.substring(1))), written, false);
+                    } catch (IOException ignored) {
+                    }
+                }, 1500);
+                return;
+            }
             if ("TodoWrite".equals(name)) {
                 JSONArray todos = input.optJSONArray("todos");
                 if (todos == null) return;
@@ -851,7 +940,139 @@ final class Engine {
             status("idle");
             desk().onTurnDone(sid);
             askContext();
+            nameIfNew();
             reapIfDue();
+        }
+
+        /** The session's plan, for the 计划 tab (open: switch to it, as when Claude asks to start on it). */
+        private void plan(String text, String path, boolean open) {
+            JSONObject ev = new Obj("type", "plan", "text", text, "path", path, "at", System.currentTimeMillis(), "open", open).o;
+            DeskStore.get(app).putMeta(sid, "plan", ev);
+            desk().sessionEvent(sid, ev);
+        }
+
+        void refreshPlan() {
+            control(new Obj("subtype", "get_plan").o, resp -> {
+                if (resp != null && resp.optBoolean("exists")) plan(resp.optString("content"), resp.optString("path"), false);
+            });
+        }
+
+        /** Claude Code's auto-memory: notes it saved, or recalled for this turn. */
+        private void onMemory(JSONObject m, boolean recalled) {
+            JSONArray paths = new JSONArray();
+            if (recalled) {
+                JSONArray mem = m.optJSONArray("memories");
+                for (int i = 0; mem != null && i < mem.length(); i++) {
+                    JSONObject x = mem.optJSONObject(i);
+                    if (x != null) paths.put(x.optString("path"));
+                }
+            } else {
+                JSONArray w = m.optJSONArray("written_paths");
+                for (int i = 0; w != null && i < w.length(); i++) paths.put(w.optString(i));
+            }
+            if (paths.length() == 0) return;
+            String verb = m.optString("verb", "Saved");
+            if (recalled) verb = "想起了";
+            else if ("Updated".equalsIgnoreCase(verb)) verb = "更新了";
+            else if ("Deleted".equalsIgnoreCase(verb) || "Removed".equalsIgnoreCase(verb)) verb = "删掉了";
+            else verb = "记住了";
+            JSONObject it = new Obj("id", (recalled ? "mr" : "ms") + System.currentTimeMillis(), "kind", "memory", "paths", paths,
+                    "recalled", recalled, "verb", verb).o;
+            item(it, true);
+            if (!recalled) desk().sessionEvent(sid, new Obj("type", "memoryChanged").o);
+        }
+
+        /** Background tasks: shells and agents sent to the background, their state, and the end of their output. */
+        private void onTask(String sub, JSONObject m) {
+            String id = m.optString("task_id");
+            synchronized (tasks) {
+                if ("background_tasks_changed".equals(sub)) {
+                    JSONArray live = m.optJSONArray("tasks");
+                    Set<String> ids = new HashSet<>();
+                    for (int i = 0; live != null && i < live.length(); i++) {
+                        JSONObject t = live.optJSONObject(i);
+                        if (t == null || t.optBoolean("ambient")) continue;
+                        String tid = t.optString("task_id");
+                        ids.add(tid);
+                        JSONObject cur = tasks.get(tid);
+                        if (cur == null) {
+                            cur = task(tid, t.optString("task_type"), t.optString("description"));
+                            tasks.put(tid, cur);
+                        }
+                        put(cur, "status", "running");
+                    }
+                    for (JSONObject t : tasks.values()) {
+                        if ("running".equals(t.optString("status")) && !ids.contains(t.optString("id"))) put(t, "status", "completed");
+                    }
+                } else if ("task_started".equals(sub)) {
+                    if (!m.optBoolean("is_backgrounded") || m.optBoolean("skip_transcript")) return;
+                    tasks.put(id, task(id, m.optString("task_type"), m.optString("description")));
+                } else {
+                    JSONObject t = tasks.get(id);
+                    JSONObject patch = m.optJSONObject("patch");
+                    if (t == null && patch != null && patch.optBoolean("is_backgrounded")) {
+                        t = task(id, "", patch.optString("description"));
+                        tasks.put(id, t);
+                    }
+                    if (t == null) return;
+                    if (patch != null && patch.has("status")) put(t, "status", patch.optString("status"));
+                    if ("task_notification".equals(sub)) put(t, "status", m.optString("status", "completed"));
+                    if ("task_progress".equals(sub) && !m.optString("summary").isEmpty()) put(t, "summary", m.optString("summary"));
+                }
+                while (tasks.size() > 30) tasks.remove(tasks.keySet().iterator().next());
+            }
+            pushTasks();
+        }
+
+        private JSONObject task(String id, String type, String description) {
+            String kind = type.contains("bash") || type.contains("shell") || type.contains("monitor") ? "shell" : type.contains("agent") ? "agent" : type;
+            return new Obj("id", id, "kind", kind, "description", description, "status", "running", "at", System.currentTimeMillis()).o;
+        }
+
+        private void pushTasks() {
+            JSONArray list = new JSONArray();
+            synchronized (tasks) {
+                for (JSONObject t : tasks.values()) list.put(t);
+            }
+            DeskStore.get(app).putMeta(sid, "tasks", list);
+            desk().sessionEvent(sid, new Obj("type", "tasks", "tasks", list).o);
+        }
+
+        private void endTasks() {
+            boolean any = false;
+            synchronized (tasks) {
+                for (JSONObject t : tasks.values()) {
+                    if ("running".equals(t.optString("status"))) {
+                        put(t, "status", "stopped");
+                        any = true;
+                    }
+                }
+            }
+            if (any) pushTasks();
+        }
+
+        /** A short title for a session still called by its first words, from Claude Code (generate_session_title). */
+        private void nameIfNew() {
+            DeskStore st = DeskStore.get(app);
+            JSONObject s = st.session(sid);
+            if (s == null || s.optBoolean("titleSet") || s.optBoolean("titled")) return;
+            String first = "";
+            for (JSONObject it : st.items(sid)) {
+                if ("user".equals(it.optString("kind")) && !it.optString("text").trim().isEmpty()) {
+                    first = it.optString("text").trim();
+                    break;
+                }
+            }
+            if (first.isEmpty() || first.startsWith("/")) return;
+            st.update(s, "titled", true);
+            control(new Obj("subtype", "generate_session_title", "description", first.length() > 2000 ? first.substring(0, 2000) : first,
+                    "persist", false).o, resp -> {
+                String title = resp == null ? "" : resp.optString("title").trim();
+                JSONObject now = DeskStore.get(app).session(sid);
+                if (title.isEmpty() || now == null || now.optBoolean("titleSet")) return;
+                DeskStore.get(app).update(now, "title", title.length() > 60 ? title.substring(0, 60) : title);
+                desk().pushSessionsSoon();
+            });
         }
 
         // ---------------------------------------------------------------- helpers

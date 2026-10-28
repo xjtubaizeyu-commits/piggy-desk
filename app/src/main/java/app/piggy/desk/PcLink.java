@@ -132,6 +132,18 @@ final class PcLink {
         pushedTo = to;
     }
 
+    /** Copies one file from the PC into the tablet's Linux (scp with the same key). */
+    static void fetch(Context c, String winPath, String linuxPath) throws Exception {
+        String[] ssh = sshArgs(c);
+        String[] scp = java.util.Arrays.copyOf(ssh, ssh.length);
+        scp[0] = "scp";
+        scp[1] = "-q";
+        String opts = sh(java.util.Arrays.copyOfRange(scp, 0, scp.length - 1));
+        String out = Linux.exec(c, opts + " " + shq(target(c) + ":" + winPath.replace('\\', '/')) + " " + shq(linuxPath)
+                + " && echo FETCH_OK", 600);
+        if (!out.contains("FETCH_OK")) throw new IOException("没能从电脑取回文件：" + tail(out));
+    }
+
     /** Facts about the PC and the project (pc-tools.py --context). */
     static JSONObject context(Context c, String root) throws Exception {
         ensureKey(c);

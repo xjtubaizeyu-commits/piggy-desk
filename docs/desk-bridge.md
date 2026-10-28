@@ -56,6 +56,10 @@ Each one replaces that part of `state`: `{"type": "setup" | "account" | "net" | 
 | `env` | `env` (`tablet`\|`pc`), `cwd`, `branch`, `remote` | the 环境 panel |
 | `permission` | `requestId`, `tool`, `input`, `kind` (`tool` \| `plan` \| `question`), `suggestions`, `reason`, `blockedPath` | a card waiting for an answer |
 | `permissionDone` | `requestId` | that card was answered (here or elsewhere) |
+| `plan` | `text`, `path`, `at`, `open` | the 计划 tab (`open`: switch to it, Claude asks to start on it) |
+| `tasks` | `tasks` `[{id, kind: "shell"\|"agent", description, status, at}]` | background tasks, in 概览 |
+| `suggestion` | `text` | Claude Code's guess at the next prompt: the empty composer shows it, Tab takes it |
+| `memoryChanged` | | auto-memory was written: the 记忆 card reads it again |
 
 Items (`item.kind`):
 
@@ -68,11 +72,14 @@ Items (`item.kind`):
   `AskUserQuestion`, `mcp__pc__*` (the PC's tools, same shapes as the built-in ones), anything else generic.
 - `system`: `text`, `level` (`info` | `warn` | `error`).
 - `compact`: `text`, a "conversation compacted" divider.
+- `memory`: `paths`, `recalled` (true: recalled for this turn, false: saved), `verb` (记住了 / 更新了 / 删掉了 / 想起了).
 
 ### Other
 
 - `dictation`: `text`, `final`, live speech-to-text for the composer.
 - `toast`: `text`.
+- `browser`: `url`, `title`, `canBack`, `canForward`, `loading`, `progress`, `shown` (Claude is using it: show the tab).
+- `open`: `sessionId`, open this session (a notification was tapped).
 
 ## Page → app
 
@@ -110,6 +117,22 @@ Items (`item.kind`):
 | `toast` | `text` | |
 | `customGet` ⇄ | | → `{claudeMd, skills, agents, commands, mcpServers}` (each list `[{name, description, path, type, status}]`) |
 | `customSave` ⇄ | `claudeMd` | writes the tablet's `~/.claude/CLAUDE.md` |
+| `readFile` ⇄ | `sessionId`, `path`, `where` (`""` the project's place \| `tablet` \| `pc`) | → `{kind: text\|image\|pdf\|html\|media\|binary\|big, text, url, pages, sizes, browseUrl, size, truncated, shareable}`; `url` is `https://appassets.androidplatform.net/fs/<token>/<name>`, PDF pages `…/pdf/<token>/<n>.png?w=` |
+| `fileIndex` ⇄ | `sessionId` or `projectId` | → `{files: [relative path]}` for @ and 文件 |
+| `gitDiff` ⇄ | `sessionId` | → `{branch, diff, untracked}` |
+| `openFile` | `sessionId`, `path`, `where` | opens the file in another app |
+| `planRefresh` | `sessionId` | asks Claude Code for the plan (`get_plan`) |
+| `stopTask` / `taskOutput` ⇄ | `sessionId`, `taskId` | `stop_task`; `get_task_output` → `{output, truncated}` |
+| `sideQuestion` ⇄ | `sessionId`, `question` | /btw (`side_question`) → `{answer}` |
+| `pinSession` | `sessionId`, `pinned` | |
+| `forkSession` ⇄ | `sessionId` | → `{sessionId}`; the copy's first start is `--resume <old> --fork-session --session-id <new>` |
+| `exportSession` ⇄ | `sessionId` | → `{where}`, Markdown in Downloads/Piggy Desk |
+| `memoryGet` ⇄ | `projectId` | → `{levels: [{kind, label, desc, where, path, exists, readOnly}], auto: {enabled, dream, dir, index, memories: [{name, title, path, type, description, modified, size}]}}` |
+| `memoryRead` / `memorySave` ⇄ | `projectId`, `where`, `path`, `text` | instruction files and auto-memory notes only |
+| `memoryDelete` ⇄ | `projectId`, `path` | an auto-memory note, and its line in MEMORY.md |
+| `memorySet` ⇄ | `projectId`, `autoMemoryEnabled`, `autoDreamEnabled` | `~/.claude/settings.json` |
+| `browser` | `op` (`go` \| `back` \| `forward` \| `reload` \| `stop` \| `clear`), `url` | the side panel's browser |
+| `browserSlot` | `visible`, `x`, `y`, `w`, `h` | where the native browser goes, in CSS pixels; hidden while a menu or dialog is open |
 
 ## How the app answers (Desk.java, Engine.java)
 
@@ -124,3 +147,19 @@ Items (`item.kind`):
 - A project on the PC runs Claude Code in an empty folder on the tablet with the PC's `pc` MCP server
   (`ssh … python .piggy-desk\pc-tools.py --root <folder>`), the local file and shell tools switched off, and the
   PC's CLAUDE.md files in the system prompt.
+
+## The side panel's browser and Claude
+
+- `DeskBrowser` is a native WebView over the slot the page leaves in its 浏览器 tab. It has no bridge to the app.
+- Claude drives it through an MCP server on `127.0.0.1:8776` (a token per app run): `open`, `read` (text with numbered
+  items), `click`, `type` (refuses password, one-time-code and payment fields), `scroll`, `back`, `screenshot`. Each call
+  goes through Claude Code's permission mode like any tool. Settings → 浏览器 turns it off.
+- Project HTML opens there at `https://local.piggy-desk/<token>/<file>`, with the files beside it reachable.
+
+## Memory
+
+Claude Code reads, broad to specific: `/etc/claude-code/CLAUDE.md` (policy), `~/.claude/CLAUDE.md`, the project's
+`CLAUDE.md` and `.claude/CLAUDE.md`, and `CLAUDE.local.md`. A PC project also gets the PC's own files in its system
+prompt. Auto-memory lives in `~/.claude/projects/<working folder with every non-alphanumeric character a dash>/memory/`:
+`MEMORY.md` (the index) and one note per memory with front matter `name`, `description` and `type` (`user`, `feedback`,
+`project`, `reference`). Claude Code reports `system/memory_saved` and `system/memory_recall`, shown as `memory` items.

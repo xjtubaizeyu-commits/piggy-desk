@@ -53,6 +53,7 @@
       { id: "x5", kind: "tool", name: "Task", input: { description: "检查样式里的对比度", prompt: "看一遍 desk.css 里深色和浅色两套颜色，找出对比度不够的地方。", subagent_type: "general-purpose" }, status: "done", output: "两处次要文字在浅色主题下偏淡，建议 --muted 改成 #6b6a64。" },
       { id: "x6", kind: "tool", name: "Grep", parentId: "x5", input: { pattern: "--muted", path: "app/src/main/assets/desk" }, status: "done", output: "desk.css:29:  --muted: #9c9a92;\ndesk.css:62:  --muted: #73726c;" },
       { id: "x7", kind: "tool", name: "mcp__pc__bash", input: { command: "nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv", description: "看看电脑的显卡" }, status: "done", output: "name, memory.used [MiB], memory.total [MiB]\nNVIDIA GeForce RTX 5070, 1024 MiB, 12227 MiB" },
+      { id: "mem1", kind: "memory", recalled: true, paths: ["/root/.claude/projects/-root-projects-piggy-desk/memory/user_role.md", "/root/.claude/projects/-root-projects-piggy-desk/memory/feedback_chinese.md"] },
       { id: "a2", kind: "assistant", text: "右侧栏改好了，主要变化：\n\n## 改了什么\n\n- 卡片圆角从 `10px` 改成 **14px**，和 Desktop 一致\n- 加了左边框，和对话区分开\n- 标题字号统一成 14px\n\n| 区域 | 之前 | 现在 |\n| --- | --- | --- |\n| 卡片圆角 | 10px | 14px |\n| 内边距 | 10px | 12px |\n\n子代理发现浅色主题下有两处次要文字偏淡，可以这样改：\n\n```css\n:root[data-theme=\"light\"] {\n  --muted: #6b6a64; /* 原来 #73726c */\n}\n```\n\n顺便看了一下电脑：RTX 5070 现在空闲（显存用了 1 GB）。接下来跑测试。" },
     ],
     s3: [
@@ -65,6 +66,22 @@
   const CTX = { s1: { used: 605600, window: 1000000, autoCompactAt: 965600, breakdown: [
     { label: "消息", tokens: 548600 }, { label: "系统工具", tokens: 24100 }, { label: "MCP 工具", tokens: 14100 }, { label: "系统提示", tokens: 9700 }, { label: "技能", tokens: 6000 }, { label: "记忆文件", tokens: 2200 }] } };
 
+  const PLAN = "# 右侧栏改版\n\n## 目标\n右侧栏像 Claude Desktop 一样分页：概览、计划、改动、文件、浏览器。\n\n## 步骤\n1. 拆出 `panel.js`\n2. 文件查看器：Markdown、代码、图片、PDF\n3. 浏览器用原生 WebView 盖在空位上\n4. 两边可以拖动改宽度\n\n## 风险\n- 原生视图会盖住菜单：菜单打开时先藏起来";
+  const MEMDIR = "/root/.claude/projects/-root-projects-piggy-desk/memory";
+  const MEMS = [
+    { name: "user_role.md", title: "用户：平板上用 Claude 写安卓应用", type: "user", description: "在荣耀平板上开发，电脑只当工作空间；喜欢先看界面再看代码", modified: now - 86400e3, size: 412 },
+    { name: "feedback_chinese.md", title: "回复用中文", type: "feedback", description: "用户要求所有回复和界面文字用中文", modified: now - 3 * 86400e3, size: 230 },
+    { name: "project_desk.md", title: "Piggy Desk 只在 CI 上编译", type: "project", description: "本地没有 Android SDK；推 tag 触发 GitHub Actions，发布 piggy-desk.apk", modified: now - 3600e3, size: 518 },
+    { name: "reference_ci.md", title: "CI 和发布页", type: "reference", description: "github.com/xjtubaizeyu-commits/piggy-desk/actions", modified: now - 10 * 86400e3, size: 160 },
+  ];
+  const FILES = {
+    "README.md": { kind: "text", text: "# Piggy Desk\n\n平板上的 Claude 工作台。\n\n## 功能\n\n- 左边会话，右边面板\n- **计划**、改动、文件、浏览器\n\n| 平台 | 比例 |\n| --- | --- |\n| MagicPad 13 | 14:9 |\n" },
+    "app/build.gradle.kts": { kind: "text", text: "plugins {\n    id(\"com.android.application\")\n}\n\nandroid {\n    namespace = \"app.piggy.desk\"\n    compileSdk = 35\n}\n" },
+    "data/train.csv": { kind: "text", text: "epoch,loss,acc\n1,0.912,0.61\n2,0.644,0.72\n3,0.501,0.79\n4,\"0.43, ok\",0.81\n" },
+    "docs/report.pdf": { kind: "pdf", pages: 3, url: "mockpdf" },
+    "docs/logo.png": { kind: "image", url: "pig.png" },
+    "site/index.html": { kind: "html", text: "<h1 style='font-family:sans-serif'>Hello from the project</h1><p>Static preview: scripts don't run here.</p>", browseUrl: "https://local.piggy-desk/abc/index.html" },
+  };
   function state() { send(Object.assign({ type: "state" }, D)); }
   function open(sid) {
     const items = T[sid] || [];
@@ -75,6 +92,10 @@
       send({ type: "env", sessionId: sid, env: p.env, cwd: p.path, branch: p.env === "pc" ? "" : "main", remote: false });
       send({ type: "context", sessionId: sid, ...(CTX[sid] || { used: 18000 + items.length * 2000, window: 1000000, autoCompactAt: 965600, breakdown: [] }) });
       if (sid === "s1") {
+        send({ type: "plan", sessionId: sid, text: PLAN, path: "/root/.claude/plans/desk-panel.md", at: now - 600000 });
+        send({ type: "tasks", sessionId: sid, tasks: [{ id: "b1", kind: "shell", description: "npm run watch", status: "running", at: now - 300000 },
+          { id: "b2", kind: "agent", description: "检查样式里的对比度", status: "completed", at: now - 900000 }] });
+        send({ type: "suggestion", sessionId: sid, text: "把浅色主题的 --muted 也改了" });
         send({ type: "todos", sessionId: sid, todos: T.s1[6].input.todos });
         send({ type: "outputs", sessionId: sid, files: [{ path: "app/src/main/assets/desk/desk.css", action: "edit", at: now }, { path: "app/src/main/assets/desk/mock.js", action: "write", at: now }] });
         if (PERM.s1) send(Object.assign({ type: "permission", sessionId: sid }, PERM.s1));
@@ -109,6 +130,7 @@
   }
 
   window.PiggyDesk = {
+    mock: true,
     post(json) {
       const m = JSON.parse(json);
       switch (m.type) {
@@ -187,7 +209,66 @@
         case "search": reply(m, { hits: D.sessions.filter((s) => (T[s.id] || []).some((it) => (it.text || "").includes(m.query))).map((s) => ({ sessionId: s.id, title: s.title, snippet: "…" + m.query + "…" })) }); break;
         case "listFiles": reply(m, { entries: m.path ? [{ name: "desk.css", dir: false, size: 18234 }, { name: "app.js", dir: false, size: 30122 }]
           : [{ name: "app", dir: true }, { name: "docs", dir: true }, { name: "README.md", dir: false, size: 1201 }, { name: "build.gradle.kts", dir: false, size: 512 }] }); break;
-        case "readFile": reply(m, { text: "# Piggy Desk\n\n平板上的 Claude 工作台。\n" }); break;
+        case "readFile": {
+          const f = FILES[m.path] || FILES[m.path.replace(/^\/root\/projects\/piggy-desk\//, "")];
+          if (f && f.kind === "pdf") {
+            const c = document.createElement("canvas"); c.width = 600; c.height = 848;
+            const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, 600, 848); g.fillStyle = "#222"; g.font = "28px serif";
+            g.fillText("Mock PDF page", 60, 100); for (let y = 160; y < 780; y += 26) g.fillRect(60, y, 420 + (y % 70), 6);
+            const url = c.toDataURL();
+            reply(m, { kind: "pdf", pages: 3, url: "data:", ratio: 848 / 600, mock: url });
+            setTimeout(() => document.querySelectorAll(".pdf-page img").forEach((i) => { i.src = url; }), 50);
+          } else if (f) reply(m, Object.assign({ shareable: true }, f));
+          else if (/MEMORY\.md$|\/memory\//.test(m.path)) reply(m, { kind: "text", text: "---\nname: " + m.path.split("/").pop() + "\ndescription: 示例记忆\ntype: user\n---\n\n用户在平板上开发安卓应用。" });
+          else reply(m, { kind: "text", text: "// " + m.path + "\nfunction hello() {\n  return \"world\";\n}\n", shareable: true });
+          break;
+        }
+        case "fileIndex": reply(m, { files: ["README.md", "app/build.gradle.kts", "app/src/main/assets/desk/app.js", "app/src/main/assets/desk/panel.js", "app/src/main/assets/desk/desk.css",
+          "app/src/main/java/app/piggy/desk/Desk.java", "app/src/main/java/app/piggy/desk/Engine.java", "data/train.csv", "docs/report.pdf", "docs/logo.png", "site/index.html"] }); break;
+        case "memoryGet": {
+          const p = D.projects.find((x) => x.id === m.projectId) || D.projects[0];
+          const pc = p.env === "pc";
+          const levels = [
+            { kind: "policy", label: "组织策略", desc: "管理员统一下发的规则，改不了", where: "tablet", path: "/etc/claude-code/CLAUDE.md", exists: false, readOnly: true },
+            { kind: "user", label: "全局（这台平板）", desc: "所有项目都读：你的习惯、偏好", where: "tablet", path: "/root/.claude/CLAUDE.md", exists: true },
+            pc ? { kind: "pcUser", label: "电脑全局", desc: "电脑上 ~/.claude/CLAUDE.md，连电脑的项目会带上", where: "pc", path: "C:\\Users\\bzy15\\.claude\\CLAUDE.md", exists: true } : null,
+            { kind: "project", label: "项目", desc: "跟着项目走，可以提交进 git，团队共享", where: pc ? "pc" : "tablet", path: (pc ? p.path + "\\" : p.path + "/") + "CLAUDE.md", exists: !pc },
+            { kind: "project-alt", label: "项目（.claude 文件夹）", desc: "放在 .claude/ 里的项目说明，作用同上", where: pc ? "pc" : "tablet", path: (pc ? p.path + "\\.claude\\" : p.path + "/.claude/") + "CLAUDE.md", exists: false },
+            { kind: "local", label: "本地（不进 git）", desc: "只在这里生效的个人说明，自动加进 .gitignore", where: pc ? "pc" : "tablet", path: (pc ? p.path + "\\" : p.path + "/") + "CLAUDE.local.md", exists: false },
+          ].filter(Boolean);
+          reply(m, { levels, auto: { enabled: true, dream: false, dir: MEMDIR, index: MEMDIR + "/MEMORY.md", memories: MEMS.map((x) => Object.assign({ path: MEMDIR + "/" + x.name }, x)) } });
+          break;
+        }
+        case "memoryRead": reply(m, { text: m.path.endsWith("MEMORY.md") ? MEMS.map((x) => "- [" + x.title + "](" + x.name + ") — " + x.description).join("\n") : "# 全局说明\n\n- 回复用中文\n- 本机有 torch，不要再下载\n" }); break;
+        case "memorySave": case "memorySet": reply(m, {}); break;
+        case "memoryDelete": { const k = MEMS.findIndex((x) => m.path.endsWith("/" + x.name)); if (k >= 0) MEMS.splice(k, 1); reply(m, {}); break; }
+        case "taskOutput": reply(m, { output: "> desk@0.2.0 watch\n> esbuild --watch\n\n[watch] build finished, watching for changes...\n", truncated: false }); break;
+        case "stopTask": send({ type: "tasks", sessionId: m.sessionId, tasks: [{ id: "b1", kind: "shell", description: "npm run watch", status: "stopped" }, { id: "b2", kind: "agent", description: "检查样式里的对比度", status: "completed" }] }); break;
+        case "planRefresh": send({ type: "plan", sessionId: m.sessionId, text: PLAN, path: "/root/.claude/plans/desk-panel.md", at: Date.now() }); break;
+        case "sideQuestion": later(800, () => reply(m, { answer: "在 `desk.css` 第 29 行，`--muted` 是 **#9c9a92**。" })); break;
+        case "pinSession": { const s = D.sessions.find((x) => x.id === m.sessionId); if (s) s.pinned = m.pinned; send({ type: "sessions", value: D.sessions }); break; }
+        case "forkSession": {
+          const s = D.sessions.find((x) => x.id === m.sessionId) || {};
+          const id = "s" + ++n;
+          D.sessions.unshift(Object.assign({}, s, { id, title: s.title + "（分叉）", updatedAt: Date.now(), pinned: false }));
+          T[id] = (T[s.id] || []).slice();
+          send({ type: "sessions", value: D.sessions });
+          reply(m, { sessionId: id });
+          break;
+        }
+        case "exportSession": reply(m, { where: "下载/Piggy Desk/" + ((D.sessions.find((x) => x.id === m.sessionId) || {}).title || "会话") + ".md" }); break;
+        case "browser": {
+          const B = D.browser || (D.browser = { url: "", title: "", history: [], at: -1 });
+          if (m.op === "go") { B.history = B.history.slice(0, B.at + 1).concat([m.url]); B.at++; B.url = m.url; }
+          if (m.op === "back" && B.at > 0) B.url = B.history[--B.at];
+          if (m.op === "forward" && B.at < B.history.length - 1) B.url = B.history[++B.at];
+          if (m.op === "clear") break;
+          const show = () => send({ type: "browser", url: B.url, title: B.url.replace(/^https?:\/\/(www\.)?/, "").split("/")[0], canBack: B.at > 0, canForward: B.at < B.history.length - 1, loading: false, progress: 100 });
+          send({ type: "browser", url: B.url, title: "", canBack: B.at > 0, canForward: B.at < B.history.length - 1, loading: true, progress: 30 });
+          later(600, show);
+          break;
+        }
+        case "browserSlot": window.__slot = m; break;
         case "gitDiff": reply(m, { branch: "main", diff: "diff --git a/desk.css b/desk.css\nindex 1..2 100644\n--- a/desk.css\n+++ b/desk.css\n@@ -1,4 +1,4 @@\n :root {\n-  --muted: #73726c;\n+  --muted: #6b6a64;\n   --bg: #262624;\n }" }); break;
         case "pcTest": later(700, () => reply(m, { ok: true, detail: "piggy-pc · 往返 820 ms" })); break;
         case "customGet": reply(m, { claudeMd: "# 全局说明\n\n- 回复用中文\n", skills: [{ name: "android-app", description: "在平板上编译安卓应用" }], agents: [], commands: [{ name: "review", description: "审查当前改动" }], mcpServers: [{ name: "pc", type: "stdio", status: "connected" }, { name: "phone", type: "http", status: "connected" }] }); break;

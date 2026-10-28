@@ -43,8 +43,12 @@ public class DeskActivity extends Activity {
 
     private final Handler main = new Handler(Looper.getMainLooper());
     private WebView web;
+    private FrameLayout root;
+    private DeskBrowser browser;
     private Desk desk;
     private Desk.Picked picking;
+    /** A notification's session, opened once the page has loaded. */
+    private Intent pendingOpen;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
@@ -52,7 +56,7 @@ public class DeskActivity extends Activity {
         super.onCreate(state);
         desk = Desk.get(this);
         DeskService.start(this);
-        FrameLayout root = new FrameLayout(this);
+        root = new FrameLayout(this);
         root.setBackgroundColor(BACKDROP);
         root.setFitsSystemWindows(true);
         web = new WebView(this);
@@ -68,6 +72,7 @@ public class DeskActivity extends Activity {
         web.addJavascriptInterface(new Bridge(), "PiggyDesk");
         root.addView(web);
         setContentView(root);
+        browser = new DeskBrowser(this, root); // the side panel's browser, laid over the page when its tab shows
         desk.attach(this);
         if (Build.VERSION.SDK_INT >= 33) {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
@@ -75,6 +80,7 @@ public class DeskActivity extends Activity {
         }
         if (state == null) web.loadUrl(HOME);
         else web.restoreState(state);
+        pendingOpen = getIntent();
         if (!NetGuard.locationAllowed(this)) {
             // the Wi-Fi name (is this the phone's hotspot?) can only be read with location access
             requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -86,7 +92,26 @@ public class DeskActivity extends Activity {
     protected void onResume() {
         super.onResume();
         desk.attach(this);
+        desk.setVisible(true);
         desk.onPageResumed();
+    }
+
+    @Override
+    protected void onPause() {
+        desk.setVisible(false);
+        super.onPause();
+    }
+
+    /** From a notification: open its session. */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        openFromIntent(intent);
+    }
+
+    private void openFromIntent(Intent intent) {
+        String sid = intent == null ? null : intent.getStringExtra("sessionId");
+        if (sid != null) send(new Engine.Obj("type", "open", "sessionId", sid).o);
     }
 
     @Override
@@ -115,6 +140,7 @@ public class DeskActivity extends Activity {
     @Override
     protected void onDestroy() {
         desk.detach(this);
+        if (browser != null) browser.destroy();
         if (web != null) {
             web.removeJavascriptInterface("PiggyDesk");
             web.destroy();
@@ -129,6 +155,10 @@ public class DeskActivity extends Activity {
         main.post(() -> {
             if (web != null) web.evaluateJavascript(js, null);
         });
+    }
+
+    DeskBrowser browser() {
+        return browser;
     }
 
     // ------------------------------------------------------------------ pickers and permissions
@@ -202,6 +232,10 @@ public class DeskActivity extends Activity {
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
             Uri u = req.getUrl();
             String path = u.getPath();
+            if (HOST.equals(u.getHost()) && path != null && (path.startsWith("/fs/") || path.startsWith("/pdf/"))) {
+                WebResourceResponse r = DeskFiles.serve(u); // a file the side panel shows, by its token
+                return r != null ? r : blocked();
+            }
             if (!HOST.equals(u.getHost()) || path == null || path.contains("..")
                     || !(path.startsWith("/desk/") || path.startsWith("/fonts/"))) {
                 return blocked(); // only the bundled pages; the WebView never reaches the network
@@ -216,6 +250,15 @@ public class DeskActivity extends Activity {
                 return r;
             } catch (IOException e) {
                 return blocked();
+            }
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            if (pendingOpen != null) {
+                Intent i = pendingOpen;
+                pendingOpen = null;
+                main.postDelayed(() -> openFromIntent(i), 600); // after the page's ready and the state it brings
             }
         }
 

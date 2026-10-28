@@ -38,7 +38,8 @@ const S = {
   view: "chat",         // chat | settings | customize
   settingsTab: "account",
   ses: {},              // per session: what the app sent (items, status, panels)
-  ui: { side: true, panel: true, groups: {}, sideOver: false, panelOver: false },
+  ui: { side: true, panel: true, groups: {}, sideOver: false, panelOver: false, sideW: 0, panelW: 0, panelMax: false },
+  browser: {},          // the side panel's browser: url, title, canBack, canForward, loading, progress
   draft: { text: "", attachments: [] },
 };
 
@@ -46,6 +47,9 @@ function sesState(id) {
   return S.ses[id] || (S.ses[id] = {
     items: new Map(), order: [], status: { running: false, phase: "idle" }, context: null, outputs: [], todos: [],
     env: null, permissions: new Map(), loaded: false,
+    // side panel: the open tab, files opened in tabs, what was read for them, the plan, background tasks, memory
+    tab: "overview", files: [], fileCache: {}, fileMode: {}, plan: null, planSeen: null, tasks: [], memory: null,
+    diff: null, tree: {}, treeOpen: new Set(), findQ: "", index: null, suggestion: "",
   });
 }
 const sessionById = (id) => S.sessions.find((s) => s.id === id);
@@ -53,7 +57,7 @@ const projectById = (id) => S.projects.find((p) => p.id === id);
 
 try { Object.assign(S.ui, JSON.parse(localStorage.getItem("desk.ui") || "{}"), { sideOver: false, panelOver: false }); } catch (e) { /* first run */ }
 function saveUi() {
-  try { localStorage.setItem("desk.ui", JSON.stringify({ side: S.ui.side, panel: S.ui.panel, groups: S.ui.groups })); } catch (e) { /* private */ }
+  try { localStorage.setItem("desk.ui", JSON.stringify({ side: S.ui.side, panel: S.ui.panel, groups: S.ui.groups, sideW: S.ui.sideW, panelW: S.ui.panelW, panelMax: S.ui.panelMax })); } catch (e) { /* private */ }
 }
 
 /* ------------------------------------------------------------------ bridge */
@@ -113,6 +117,7 @@ function menu(anchor, items, opts) {
   el.style.top = y + "px";
   openMenu = el;
   setTimeout(() => document.addEventListener("pointerdown", outside, true), 0);
+  overlaysChanged();
   return el;
 }
 function outside(e) { if (openMenu && !openMenu.contains(e.target)) closeMenu(); }
@@ -121,8 +126,12 @@ function closeMenu() {
   openMenu.remove();
   openMenu = null;
   document.removeEventListener("pointerdown", outside, true);
+  overlaysChanged();
   return true;
 }
+
+/** Menus and dialogs would sit under the app's native browser view: it steps aside while one is open. */
+function overlaysChanged() { if (typeof syncBrowserSoon === "function") syncBrowserSoon(); }
 
 /* ------------------------------------------------------------------ dialogs */
 let openDialog = null;
@@ -133,6 +142,7 @@ function dialog(build, cls) {
   const scrim = h("div.scrim", { on: { pointerdown: (e) => { if (e.target === scrim) closeDialog(); } } }, box);
   document.body.append(scrim);
   openDialog = scrim;
+  overlaysChanged();
   build(box, closeDialog);
   const f = box.querySelector("input, textarea");
   if (f) setTimeout(() => f.focus(), 30);
@@ -142,6 +152,7 @@ function closeDialog() {
   if (!openDialog) return false;
   openDialog.remove();
   openDialog = null;
+  overlaysChanged();
   return true;
 }
 function prompt2(title, value, okLabel) {
@@ -202,6 +213,7 @@ function fmtSecs(ms) {
   const s = Math.round(ms / 1000);
   return s < 60 ? s + " 秒" : Math.floor(s / 60) + " 分 " + (s % 60) + " 秒";
 }
+const fmtSize = (n) => (n == null ? "" : n < 1024 ? n + " B" : n < 1048576 ? (n / 1024).toFixed(1) + " KB" : (n / 1048576).toFixed(1) + " MB");
 const basename = (p) => String(p || "").split(/[\\/]/).filter(Boolean).pop() || String(p || "");
 
 const MODE_LABEL = { default: "询问", acceptEdits: "接受编辑", plan: "计划", auto: "自动", bypassPermissions: "跳过权限" };

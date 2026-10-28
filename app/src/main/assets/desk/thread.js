@@ -37,6 +37,11 @@ function toolLook(item) {
     case "BgList": return { icon: "clock", label: "后台任务列表", arg: "", where };
     case "Skill": return { icon: "sliders", label: "技能", arg: inp.skill || inp.name || "" };
   }
+  const br = /^mcp__browser__(.+)$/.exec(name);
+  if (br) {
+    const what = { open: "打开网页", read: "读网页", click: "点按", type: "输入", scroll: "滚动", back: "后退", screenshot: "截图" }[br[1]] || br[1];
+    return { icon: "globe", label: what, arg: br[1] === "open" ? inp.url : br[1] === "type" ? "[" + inp.id + "] " + (inp.text || "") : inp.id != null ? "[" + inp.id + "]" : inp.direction || "", where: "浏览器" };
+  }
   const mcp = /^mcp__([^_]+(?:_[^_]+)*)__(.+)$/.exec(name);
   if (mcp) return { icon: mcp[1] === "phone" ? "pig" : "link", label: mcp[1] === "phone" ? "小猪" : mcp[1], arg: mcp[2].replace(/_/g, " ") };
   return { icon: "wrench", label: name, arg: "" };
@@ -102,8 +107,19 @@ function renderItem(sid, item) {
     case "tool": return toolItem(sid, item);
     case "system": return h("div.sys." + (item.level || "info"), { "data-id": item.id }, icon(item.level === "error" ? "alert" : "info", 16), h("span", { text: item.text }));
     case "compact": return h("div.divider", { "data-id": item.id, text: item.text || "之前的对话已压缩" });
+    case "memory": return memoryItem(item);
   }
   return h("div", { "data-id": item.id });
+}
+
+/** Claude Code's auto-memory at work: memories it saved, or recalled for this turn. Each opens in the side panel. */
+function memoryItem(item) {
+  const paths = item.paths || [];
+  const verb = item.recalled ? "想起了" : item.verb || "记住了";
+  return h("div.sys.mem", { "data-id": item.id }, icon("brain", 16),
+    h("span", { text: verb + " " + paths.length + " 条记忆" }),
+    h("span.mem-files", paths.slice(0, 6).map((p) => h("button.chip", { title: p, on: { click: () => openFile(p, { where: "tablet" }) } },
+      h("span", { text: basename(p).replace(/\.md$/, "") })))));
 }
 
 function userItem(item) {
@@ -159,7 +175,12 @@ function toolItem(sid, item) {
   } else if (base !== "Read" && base !== "ExitPlanMode" && Object.keys(inp).length) {
     body.append(h("div.out", { text: JSON.stringify(inp, null, 2) }));
   }
-  if (base === "ExitPlanMode" && inp.plan) body.append(h("div.md", { html: renderMarkdown(inp.plan) }));
+  if (base === "ExitPlanMode" && inp.plan) body.append(h("div.md", { html: renderMarkdown(inp.plan) }),
+    h("div.step-acts", h("button.chip", { on: { click: () => setTab(sid, "plan") } }, icon("panel", 14), h("span", { text: "在右侧查看" }))));
+  const path = inp.file_path || inp.notebook_path || "";
+  if (path && /^(Read|Write|Edit|MultiEdit|NotebookEdit)$/.test(base) && st !== "denied") {
+    body.prepend(h("div.step-acts", h("button.chip", { on: { click: () => openFile(path) } }, icon("panel", 14), h("span", { text: "在右侧打开" }))));
+  }
   if (item.output && base !== "TodoWrite" && base !== "Edit" && base !== "Write" && base !== "MultiEdit") {
     const out = String(item.output);
     body.append(h("div.out", { text: out.length > 20000 ? out.slice(0, 20000) + "\n⋯" : out, style: { marginTop: "6px" } }));
@@ -189,7 +210,8 @@ function permissionCard(sid, p) {
   if (p.kind === "plan") {
     const fb = h("textarea.field", { rows: 2, placeholder: "要改哪里？（选「继续完善」时发给 Claude）" });
     add(card, [
-      h("h4", icon("plan", 18), "Claude 拟好了计划，要按这个做吗？"),
+      h("h4", icon("plan", 18), h("span.grow", { text: "Claude 拟好了计划，要按这个做吗？" }),
+        h("button.chip", { title: "在右侧查看", on: { click: () => setTab(sid, "plan") } }, icon("panel", 14))),
       h("div.plan", h("div.md", { html: renderMarkdown(inp.plan || "") })),
       h("div", { style: { marginTop: "10px" } }, fb),
       h("div.actions",
@@ -329,7 +351,7 @@ function refreshWorking(sid) {
     thread.append(w);
   }
   const phase = { thinking: "思考中…", tool: "运行工具…", waiting: "等你确认…", starting: "正在启动 Claude Code…",
-    connecting: "正在连接电脑…", compacting: "正在压缩对话…" }[st.status.phase] || "处理中…";
+    connecting: "正在连接电脑…", compacting: "正在压缩对话…", retrying: "网络不稳，重试中…" }[st.status.phase] || "处理中…";
   $(".wt", w).textContent = phase;
   const tick = () => { const t = $(".wtime", w); if (t && st.status.since) t.textContent = fmtSecs(Date.now() - st.status.since); };
   tick();
@@ -356,5 +378,10 @@ document.addEventListener("click", (e) => {
     return;
   }
   const a = e.target.closest("a[data-ext]");
-  if (a) { e.preventDefault(); bridge.post({ type: "openUrl", url: a.getAttribute("href") }); }
+  if (a) {
+    e.preventDefault();
+    const url = a.getAttribute("href");
+    if (S.prefs.linksInPanel !== false && S.current && /^https?:/i.test(url)) browserGo(url);
+    else bridge.post({ type: "openUrl", url });
+  }
 });

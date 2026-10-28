@@ -3,7 +3,7 @@
 
 const SETTINGS_TABS = [
   ["account", "账号", "user"], ["defaults", "默认设置", "sliders"], ["network", "网络", "wifi"], ["egress", "平板出口", "link"],
-  ["pc", "电脑", "monitor"], ["appearance", "外观", "sun"], ["bubble", "小猪", "pig"], ["shortcuts", "快捷键", "keyboard"], ["about", "关于", "info"],
+  ["pc", "电脑", "monitor"], ["browser", "浏览器", "globe"], ["appearance", "外观", "sun"], ["bubble", "小猪", "pig"], ["shortcuts", "快捷键", "keyboard"], ["about", "关于", "info"],
 ];
 
 function pageShell(main, tabs, cur, onTab) {
@@ -51,7 +51,20 @@ function renderSettings(main) {
       h("div.set-group",
         setRow("模型", null, selectBox(p.model, models, (v) => pref("model", v))),
         setRow("思考强度", "越高越慢、越费额度", selectBox(p.effort, efforts, (v) => pref("effort", v))),
-        setRow("权限模式", null, selectBox(p.mode, modes, (v) => pref("mode", v))))]);
+        setRow("权限模式", null, selectBox(p.mode, modes, (v) => pref("mode", v))),
+        setRow("输出风格", "Claude Code 的 output style：讲解会顺带解释为什么这么做，学习会留一些让你自己写", selectBox(p.outputStyle || "", [["", "默认"], ["Explanatory", "讲解"], ["Learning", "学习"]], (v) => pref("outputStyle", v)))),
+      h("div.set-group",
+        setRow("提示下一步", "每轮结束后猜你下一句想说什么，输入框为空时按 Tab 填入", toggleBtn(p.suggestions !== false, () => { pref("suggestions", p.suggestions === false); renderMain(); })),
+        setRow("完成时通知", "Piggy Desk 不在前台时，Claude 做完或等你确认会发通知", toggleBtn(p.notify !== false, () => { pref("notify", p.notify === false); renderMain(); })),
+        setRow("链接在右侧打开", "对话里的链接在右侧栏的浏览器里打开；关掉就用系统浏览器", toggleBtn(p.linksInPanel !== false, () => { pref("linksInPanel", p.linksInPanel === false); renderMain(); })))]);
+  }
+
+  if (t === "browser") {
+    add(body, [h("h2", { text: "浏览器" }), h("p.lead", { text: "右侧栏的浏览器：你可以自己用，Claude 也能用它打开网页、读内容、点按和输入。它和你手机、平板上的其他浏览器分开，登录状态只留在这里。" }),
+      h("div.set-group",
+        setRow("让 Claude 使用浏览器", "Claude 的每一步照常按权限模式问你；密码、支付这类要你自己在页面里填", toggleBtn(p.browserTools !== false, () => { pref("browserTools", p.browserTools === false); renderMain(); })),
+        setRow("搜索", "地址栏里输入的不是网址时用哪个搜索", selectBox(p.searchEngine || "bing", [["bing", "必应"], ["google", "Google"], ["baidu", "百度"], ["duckduckgo", "DuckDuckGo"]], (v) => pref("searchEngine", v))),
+        setRow("清除浏览数据", "Cookie、登录状态、缓存", h("button.btn", { text: "清除", on: { click: async () => { if (await confirm2("清除浏览数据？", "右侧浏览器里登录过的网站都要重新登录。", "清除", true)) { bridge.post({ type: "browser", op: "clear" }); toast("已清除"); } } } })))]);
   }
 
   if (t === "network") {
@@ -136,12 +149,13 @@ function renderSettings(main) {
 }
 
 /* ------------------------------------------------------------------ 自定义 */
-const CUSTOM_TABS = [["memory", "记忆（CLAUDE.md）", "fileText"], ["skills", "技能", "sliders"], ["agents", "子代理", "bot"], ["commands", "命令", "terminal"], ["mcp", "MCP 服务器", "link"]];
+const CUSTOM_TABS = [["memory", "记忆", "brain"], ["skills", "技能", "sliders"], ["agents", "子代理", "bot"], ["commands", "命令", "terminal"], ["mcp", "MCP 服务器", "link"]];
 let customTab = "memory";
 let customData = null;
 
 function renderCustomize(main) {
   const body = pageShell(main, CUSTOM_TABS, customTab, (k) => { customTab = k; renderMain(); });
+  if (customTab === "memory") return renderMemory(body);
   if (!customData) {
     body.append(h("div.working", icon("spinner", 16), h("span", { text: "读取中…" })));
     bridge.call("customGet", {}, 30000).then((d) => { customData = d || {}; if (S.view === "customize") renderMain(); })
@@ -149,15 +163,7 @@ function renderCustomize(main) {
     return;
   }
   const d = customData;
-  if (customTab === "memory") {
-    const ta = h("textarea.field.mono", { rows: 22, style: { fontSize: "13px", resize: "vertical" } });
-    ta.value = d.claudeMd || "";
-    add(body, [h("h2", { text: "记忆" }), h("p.lead", { text: "平板上的 ~/.claude/CLAUDE.md：每个会话都会读。项目自己的 CLAUDE.md 放在项目文件夹里。" }),
-      h("div", { style: { maxWidth: "760px" } }, ta,
-        h("div.actions", { style: { display: "flex", justifyContent: "flex-end", marginTop: "10px" } },
-          h("button.btn.accent", { text: "保存", on: { click: async () => { try { await bridge.call("customSave", { claudeMd: ta.value }); d.claudeMd = ta.value; toast("已保存"); } catch (e) { toast(e.message); } } } })))]);
-    return;
-  }
+  if (customTab === "memory") return renderMemory(body);
   const lists = {
     skills: ["技能", "~/.claude/skills/ 里的技能，Claude 需要时会自己用。", d.skills],
     agents: ["子代理", "~/.claude/agents/ 里的子代理。", d.agents],
@@ -167,4 +173,94 @@ function renderCustomize(main) {
   add(body, [h("h2", { text: lists[0] }), h("p.lead", { text: lists[1] }),
     h("div.set-group", (lists[2] || []).length ? lists[2].map((x) => setRow(x.name, x.description || x.path || x.type || "", x.status ? h("span.pill" + (x.status === "connected" ? ".ok" : ""), { text: x.status }) : null))
       : h("div.set-row", h("div.l.muted", { text: "还没有。可以让 Claude 帮你建一个。" })))]);
+}
+
+/* ------------------------------------------------------------------ 记忆 */
+// Claude Code reads its instructions in levels, broad to specific (organisation policy, you on this tablet, the
+// project, the project's local file), and keeps an auto-memory of its own: small typed notes with an index, MEMORY.md.
+let memoryProject = null;
+let memoryData = null;
+const MEM_TYPE = { user: "用户", feedback: "反馈", project: "项目", reference: "参考" };
+
+function renderMemory(body) {
+  const pid = memoryProject && projectById(memoryProject) ? memoryProject : (S.projects[0] || {}).id;
+  memoryProject = pid;
+  const p = projectById(pid) || {};
+  add(body, [h("h2", { text: "记忆" }),
+    h("p.lead", { text: "Claude Code 每次开始都会读这些说明。从上到下越来越具体，说法冲突时以更具体的为准。自动记忆是 Claude 自己记下的笔记。" }),
+    h("div.row", { style: { maxWidth: "900px", marginBottom: "4px" } }, h("span.muted", { style: { fontSize: "13.5px" }, text: "项目" }),
+      selectBox(pid, S.projects.map((x) => [x.id, x.name + (x.env === "pc" ? "（电脑）" : "")]), (v) => { memoryProject = v; memoryData = null; renderMain(); }))]);
+  if (!memoryData || memoryData.projectId !== pid) {
+    body.append(h("div.working", icon("spinner", 16), h("span", { text: "读取中…" })));
+    bridge.call("memoryGet", { projectId: pid }, 30000).then((d) => { memoryData = Object.assign({ projectId: pid }, d); if (S.view === "customize" && customTab === "memory") renderMain(); })
+      .catch((e) => { clear(body).append(h("div.sys.error", { text: e.message })); });
+    return;
+  }
+  const d = memoryData;
+  body.append(h("div.sec-title", h("span.grow", { text: "说明文件（CLAUDE.md）" })));
+  body.append(h("div.set-group", (d.levels || []).map((l) => h("div.set-row.mem-level",
+    h("div.l", h("div.t", h("span", { text: l.label }), l.where === "pc" ? h("span.tag-pill", { text: "电脑" }) : null,
+      !l.exists ? h("span.tag-pill", { text: "还没有" }) : null, l.readOnly ? h("span.tag-pill", { text: "只读" }) : null),
+      h("div.d", { text: l.desc || "" }), h("div.path", { text: l.path })),
+    h("div.r", l.readOnly && !l.exists ? null : h("button.btn", { text: l.readOnly ? "查看" : l.exists ? "编辑" : "新建", on: { click: () => editMemoryFile(l) } }))))));
+
+  const a = d.auto || {};
+  body.append(h("div.sec-title", h("span.grow", { text: "自动记忆" + (a.memories ? " · " + a.memories.length + " 条" : "") })));
+  body.append(h("div.set-group",
+    setRow("自动记忆", "Claude 自己记下有用的事（你的偏好、纠正过的做法、项目背景），之后的会话会读到。按项目分开存。",
+      toggleBtn(a.enabled !== false, () => setMemory({ autoMemoryEnabled: a.enabled === false }))),
+    setRow("自动整理", "空闲时在后台合并重复、删掉过时的记忆（auto-dream）", toggleBtn(!!a.dream, () => setMemory({ autoDreamEnabled: !a.dream }))),
+    setRow("存放位置", null, h("span.mono.muted", { style: { fontSize: "12px", wordBreak: "break-all" }, text: a.dir || "" }))));
+  const cards = [];
+  if (a.index) cards.push(h("div.mem-card", { on: { click: () => editMemoryFile({ label: "MEMORY.md（索引）", where: "tablet", path: a.index, exists: true }) } },
+    h("div.t", icon("list", 16), h("span.n", { text: "MEMORY.md" }), h("span.tag-pill", { text: "索引" })),
+    h("div.d", { text: "每次开始时读的目录：一条记忆一行。" })));
+  for (const m of a.memories || []) {
+    cards.push(h("div.mem-card", { title: m.path, on: { click: () => editMemoryFile({ label: m.name, where: "tablet", path: m.path, exists: true, deletable: true }) } },
+      h("div.t", h("span.n", { text: (m.title || m.name).replace(/\.md$/, "") }), m.type ? h("span.tag-pill." + m.type, { text: MEM_TYPE[m.type] || m.type }) : null),
+      m.description ? h("div.d", { text: m.description }) : null,
+      h("div.f", icon("clock", 13), h("span", { text: fmtAgo(m.modified) }), h("span.grow"), h("span", { text: fmtSize(m.size) }))));
+  }
+  if (cards.length) body.append(h("div.mem-grid", cards));
+  else body.append(h("div.empty-note", { style: { marginBottom: "18px" }, text: a.enabled === false ? "自动记忆关着。" : "还没有记忆。Claude 在对话里学到值得记的事会自己写下来，也可以直接对它说「记住……」。" }));
+}
+
+async function setMemory(change) {
+  try { await bridge.call("memorySet", Object.assign({ projectId: memoryProject }, change)); } catch (e) { toast(e.message); }
+  memoryData = null;
+  renderMain();
+}
+
+async function editMemoryFile(f) {
+  let text = "";
+  if (f.exists !== false) {
+    try { text = (await bridge.call("memoryRead", { projectId: memoryProject, where: f.where, path: f.path }, 60000)).text || ""; } catch (e) { toast(e.message); return; }
+  }
+  dialog((box, close) => {
+    const ta = h("textarea.field.editor", { spellcheck: false, readOnly: !!f.readOnly });
+    ta.value = text || (f.exists === false ? f.template || "" : "");
+    const save = async () => {
+      try {
+        await bridge.call("memorySave", { projectId: memoryProject, where: f.where, path: f.path, text: ta.value }, 60000);
+        close(); toast("已保存"); memoryData = null; refreshMemoryViews();
+      } catch (e) { toast(e.message); }
+    };
+    ta.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") { e.preventDefault(); if (!f.readOnly) save(); } });
+    add(box, [h("h3", { text: f.label }), h("div.mem-level", { style: { marginBottom: "10px" } }, h("div.path", { text: f.path })), ta,
+      h("div.actions",
+        f.deletable ? h("button.btn.danger", { text: "删除这条", on: { click: async () => {
+          if (!(await confirm2("删除这条记忆？", "Claude 以后就不记得这件事了。MEMORY.md 里指向它的那一行也会去掉。", "删除", true))) return;
+          try { await bridge.call("memoryDelete", { projectId: memoryProject, path: f.path }); toast("已删除"); } catch (e) { toast(e.message); }
+          memoryData = null; refreshMemoryViews();
+        } } }) : null,
+        h("span.grow"),
+        h("button.btn.ghost", { text: f.readOnly ? "关闭" : "取消", on: { click: close } }),
+        f.readOnly ? null : h("button.btn.accent", { on: { click: save } }, "保存", h("span.kbd", { text: "Ctrl S" })))]);
+    setTimeout(() => ta.focus(), 30);
+  }, ".dialog.wide");
+}
+
+function refreshMemoryViews() {
+  for (const id in S.ses) { S.ses[id].memory = null; S.ses[id].memoryAt = 0; }
+  if (S.view === "customize") renderMain(); else renderPanel();
 }

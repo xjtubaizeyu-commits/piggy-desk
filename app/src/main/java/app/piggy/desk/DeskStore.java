@@ -107,6 +107,26 @@ final class DeskStore {
         return s;
     }
 
+    /**
+     * A copy of a session to go on from in another direction: its conversation and panels here, and in Claude Code a
+     * fork of its conversation (the first start runs --resume &lt;old&gt; --fork-session, see Engine).
+     */
+    synchronized JSONObject forkSession(String id) throws Exception {
+        JSONObject from = session(id);
+        if (from == null) throw new IOException("会话不存在");
+        if (from.optString("claudeSessionId").isEmpty() || !from.optBoolean("started")) throw new IOException("这个会话还没开始，没东西可分叉");
+        long now = System.currentTimeMillis();
+        JSONObject s = new JSONObject(from.toString()).put("id", newId("s")).put("title", from.optString("title") + "（分叉）")
+                .put("titleSet", true).put("createdAt", now).put("updatedAt", now).put("pinned", false).put("unread", false)
+                .put("archived", false).put("forkFrom", from.optString("claudeSessionId"));
+        File items = new File(tdir, id + ".jsonl"), meta = new File(tdir, id + ".meta.json");
+        if (items.isFile()) write(new File(tdir, s.optString("id") + ".jsonl"), read(items));
+        if (meta.isFile()) write(new File(tdir, s.optString("id") + ".meta.json"), read(meta));
+        sessions.add(0, s);
+        save();
+        return s;
+    }
+
     synchronized void removeSession(String id) {
         for (int i = sessions.size() - 1; i >= 0; i--) if (sessions.get(i).optString("id").equals(id)) sessions.remove(i);
         new File(tdir, id + ".jsonl").delete();
@@ -232,14 +252,19 @@ final class DeskStore {
         return app.getSharedPreferences("desk", Context.MODE_PRIVATE);
     }
 
-    /** The page's preferences: model, effort, mode, theme, fontSize, allowSsid. */
+    /** On-off preferences, all on until turned off: prompt suggestions, notifications, links in the panel, Claude's browser. */
+    static final String[] FLAGS = {"suggestions", "notify", "linksInPanel", "browserTools"};
+
+    /** The page's preferences: model, effort, mode, theme, fontSize, allowSsid, outputStyle, searchEngine and FLAGS. */
     JSONObject prefs() {
         SharedPreferences p = sp();
         JSONObject o = new JSONObject();
         try {
             o.put("model", p.getString("model", "opus")).put("effort", p.getString("effort", "high"))
                     .put("mode", p.getString("mode", "manual")).put("theme", p.getString("theme", "dark"))
-                    .put("fontSize", p.getInt("fontSize", 15)).put("allowSsid", new JSONArray(allowSsid()));
+                    .put("fontSize", p.getInt("fontSize", 15)).put("allowSsid", new JSONArray(allowSsid()))
+                    .put("outputStyle", p.getString("outputStyle", "")).put("searchEngine", p.getString("searchEngine", "bing"));
+            for (String k : FLAGS) o.put(k, p.getBoolean(k, true));
         } catch (JSONException ignored) {
         }
         return o;
@@ -249,8 +274,11 @@ final class DeskStore {
         SharedPreferences.Editor e = sp().edit();
         if ("fontSize".equals(key)) e.putInt(key, value instanceof Number ? ((Number) value).intValue() : 15);
         else if ("allowSsid".equals(key)) e.putString(key, value instanceof JSONArray ? value.toString() : "[]");
-        else if ("model".equals(key) || "effort".equals(key) || "mode".equals(key) || "theme".equals(key)) {
+        else if ("model".equals(key) || "effort".equals(key) || "mode".equals(key) || "theme".equals(key)
+                || "outputStyle".equals(key) || "searchEngine".equals(key)) {
             e.putString(key, String.valueOf(value));
+        } else if (java.util.Arrays.asList(FLAGS).contains(key)) {
+            e.putBoolean(key, Boolean.TRUE.equals(value));
         }
         e.apply();
     }
